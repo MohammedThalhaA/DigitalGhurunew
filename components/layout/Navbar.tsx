@@ -342,7 +342,7 @@ export default function Navbar() {
           <img
             src="/logo-final dG.webp"
             alt="DigitalGhuru Logo"
-            className="h-11 w-auto object-contain"
+            className="h-16 w-auto object-contain"
           />
         </Link>
 

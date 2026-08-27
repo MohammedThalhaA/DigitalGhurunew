@@ -124,7 +124,7 @@ export default function Footer() {
               <img
                 src="/logo-final dG.webp"
                 alt="DigitalGhuru Logo"
-                className="h-10 w-auto object-contain brightness-0 invert"
+                className="h-16 w-auto object-contain"
               />
             </Link>
 
