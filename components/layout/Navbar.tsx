@@ -9,7 +9,6 @@ import {
   X,
   ChevronDown,
   ChevronRight,
-  GraduationCap,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 
@@ -339,13 +338,12 @@ export default function Navbar() {
     >
       <nav className="section-container flex items-center justify-between h-[72px]">
         {/* ── Logo ── */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="h-10 w-10 rounded-xl bg-brand-blue flex items-center justify-center">
-            <GraduationCap className="h-6 w-6 text-white" />
-          </div>
-          <span className="font-display text-xl font-bold text-ink-900">
-            Digital<span className="text-brand-blue">Ghuru</span>
-          </span>
+        <Link href="/" className="flex items-center shrink-0">
+          <img
+            src="/logo-final dG.webp"
+            alt="DigitalGhuru Logo"
+            className="h-11 w-auto object-contain"
+          />
         </Link>
 
         {/* ── Desktop Nav ── */}

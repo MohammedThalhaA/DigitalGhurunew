@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import {
-  GraduationCap,
   MapPin,
   Phone,
   Facebook,
@@ -121,13 +120,12 @@ export default function Footer() {
           {/* ── Column 4: About + Social ── */}
           <div>
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="h-9 w-9 rounded-xl bg-brand-blue flex items-center justify-center">
-                <GraduationCap className="h-5 w-5 text-white" />
-              </div>
-              <span className="font-display text-lg font-bold text-white">
-                Digital<span className="text-brand-blue">Ghuru</span>
-              </span>
+            <Link href="/" className="flex items-center shrink-0 mb-4">
+              <img
+                src="/logo-final dG.webp"
+                alt="DigitalGhuru Logo"
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
             </Link>
 
             {/* PLACEHOLDER: Replace with real DigitalGhuru description */}
