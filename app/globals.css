@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Reset & Global Defaults ─── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-open-sans), sans-serif;
+    color: #334155;
+    background-color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-montserrat), sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #0F172A;
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-raleway), sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #0F172A;
+  }
+
+  p {
+    font-family: var(--font-open-sans), sans-serif;
+    line-height: 1.7;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  ::selection {
+    background-color: #006FFF;
+    color: white;
+  }
+}
+
+/* ─── Utility Classes ─── */
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply font-heading text-sm font-semibold uppercase tracking-[0.15em] text-brand-blue;
+  }
+
+  .heading-xl {
+    @apply font-display text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+
+  .heading-lg {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  .heading-md {
+    @apply font-display text-2xl md:text-3xl font-bold;
+  }
+
+  .heading-sm {
+    @apply font-heading text-xl md:text-2xl font-semibold;
+  }
+
+  .body-lg {
+    @apply font-body text-lg md:text-xl text-ink-600 leading-relaxed;
+  }
+
+  .body-md {
+    @apply font-body text-base text-ink-500 leading-relaxed;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-blue to-brand-orange bg-clip-text text-transparent;
+  }
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ─── Smooth Scroll (Lenis overrides) ─── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}

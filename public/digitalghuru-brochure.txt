@@ -1,0 +1,59 @@
+========================================================================
+                      DIGITALGHURU COURSE SYLLABUS
+                  Premier Digital Marketing Institute
+========================================================================
+
+Learn. Practice. Execute. Work on live campaigns with real ad budgets.
+
+------------------------------------------------------------------------
+CURRICULUM OVERVIEW
+------------------------------------------------------------------------
+
+MODULE 1: DIGITAL MARKETING FUNDAMENTALS
+- Introduction to marketing frameworks
+- Digital vs Traditional media mixes
+- Defining customer personas & buyer journeys
+- Digital competitor benchmarking
+
+MODULE 2: SEARCH ENGINE OPTIMIZATION (SEO)
+- On-page & off-page ranking signals
+- Keyword clustering & competitive research
+- Technical SEO (page speed, sitemaps, screaming frog audits)
+- Local SEO, Google Business Profile scaling
+
+MODULE 3: SEARCH ENGINE MARKETING (SEM / PPC)
+- Google Search & Display campaign logic
+- Meta (Facebook & Instagram) ads manager setup
+- Budget allocation & bidding mechanics
+- Analytics & conversion tag tracing
+
+MODULE 4: CONTENT WRITING & COPYWRITING
+- Creating hooks for email, social media & landing pages
+- Generative AI prompt frameworks (ChatGPT, Claude)
+- Copy mapping based on conversion funnels
+
+MODULE 5: SOCIAL MEDIA MARKETING (SMM)
+- Organic channel expansion & grid styling
+- YouTube video scripting & SEO optimization
+- Influencer outreach metrics & briefs
+
+MODULE 6: DATA REPORTING & ANALYTICS
+- Google Analytics 4 (GA4) configuration
+- Conversion tracking setup
+- Building visual reports in Looker Studio
+
+------------------------------------------------------------------------
+SALIENT PROGRAM PERKS
+------------------------------------------------------------------------
+- Dual Certification (DigitalGhuru + Industry Certificates)
+- Internship integration with echoVME digital agency
+- 100% placement support & recruitment preparation sessions
+- Low student-to-mentor ratio
+
+------------------------------------------------------------------------
+CAMPUS CONTACT INFO:
+------------------------------------------------------------------------
+Address: Chennai Main Campus, Tamil Nadu, India
+Website: http://localhost:3000
+Email: admissions@digitalghuru.com
+========================================================================
