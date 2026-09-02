@@ -6,7 +6,7 @@ import { CheckCircle2, Award } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 const highlights = [
-  "Dual Certification (Digital Marketing + AI Systems)",
+  "Dual Certification (AI-Powered Digital Marketing + AI Systems)",
   "Globally Recognized Industry Credentials",
   "Prep for Google & Meta Blueprint Certifications",
   "Unique verification ID to link on LinkedIn",
@@ -34,7 +34,7 @@ export default function CertificateSection() {
               Get Certified, Get Recruited
             </h2>
             <p className="body-lg text-ink-500">
-              Your DigitalGhuru certificate is more than just paper—it is verified proof of your ability to manage live campaigns, budget scales, and AI-driven growth.
+              Your Digital Ghuru certificate is more than just paper—it is verified proof of your ability to manage live campaigns, budget scales, and AI-driven growth.
             </p>
             <ul className="space-y-3.5">
               {highlights.map((item, idx) => (
@@ -75,10 +75,10 @@ export default function CertificateSection() {
                   </div>
                 </div>
                 <h3 className="font-display font-bold text-xs uppercase tracking-[0.25em] text-brand-blue mb-1">
-                  DigitalGhuru Institute
+                  Digital Ghuru Institute
                 </h3>
                 <p className="text-[9px] uppercase tracking-wider text-ink-400 font-semibold">
-                  Chennai Digital Academy & Marketing Hub
+                  AI Powered Digital Academy & Marketing Hub
                 </p>
               </div>
 
@@ -94,7 +94,7 @@ export default function CertificateSection() {
                   has successfully completed the intensive classroom syllabus and practical evaluation for the
                 </p>
                 <p className="font-heading text-sm md:text-base font-bold text-brand-orange mt-2 uppercase tracking-wide">
-                  Advanced Digital Marketing & AI Systems Program
+                  Advanced AI-Powered Digital Marketing Program
                 </p>
                 <p className="text-[9px] text-ink-400 mt-2">
                   including Live Campaign Ad Budgets, SEO Strategy, & Automation Architecting.

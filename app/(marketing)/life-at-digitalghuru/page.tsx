@@ -9,14 +9,22 @@ import { motion } from "framer-motion";
 
 /* PLACEHOLDER: Replace with real campus/life images */
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop", alt: "Classroom session" },
-  { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop", alt: "Group discussion" },
-  { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop", alt: "Workshop" },
-  { src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop", alt: "Presentation" },
-  { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop", alt: "Team activity" },
-  { src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop", alt: "Campus event" },
-  { src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop", alt: "Computer lab" },
-  { src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop", alt: "Student collaboration" },
+  { src: "/Gallery Images/IMG-20260831-WA0002.jpg", alt: "Digital Ghuru classroom lecture session" },
+  { src: "/Gallery Images/IMG-20260831-WA0003.jpg", alt: "Students learning search engine marketing strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0005.jpg", alt: "Interactive agency-style training session" },
+  { src: "/Gallery Images/IMG-20260831-WA0006.jpg", alt: "Practical digital campaign setup presentation" },
+  { src: "/Gallery Images/IMG-20260831-WA0007.jpg", alt: "Students pitching digital campaign performance" },
+  { src: "/Gallery Images/IMG-20260831-WA0008.jpg", alt: "Collaborative group discussion in progress" },
+  { src: "/Gallery Images/IMG-20260831-WA0009.jpg", alt: "Digital marketing workshop on live campaigns" },
+  { src: "/Gallery Images/IMG-20260831-WA0010.jpg", alt: "Creative brainstorm session for social media strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0011.jpg", alt: "Students working on search engine optimization tools" },
+  { src: "/Gallery Images/IMG-20260831-WA0014.jpg", alt: "Expert mentor explaining digital funnel logic" },
+  { src: "/Gallery Images/IMG-20260831-WA0015.jpg", alt: "Mentorship and career counseling discussion" },
+  { src: "/Gallery Images/IMG-20260831-WA0016.jpg", alt: "Interactive tech session on generative AI marketing" },
+  { src: "/Gallery Images/IMG-20260831-WA0017.jpg", alt: "Alumni sharing placement interview tips" },
+  { src: "/Gallery Images/IMG-20260831-WA0018.jpg", alt: "Hands-on SEO audit lab practice" },
+  { src: "/Gallery Images/IMG-20260831-WA0019.jpg", alt: "Celebrating student project completions" },
+  { src: "/Gallery Images/IMG-20260831-WA0020.jpg", alt: "Mentorship guidance for digital campaign launch" },
 ];
 
 const cultureHighlights = [
@@ -57,7 +65,7 @@ export default function LifeAtPage() {
     <>
       <HeroSection
         eyebrow="LIFE AT DIGITALGHURU"
-        title="Experience the DigitalGhuru"
+        title="Experience the Digital Ghuru"
         titleHighlight="Difference"
         description="More than a classroom — a vibrant community of learners, creators, and future industry leaders."
         primaryCta={{ label: "Join Our Community", href: "/contact" }}
@@ -113,7 +121,7 @@ export default function LifeAtPage() {
             Come Experience It Yourself
           </h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-            Visit our campus, attend a free demo class, and see what life at DigitalGhuru is really like.
+            Visit our campus, attend a free demo class, and see what life at Digital Ghuru is really like.
           </p>
           <Button variant="accent" size="lg" href="/contact">
             Book a Campus Visit

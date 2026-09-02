@@ -19,9 +19,9 @@ interface ComparisonTableProps {
 }
 
 export default function ComparisonTable({
-  title = "Why Choose DigitalGhuru?",
+  title = "Why Choose Digital Ghuru?",
   eyebrow = "COMPARISON",
-  usLabel = "DigitalGhuru",
+  usLabel = "Digital Ghuru",
   othersLabel = "Others",
   rows,
 }: ComparisonTableProps) {

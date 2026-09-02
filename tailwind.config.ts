@@ -34,9 +34,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-montserrat)", "sans-serif"],
-        heading: ["var(--font-raleway)", "sans-serif"],
-        body: ["var(--font-open-sans)", "sans-serif"],
+        display: ["var(--font-outfit)", "sans-serif"],
+        heading: ["var(--font-outfit)", "sans-serif"],
+        body: ["var(--font-inter)", "sans-serif"],
       },
       keyframes: {
         "fade-up": {
@@ -59,6 +59,10 @@ const config: Config = {
           "0%": { opacity: "0", transform: "scale(0.95)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
+        "marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out forwards",
@@ -66,6 +70,7 @@ const config: Config = {
         "slide-down": "slide-down 0.2s ease-out forwards",
         "slide-in-right": "slide-in-right 0.2s ease-out forwards",
         "scale-in": "scale-in 0.3s ease-out forwards",
+        "marquee": "marquee 45s linear infinite",
       },
       boxShadow: {
         card: "0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04)",

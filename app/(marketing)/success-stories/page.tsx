@@ -9,7 +9,7 @@ import Button from "@/components/ui/Button";
 /* PLACEHOLDER: Replace with real student success stories */
 const successStories = [
   {
-    quote: "DigitalGhuru completely transformed my career. The hands-on training and placement support helped me land my dream job at a leading agency within weeks of completing the course.",
+    quote: "Digital Ghuru completely transformed my career. The hands-on training and placement support helped me land my dream job at a leading agency within weeks of completing the course.",
     name: "Student Name",
     role: "Digital Marketing Executive — Agency",
   },
@@ -24,7 +24,7 @@ const successStories = [
     role: "SEO Lead — E-commerce Company",
   },
   {
-    quote: "After years in a traditional marketing role, DigitalGhuru helped me make the switch to digital. The AI modules were especially valuable.",
+    quote: "After years in a traditional marketing role, Digital Ghuru helped me make the switch to digital. The AI modules were especially valuable.",
     name: "Student Name",
     role: "Digital Marketing Manager — MNC",
   },

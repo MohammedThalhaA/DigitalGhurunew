@@ -8,12 +8,11 @@ import LocationCard from "@/components/cards/LocationCard";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 import Button from "@/components/ui/Button";
 
-/* PLACEHOLDER: Replace with real DigitalGhuru data */
 const locations = [
   {
-    name: "Chennai Campus",
-    address: "123 Anna Salai, Teynampet, Chennai, Tamil Nadu 600018",
-    phone: "+91 98765 43210",
+    name: "Anna Nagar Office",
+    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102",
+    phone: "+91 8825948859",
   },
 ];
 
@@ -44,7 +43,7 @@ export default function ContactPage() {
         title="Let's Start Your"
         titleHighlight="Learning Journey"
         description="Have questions? Want to book a free demo class? We're here to help you take the first step."
-        primaryCta={{ label: "Call Us Now", href: "tel:+919876543210" }}
+        primaryCta={{ label: "Call Us Now", href: "tel:+918825948859" }}
       />
 
       {/* Contact Form + Info */}
@@ -75,7 +74,7 @@ export default function ContactPage() {
                     <input
                       type="text"
                       required
-                      placeholder="Your full name"
+                      placeholder="Full Name"
                       className="w-full px-4 py-3 rounded-xl border border-ink-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition"
                     />
                   </div>
@@ -86,7 +85,7 @@ export default function ContactPage() {
                     <input
                       type="email"
                       required
-                      placeholder="you@example.com"
+                      placeholder="Email Address"
                       className="w-full px-4 py-3 rounded-xl border border-ink-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition"
                     />
                   </div>
@@ -99,7 +98,7 @@ export default function ContactPage() {
                   <input
                     type="tel"
                     required
-                    placeholder="+91 XXXXX XXXXX"
+                    placeholder="Phone Number"
                     className="w-full px-4 py-3 rounded-xl border border-ink-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition"
                   />
                 </div>
@@ -150,7 +149,7 @@ export default function ContactPage() {
                 {/* PLACEHOLDER: Replace with real contact info */}
                 <div className="space-y-4">
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+918825948859"
                     className="flex items-center gap-3 text-sm text-ink-600 hover:text-brand-blue transition-colors"
                   >
                     <div className="h-10 w-10 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
@@ -158,7 +157,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-heading font-semibold text-ink-800">Phone</p>
-                      <p>+91 98765 43210</p>
+                      <p>+91 88259 48859</p>
                     </div>
                   </a>
 
@@ -189,10 +188,10 @@ export default function ContactPage() {
 
               {/* Quick Action Buttons */}
               <div className="space-y-3">
-                <Button variant="secondary" className="w-full" href="tel:+919876543210">
+                <Button variant="secondary" className="w-full" href="tel:+918825948859">
                   📞 Call Us Now
                 </Button>
-                <Button variant="outline" className="w-full" href="https://wa.me/919876543210">
+                <Button variant="outline" className="w-full" href="https://wa.me/918825948859">
                   💬 WhatsApp Us
                 </Button>
               </div>

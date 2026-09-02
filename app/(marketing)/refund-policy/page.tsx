@@ -3,7 +3,7 @@ import HeroSection from "@/components/sections/HeroSection";
 
 export const metadata = {
   title: "Cancellation & Refund Policy",
-  description: "Learn about the cancellation and refund policy for DigitalGhuru courses and workshops.",
+  description: "Learn about the cancellation and refund policy for Digital Ghuru courses and workshops.",
 };
 
 export default function RefundPolicyPage() {
@@ -48,10 +48,10 @@ export default function RefundPolicyPage() {
 
             <div>
               <h2 className="font-display text-2xl font-bold text-ink-900 mb-4">
-                4. Course Cancellation by DigitalGhuru
+                4. Course Cancellation by Digital Ghuru
               </h2>
               <p className="text-ink-600 leading-relaxed">
-                In the rare event that DigitalGhuru cancels a course or batch due to unforeseen circumstances, a 100% refund of the fee paid will be issued to the original payment method within 7-10 business days.
+                In the rare event that Digital Ghuru cancels a course or batch due to unforeseen circumstances, a 100% refund of the fee paid will be issued to the original payment method within 7-10 business days.
               </p>
             </div>
           </div>

@@ -1,40 +1,34 @@
 import type { Metadata } from "next";
-import { Montserrat, Open_Sans, Raleway } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
+import { Providers } from "@/components/shared/Providers";
 
-const montserrat = Montserrat({
+const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat",
+  variable: "--font-outfit",
   display: "swap",
 });
 
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-open-sans",
-  display: "swap",
-});
-
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-raleway",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "DigitalGhuru — Premier Digital Marketing Institute",
-    template: "%s | DigitalGhuru",
+    default: "Digital Ghuru — Premier Digital Marketing Institute",
+    template: "%s | Digital Ghuru",
   },
   description:
-    "DigitalGhuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
+    "Digital Ghuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
   keywords: [
     "digital marketing course",
     "digital marketing institute",
-    "DigitalGhuru",
+    "Digital Ghuru",
     "online marketing training",
     "SEO course",
     "social media marketing",
@@ -42,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "DigitalGhuru",
+    siteName: "Digital Ghuru",
   },
 };
 
@@ -53,8 +47,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${openSans.variable} ${montserrat.variable} ${raleway.variable} font-body antialiased`}>
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+      <body className={`${inter.variable} ${outfit.variable} font-body antialiased`}>
+        <Providers>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        </Providers>
       </body>
     </html>
   );

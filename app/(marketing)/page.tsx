@@ -35,60 +35,72 @@ const hiringPartners = [
 ];
 
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80", alt: "Students collaborating on a mock agency project" },
-  { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80", alt: "DigitalGhuru classroom lecture session" },
-  { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80", alt: "Student pitching digital campaign metrics" },
-  { src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80", alt: "Happy DigitalGhuru alumni graduates" },
+  { src: "/Gallery Images/IMG-20260831-WA0002.jpg", alt: "Digital Ghuru classroom lecture session" },
+  { src: "/Gallery Images/IMG-20260831-WA0003.jpg", alt: "Students learning search engine marketing strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0005.jpg", alt: "Interactive agency-style training session" },
+  { src: "/Gallery Images/IMG-20260831-WA0006.jpg", alt: "Practical digital campaign setup presentation" },
+  { src: "/Gallery Images/IMG-20260831-WA0007.jpg", alt: "Students pitching digital campaign performance" },
+  { src: "/Gallery Images/IMG-20260831-WA0008.jpg", alt: "Collaborative group discussion in progress" },
+  { src: "/Gallery Images/IMG-20260831-WA0009.jpg", alt: "Digital marketing workshop on live campaigns" },
+  { src: "/Gallery Images/IMG-20260831-WA0010.jpg", alt: "Creative brainstorm session for social media strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0011.jpg", alt: "Students working on search engine optimization tools" },
+  { src: "/Gallery Images/IMG-20260831-WA0014.jpg", alt: "Expert mentor explaining digital funnel logic" },
+  { src: "/Gallery Images/IMG-20260831-WA0015.jpg", alt: "Mentorship and career counseling discussion" },
+  { src: "/Gallery Images/IMG-20260831-WA0016.jpg", alt: "Interactive tech session on generative AI marketing" },
+  { src: "/Gallery Images/IMG-20260831-WA0017.jpg", alt: "Alumni sharing placement interview tips" },
+  { src: "/Gallery Images/IMG-20260831-WA0018.jpg", alt: "Hands-on SEO audit lab practice" },
+  { src: "/Gallery Images/IMG-20260831-WA0019.jpg", alt: "Celebrating student project completions" },
+  { src: "/Gallery Images/IMG-20260831-WA0020.jpg", alt: "Mentorship guidance for digital campaign launch" },
 ];
 
 const courses = [
   {
-    format: "Classroom",
-    duration: "4 Months",
-    title: "Digital Marketing Course — Chennai",
+    format: "Classroom + Online",
+    duration: "3 to 6 Months",
+    title: "AI-Powered Digital Marketing Course",
     blurb:
-      "Comprehensive hands-on training covering SEO, SEM, Social Media, Content Marketing, and Analytics with live projects.",
-    originalPrice: "₹50,000",
-    discountedPrice: "₹35,000",
-    ctaHref: "/courses/digital-marketing-chennai",
+      "Master digital marketing combined with AI tools like ChatGPT and Midjourney. 12 comprehensive modules covering SEO, SEM, Social Media, Ads, Automation, and more.",
+    originalPrice: "—",
+    discountedPrice: "Contact Us",
+    ctaHref: "/courses/ai-powered-digital-marketing",
   },
   {
-    format: "Online",
-    duration: "3 Months",
-    title: "Online Digital Marketing Course",
+    format: "Classroom + Online",
+    duration: "20 Modules",
+    title: "Creative Design & Video Editing",
     blurb:
-      "Learn digital marketing from anywhere with live interactive sessions, recorded content, and mentorship support.",
-    originalPrice: "₹40,000",
-    discountedPrice: "₹25,000",
-    ctaHref: "/courses/online-digital-marketing",
+      "Master visual design, branding, and professional video editing from beginner to advanced. Tools include Photoshop, Illustrator, Premiere Pro, After Effects, and AI tools.",
+    originalPrice: "—",
+    discountedPrice: "Contact Us",
+    ctaHref: "/courses/creative-design-video-editing",
   },
   {
-    format: "Advanced",
-    duration: "6 Months",
-    title: "Advanced Digital Marketing Program",
+    format: "Classroom + Online",
+    duration: "Coming Soon",
+    title: "Data Science with AI Course",
     blurb:
-      "Deep-dive into advanced strategies, AI-driven marketing, automation tools, and agency-style campaign management.",
-    originalPrice: "₹75,000",
-    discountedPrice: "₹55,000",
-    ctaHref: "/courses/advanced-program",
+      "A comprehensive program to master data science concepts, machine learning algorithms, and AI-powered analytics from beginner to advanced level.",
+    originalPrice: "—",
+    discountedPrice: "Contact Us",
+    ctaHref: "/courses/data-science-with-ai",
   },
   {
-    format: "Short-term",
-    duration: "4 Weeks",
-    title: "Short-term Intensive Courses",
+    format: "Classroom + Online",
+    duration: "Coming Soon",
+    title: "React JS Full Stack Development",
     blurb:
-      "Focused modules on specific skills — SEO, Google Ads, Meta Ads, Email Marketing, or Analytics.",
-    originalPrice: "₹15,000",
-    discountedPrice: "₹10,000",
-    ctaHref: "/courses/short-term",
+      "Build modern web applications with React.js frontend, Node.js backend, databases, and deployment. Become a job-ready full-stack developer.",
+    originalPrice: "—",
+    discountedPrice: "Contact Us",
+    ctaHref: "/courses/react-js-full-stack-development",
   },
 ];
 
 const stats = [
-  { value: 5000, suffix: "+", label: "Students Trained", color: "blue" as const },
+  { value: 500, suffix: "+", label: "Students Trained", color: "blue" as const },
   { value: 95, suffix: "%", label: "Placement Rate", color: "gold" as const },
   { value: 50, suffix: "+", label: "Industry Partners", color: "orange" as const },
-  { value: 8, suffix: "+", label: "Years of Excellence", color: "blue" as const },
+  { value: 6, suffix: "+", label: "Years of Excellence", color: "blue" as const },
 ];
 
 const comparisonRows = [
@@ -107,27 +119,27 @@ const founders = [
     name: "Founder Name",
     role: "Founder & Chief Mentor",
     credentials: [
-      "Google Certified Digital Marketing Expert",
-      "10+ years in digital marketing industry",
-      "Trained 5000+ students across India",
-      "Speaker at major digital marketing summits",
+      "Google Certified AI-Powered Digital Marketing Expert",
+      "10+ years in AI-powered digital marketing industry",
+      "Trained 500+ students across India",
+      "Speaker at major AI-powered digital marketing summits",
     ],
   },
 ];
 
 const testimonials = [
   {
-    quote: "DigitalGhuru completely transformed my career. The hands-on training and placement support helped me land my dream job within weeks of completing the course.",
+    quote: "Digital Ghuru completely transformed my career. The hands-on training and placement support helped me land my dream job within weeks of completing the course.",
     name: "Student Name",
-    role: "Digital Marketing Executive — Company",
+    role: "AI-Powered Digital Marketing Executive — Company",
   },
   {
-    quote: "The best investment I've made in my career. The mentors are incredible and the curriculum covers everything you need to succeed in digital marketing.",
+    quote: "The best investment I've made in my career. The mentors are incredible and the curriculum covers everything you need to succeed in AI-powered digital marketing.",
     name: "Student Name",
     role: "SEO Specialist — Company",
   },
   {
-    quote: "Unlike other institutes, DigitalGhuru focuses on practical skills. We worked on real projects for real clients, which gave me the confidence to excel.",
+    quote: "Unlike other institutes, Digital Ghuru focuses on practical skills. We worked on real projects for real clients, which gave me the confidence to excel.",
     name: "Student Name",
     role: "Social Media Manager — Company",
   },
@@ -137,7 +149,7 @@ const testimonials = [
     role: "Content Strategist — Company",
   },
   {
-    quote: "The community at DigitalGhuru is amazing. Even after completing the course, the support and networking opportunities continue to benefit my career.",
+    quote: "The community at Digital Ghuru is amazing. Even after completing the course, the support and networking opportunities continue to benefit my career.",
     name: "Student Name",
     role: "Freelance Digital Marketer",
   },
@@ -145,7 +157,7 @@ const testimonials = [
 
 const faqs = [
   {
-    question: "What is the duration of the digital marketing course?",
+    question: "What is the duration of the AI-powered digital marketing course?",
     answer: "Our courses range from 4 weeks (short-term intensive) to 6 months (advanced program). The most popular classroom course in Chennai is 4 months, and the online course is 3 months. Each format includes hands-on projects, mentor sessions, and placement preparation.",
   },
   {
@@ -154,7 +166,7 @@ const faqs = [
   },
   {
     question: "What certifications will I receive?",
-    answer: "Upon successful completion, you receive a DigitalGhuru certification. Additionally, we prepare you for Google Ads, Google Analytics, Meta Blueprint, and HubSpot certifications — all included in the course fee.",
+    answer: "Upon successful completion, you receive a Digital Ghuru certification. Additionally, we prepare you for Google Ads, Google Analytics, Meta Blueprint, and HubSpot certifications — all included in the course fee.",
   },
   {
     question: "Are there any prerequisites to join?",
@@ -184,7 +196,7 @@ const fadeUpItem = {
 
 export default function HomePage() {
   const router = useRouter();
-  const { triggerAction, GateModalComponent } = useCourseGate("DigitalGhuru Courses");
+  const { triggerAction, GateModalComponent } = useCourseGate("Digital Ghuru Courses");
 
   const handleViewDetails = (href: string) => {
     triggerAction(() => {
@@ -212,10 +224,10 @@ export default function HomePage() {
           { label: "Google Certified" },
           { label: "AI-Integrated" },
         ]}
-        eyebrow="India's Premier Digital Marketing Institute"
-        title="Master Digital Marketing with"
-        titleHighlight="Real-World Training"
-        description="Join thousands of successful professionals who launched their digital marketing careers with DigitalGhuru's hands-on, industry-aligned courses."
+        eyebrow="AI Powered Education Institute"
+        title=""
+        titleHighlight="AI Career Transformation Academy"
+        description="Future-proof your career at India's premier AI-integrated digital marketing academy. Master advanced strategies, automate campaigns with AI tools, and train in a live agency-style environment designed to get you hired."
         primaryCta={{ label: "Explore Courses", href: "#course-grid" }}
         secondaryCta={{ label: "Book Free Demo", href: "#inquiry-form" }}
       />
@@ -250,7 +262,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <p className="eyebrow mb-3">OUR COURSES</p>
             <h2 className="heading-lg mb-4 text-ink-900">
-              Industry-Leading Digital Marketing Programs
+              Industry-Leading AI-Powered Digital Marketing Programs
             </h2>
             <p className="body-lg max-w-2xl mx-auto text-ink-500">
               Choose from our range of carefully crafted programs designed to match your career goals and learning style.
@@ -308,7 +320,7 @@ export default function HomePage() {
       {/* ─── 11. Campus Photo Gallery ─── */}
       <PhotoGallery
         eyebrow="CAMPUS GALLERY"
-        title="Explore Life at DigitalGhuru"
+        title="Explore Life at Digital Ghuru"
         images={galleryImages}
       />
 

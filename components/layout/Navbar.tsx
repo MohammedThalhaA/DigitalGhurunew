@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
@@ -35,35 +36,34 @@ const navItems: NavItem[] = [
   {
     label: "Courses",
     children: [
-      { label: "Digital Marketing Course — Chennai", href: "/courses/digital-marketing-chennai" },
-      { label: "Digital Marketing Course — Mumbai", href: "/courses/digital-marketing-mumbai" },
-      { label: "Online Digital Marketing Course", href: "/courses/online-digital-marketing" },
-      { label: "MBA / Advanced Program", href: "/courses/advanced-program" },
-      { label: "AI Course for Kids", href: "/courses/ai-for-kids" },
-      { label: "Short-term / Pre-recorded Courses", href: "/courses/short-term" },
+      { label: "AI-Powered Digital Marketing", href: "/courses/ai-powered-digital-marketing" },
+      { label: "Creative Design & Video Editing", href: "/courses/creative-design-video-editing" },
+      { label: "Data Science with AI", href: "/courses/data-science-with-ai" },
+      { label: "React JS Full Stack Development", href: "/courses/react-js-full-stack-development" },
     ],
   },
   {
     label: "Resources",
     children: [
       { label: "About Us", href: "/about-us" },
-      { label: "Blog", href: "/blog" },
+      { label: "Digital Marketing Blogs", href: "/blog" },
       { label: "Newsletter", href: "/newsletter" },
       {
-        label: "Why DigitalGhuru",
+        label: "Why Digital Ghuru",
         children: [
-          { label: "Success Stories", href: "/success-stories" },
-          { label: "Life at DigitalGhuru", href: "/life-at-digitalghuru" },
+          { label: "Success Story", href: "/success-stories" },
+          { label: "Life at Digital Ghuru", href: "/life-at-digital-ghuru" },
         ],
       },
       {
-        label: "Resources/Tools",
+        label: "User Resources",
         children: [
-          { label: "CPC Calculator", href: "/tools/cpc-calculator" },
-          { label: "ROI Calculator", href: "/tools/roi-calculator" },
+          { label: "Facebook Ads Mockup Generator", href: "/tools/facebook-ads-mockup-generator" },
+          { label: "Schema Generator Tools", href: "/tools/schema-generator-tools" },
+          { label: "Free SEO Tools", href: "/tools/free-seo-tools" },
         ],
       },
-      { label: "Tools Hub", href: "/tools" },
+      { label: "Digital Marketing Tools", href: "/tools/digital-marketing-tools" },
     ],
   },
   { label: "Contact Us", href: "/contact" },
@@ -150,7 +150,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button className="flex items-center gap-1 px-3 py-2 text-sm font-heading font-semibold text-ink-700 hover:text-brand-blue transition-colors duration-200">
+      <button className="flex items-center gap-1 px-3 py-2 text-base font-heading font-bold text-ink-700 hover:text-brand-blue transition-colors duration-200">
         {item.label}
         <ChevronDown
           className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -173,7 +173,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
                 <Link
                   key={child.href || child.label}
                   href={child.href || "#"}
-                  className="block px-4 py-2.5 text-sm text-ink-700 hover:bg-brand-blue/5 hover:text-brand-blue rounded-lg transition-colors duration-150"
+                  className="block px-4 py-2.5 text-base font-medium text-ink-700 hover:bg-brand-blue/5 hover:text-brand-blue rounded-lg transition-colors duration-150"
                 >
                   {child.label}
                 </Link>
@@ -306,6 +306,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -336,12 +337,12 @@ export default function Navbar() {
           : "bg-white"
       }`}
     >
-      <nav className="section-container flex items-center justify-between h-[72px]">
+      <nav className="section-container flex items-center justify-between h-[88px]">
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center shrink-0">
           <img
             src="/logo-final dG.webp"
-            alt="DigitalGhuru Logo"
+            alt="Digital Ghuru Logo"
             className="h-16 w-auto object-contain"
           />
         </Link>
@@ -355,7 +356,7 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href || "/"}
-                className={`px-3 py-2 text-sm font-heading font-semibold transition-colors duration-200 ${
+                className={`px-3 py-2 text-base font-heading font-bold transition-colors duration-200 ${
                   pathname === item.href
                     ? "text-brand-blue"
                     : "text-ink-700 hover:text-brand-blue"
@@ -371,17 +372,44 @@ export default function Navbar() {
         </div>
 
         {/* ── Desktop CTA ── */}
-        <div className="hidden lg:block">
-          <Button variant="primary" size="sm" href="/contact">
-            Enroll Now
-          </Button>
+        <div className="hidden lg:flex items-center gap-3">
+          {status === "loading" ? (
+            <div className="h-9 w-24 bg-ink-100 animate-pulse rounded-lg" />
+          ) : session ? (
+            <>
+              <Button variant="outline" size="sm" href={(session?.user as any)?.role === "INSTRUCTOR" || (session?.user as any)?.role === "ADMIN" ? "/mentor/dashboard" : "/student/dashboard"}>
+                Dashboard
+              </Button>
+              <button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="text-base font-bold text-ink-600 hover:text-brand-blue transition-colors"
+              >
+                Log Out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/signin" className="text-base font-bold text-ink-700 hover:text-brand-blue transition-colors">
+                Log In
+              </Link>
+              <Button variant="primary" size="md" href="/signup">
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
 
         {/* ── Mobile: CTA + Hamburger ── */}
         <div className="flex items-center gap-3 lg:hidden">
-          <Button variant="primary" size="sm" href="/contact">
-            Enroll Now
-          </Button>
+          {!session ? (
+            <Button variant="primary" size="sm" href="/signin">
+              Log In
+            </Button>
+          ) : (
+            <Button variant="primary" size="sm" href={(session?.user as any)?.role === "INSTRUCTOR" || (session?.user as any)?.role === "ADMIN" ? "/mentor/dashboard" : "/student/dashboard"}>
+              Dashboard
+            </Button>
+          )}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 text-ink-700 hover:text-brand-blue transition-colors"
@@ -404,7 +432,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 top-[72px] bg-white z-40 overflow-y-auto lg:hidden"
+            className="fixed inset-0 top-[88px] bg-white z-40 overflow-y-auto lg:hidden"
           >
             <div className="pb-8">
               {navItems.map((item) => (
@@ -414,6 +442,38 @@ export default function Navbar() {
                   onClose={() => setMobileOpen(false)}
                 />
               ))}
+              
+              {/* Mobile Auth Links */}
+              <div className="border-t border-ink-100 mt-2 p-6 flex flex-col gap-3">
+                {status !== "loading" && (
+                  !session ? (
+                    <>
+                      <Button variant="outline" className="w-full" href="/signin" onClick={() => setMobileOpen(false)}>
+                        Log In
+                      </Button>
+                      <Button variant="primary" className="w-full" href="/signup" onClick={() => setMobileOpen(false)}>
+                        Sign Up
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button variant="outline" className="w-full" href={(session?.user as any)?.role === "INSTRUCTOR" || (session?.user as any)?.role === "ADMIN" ? "/mentor/dashboard" : "/student/dashboard"} onClick={() => setMobileOpen(false)}>
+                        Dashboard
+                      </Button>
+                      <Button 
+                        variant="primary" 
+                        className="w-full" 
+                        onClick={() => {
+                          setMobileOpen(false);
+                          signOut({ callbackUrl: "/" });
+                        }}
+                      >
+                        Log Out
+                      </Button>
+                    </>
+                  )
+                )}
+              </div>
             </div>
           </motion.div>
         )}

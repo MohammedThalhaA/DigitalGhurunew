@@ -10,8 +10,7 @@ interface Tool {
   name: string;
   category: Category;
   description: string;
-  iconText: string;
-  colorClass: string;
+  iconUrl: string;
 }
 
 const tools: Tool[] = [
@@ -19,85 +18,73 @@ const tools: Tool[] = [
     name: "Google Ads",
     category: "marketing",
     description: "Search, display, and video campaigns for instant, intent-driven visibility.",
-    iconText: "GA",
-    colorClass: "bg-blue-600 text-white",
+    iconUrl: "/tools/googleads.svg",
   },
   {
     name: "Meta Ads Manager",
     category: "marketing",
     description: "Highly targeted Facebook & Instagram campaigns to build engagement.",
-    iconText: "MA",
-    colorClass: "bg-blue-500 text-white",
+    iconUrl: "/tools/meta.svg",
   },
   {
     name: "SEMrush",
     category: "marketing",
     description: "Industry-standard SEO audits, keyword research, and competitor analysis.",
-    iconText: "SR",
-    colorClass: "bg-orange-500 text-white",
+    iconUrl: "/tools/semrush.svg",
   },
   {
     name: "Google Analytics 4",
     category: "marketing",
     description: "Track user behavior, web analytics, conversions, and event triggers.",
-    iconText: "G4",
-    colorClass: "bg-yellow-500 text-white",
+    iconUrl: "/tools/googleanalytics.svg",
   },
   {
     name: "WordPress",
     category: "design",
     description: "Learn to build professional, optimized websites without complex coding.",
-    iconText: "WP",
-    colorClass: "bg-slate-700 text-white",
+    iconUrl: "/tools/wordpress.svg",
   },
   {
     name: "Canva",
     category: "design",
     description: "Design social media templates, ad banners, and pitch decks.",
-    iconText: "CV",
-    colorClass: "bg-cyan-500 text-white",
+    iconUrl: "/tools/canva.svg",
   },
   {
     name: "Mailchimp",
     category: "design",
     description: "Design beautiful email templates and automate customer sequences.",
-    iconText: "MC",
-    colorClass: "bg-amber-400 text-black",
+    iconUrl: "/tools/mailchimp.svg",
   },
   {
-    name: "Buffer / Hootsuite",
+    name: "Hootsuite",
     category: "design",
     description: "Plan, schedule, and optimize social media posts across networks.",
-    iconText: "BF",
-    colorClass: "bg-black text-white",
+    iconUrl: "/tools/hootsuite.svg",
   },
   {
     name: "ChatGPT (OpenAI)",
     category: "ai",
     description: "Master prompt engineering for copywriting, strategy planning, and ideation.",
-    iconText: "GP",
-    colorClass: "bg-emerald-600 text-white",
+    iconUrl: "/tools/openai.svg",
   },
   {
     name: "Claude (Anthropic)",
     category: "ai",
     description: "Analyze complex market datasets, draft campaign briefs, and structure code.",
-    iconText: "CL",
-    colorClass: "bg-orange-700 text-white",
+    iconUrl: "/tools/anthropic.svg",
   },
   {
     name: "Midjourney",
     category: "ai",
     description: "Generate photorealistic product renders and creative art via text prompts.",
-    iconText: "MJ",
-    colorClass: "bg-purple-600 text-white",
+    iconUrl: "/tools/midjourney.svg",
   },
   {
     name: "Zapier",
     category: "ai",
     description: "Connect apps and build automated AI agents to handle marketing tasks.",
-    iconText: "ZP",
-    colorClass: "bg-orange-600 text-white",
+    iconUrl: "/tools/zapier.svg",
   },
 ];
 
@@ -167,11 +154,11 @@ export default function ToolsCovered() {
                 key={tool.name}
                 className="bg-white rounded-2xl border border-ink-100 p-6 shadow-card hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 flex gap-4 items-start"
               >
-                {/* Decorative Tool Badge */}
+                {/* Tool Logo */}
                 <div
-                  className={`h-12 w-12 rounded-xl flex items-center justify-center shrink-0 font-display font-extrabold text-base tracking-wider ${tool.colorClass}`}
+                  className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0 bg-ink-50 p-2 overflow-hidden border border-ink-100"
                 >
-                  {tool.iconText}
+                  <img src={tool.iconUrl} alt={tool.name} className="w-full h-full object-contain" />
                 </div>
 
                 {/* Info */}

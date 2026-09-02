@@ -221,7 +221,7 @@ export default function CareersPage() {
               Why You&apos;ll Love Working Here
             </h2>
             <p className="body-lg max-w-2xl mx-auto text-ink-500">
-              We value execution, quick adaptation, and collaborative mentorship. Here are the core benefits of becoming a member of the DigitalGhuru crew:
+              We value execution, quick adaptation, and collaborative mentorship. Here are the core benefits of becoming a member of the Digital Ghuru crew:
             </p>
           </div>
 
@@ -484,7 +484,7 @@ export default function CareersPage() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="98765 43210"
+                          placeholder="88259 48859"
                           className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30"
                           required
                         />

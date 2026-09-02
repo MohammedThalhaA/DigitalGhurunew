@@ -74,7 +74,7 @@ export default function DesignedFor() {
             Tailored For Growth & Diverse Career Paths
           </h2>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
-            Whether you are starting from scratch or looking to multiply your current business revenue, DigitalGhuru adapts to your goals.
+            Whether you are starting from scratch or looking to multiply your current business revenue, Digital Ghuru adapts to your goals.
           </p>
         </div>
 

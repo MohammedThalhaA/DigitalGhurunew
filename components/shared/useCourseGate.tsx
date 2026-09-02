@@ -172,7 +172,7 @@ export function useCourseGate(courseTitle: string) {
                           type="tel"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder="98765 43210"
+                          placeholder="88259 48859"
                           className="w-full pl-10 pr-4 py-3 bg-ink-50/50 border border-ink-100 rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all"
                           required
                         />

@@ -10,7 +10,7 @@ export default function LeadCaptureForm() {
     email: "",
     phone: "",
     mode: "classroom",
-    course: "digital-marketing-chennai",
+    course: "ai-powered-digital-marketing",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,8 +82,8 @@ export default function LeadCaptureForm() {
                 </div>
                 <div>
                   <p className="text-xs text-ink-400 font-semibold uppercase">Call Admissions</p>
-                  <a href="tel:+919876543210" className="text-sm font-bold hover:text-brand-blue transition-colors">
-                    +91 98765 43210
+                  <a href="tel:+918825948859" className="text-sm font-bold hover:text-brand-blue transition-colors">
+                    +91 88259 48859
                   </a>
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default function LeadCaptureForm() {
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          placeholder="John Doe"
+                          placeholder="Full Name"
                           className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30"
                           required
                         />
@@ -164,7 +164,7 @@ export default function LeadCaptureForm() {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          placeholder="johndoe@example.com"
+                          placeholder="Email Address"
                           className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30"
                           required
                         />
@@ -183,7 +183,7 @@ export default function LeadCaptureForm() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="98765 43210"
+                          placeholder="Phone Number"
                           className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30"
                           required
                         />
@@ -219,17 +219,17 @@ export default function LeadCaptureForm() {
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30 font-medium"
                       >
-                        <option value="digital-marketing-chennai">
-                          Digital Marketing Course — Chennai (4 Months)
+                        <option value="ai-powered-digital-marketing">
+                          AI-Powered Digital Marketing Course
                         </option>
-                        <option value="online-digital-marketing">
-                          Online Digital Marketing Course (3 Months)
+                        <option value="creative-design-video-editing">
+                          Creative Design & Video Editing
                         </option>
-                        <option value="advanced-program">
-                          Advanced Digital Marketing Program (6 Months)
+                        <option value="data-science-with-ai">
+                          Data Science with AI Course
                         </option>
-                        <option value="short-term">
-                          Short-term Intensive Courses (4 Weeks)
+                        <option value="react-js-full-stack-development">
+                          React JS Full Stack Development
                         </option>
                       </select>
                     </div>

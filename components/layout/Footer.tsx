@@ -10,12 +10,12 @@ import {
   Youtube,
 } from "lucide-react";
 
-/* ─── Footer Data (PLACEHOLDER: Replace with real DigitalGhuru data) ─── */
+/* ─── Footer Data (PLACEHOLDER: Replace with real Digital Ghuru data) ─── */
 const locations = [
   {
-    name: "Chennai Campus",
-    address: "123 Anna Salai, Teynampet, Chennai, Tamil Nadu 600018",
-    phone: "+91 98765 43210",
+    name: "Anna Nagar Office",
+    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102",
+    phone: "+91 8825948859",
   },
   /* PLACEHOLDER: Add more campus locations as needed */
 ];
@@ -23,7 +23,7 @@ const locations = [
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Institute", href: "/about-us" },
-  { label: "Our Courses", href: "/courses/digital-marketing-chennai" },
+  { label: "Our Courses", href: "/courses/ai-powered-digital-marketing" },
   { label: "Success Stories", href: "/success-stories" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
@@ -31,19 +31,19 @@ const quickLinks = [
 ];
 
 const courseLinks = [
-  { label: "Digital Marketing Course — Chennai", href: "/courses/digital-marketing-chennai" },
-  { label: "Online Digital Marketing Course", href: "/courses/online-digital-marketing" },
-  { label: "Advanced Digital Marketing Program", href: "/courses/advanced-program" },
-  { label: "Short-term Courses", href: "/courses/short-term" },
+  { label: "AI-Powered Digital Marketing", href: "/courses/ai-powered-digital-marketing" },
+  { label: "Creative Design & Video Editing", href: "/courses/creative-design-video-editing" },
+  { label: "Data Science with AI", href: "/courses/data-science-with-ai" },
+  { label: "React JS Full Stack Development", href: "/courses/react-js-full-stack-development" },
 ];
 
-/* PLACEHOLDER: Replace with real DigitalGhuru social media URLs */
+/* PLACEHOLDER: Replace with real Digital Ghuru social media URLs */
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com/digitalghuru", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com/digitalghuru", label: "Instagram" },
-  { icon: Linkedin, href: "https://linkedin.com/company/digitalghuru", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com/digitalghuru", label: "Twitter" },
-  { icon: Youtube, href: "https://youtube.com/@digitalghuru", label: "YouTube" },
+  { icon: Facebook, href: "https://facebook.com/digitalghuru", label: "Facebook", hoverClass: "hover:bg-[#1877F2]" },
+  { icon: Instagram, href: "https://instagram.com/digitalghuru", label: "Instagram", hoverClass: "hover:bg-[#E4405F]" },
+  { icon: Linkedin, href: "https://linkedin.com/company/digitalghuru", label: "LinkedIn", hoverClass: "hover:bg-[#0A66C2]" },
+  { icon: Twitter, href: "https://twitter.com/digitalghuru", label: "Twitter", hoverClass: "hover:bg-[#1DA1F2]" },
+  { icon: Youtube, href: "https://youtube.com/@digitalghuru", label: "YouTube", hoverClass: "hover:bg-[#FF0000]" },
 ];
 
 export default function Footer() {
@@ -123,14 +123,14 @@ export default function Footer() {
             <Link href="/" className="flex items-center shrink-0 mb-4">
               <img
                 src="/logo-final dG.webp"
-                alt="DigitalGhuru Logo"
+                alt="Digital Ghuru Logo"
                 className="h-16 w-auto object-contain"
               />
             </Link>
 
-            {/* PLACEHOLDER: Replace with real DigitalGhuru description */}
+            {/* PLACEHOLDER: Replace with real Digital Ghuru description */}
             <p className="text-sm text-white/70 leading-relaxed mb-6">
-              DigitalGhuru is a premier digital marketing institute offering
+              Digital Ghuru is a premier digital marketing institute offering
               industry-leading courses with hands-on training, expert mentors,
               and dedicated placement support for every student.
             </p>
@@ -144,7 +144,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:bg-brand-blue hover:text-white transition-all duration-200"
+                  className={`h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-all duration-200 ${social.hoverClass}`}
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -158,7 +158,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="section-container py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-sm text-white/50">
-            © {new Date().getFullYear()} DigitalGhuru. All rights reserved.
+            © {new Date().getFullYear()} Digital Ghuru. All rights reserved.
           </p>
           {/* PLACEHOLDER: Optional credit line */}
           <p className="text-sm text-white/40">

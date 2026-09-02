@@ -60,7 +60,7 @@ export default function HeroSection({
                 {trustBadges.map((badge) => (
                   <span
                     key={badge.label}
-                    className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-gold text-ink-900 text-xs font-heading font-semibold shadow-sm"
+                    className="inline-flex items-center px-5 py-2 rounded-full bg-brand-gold text-ink-900 text-sm font-heading font-bold shadow-sm"
                   >
                     {badge.label}
                   </span>
