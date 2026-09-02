@@ -118,7 +118,7 @@ export default function BlogPostPage() {
               <span className="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-wider mb-6">
                 {post.category}
               </span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black text-ink-900 tracking-tight leading-[1.1] mb-8">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-heading font-extrabold text-ink-900 tracking-tight leading-[1.15] mb-8">
                 {post.title}
               </h1>
             </motion.div>
@@ -316,30 +316,6 @@ export default function BlogPostPage() {
         )}
       </div>
 
-      {/* ─── STICKY BOTTOM CTA BAR ─── */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-t border-ink-200/50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0 hidden sm:flex">
-              <PhoneCall className="h-5 w-5 text-brand-blue" />
-            </div>
-            <div className="text-center md:text-left">
-              <h4 className="text-ink-900 font-heading font-bold text-lg">
-                Schedule 1:1 Free Counselling
-              </h4>
-              <p className="text-ink-500 text-sm">
-                Talk to our experts in a minute, get a plain English breakdown.
-              </p>
-            </div>
-          </div>
-          <div className="flex shrink-0 w-full md:w-auto">
-            <Link href="/contact" className="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-blue hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-              Talk to Career Expert
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

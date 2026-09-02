@@ -63,7 +63,7 @@ const navItems: NavItem[] = [
           { label: "Free SEO Tools", href: "/tools/free-seo-tools" },
         ],
       },
-      { label: "Digital Marketing Tools", href: "/tools/digital-marketing-tools" },
+      { label: "Digital Marketing Tools & Deals", href: "/resources/tools" },
     ],
   },
   { label: "Contact Us", href: "/contact" },
