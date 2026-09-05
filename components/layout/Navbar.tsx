@@ -37,7 +37,7 @@ const navItems: NavItem[] = [
     label: "Courses",
     children: [
       { label: "AI-Powered Digital Marketing", href: "/courses/ai-powered-digital-marketing" },
-      { label: "Creative Design & Video Editing", href: "/courses/creative-design-video-editing" },
+      { label: "Creative Design & Video Editing", href: "/courses/creative-design-and-video-editing" },
       { label: "Data Science with AI", href: "/courses/data-science-with-ai" },
       { label: "React JS Full Stack Development", href: "/courses/react-js-full-stack-development" },
     ],

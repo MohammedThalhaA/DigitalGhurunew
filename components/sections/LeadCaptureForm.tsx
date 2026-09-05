@@ -201,7 +201,7 @@ export default function LeadCaptureForm() {
                           onChange={handleChange}
                           className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30 font-medium"
                         >
-                          <option value="classroom">Classroom (Chennai Campus)</option>
+                          <option value="classroom">Classroom (Main Campus)</option>
                           <option value="online">Live Online Interactive</option>
                         </select>
                       </div>
@@ -220,7 +220,7 @@ export default function LeadCaptureForm() {
                         className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30 font-medium"
                       >
                         <option value="ai-powered-digital-marketing">
-                          AI-Powered Digital Marketing Course
+                          AI-Powered AI-Powered Digital Marketing Course
                         </option>
                         <option value="creative-design-video-editing">
                           Creative Design & Video Editing

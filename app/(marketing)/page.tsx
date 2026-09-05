@@ -57,7 +57,7 @@ const courses = [
   {
     format: "Classroom + Online",
     duration: "3 to 6 Months",
-    title: "AI-Powered Digital Marketing Course",
+    title: "AI-Powered AI-Powered Digital Marketing Course",
     blurb:
       "Master digital marketing combined with AI tools like ChatGPT and Midjourney. 12 comprehensive modules covering SEO, SEM, Social Media, Ads, Automation, and more.",
     originalPrice: "—",
@@ -157,8 +157,8 @@ const testimonials = [
 
 const faqs = [
   {
-    question: "What is the duration of the AI-powered digital marketing course?",
-    answer: "Our courses range from 4 weeks (short-term intensive) to 6 months (advanced program). The most popular classroom course in Chennai is 4 months, and the online course is 3 months. Each format includes hands-on projects, mentor sessions, and placement preparation.",
+    question: "What is the duration of the AI-powered AI-Powered digital marketing course?",
+    answer: "Our courses range from 4 weeks (short-term intensive) to 6 months (advanced program). The most popular classroom course is 4 months, and the online course is 3 months. Each format includes hands-on projects, mentor sessions, and placement preparation.",
   },
   {
     question: "Do you provide placement support?",
@@ -228,6 +228,7 @@ export default function HomePage() {
         title=""
         titleHighlight="AI Career Transformation Academy"
         description="Future-proof your career at India's premier AI-integrated digital marketing academy. Master advanced strategies, automate campaigns with AI tools, and train in a live agency-style environment designed to get you hired."
+        imageUrl="/images/Hero Image.jpeg"
         primaryCta={{ label: "Explore Courses", href: "#course-grid" }}
         secondaryCta={{ label: "Book Free Demo", href: "#inquiry-form" }}
       />

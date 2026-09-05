@@ -33,7 +33,7 @@ const jobOpenings: JobOpening[] = [
     title: "Senior Performance Marketing Executive",
     department: "Paid Media",
     experience: "2 - 5 Years",
-    location: "Chennai Campus",
+    location: "Main Campus",
     type: "Full-Time",
     description: "We are looking for an analytical Paid Ads expert to formulate client campaign strategy, run Google & Meta ad setups, and mentor advanced mock agency batches.",
     responsibilities: [
@@ -54,7 +54,7 @@ const jobOpenings: JobOpening[] = [
     title: "SEO Specialist & Mentor",
     department: "Organic Growth",
     experience: "1 - 3 Years",
-    location: "Chennai / Hybrid",
+    location: "Our Campus / Hybrid",
     type: "Full-Time",
     description: "Join us to shape organic visibility. You will manage client SEO audits, drive content marketing pipelines, and lead classroom sessions on technical and off-page SEO.",
     responsibilities: [
@@ -75,7 +75,7 @@ const jobOpenings: JobOpening[] = [
     title: "Creative Content Strategist & Prompt Writer",
     department: "Content & Copy",
     experience: "1 - 2 Years",
-    location: "Chennai Campus",
+    location: "Main Campus",
     type: "Full-Time",
     description: "Write copy that hooks and convert! You will handle copy for campaigns, social channels, and train students to leverage generative AI writing tools safely.",
     responsibilities: [
@@ -96,7 +96,7 @@ const jobOpenings: JobOpening[] = [
     title: "Admissions Counselor & Sales Associate",
     department: "Admissions",
     experience: "0 - 2 Years (Freshers welcome)",
-    location: "Chennai Campus",
+    location: "Main Campus",
     type: "Full-Time",
     description: "Interact with eager minds and help them find their perfect career path. You will address course queries, coordinate demo sessions, and manage lead registers.",
     responsibilities: [
@@ -123,7 +123,7 @@ const benefits = [
   {
     icon: Users,
     title: "Agency Environment",
-    description: "Work alongside our active digital agency vertical, echoVME. Gain access to real-time client accounts, live spends, and campaign briefs.",
+    description: "Work alongside our active digital agency vertical, Digital Ghuru Agency. Gain access to real-time client accounts, live spends, and campaign briefs.",
   },
   {
     icon: TrendingUp,

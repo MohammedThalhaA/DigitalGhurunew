@@ -14,7 +14,7 @@ import {
 const locations = [
   {
     name: "Anna Nagar Office",
-    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102",
+    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
     phone: "+91 8825948859",
   },
   /* PLACEHOLDER: Add more campus locations as needed */
@@ -32,7 +32,7 @@ const quickLinks = [
 
 const courseLinks = [
   { label: "AI-Powered Digital Marketing", href: "/courses/ai-powered-digital-marketing" },
-  { label: "Creative Design & Video Editing", href: "/courses/creative-design-video-editing" },
+  { label: "Creative Design & Video Editing", href: "/courses/creative-design-and-video-editing" },
   { label: "Data Science with AI", href: "/courses/data-science-with-ai" },
   { label: "React JS Full Stack Development", href: "/courses/react-js-full-stack-development" },
 ];

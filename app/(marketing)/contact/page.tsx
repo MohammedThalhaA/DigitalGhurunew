@@ -11,7 +11,7 @@ import Button from "@/components/ui/Button";
 const locations = [
   {
     name: "Anna Nagar Office",
-    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102",
+    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
     phone: "+91 8825948859",
   },
 ];
@@ -109,7 +109,7 @@ export default function ContactPage() {
                   </label>
                   <select className="w-full px-4 py-3 rounded-xl border border-ink-200 text-sm text-ink-600 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition bg-white">
                     <option value="">Select a course</option>
-                    <option value="chennai">Digital Marketing — Chennai</option>
+                    <option value="Our Campus">Digital Marketing — Our Campus</option>
                     <option value="online">Online Digital Marketing</option>
                     <option value="advanced">Advanced Program</option>
                     <option value="short-term">Short-term Courses</option>

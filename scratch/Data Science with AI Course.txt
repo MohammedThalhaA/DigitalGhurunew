@@ -1,0 +1,361 @@
+20
+DATA SCIENCE
+26
+Advanced Data Science
+Program with AI M
+O
+D
+U
+L
+E
+WITH AI
+ DIGITAL GHURU
+ABOUT
+Digital Ghuru is a forward-thinking digital
+training and solutions platform dedicated to
+empowering individuals and businesses with
+the skills required to succeed in today’s
+digital economy.
+With a strong focus on practical learning and
+real-world application, Digital Ghuru bridges
+the gap between theoretical knowledge and
+industry demands. Our programs are
+designed to help learners build job-ready
+skills, create sustainable income
+opportunities, and enable businesses to scale
+through digital transformation.
+We believe that digital education should be
+accessible, simplified, and outcome driven,
+enabling every learner to confidently step
+into the digital world.
+
+ABOUT THE PROGRAM 
+The Advanced Data Science Program with Python is
+designed to help learners master data science from basics
+to advanced level.
+This program equips you with the ability to analyze data,
+build machine learning models, and generate business
+insights using real-world datasets.
+After completing the course, you can confidently apply
+for roles such as:Data Scientist
+Data Analyst
+Machine Learning
+Engineer
+Business Intelligence
+Analyst
+Flexible Learning OptionsBeginner-Friendly CurriculumPlacement Guidance & Career 
+SupportAI Tools & Industry ExposureHands-on Real-Time ProjectsIndustry Expert Trainers
+Why Choose
+Digital Ghuru ?Empower your future with practical skills, expert mentorship,
+real-world experience, and career-focused training designed
+to help you succeed confidently.DATA SCIENCE MODULE
+Live Interactive Classes
+Python Programming
+Data Analysis & Data Handling
+Data Visualization & Storytelling
+SQL & Database Management
+Machine Learning Models
+Deep Learning Fundamentals
+Cloud & Model Deployment
+Business Problem SolvingStep-by-step structured learning
+Practical assignments for every
+module
+Real-world case studies
+Capstone projects for portfolio
+Continuous mentorship support
+Career guidance sessionsPROGRAM
+HIGHLIGHTSTOP SKILLS YOU
+WILL LEARN
+DATA SCIENCE MODULE
+TOOLS AND
+TECHNOLOGIES COVERED
+PYTHON AND AWS PANDAS & NUMPY
+MATPLOTLIB &
+SEABORNSQL AND SCIKIT-
+LEARN
+TENSORFLOW /
+PYTORCHTABLEAU / POWER BI
+C O U R S E  C U R R IC U LU M
+Build a strong foundation in
+Python by learning core
+programming concepts including
+variables, data types, loops, and
+functions, enabling you to write
+efficient code for data science
+applications. MODULE – 1:
+PYTHON FUNDAMENTALS
+Enhance your Python skills by
+exploring advanced concepts like
+object-oriented programming, file
+handling, debugging, and regular
+expressions, preparing you to
+handle real-world data science
+coding challenges efficiently.MODULE – 2: 
+ADVANCED PYTHONStructured learning path covering essential concepts, tools, and
+real-world applications to help you become a confident and job-
+ready data professional.
+1.Introduction to Python
+2.Variables & Data Types
+3.Conditional Statements
+4.Loops (For & While)
+5.Functions1.Object-Oriented Programming
+2.File Handling
+3.Regular Expressions
+4.Debugging & Exception Handling
+5.Libraries & PackagesAdvanced ConceptsPython Basics
+Learn to work with large datasets
+using Pandas by performing data
+cleaning, transformation, and
+manipulation, helping you extract
+meaningful insights and prepare
+data for analysis and machine
+learning tasks. MODULE – 4: DATA
+HANDLING WITH PANDAS
+Develop problem-solving skills by
+understanding algorithms, time
+complexity, and data structures,
+enabling you to write optimized,
+scalable, and efficient solutions for
+complex computational and data
+processing problems.MODULE – 3: 
+ALGORITHMIC THINKING
+1.Data Frames & Series
+2.Data Cleaning
+3.Data Transformation
+4.Aggregation & GroupingData Processing
+1.Algorithms & Complexity
+2.Searching & Sorting
+3.Data Structures
+4.Best PracticesLogic Building
+DATA SCIENCE MODULE
+Understand the basics of
+databases and SQL by learning
+how to create, retrieve, update,
+and manage structured data
+efficiently, forming a strong base
+for data analysis and backend
+operations. MODULE – 5: 
+SQL FUNDAMENTALS
+Master advanced SQL concepts
+including joins, subqueries,
+functions, and data integration
+techniques, enabling you to handle
+complex queries and efficiently
+manage large-scale structured
+datasets in real-world applications.MODULE – 6: 
+ADVANCED SQL
+1.Tables & Data Types
+2.CRUD Operations
+3.SQL Queries
+4.Constraints1.Joins
+2.Subqueries
+3.Functions
+4.Python IntegrationAdvanced QueriesDatabase BasicsDATA SCIENCE MODULE
+Learn advanced statistical
+methods including hypothesis
+testing, confidence intervals, and
+inferential statistics, helping you
+draw meaningful conclusions
+from data and support decision-
+making with statistical evidence.MODULE – 8: PROBABILITY &
+STATISTICS – II
+Build a solid statistical foundation
+by understanding probability
+concepts, distributions, random
+variables, and sampling
+techniques, which are essential for
+analyzing data and building
+accurate machine learning models.MODULE – 7: PROBABILITY &
+STATISTICS – I
+1.Hypothesis Testing
+2.Central Limit Theorem
+3.Confidence Intervals
+4.EstimationAdvanced Statistics
+1.Probability
+2.Distributions
+3.Expectation & Variance
+4.SamplingStatistics BasicsDATA SCIENCE MODULE
+Understand how to represent data
+visually using charts and graphs,
+enabling you to communicate insights
+effectively through tools like
+Matplotlib and Seaborn, improving
+storytelling and business decision-
+making capabilities. 
+MODULE – 9: 
+DATA VISUALIZATION
+Prepare raw data for analysis by
+handling missing values, encoding
+categorical data, detecting outliers,
+and transforming datasets,
+ensuring clean, structured, and
+high-quality input for machine
+learning models. MODULE – 10: DATA
+PREPROCESSING
+1.Charts & Graphs
+2.Matplotlib & Seaborn
+3.Data Storytelling1.Missing Values
+2.Encoding
+3.Outliers
+4.Feature PreparationData CleaningVisualizationDATA SCIENCE MODULE
+Understand the fundamentals of
+machine learning and learn how
+to build predictive models using
+regression techniques.MODULE – 12: MACHINE
+LEARNING FOUNDATIONS
+Analyze datasets to discover
+patterns, relationships, and trends
+using statistical techniques and
+visualization methods, helping you
+gain deeper insights and make
+data-driven decisions effectively in
+real-world scenarios. MODULE – 11: EXPLORATORY
+DATA ANALYSIS
+1.Introduction to Machine Learning
+2.Supervised Learning Basics
+3.Regression Models
+4.Model Evaluation Metrics
+5.Feature SelectionMachine Learning – I
+1.Univariate & Bivariate Analysis
+2.Correlation
+3.Case StudyEDADATA SCIENCE MODULE
+Learn classification techniques used to
+categorize data and solve real-world
+prediction problems.MODULE – 13
+Explore tree-based models and
+ensemble techniques for improving
+model performance and accuracy.MODULE – 14
+1.Classification Basics
+2.Logistic Regression
+3.K-Nearest Neighbors (KNN)
+4.Support Vector Machine (SVM)
+5.Evaluation Metrics1.Decision Trees
+2.Random Forest
+3.Ensemble Methods
+4.Boosting Techniques
+5.Model OptimizationMachine Learning – IIIMachine Learning – IIDATA SCIENCE MODULE
+Understand how to identify
+hidden patterns in data using
+clustering techniques like K-
+Means, enabling you to work with
+unlabeled datasets and solve real-
+world business problems
+effectivelyMODULE – 16:
+UNSUPERVISED LEARNING
+Learn advanced techniques to
+improve model performance and
+handle real-world data challenges.MODULE – 15
+1.K-Means
+2.Use CasesClustering1.Model Comparison
+2. Overfitting & Underfitting
+3. Imbalanced Data Handling
+4. Sampling Techniques
+5. Model ImprovementMachine Learning – IVDATA SCIENCE MODULE
+Learn advanced concepts of deep
+learning to handle complex and high-
+dimensional data using neural
+networks inspired by the human brain.
+MODULE – 17: 
+DEEP LEARNING
+Implement deep learning models
+using PyTorch and understand the
+fundamentals of building and
+training neural networks.MODULE – 18: 
+DEEP LEARNING
+1.Neural Networks Basics
+2.Activation Functions (ReLU,
+Sigmoid, Tanh)
+3.Gradient Descent
+4.Backpropagation
+5.Overfitting & Prevention1.PyTorch Setup & Tensors
+2.Autograd & Backpropagation
+3.Training Pipeline
+4.Regression Models
+5.Dataset & DataloaderDeep Learning with PyTorchDeep LearningDATA SCIENCE MODULE
+Learn to process and analyze text
+data using NLP techniques such
+as sentiment analysis and text
+classification, enabling you to
+build applications like chatbots
+and language-based AI systems.MODULE – 20: NATURAL
+LANGUAGE PROCESSING
+Explore advanced deep learning
+techniques and architectures used
+in real-world applications.MODULE – 19
+1.Text Processing
+2.Sentiment Analysis
+3.ChatbotsNLP
+1.Neural Network Implementation
+2.CNN Basics
+3.Image Processing
+4.Transfer Learning
+5.Model Saving & LoadingDeep Learning with PyTorch
+– ContinuedDATA SCIENCE MODULE
+Understand how machines interpret
+visual data by learning image
+processing, convolutional neural
+networks, and object detection
+techniques, enabling development of
+applications in image recognition and
+analysis.MODULE – 21: 
+COMPUTER VISION
+Learn how to deploy machine
+learning models into production
+using AWS services, enabling you
+to build scalable, real-world
+applications and understand cloud-
+based infrastructure for data
+science solutions. MODULE – 22: MODEL
+DEPLOYMENT IN AWS CLOUD
+1. Image Processing
+2. Object Detection
+3. CNN Models1. Introduction to AWS
+2. Cloud Services (EC2, Lambda, S3,
+RDS etc)
+3. Hands-on in EC2 Instance
+4. Hands-on in AWS DatabaseDeep Learning with PyTorchComputer VisionDATA SCIENCE MODULE
+Apply all learned concepts by
+working on real-world projects,
+enabling you to build a strong
+portfolio, gain practical experience,
+and demonstrate your data science
+skills to potential employers.MODULE – 23: 
+CAPSTONE PROJECTS
+1.Fraud Detection System
+2.Customer Segmentation
+3.Recommendation Engine
+4.AI ChatbotProjectsDATA SCIENCE MODULE
+PROJECTS FOR YOUR
+PORTFOLIO
+1.Movie Revenue Prediction
+2.Financial Fraud Detection
+3.Customer Segmentation
+4.NLP-based Chatbot
+01
+Resume 
+Building
+LinkedIn Profile
+Optimization
+02
+Interview
+Preparation
+03
+Career 
+Guidance
+04
+PLACEMENT SUPPORT
+Students &
+Freshers
+Working
+Professionals
+Career 
+Switchers
+Entrepreneurs
+WHO CAN JOIN?
+Contact us
+8825948859
+info@gmail.com
+www.digitalghuru.com
+Anna Nagar | Nungambakkam |
+Korattur | HyderabadDigital Ghuru - AI Career Transformation Academy
+(A Unit of Jai Ghurudeva Academy Private Limited)

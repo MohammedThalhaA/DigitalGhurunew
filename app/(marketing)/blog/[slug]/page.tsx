@@ -27,7 +27,7 @@ const blogPostsMap: Record<string, BlogPost> = {
     coverUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop",
     date: "August 15, 2024",
     readTime: "12 min read",
-    author: "Rishi Jain",
+    author: "Our Expert Mentors",
     authorTitle: "Co-Founder of Digital Ghuru",
     category: "Guides",
     content: [
@@ -44,7 +44,7 @@ const blogPostsMap: Record<string, BlogPost> = {
     coverUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop",
     date: "August 10, 2024",
     readTime: "8 min read",
-    author: "Rishi Jain",
+    author: "Our Expert Mentors",
     authorTitle: "Co-Founder of Digital Ghuru",
     category: "Artificial Intelligence",
     content: [
@@ -60,7 +60,7 @@ const blogPostsMap: Record<string, BlogPost> = {
     coverUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200&h=630&fit=crop",
     date: "August 5, 2024",
     readTime: "10 min read",
-    author: "Rishi Jain",
+    author: "Our Expert Mentors",
     authorTitle: "Co-Founder of Digital Ghuru",
     category: "SEO",
     content: [

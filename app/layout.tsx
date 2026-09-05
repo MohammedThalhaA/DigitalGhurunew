@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   description:
     "Digital Ghuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
   keywords: [
-    "digital marketing course",
+    "AI-Powered digital marketing course",
     "digital marketing institute",
     "Digital Ghuru",
     "online marketing training",

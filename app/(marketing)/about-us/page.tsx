@@ -38,18 +38,18 @@ import Button from "@/components/ui/Button";
 const locations = [
   {
     name: "Anna Nagar Office",
-    city: "Chennai",
-    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102",
+    city: "Our Campus",
+    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
     phone: "+91 8825948859",
     email: "support@digitalghuru.in",
     gradient: "from-brand-blue to-blue-600",
   },
   {
-    name: "Hyderabad Campus",
-    city: "Hyderabad",
-    address: "[Mock Data] Hyderabad Hi-Tech City, Madhapur, Hyderabad, Telangana - 500081",
+    name: "Main Campus",
+    city: "Our Campus",
+    address: "[Mock Data] Our Campus Hi-Tech City, Madhapur, Our Campus, Telangana - 500081",
     phone: "+91 9999999999",
-    email: "hyderabad@digitalghuru.in",
+    email: "Our Campus@digitalghuru.in",
     gradient: "from-brand-orange to-orange-600",
   },
 ];
@@ -103,14 +103,14 @@ const programs = [
     accent: "blue",
   },
   {
-    title: "Best Digital Marketing Course in Chennai",
+    title: "Best AI-Powered Digital Marketing Course",
     desc: "Agency-style learning, placement support, and real brand campaigns, transforming you into an AI-powered marketer.",
     icon: Building2,
     accent: "orange",
   },
   {
-    title: "Best Digital Marketing Course in Hyderabad",
-    desc: "State-of-the-art Hyderabad campus, ideal for career switchers looking to build a freelancing portfolio with AI-first skills.",
+    title: "Best AI-Powered Digital Marketing Course",
+    desc: "State-of-the-art Main Campus, ideal for career switchers looking to build a freelancing portfolio with AI-first skills.",
     icon: Laptop,
     accent: "gold",
   },
@@ -264,7 +264,7 @@ export default function AboutUsPage() {
                     To become the world&apos;s most advanced digital marketing institute, empowering learners globally to lead in the AI-powered marketing era.
                   </p>
                   <p className="text-lg text-ink-500 leading-[1.8]">
-                    We aim to be the benchmark for the best digital marketing course, delivering transformational education through real-world, agency-style learning and future-ready AI integration.
+                    We aim to be the benchmark for the best AI-Powered digital marketing course, delivering transformational education through real-world, agency-style learning and future-ready AI integration.
                   </p>
                 </div>
               </motion.div>
