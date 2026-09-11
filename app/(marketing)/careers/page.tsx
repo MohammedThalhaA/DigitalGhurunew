@@ -119,21 +119,33 @@ const benefits = [
     icon: Bot,
     title: "AI-First Workflows",
     description: "We are an AI-integrated workplace. Master cutting-edge LLMs, prompting frameworks, and automated integrations in your daily tasks.",
+    gradient: "from-blue-500/10 to-indigo-500/10",
+    border: "group-hover:border-blue-500/30",
+    iconColor: "text-blue-600"
   },
   {
     icon: Users,
     title: "Agency Environment",
     description: "Work alongside our active digital agency vertical, Digital Ghuru Agency. Gain access to real-time client accounts, live spends, and campaign briefs.",
+    gradient: "from-emerald-500/10 to-teal-500/10",
+    border: "group-hover:border-emerald-500/30",
+    iconColor: "text-emerald-600"
   },
   {
     icon: TrendingUp,
     title: "Accelerated Growth",
     description: "Double your skillset inside a year. We support you to lead premium courses, publish case studies, and present at industry meetups.",
+    gradient: "from-amber-500/10 to-orange-500/10",
+    border: "group-hover:border-amber-500/30",
+    iconColor: "text-amber-600"
   },
   {
     icon: Heart,
     title: "Employee Well-being",
     description: "Enjoy flexible hybrid setups, monthly performance bonuses, medical insurance benefits, and regular team bonding dinners.",
+    gradient: "from-rose-500/10 to-pink-500/10",
+    border: "group-hover:border-rose-500/30",
+    iconColor: "text-rose-600"
   },
 ];
 
@@ -182,41 +194,34 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="bg-ink-50 min-h-screen">
+    <div className="bg-white min-h-screen">
       {/* ─── Hero Section ─── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-ink-900 via-ink-950 to-brand-blue/20 py-20 md:py-28 text-white text-center">
-        {/* Background blobs */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-blue/15 rounded-full blur-3xl" />
-          <div className="absolute -bottom-45 -left-45 w-80 h-80 bg-brand-orange/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="section-container relative z-10 space-y-6">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-gold text-ink-900 text-xs font-bold uppercase tracking-wider shadow-sm">
-            We Are Hiring
-          </span>
-          <h1 className="heading-xl text-white max-w-3xl mx-auto leading-tight font-display">
-            Build the Future of Digital Marketing Education
-          </h1>
-          <p className="body-lg max-w-2xl mx-auto text-ink-300">
-            Work with India&apos;s leading agency-style digital marketing institute. Shape eager minds, manage real client campaigns, and scale your expertise alongside top industry leaders.
+      <section className="relative overflow-hidden bg-white pt-32 pb-20 text-center border-b border-ink-100">
+        <div className="section-container relative z-10 max-w-4xl mx-auto space-y-6">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-1.5 h-10 bg-brand-orange rounded-full" />
+            <h1 className="heading-xl text-ink-900 leading-tight font-black uppercase">
+              Build the Future of <br className="hidden md:block" /> Digital Marketing
+            </h1>
+          </div>
+          <p className="body-lg max-w-2xl mx-auto text-ink-600">
+            Work with an agency-style digital marketing institute. Shape eager minds, manage real client campaigns, and scale your expertise alongside top industry leaders.
           </p>
-          <div className="pt-4">
+          <div className="pt-6">
             <a
               href="#open-roles"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-blue hover:bg-brand-blue/90 text-white font-bold text-sm shadow-md shadow-brand-blue/20 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-700 text-white font-heading font-bold text-base shadow-md shadow-brand-blue/20 transition-all duration-200"
             >
-              Explore Open Openings
+              Explore Open Openings <ChevronDown className="h-5 w-5" />
             </a>
           </div>
         </div>
       </section>
 
       {/* ─── Why Join Us (Culture & Benefits) ─── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-white border-b border-ink-200">
         <div className="section-container">
           <div className="text-center mb-16">
-            <p className="eyebrow mb-3">OUR CULTURE</p>
             <h2 className="heading-lg mb-4 text-ink-900">
               Why You&apos;ll Love Working Here
             </h2>
@@ -225,23 +230,30 @@ export default function CareersPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, idx) => {
               const Icon = benefit.icon;
               return (
                 <div
                   key={idx}
-                  className="p-6 md:p-8 rounded-2xl border border-ink-100 bg-ink-50/50 hover:bg-white hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 group"
+                  className={`group relative overflow-hidden rounded-3xl border border-ink-100 bg-white p-6 shadow-card hover:shadow-card-hover transition-all duration-300 ${benefit.border}`}
                 >
-                  <div className="h-12 w-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-5 group-hover:bg-brand-blue group-hover:scale-110 transition-all duration-300">
-                    <Icon className="h-6 w-6 text-brand-blue group-hover:text-white transition-colors duration-300" />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+                  />
+                  <div className="relative z-10 flex flex-col items-start gap-4">
+                    <div className="h-12 w-12 rounded-xl bg-white shadow-md flex items-center justify-center shrink-0 border border-ink-100/50 group-hover:scale-110 transition-transform duration-300">
+                      <Icon className={`h-6 w-6 ${benefit.iconColor}`} />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="font-heading text-lg font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-sm text-ink-500 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-ink-900 mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-xs text-ink-500 leading-relaxed">
-                    {benefit.description}
-                  </p>
                 </div>
               );
             })}
@@ -250,10 +262,9 @@ export default function CareersPage() {
       </section>
 
       {/* ─── Open Roles Section ─── */}
-      <section className="section-padding bg-ink-50" id="open-roles">
+      <section className="section-padding bg-ink-50 border-b border-ink-200" id="open-roles">
         <div className="section-container">
           <div className="text-center mb-16">
-            <p className="eyebrow mb-3">JOB OPENINGS</p>
             <h2 className="heading-lg mb-4 text-ink-900">
               Active Career Opportunities
             </h2>
@@ -268,43 +279,43 @@ export default function CareersPage() {
               return (
                 <div
                   key={job.id}
-                  className="bg-white rounded-2xl border border-ink-100 overflow-hidden shadow-sm hover:shadow-card hover:border-ink-200 transition-all duration-200"
+                  className="bg-white rounded-3xl border border-ink-100 overflow-hidden shadow-card transition-all duration-300"
                 >
                   {/* Job Header Summary */}
                   <button
                     onClick={() => toggleJob(job.id)}
-                    className="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 focus:outline-none"
+                    className="w-full p-6 md:p-8 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 focus:outline-none hover:bg-ink-50/50 transition-colors"
                   >
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-md bg-brand-blue/10 text-brand-blue text-[10px] font-bold uppercase tracking-wider">
+                        <span className="px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-wider">
                           {job.department}
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-md bg-ink-100 text-ink-600 text-[10px] font-bold uppercase tracking-wider">
+                        <span className="px-3 py-1 rounded-full bg-ink-100 text-ink-700 text-xs font-bold uppercase tracking-wider">
                           {job.type}
                         </span>
                       </div>
-                      <h3 className="font-heading text-lg md:text-xl font-bold text-ink-900">
+                      <h3 className="font-heading text-xl md:text-2xl font-bold text-ink-900">
                         {job.title}
                       </h3>
-                      <div className="flex flex-wrap items-center gap-4 text-xs text-ink-400 font-medium">
-                        <span className="flex items-center gap-1">
-                          <MapPin className="h-3.5 w-3.5" />
+                      <div className="flex flex-wrap items-center gap-6 text-sm text-ink-500 font-medium">
+                        <span className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-ink-400" />
                           {job.location}
                         </span>
-                        <span className="flex items-center gap-1">
-                          <Briefcase className="h-3.5 w-3.5" />
+                        <span className="flex items-center gap-2">
+                          <Briefcase className="h-4 w-4 text-ink-400" />
                           Exp: {job.experience}
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 shrink-0 text-brand-blue text-sm font-semibold">
+                    <div className="flex items-center gap-2 shrink-0 text-brand-blue font-heading font-bold text-sm">
                       <span>{isExpanded ? "Show Less" : "View Details"}</span>
                       {isExpanded ? (
-                        <ChevronUp className="h-4 w-4" />
+                        <ChevronUp className="h-5 w-5" />
                       ) : (
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-5 w-5" />
                       )}
                     </div>
                   </button>
@@ -319,37 +330,47 @@ export default function CareersPage() {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden border-t border-ink-100"
                       >
-                        <div className="p-6 md:p-8 bg-ink-50/20 space-y-6">
-                          <p className="text-sm text-ink-600 leading-relaxed">
+                        <div className="p-6 md:p-8 bg-ink-50/50 space-y-8">
+                          <p className="text-base text-ink-700 leading-relaxed font-medium">
                             {job.description}
                           </p>
 
-                          {/* Responsibilities */}
-                          <div className="space-y-3">
-                            <h4 className="font-heading text-sm font-bold text-ink-900 uppercase tracking-wide">
-                              Key Responsibilities:
-                            </h4>
-                            <ul className="list-disc pl-5 space-y-1.5 text-xs md:text-sm text-ink-500 leading-relaxed">
-                              {job.responsibilities.map((resp, idx) => (
-                                <li key={idx}>{resp}</li>
-                              ))}
-                            </ul>
-                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {/* Responsibilities */}
+                            <div className="space-y-4">
+                              <h4 className="font-heading text-base font-bold text-ink-900 flex items-center gap-2">
+                                <div className="w-1.5 h-6 bg-brand-orange rounded-full" />
+                                Key Responsibilities
+                              </h4>
+                              <ul className="space-y-3">
+                                {job.responsibilities.map((resp, idx) => (
+                                  <li key={idx} className="flex items-start gap-3">
+                                    <div className="mt-2 w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" />
+                                    <span className="text-sm text-ink-600 leading-relaxed">{resp}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
 
-                          {/* Requirements */}
-                          <div className="space-y-3">
-                            <h4 className="font-heading text-sm font-bold text-ink-900 uppercase tracking-wide">
-                              Requirements & Qualifications:
-                            </h4>
-                            <ul className="list-disc pl-5 space-y-1.5 text-xs md:text-sm text-ink-500 leading-relaxed">
-                              {job.requirements.map((req, idx) => (
-                                <li key={idx}>{req}</li>
-                              ))}
-                            </ul>
+                            {/* Requirements */}
+                            <div className="space-y-4">
+                              <h4 className="font-heading text-base font-bold text-ink-900 flex items-center gap-2">
+                                <div className="w-1.5 h-6 bg-brand-orange rounded-full" />
+                                Requirements
+                              </h4>
+                              <ul className="space-y-3">
+                                {job.requirements.map((req, idx) => (
+                                  <li key={idx} className="flex items-start gap-3">
+                                    <div className="mt-2 w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" />
+                                    <span className="text-sm text-ink-600 leading-relaxed">{req}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
                           </div>
 
                           {/* Apply CTA link */}
-                          <div className="pt-4 flex justify-start">
+                          <div className="pt-6 border-t border-ink-200 flex justify-start">
                             <a
                               href="#speculative-form"
                               onClick={() => {
@@ -358,9 +379,9 @@ export default function CareersPage() {
                                   category: job.id,
                                 });
                               }}
-                              className="px-6 py-3 rounded-xl bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold text-xs shadow-md shadow-brand-blue/20 transition-all duration-200"
+                              className="px-8 py-3 rounded-xl bg-brand-blue hover:bg-blue-700 text-white font-heading font-bold text-sm shadow-md transition-all duration-200"
                             >
-                              Apply For This Opening
+                              Apply For This Role
                             </a>
                           </div>
                         </div>
@@ -375,19 +396,18 @@ export default function CareersPage() {
       </section>
 
       {/* ─── Hiring Process Roadmap ─── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-white border-b border-ink-200">
         <div className="section-container">
           <div className="text-center mb-16">
-            <p className="eyebrow mb-3">HOW WE HIRE</p>
             <h2 className="heading-lg mb-4 text-ink-900">Our Recruitment Funnel</h2>
             <p className="body-lg max-w-2xl mx-auto text-ink-500">
               We respect your time. Our simplified recruitment process focuses on practical talent evaluations and fast communication.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative max-w-5xl mx-auto">
             {/* Connection Line */}
-            <div className="hidden lg:block absolute top-[52px] left-[15%] right-[15%] h-0.5 bg-brand-blue/20 -z-10" />
+            <div className="hidden lg:block absolute top-[28px] left-[15%] right-[15%] h-0.5 bg-ink-200 -z-10" />
 
             {[
               { step: "01", label: "Submit Details", desc: "Share your resume, link your portfolio or past agency campaigns." },
@@ -396,11 +416,12 @@ export default function CareersPage() {
               { step: "04", label: "Offer & Onboard", desc: "Get details, sign agreements, and align with your batch." }
             ].map((process, idx) => (
               <div key={idx} className="flex flex-col items-center text-center space-y-4">
-                <div className="h-12 w-12 rounded-full bg-brand-blue text-white font-display font-extrabold text-sm flex items-center justify-center shadow-md">
-                  {process.step}
+                <div className="h-14 w-14 rounded-full bg-white border-4 border-ink-100 text-[#0d2f62] font-display font-black text-lg flex items-center justify-center shadow-sm relative">
+                  <div className="absolute inset-1 rounded-full bg-[#0d2f62]/5" />
+                  <span className="relative z-10">{process.step}</span>
                 </div>
-                <h3 className="font-heading text-base font-bold text-ink-900">{process.label}</h3>
-                <p className="text-xs text-ink-500 leading-relaxed max-w-xs">{process.desc}</p>
+                <h3 className="font-heading text-lg font-bold text-ink-900">{process.label}</h3>
+                <p className="text-sm text-ink-500 leading-relaxed px-4">{process.desc}</p>
               </div>
             ))}
           </div>
@@ -408,10 +429,10 @@ export default function CareersPage() {
       </section>
 
       {/* ─── Speculative Form Section ─── */}
-      <section className="section-padding bg-ink-50" id="speculative-form">
+      <section className="section-padding bg-white" id="speculative-form">
         <div className="section-container">
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-3xl border border-ink-100 shadow-card p-6 md:p-10">
+            <div className="bg-white rounded-3xl border border-ink-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)] p-8 md:p-12">
               <AnimatePresence mode="wait">
                 {!isSuccess ? (
                   <motion.form
@@ -421,11 +442,11 @@ export default function CareersPage() {
                     onSubmit={handleSubmit}
                     className="space-y-6"
                   >
-                    <div className="text-center pb-2">
-                      <h3 className="font-heading text-xl md:text-2xl font-bold text-ink-900 mb-2">
+                    <div className="text-center pb-6 border-b border-ink-100">
+                      <h3 className="font-heading text-2xl font-bold text-ink-900 mb-3">
                         Submit Your Application
                       </h3>
-                      <p className="text-xs md:text-sm text-ink-500 max-w-md mx-auto">
+                      <p className="text-sm text-ink-500">
                         Don&apos;t find an active opening matching your domain? Submit a speculative application and we will reach out if a role opens.
                       </p>
                     </div>
@@ -438,7 +459,7 @@ export default function CareersPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Name */}
-                      <div className="space-y-1.5">
+                      <div className="space-y-2">
                         <label className="text-xs font-bold text-ink-700 uppercase" htmlFor="name">
                           Full Name *
                         </label>
@@ -449,13 +470,13 @@ export default function CareersPage() {
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Your Name"
-                          className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30"
+                          className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm"
                           required
                         />
                       </div>
 
                       {/* Email */}
-                      <div className="space-y-1.5">
+                      <div className="space-y-2">
                         <label className="text-xs font-bold text-ink-700 uppercase" htmlFor="email">
                           Email Address *
                         </label>
@@ -466,7 +487,7 @@ export default function CareersPage() {
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder="you@example.com"
-                          className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30"
+                          className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm"
                           required
                         />
                       </div>
@@ -474,7 +495,7 @@ export default function CareersPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Phone */}
-                      <div className="space-y-1.5">
+                      <div className="space-y-2">
                         <label className="text-xs font-bold text-ink-700 uppercase" htmlFor="phone">
                           Phone Number *
                         </label>
@@ -485,13 +506,13 @@ export default function CareersPage() {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="88259 48859"
-                          className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30"
+                          className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm"
                           required
                         />
                       </div>
 
                       {/* Job Category */}
-                      <div className="space-y-1.5">
+                      <div className="space-y-2">
                         <label className="text-xs font-bold text-ink-700 uppercase" htmlFor="category">
                           Position of Interest *
                         </label>
@@ -500,7 +521,7 @@ export default function CareersPage() {
                           name="category"
                           value={formData.category}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30 font-medium"
+                          className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm font-medium"
                         >
                           <option value="performance-marketing">Senior Performance Marketing Executive</option>
                           <option value="seo-trainer">SEO Specialist & Mentor</option>
@@ -513,7 +534,7 @@ export default function CareersPage() {
                     </div>
 
                     {/* Brief Cover Note */}
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
                       <label className="text-xs font-bold text-ink-700 uppercase" htmlFor="bio">
                         Short Cover Pitch (Tell us why you want to join us)
                       </label>
@@ -524,24 +545,24 @@ export default function CareersPage() {
                         onChange={handleInputChange}
                         rows={4}
                         placeholder="Briefly describe your experience and campaign accomplishments..."
-                        className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30 font-body resize-none"
+                        className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 rounded-xl bg-brand-blue text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-brand-blue/90 shadow-md shadow-brand-blue/20 transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed"
+                      className="w-full py-4 mt-4 rounded-xl bg-brand-blue text-white font-heading font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-700 shadow-md shadow-brand-blue/20 transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
-                          <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                           Submitting Application...
                         </>
                       ) : (
                         <>
-                          <Send className="h-4 w-4" />
-                          Submit My Application
+                          <Send className="h-5 w-5" />
+                          Submit Application
                         </>
                       )}
                     </button>
@@ -551,20 +572,20 @@ export default function CareersPage() {
                     key="careers-success"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-10 space-y-4"
+                    className="text-center py-12 space-y-6"
                   >
-                    <div className="h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mx-auto">
+                    <div className="h-20 w-20 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mx-auto shadow-inner">
                       <CheckCircle2 className="h-10 w-10" />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <h3 className="font-heading text-2xl font-bold text-ink-900">
                         Application Submitted!
                       </h3>
-                      <p className="text-sm text-ink-500 max-w-sm mx-auto leading-relaxed">
-                        Thank you, <span className="font-semibold text-ink-900">{formData.name}</span>. We have successfully registered your application for review and will contact you at <span className="font-semibold text-ink-900">{formData.email}</span> if a matching role is found.
+                      <p className="text-base text-ink-600 max-w-sm mx-auto leading-relaxed">
+                        Thank you, <span className="font-bold text-ink-900">{formData.name}</span>. We have successfully registered your application for review and will contact you at <span className="font-bold text-ink-900">{formData.email}</span> if a matching role is found.
                       </p>
                     </div>
-                    <div className="pt-4">
+                    <div className="pt-6 border-t border-ink-100">
                       <button
                         onClick={() => {
                           setIsSuccess(false);
@@ -576,7 +597,7 @@ export default function CareersPage() {
                             bio: "",
                           });
                         }}
-                        className="px-6 py-2.5 rounded-xl border border-ink-200 text-xs font-semibold text-ink-600 hover:bg-ink-50 transition-colors"
+                        className="px-6 py-3 rounded-xl border border-ink-200 text-sm font-bold font-heading text-ink-700 hover:bg-ink-50 hover:text-brand-blue transition-colors shadow-sm"
                       >
                         Submit another application
                       </button>

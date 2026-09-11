@@ -86,22 +86,19 @@ export default function WhyUsDifferentiators({ course }: { course?: any }) {
                   </>
                 )}
                 
-                {/* Embedded Floating Image */}
+                {/* Cutout Mentor Image */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="mt-8 relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-ink-900/5 group"
+                  className="mt-8 relative w-full h-[350px] lg:h-[450px] flex items-end justify-center pointer-events-none z-10"
                 >
                   <Image 
-                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200"
-                    alt="Digital Ghuru Graduation Ceremony"
+                    src="/resources/mentor-explaining.png"
+                    alt="Digital Ghuru Mentor"
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-contain object-bottom drop-shadow-2xl hover:scale-[1.03] transition-transform duration-700 pointer-events-auto"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent flex items-end p-6">
-                    <span className="text-white font-bold text-sm">Graduation Ceremony 2026</span>
-                  </div>
                 </motion.div>
 
               </div>

@@ -32,8 +32,6 @@ const quickLinks = [
 
 const courseLinks = [
   { label: "AI-Powered Digital Marketing", href: "/courses/ai-powered-digital-marketing" },
-  { label: "Creative Design & Video Editing", href: "/courses/creative-design-and-video-editing" },
-  { label: "Data Science with AI", href: "/courses/data-science-with-ai" },
   { label: "React JS Full Stack Development", href: "/courses/react-js-full-stack-development" },
 ];
 
@@ -54,7 +52,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* ── Column 1: Locations ── */}
           <div>
-            <h4 className="font-heading text-lg font-bold text-white mb-6">
+            <h4 className="font-display text-lg font-bold text-white mb-6">
               Our Campus
             </h4>
             <div className="space-y-6">
@@ -81,7 +79,7 @@ export default function Footer() {
 
           {/* ── Column 2: Quick Links ── */}
           <div>
-            <h4 className="font-heading text-lg font-bold text-white mb-6">
+            <h4 className="font-display text-lg font-bold text-white mb-6">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -100,7 +98,7 @@ export default function Footer() {
 
           {/* ── Column 3: Course Links ── */}
           <div>
-            <h4 className="font-heading text-lg font-bold text-white mb-6">
+            <h4 className="font-display text-lg font-bold text-white mb-6">
               Our Courses
             </h4>
             <ul className="space-y-3">
@@ -129,7 +127,7 @@ export default function Footer() {
             </Link>
 
             {/* PLACEHOLDER: Replace with real Digital Ghuru description */}
-            <p className="text-sm text-white/70 leading-relaxed mb-6">
+            <p className="font-body text-sm text-white/70 leading-relaxed mb-6">
               Digital Ghuru is a premier digital marketing institute offering
               industry-leading courses with hands-on training, expert mentors,
               and dedicated placement support for every student.

@@ -220,16 +220,10 @@ export default function LeadCaptureForm() {
                         className="w-full px-4 py-3 rounded-xl border border-ink-100 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-ink-50/30 font-medium"
                       >
                         <option value="ai-powered-digital-marketing">
-                          AI-Powered AI-Powered Digital Marketing Course
-                        </option>
-                        <option value="creative-design-video-editing">
-                          Creative Design & Video Editing
-                        </option>
-                        <option value="data-science-with-ai">
-                          Data Science with AI Course
+                          AI-Powered Digital Marketing Course
                         </option>
                         <option value="react-js-full-stack-development">
-                          React JS Full Stack Development
+                          React JS Full Stack Development Course
                         </option>
                       </select>
                     </div>

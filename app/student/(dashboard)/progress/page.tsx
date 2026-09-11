@@ -4,7 +4,7 @@ export default function LearningProgressPage() {
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="text-4xl md:text-5xl font-display font-black text-ink-900 tracking-tight mb-3">Learning Progress</h1>
+        <h1 className="heading-md text-ink-900 tracking-tight mb-3">Learning Progress</h1>
         <p className="text-lg text-ink-500 font-medium">Track your analytics and course completion rates.</p>
       </div>
 

@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { PhoneCall, CreditCard, BookOpen } from "lucide-react";
+import Image from "next/image";
 
 const steps = [
   {
@@ -86,8 +87,22 @@ export default function EnrollmentProcess() {
             </p>
           </motion.div>
 
-          <div className="text-center">
-            <p className="text-ink-600 font-medium text-lg mb-8">
+          <div className="text-center relative">
+            {/* Cutout CTA Image */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="hidden md:block absolute -right-4 lg:-right-16 bottom-0 w-48 h-48 lg:w-64 lg:h-64 z-30 pointer-events-none"
+            >
+              <Image
+                src="/resources/cta-action.png"
+                alt="Call to Action"
+                fill
+                className="object-contain object-bottom drop-shadow-2xl pointer-events-auto"
+              />
+            </motion.div>
+
+            <p className="text-ink-600 font-medium text-lg mb-8 relative z-40">
               Ready to start? Call <a href="tel:+919513632705" className="text-brand-blue font-bold hover:underline">+91 95136 32705</a> or book your free counselling session.
             </p>
             <button className="bg-gradient-to-r from-brand-blue to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-black text-lg py-5 px-10 rounded-full transition-all shadow-xl hover:shadow-2xl shadow-brand-blue/30 transform hover:-translate-y-1 duration-200">

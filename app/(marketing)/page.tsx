@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, Star } from "lucide-react";
 import HeroSection from "@/components/sections/HeroSection";
@@ -53,45 +53,27 @@ const galleryImages = [
   { src: "/Gallery Images/IMG-20260831-WA0020.jpg", alt: "Mentorship guidance for digital campaign launch" },
 ];
 
-const courses = [
+const initialCourses = [
   {
     format: "Classroom + Online",
     duration: "3 to 6 Months",
-    title: "AI-Powered AI-Powered Digital Marketing Course",
+    title: "AI-Powered Digital Marketing Course",
     blurb:
       "Master digital marketing combined with AI tools like ChatGPT and Midjourney. 12 comprehensive modules covering SEO, SEM, Social Media, Ads, Automation, and more.",
     originalPrice: "—",
     discountedPrice: "Contact Us",
+    cardImage: "",
     ctaHref: "/courses/ai-powered-digital-marketing",
   },
   {
     format: "Classroom + Online",
-    duration: "20 Modules",
-    title: "Creative Design & Video Editing",
-    blurb:
-      "Master visual design, branding, and professional video editing from beginner to advanced. Tools include Photoshop, Illustrator, Premiere Pro, After Effects, and AI tools.",
-    originalPrice: "—",
-    discountedPrice: "Contact Us",
-    ctaHref: "/courses/creative-design-video-editing",
-  },
-  {
-    format: "Classroom + Online",
-    duration: "Coming Soon",
-    title: "Data Science with AI Course",
-    blurb:
-      "A comprehensive program to master data science concepts, machine learning algorithms, and AI-powered analytics from beginner to advanced level.",
-    originalPrice: "—",
-    discountedPrice: "Contact Us",
-    ctaHref: "/courses/data-science-with-ai",
-  },
-  {
-    format: "Classroom + Online",
-    duration: "Coming Soon",
-    title: "React JS Full Stack Development",
+    duration: "4 to 6 Months",
+    title: "React JS Full Stack Development Course",
     blurb:
       "Build modern web applications with React.js frontend, Node.js backend, databases, and deployment. Become a job-ready full-stack developer.",
     originalPrice: "—",
     discountedPrice: "Contact Us",
+    cardImage: "",
     ctaHref: "/courses/react-js-full-stack-development",
   },
 ];
@@ -197,6 +179,33 @@ const fadeUpItem = {
 export default function HomePage() {
   const router = useRouter();
   const { triggerAction, GateModalComponent } = useCourseGate("Digital Ghuru Courses");
+  const [courseList, setCourseList] = useState(initialCourses);
+
+  useEffect(() => {
+    fetch("/api/courses")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const dbCourses = data.map((c: any) => {
+            const mData = c.marketing_data || {};
+            return {
+              title: c.title || mData.title || "Course Title",
+              blurb: c.description || mData.description || "",
+              format: mData.format || "Classroom + Online",
+              duration: mData.duration || "3 to 6 Months",
+              discountedPrice:
+                mData.discountedPrice ||
+                (c.price ? `₹${Number(c.price).toLocaleString()}` : "Contact Us"),
+              originalPrice: mData.originalPrice || "—",
+              cardImage: mData.cardImage || c.cardImage || mData.thumbnail || "",
+              ctaHref: c.slug ? `/courses/${c.slug}` : `/courses/${c.id}`,
+            };
+          });
+          setCourseList(dbCourses);
+        }
+      })
+      .catch((err) => console.error("Failed to load courses from DB:", err));
+  }, []);
 
   const handleViewDetails = (href: string) => {
     triggerAction(() => {
@@ -275,9 +284,17 @@ export default function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className={`grid gap-8 ${
+              courseList.length === 1
+                ? "grid-cols-1 max-w-md mx-auto"
+                : courseList.length === 2
+                ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto"
+                : courseList.length === 3
+                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
+                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            }`}
           >
-            {courses.map((course, idx) => (
+            {courseList.map((course, idx) => (
               <motion.div key={idx} variants={fadeUpItem}>
                 <CourseCard
                   {...course}

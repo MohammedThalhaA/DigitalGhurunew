@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { UserPlus, Building2, Presentation, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 const steps = [
   {
@@ -92,17 +93,36 @@ export default function PlacementProcess() {
           })}
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="text-center max-w-4xl mx-auto bg-gradient-to-r from-ink-950 to-ink-900 rounded-3xl p-8 shadow-2xl relative overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-blue/30 rounded-full blur-[80px] pointer-events-none" />
-          <p className="text-white leading-relaxed text-lg font-medium relative z-10">
-            Our placement record: Average starting salary for freshers is <span className="text-yellow-500 font-bold">Rs 3-6 LPA</span>. Career switchers average <span className="text-amber-400 font-bold">Rs 6-10 LPA</span>. Highest placement: <span className="text-orange-400 font-bold">Rs 12+ LPA</span>. The track record speaks for itself.
-          </p>
-        </motion.div>
+        <div className="relative max-w-4xl mx-auto mt-20 lg:mt-32">
+          {/* Cutout Placement Image */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="hidden md:block absolute -left-12 lg:-left-24 bottom-0 w-64 h-80 lg:w-80 lg:h-96 z-30 pointer-events-none"
+          >
+            <Image
+              src="/resources/placement-success.png"
+              alt="Placement Success"
+              fill
+              className="object-contain object-bottom drop-shadow-2xl pointer-events-auto"
+            />
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-ink-950 to-ink-900 rounded-3xl p-8 lg:p-10 shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-blue/30 rounded-full blur-[80px] pointer-events-none" />
+            <div className="md:pl-48 lg:pl-56">
+              <p className="text-white leading-relaxed text-lg font-medium relative z-10 text-left">
+                Our placement record: Average starting salary for freshers is <span className="text-yellow-500 font-bold">Rs 3-6 LPA</span>. Career switchers average <span className="text-amber-400 font-bold">Rs 6-10 LPA</span>. Highest placement: <span className="text-orange-400 font-bold">Rs 12+ LPA</span>. The track record speaks for itself.
+              </p>
+            </div>
+          </motion.div>
+        </div>
 
       </div>
     </section>

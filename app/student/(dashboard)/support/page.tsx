@@ -6,7 +6,7 @@ export default function SupportPage() {
     <div className="space-y-10 w-full">
       {/* Hero Section */}
       <div className="bg-brand-blue/5 rounded-3xl p-10 md:p-16 text-center border border-brand-blue/10">
-        <h1 className="text-4xl md:text-5xl font-display font-black text-ink-900 tracking-tight mb-4">How can we help?</h1>
+        <h1 className="heading-md text-ink-900 tracking-tight mb-4">How can we help?</h1>
         <p className="text-lg text-ink-500 font-medium max-w-xl mx-auto mb-8">
           Search our knowledge base or get in touch with our support team.
         </p>
@@ -25,7 +25,7 @@ export default function SupportPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Side: FAQs */}
         <div className="lg:col-span-2 space-y-6">
-          <h2 className="text-2xl font-display font-black text-ink-900 tracking-tight flex items-center gap-2">
+          <h2 className="font-display text-lg font-bold text-ink-900 tracking-tight flex items-center gap-2">
             <HelpCircle className="h-6 w-6 text-brand-orange" />
             Frequently Asked Questions
           </h2>
@@ -50,7 +50,7 @@ export default function SupportPage() {
 
         {/* Right Side: Contact Methods */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-display font-black text-ink-900 tracking-tight">Still need help?</h2>
+          <h2 className="font-display text-lg font-bold text-ink-900 tracking-tight">Still need help?</h2>
           
           <div className="bg-white rounded-2xl border border-ink-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 flex flex-col items-center text-center">
             <div className="h-16 w-16 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center mb-4">

@@ -2,7 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Bot, Sparkles, Wand2, Video, MessageSquare, Briefcase, Image, Layout, Palette, Search, Megaphone, Share2 } from "lucide-react";
+import Image from "next/image";
+import { Bot, Sparkles, Wand2, Video, MessageSquare, Briefcase, Image as ImageIcon, Layout, Palette, Search, Megaphone, Share2 } from "lucide-react";
 
 // AI Levels logic remains, but with visual improvements
 const aiLevels = [
@@ -57,7 +58,21 @@ export default function AIToolsCurriculum() {
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Cutout AI Robot Image */}
+        <motion.div 
+          animate={{ y: [0, -15, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="hidden lg:block absolute right-0 top-0 xl:-right-10 w-64 h-64 xl:w-80 xl:h-80 z-30 pointer-events-none"
+        >
+          <Image
+            src="/resources/ai-robot.png"
+            alt="AI Robot"
+            fill
+            className="object-contain drop-shadow-2xl pointer-events-auto"
+          />
+        </motion.div>
+
+        <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
           <div className="inline-block bg-white border border-ink-200 text-ink-800 px-4 py-1.5 rounded-full text-sm font-bold tracking-wide mb-6 shadow-sm">
             Tools & Technology
           </div>

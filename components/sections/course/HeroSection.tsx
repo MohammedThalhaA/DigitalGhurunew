@@ -18,7 +18,7 @@ export default function HeroSection({ course }: { course?: any }) {
   const desc = course?.description || "Digital Ghuru offers the best AI-Powered digital marketing course with agency-style AI training, real brand campaigns, dual certification & 100% job support.";
   
   return (
-    <section className="relative pt-[120px] pb-16 lg:pt-[136px] lg:pb-24 bg-[#FAFAFA] overflow-hidden">
+    <section className="relative pt-8 pb-16 lg:pt-12 lg:pb-24 bg-[#FAFAFA] overflow-hidden">
       {/* Premium glowing background blobs */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[100px] opacity-70 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute top-40 right-0 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[100px] opacity-70 translate-x-1/3 pointer-events-none" />
@@ -93,18 +93,15 @@ export default function HeroSection({ course }: { course?: any }) {
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             className="flex flex-col gap-6 relative"
           >
-            {/* Main Image with Glassmorphic frame */}
-            <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 bg-white p-2">
-              <div className="relative w-full h-full rounded-2xl overflow-hidden">
+            {/* Main Cutout Image */}
+            <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-end justify-center z-20">
                 <Image 
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Digital Ghuru Classroom"
+                  src="/resources/hero-student.png" 
+                  alt="Digital Marketing Student"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  className="object-contain object-bottom drop-shadow-2xl hover:scale-[1.02] transition-transform duration-700"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-              </div>
             </div>
 
             {/* Feature Grid underneath image */}

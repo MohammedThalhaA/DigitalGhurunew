@@ -128,6 +128,57 @@ async function initDB() {
       );
     `);
 
+    await client.query(`
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS streak_count INTEGER DEFAULT 0;
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login TIMESTAMPTZ;
+    `);
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS resources (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        url TEXT NOT NULL,
+        type VARCHAR(50) DEFAULT 'PDF',
+        "courseId" INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+        "createdAt" TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS discussions (
+        id SERIAL PRIMARY KEY,
+        content TEXT NOT NULL,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        "courseId" INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+        "createdAt" TIMESTAMPTZ DEFAULT NOW(),
+        "updatedAt" TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS community_posts (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        content TEXT NOT NULL,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        "likes" INTEGER DEFAULT 0,
+        "createdAt" TIMESTAMPTZ DEFAULT NOW(),
+        "updatedAt" TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS support_tickets (
+        id SERIAL PRIMARY KEY,
+        subject VARCHAR(255) NOT NULL,
+        message TEXT NOT NULL,
+        status VARCHAR(50) DEFAULT 'OPEN',
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        "createdAt" TIMESTAMPTZ DEFAULT NOW(),
+        "updatedAt" TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
+
     console.log("✅ Successfully created raw PostgreSQL tables for LMS and NextAuth.");
   } catch (err) {
     console.error("❌ Error creating tables:", err);

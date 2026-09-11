@@ -16,8 +16,8 @@ export default async function BrowseCoursesPage() {
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="text-4xl md:text-5xl font-display font-black text-ink-900 tracking-tight mb-3">Course Catalog</h1>
-        <p className="text-lg text-ink-500 font-medium">Discover new skills and accelerate your career.</p>
+        <h1 className="heading-md text-ink-900 tracking-tight mb-3">Course Catalog</h1>
+        <p className="body-md">Discover new skills and accelerate your career.</p>
       </div>
 
       <div className="bg-white p-4 rounded-2xl border border-ink-100 shadow-sm flex flex-col sm:flex-row gap-4">
@@ -37,8 +37,10 @@ export default async function BrowseCoursesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map((course) => (
-          <div key={course.id} className="bg-white/90 backdrop-blur-md group border border-ink-100/50 rounded-2xl overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col">
-            <div className="aspect-video bg-ink-50 relative overflow-hidden shrink-0">
+          <div key={course.id} className="group relative overflow-hidden bg-white border border-ink-100 rounded-3xl shadow-card hover:shadow-card-hover hover:border-brand-blue/30 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="aspect-video bg-ink-50 relative overflow-hidden shrink-0 border-b border-ink-100">
               {course.imageUrl ? (
                 <img src={course.imageUrl} alt={course.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" />
               ) : (
@@ -50,14 +52,15 @@ export default async function BrowseCoursesPage() {
                 {course.price ? `₹${course.price}` : "Free"}
               </div>
             </div>
-            <div className="p-5 flex flex-col flex-1">
-              <h3 className="font-display font-bold text-lg text-ink-900 mb-2 line-clamp-2">{course.title}</h3>
-              <p className="text-sm text-ink-500 line-clamp-2 mb-6 flex-1">{course.description}</p>
-              
-              <div className="mt-auto">
-                <Button variant="primary" className="w-full">
-                  Enroll Now
-                </Button>
+              <div className="p-6 md:p-8 flex flex-col flex-1 bg-white">
+                <h3 className="font-display text-base font-bold text-ink-900 mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors duration-200">{course.title}</h3>
+                <p className="body-md text-ink-500 line-clamp-2 mb-6 flex-1">{course.description}</p>
+                
+                <div className="mt-auto">
+                  <Button variant="primary" className="w-full font-heading font-semibold py-4 shadow-md rounded-xl hover:shadow-lg transition-all">
+                    Enroll Now
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
