@@ -175,7 +175,7 @@ export default async function StudentDashboardPage() {
                 </div>
               </div>
 
-              <Link href={`/student/learn/${activeCourse.id}`} className="inline-flex items-center justify-center gap-3 bg-brand-blue hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-md w-full sm:w-auto uppercase tracking-wide">
+              <Link href={`/student/learn/${activeCourse.id}`} className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-bold py-4 px-8 rounded-xl transition-all shadow-md hover:shadow-lg w-full sm:w-auto uppercase tracking-wide">
                 Resume Module <span className="transform transition-transform group-hover:translate-x-1">&rarr;</span>
               </Link>
             </div>
@@ -190,7 +190,7 @@ export default async function StudentDashboardPage() {
             </div>
             <h3 className="text-xl font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors duration-200">No courses yet</h3>
             <p className="text-ink-500 font-medium mb-8">Browse our course catalog to start your learning journey!</p>
-            <Link href="/courses" className="inline-flex items-center gap-2 bg-brand-blue text-white font-heading font-bold py-4 px-8 rounded-xl hover:bg-blue-700 transition-all shadow-md">
+            <Link href="/courses" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-heading font-bold py-4 px-8 rounded-xl hover:shadow-lg transition-all shadow-md">
               Browse Courses
             </Link>
           </div>

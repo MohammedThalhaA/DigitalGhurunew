@@ -12,6 +12,7 @@ const nextConfig = {
       }
     ],
   },
+  serverExternalPackages: ['pg'],
   webpack: (config, { dev }) => {
     if (dev) {
       config.cache = false;

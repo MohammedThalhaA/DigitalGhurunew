@@ -126,7 +126,7 @@ export default async function CommunityPage({
             Ask questions, share your wins, and network with other Digital Ghuru students and mentors.
           </p>
         </div>
-        <button className="shrink-0 inline-flex items-center justify-center gap-2 bg-ink-900 hover:bg-brand-blue text-white font-bold py-4 px-8 rounded-full transition-all shadow-[0_4px_15px_rgba(20,20,40,0.1)] hover:shadow-[0_8px_25px_rgba(37,99,235,0.3)] text-sm tracking-[0.15em] uppercase group">
+        <button className="shrink-0 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-bold py-4 px-8 rounded-full transition-all shadow-md hover:shadow-lg text-sm tracking-[0.15em] uppercase group border-none">
           <Plus className="h-5 w-5 transition-transform group-hover:rotate-90" />
           New Post
         </button>

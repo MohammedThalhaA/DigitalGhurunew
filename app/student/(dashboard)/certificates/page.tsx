@@ -69,7 +69,7 @@ export default async function CertificatesPage() {
                       </div>
 
                       <div className="mt-auto pt-6 border-t border-ink-100">
-                        <button className="w-full py-3.5 bg-ink-900 hover:bg-brand-blue text-white font-bold text-sm uppercase tracking-[0.15em] rounded-full transition-all shadow-md flex items-center justify-center gap-2 group/btn">
+                        <button className="w-full py-3.5 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-bold text-sm uppercase tracking-[0.15em] rounded-full transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group/btn border-none">
                           <Download className="h-4 w-4 group-hover/btn:-translate-y-1 transition-transform" />
                           Download PDF
                         </button>

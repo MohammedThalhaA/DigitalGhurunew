@@ -429,7 +429,7 @@ export default function AboutUsPage() {
       {/* ━━━ STATS ━━━ */}
       <section className="relative overflow-hidden">
         {/* Dark-to-light gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-900 via-[#0c1a30] to-ink-900" />
+        <div className="absolute inset-0 bg-[#006FFF]" />
         {/* Mesh orbs */}
         <div className="pointer-events-none absolute top-0 left-0 w-full h-full">
           <div className="absolute top-1/4 left-[10%] w-[350px] h-[350px] bg-brand-blue/10 rounded-full blur-[100px]" />
@@ -798,12 +798,12 @@ export default function AboutUsPage() {
               <Award className="h-10 w-10 text-brand-gold" />
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight mb-6 leading-tight">
-              Recognized at the<br />World Education Summit
+              Pioneering AI-Powered<br />Marketing Education
             </h2>
             <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto mb-10">
-              Digital Ghuru was honoured as one of India&apos;s leading digital marketing institutes. This recognition highlights our innovative, agency-style training approach and AI-integrated curriculum.
+              Digital Ghuru stands at the forefront of digital marketing education in India. We are transforming careers through our innovative agency-style training, live client projects, and a cutting-edge AI-integrated curriculum.
             </p>
-            <Button href="/courses" variant="primary" size="lg">
+            <Button href="/careers" variant="primary" size="lg">
               <span className="flex items-center gap-2">
                 Join the Revolution <ArrowRight className="h-5 w-5" />
               </span>

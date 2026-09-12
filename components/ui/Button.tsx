@@ -17,7 +17,7 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-blue text-white shadow-md hover:shadow-lg hover:brightness-110 focus-visible:ring-brand-blue/50",
+    "bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white shadow-md hover:shadow-lg hover:brightness-110 focus-visible:ring-[#FF5C00]/50",
   secondary:
     "bg-brand-orange text-white shadow-md hover:shadow-lg hover:brightness-110 focus-visible:ring-brand-orange/50",
   outline:

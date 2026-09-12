@@ -43,7 +43,7 @@ export default function AdminSidebar() {
     <nav className="space-y-6">
       {navItems.map((group) => (
         <div key={group.section}>
-          <p className="font-heading text-xs font-semibold text-ink-400 uppercase tracking-[0.15em] mb-2 px-4">{group.section}</p>
+          <p className="font-heading text-xs font-semibold text-ink-500 uppercase tracking-[0.15em] mb-2 px-4">{group.section}</p>
           <div className="space-y-1">
             {group.items.map((item) => {
               const Icon = item.icon;
@@ -58,7 +58,7 @@ export default function AdminSidebar() {
                   className={`flex items-center gap-3 px-4 py-2.5 rounded-xl font-heading font-semibold transition-colors ${
                     isStrictActive 
                       ? "bg-brand-blue/10 text-brand-blue" 
-                      : "hover:bg-brand-blue/5 hover:text-brand-blue text-ink-500"
+                      : "hover:bg-ink-50 hover:text-ink-900 text-ink-600"
                   }`}
                 >
                   <Icon className={`h-5 w-5 ${isStrictActive ? "text-brand-blue" : "text-ink-400"}`} />
@@ -72,8 +72,8 @@ export default function AdminSidebar() {
       
       <div className="pt-6 border-t border-ink-100 mt-6">
         <button 
-          onClick={() => signOut({ callbackUrl: "/" })}
-          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-heading font-semibold transition-colors hover:bg-red-50 text-red-500 hover:text-red-600"
+          onClick={() => signOut({ callbackUrl: "/signin" })}
+          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-heading font-semibold transition-colors hover:bg-red-50 text-red-600 hover:text-red-700"
         >
           <LogOut className="h-5 w-5" />
           Log Out

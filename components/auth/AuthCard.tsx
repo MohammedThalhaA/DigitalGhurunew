@@ -111,7 +111,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
       
       {/* ─── MOBILE VIEW (Stack) ─── */}
       <div className="md:hidden flex flex-col h-full">
-        <div className="p-8 bg-gradient-to-br from-brand-blue to-blue-600 text-white text-center">
+        <div className="p-8 bg-[#006FFF] text-white text-center">
           <h2 className="font-display text-3xl font-bold mb-2">
             {isSignIn ? "Hello, Friend!" : "Welcome Back!"}
           </h2>
@@ -174,7 +174,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
           animate={isSignIn ? "signin" : "signup"}
           variants={panelVariants}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          className="absolute top-0 left-0 w-1/2 h-full z-20 bg-gradient-to-br from-brand-blue to-blue-600 shadow-2xl flex flex-col justify-center items-center text-center p-12 overflow-hidden"
+          className="absolute top-0 left-0 w-1/2 h-full z-20 bg-[#006FFF] shadow-2xl flex flex-col justify-center items-center text-center p-12 overflow-hidden"
         >
           <AnimatePresence mode="wait">
             {isSignIn ? (
@@ -387,7 +387,7 @@ function SignUpForm({ name, setName, email, setEmail, password, setPassword, onS
         {error && <p className="text-red-500 text-sm font-semibold text-center pt-2">{error}</p>}
 
         <div className="pt-6 flex justify-center">
-          <Button type="submit" variant="primary" className="px-10 rounded-full font-heading uppercase tracking-wider text-sm shadow-md hover:shadow-lg transition-all bg-brand-blue hover:bg-brand-blue/90" disabled={loading}>
+          <Button type="submit" variant="primary" className="px-10 rounded-full font-heading uppercase tracking-wider text-sm shadow-md hover:shadow-lg transition-all" disabled={loading}>
             {loading ? "Creating..." : "Sign Up"}
           </Button>
         </div>
