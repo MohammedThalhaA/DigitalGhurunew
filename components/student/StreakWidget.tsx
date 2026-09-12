@@ -1,15 +1,86 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { Flame } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface StreakWidgetProps {
   count: number;
   bestStreak: number;
   days: { label: string; active: boolean }[];
+  justUpdated?: boolean;
 }
 
-export default function StreakWidget({ count, bestStreak, days }: StreakWidgetProps) {
+export default function StreakWidget({ count, bestStreak, days, justUpdated = false }: StreakWidgetProps) {
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    if (justUpdated) {
+      setShowAnimation(true);
+      setTimeout(() => setShowAnimation(false), 3000);
+    }
+  }, [justUpdated]);
+
+  // Generate random embers for the fire effect
+  const embers = Array.from({ length: 12 }).map((_, i) => ({
+    id: i,
+    x: (Math.random() - 0.5) * 200,
+    delay: Math.random() * 0.5,
+    scale: Math.random() * 0.5 + 0.5,
+  }));
+
   return (
-    <div className="group relative overflow-hidden bg-white rounded-3xl border border-ink-100 p-6 mb-6 shadow-card hover:shadow-card-hover hover:border-amber-500/30 transition-all duration-300">
+    <div className="relative">
+      <AnimatePresence>
+        {showAnimation && (
+          <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none">
+            {/* Big glowing center flame */}
+            <motion.div
+              initial={{ scale: 0, opacity: 0, y: 50 }}
+              animate={{ 
+                scale: [0, 1.5, 1.2, 1.4, 0], 
+                opacity: [0, 1, 1, 1, 0],
+                y: [50, 0, -10, -20, -100],
+                rotate: [0, -10, 10, -5, 0]
+              }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              className="absolute text-brand-orange drop-shadow-[0_0_30px_rgba(245,158,11,0.8)]"
+            >
+              <Flame size={120} fill="#f97316" strokeWidth={1} />
+            </motion.div>
+
+            {/* Little floating embers */}
+            {embers.map((ember) => (
+              <motion.div
+                key={ember.id}
+                initial={{ scale: 0, opacity: 0, x: 0, y: 20 }}
+                animate={{
+                  scale: [0, ember.scale, 0],
+                  opacity: [0, 1, 0],
+                  x: ember.x,
+                  y: -150 - Math.random() * 100,
+                  rotate: Math.random() * 360,
+                }}
+                transition={{
+                  duration: 1.5 + Math.random(),
+                  delay: ember.delay,
+                  ease: "easeOut",
+                }}
+                className="absolute text-amber-400"
+              >
+                <Flame size={30} fill="#fbbf24" strokeWidth={1} />
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </AnimatePresence>
+
+      <motion.div 
+        initial={false}
+        animate={showAnimation ? { scale: [1, 1.05, 1], boxShadow: ["0px 0px 0px rgba(245,158,11,0)", "0px 0px 30px rgba(245,158,11,0.5)", "0px 0px 0px rgba(245,158,11,0)"] } : {}}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        className="group relative overflow-hidden bg-white rounded-3xl border border-ink-100 p-6 mb-6 shadow-card hover:shadow-card-hover hover:border-amber-500/30 transition-all duration-300"
+      >
       <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       
       {/* Decorative Accent */}
@@ -35,7 +106,9 @@ export default function StreakWidget({ count, bestStreak, days }: StreakWidgetPr
       <div className="flex items-center justify-between gap-1.5 relative z-10">
         {days.map((day, idx) => (
           <div key={idx} className="flex flex-col items-center gap-2 flex-1">
-            <div 
+            <motion.div 
+              animate={showAnimation && day.active && idx === (new Date().getDay() || 7) - 1 ? { scale: [1, 1.3, 1], rotate: [0, 15, -15, 0] } : {}}
+              transition={{ delay: 0.5, duration: 0.5 }}
               className={`w-full aspect-square rounded-2xl flex items-center justify-center transition-all ${
                 day.active 
                   ? "bg-gradient-to-br from-amber-400 to-brand-orange text-white shadow-md transform -translate-y-1" 
@@ -43,13 +116,14 @@ export default function StreakWidget({ count, bestStreak, days }: StreakWidgetPr
               }`}
             >
               {day.active && <Flame className="h-4 w-4" />}
-            </div>
+            </motion.div>
             <span className={`text-xs font-bold uppercase tracking-wider ${day.active ? "text-brand-orange" : "text-ink-400"}`}>
               {day.label}
             </span>
           </div>
         ))}
       </div>
+      </motion.div>
     </div>
   );
 }

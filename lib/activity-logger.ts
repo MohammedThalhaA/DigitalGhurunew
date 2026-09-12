@@ -4,9 +4,9 @@ import pool from "@/lib/db";
 const XP_VALUES = {
   COMPLETE_CHAPTER: 10,
   COMPLETE_COURSE: 100,
-  COMMUNITY_POST: 5,
-  DAILY_LOGIN: 2,
-  ENROLL_COURSE: 5,
+  COMMUNITY_POST: 0,
+  DAILY_LOGIN: 0,
+  ENROLL_COURSE: 0,
 };
 
 // ─── LEVEL THRESHOLDS ───
@@ -75,31 +75,33 @@ export async function createNotification(
 }
 
 // ─── UPDATE STREAK ───
-export async function updateStreak(userId: number) {
+export async function updateStreak(userId: number): Promise<{ updated: boolean; streak: number }> {
   try {
     const res = await pool.query(
       `SELECT last_active_date, streak_count, best_streak FROM users WHERE id = $1`,
       [userId]
     );
 
-    if (res.rows.length === 0) return;
+    if (res.rows.length === 0) return { updated: false, streak: 0 };
 
     const user = res.rows[0];
-    const today = new Date().toISOString().split("T")[0];
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    
     const lastActive = user.last_active_date
-      ? new Date(user.last_active_date).toISOString().split("T")[0]
+      ? `${user.last_active_date.getFullYear()}-${String(user.last_active_date.getMonth() + 1).padStart(2, '0')}-${String(user.last_active_date.getDate()).padStart(2, '0')}`
       : null;
 
     if (lastActive === today) {
       // Already logged in today, no streak update needed
-      return;
+      return { updated: false, streak: user.streak_count || 0 };
     }
 
     let newStreak = 1;
     if (lastActive) {
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().split("T")[0];
+      const yesterdayStr = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, '0')}-${String(yesterday.getDate()).padStart(2, '0')}`;
 
       if (lastActive === yesterdayStr) {
         // Consecutive day — increment streak
@@ -115,11 +117,13 @@ export async function updateStreak(userId: number) {
       [newStreak, newBest, today, userId]
     );
 
-    // Award daily login XP
-    await awardXP(userId, "daily_login", XP_VALUES.DAILY_LOGIN);
+    // Log activity but do not award daily login XP per user request
     await logActivity(userId, "login", "Logged in today");
+
+    return { updated: true, streak: newStreak };
   } catch (error) {
     console.warn("Failed to update streak:", error);
+    return { updated: false, streak: 0 };
   }
 }
 

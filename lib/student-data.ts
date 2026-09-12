@@ -237,7 +237,7 @@ export async function getEnrolledCourses(userId: number) {
   try {
     const res = await pool.query(
       `SELECT 
-         c.id, c.title, c.description, c."imageUrl",
+         c.id, c.title, c.description, c."imageUrl", c.marketing_data,
          e.progress, e."completedAt",
          (SELECT COUNT(*) FROM modules m WHERE m."courseId" = c.id) as module_count,
          (SELECT COALESCE(SUM(
@@ -257,12 +257,14 @@ export async function getEnrolledCourses(userId: number) {
       const hours = Math.floor(totalSecs / 3600);
       const mins = Math.floor((totalSecs % 3600) / 60);
       const timeEstimate = hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+      
+      const mData = row.marketing_data || {};
 
       return {
         id: row.id.toString(),
-        title: row.title,
-        description: row.description || "",
-        imageUrl: row.imageUrl || null,
+        title: row.title || mData.title,
+        description: row.description || mData.description || "",
+        imageUrl: mData.cardImage || mData.thumbnail || row.imageUrl || null,
         progress: row.progress || 0,
         completedAt: row.completedAt,
         modules: parseInt(row.module_count) || 0,

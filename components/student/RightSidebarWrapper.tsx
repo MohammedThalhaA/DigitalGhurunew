@@ -9,9 +9,10 @@ import RecentActivitiesWidget from "./RecentActivitiesWidget";
 
 interface RightSidebarWrapperProps {
   children: React.ReactNode;
+  justUpdated?: boolean;
 }
 
-export default async function RightSidebarWrapper({ children }: RightSidebarWrapperProps) {
+export default async function RightSidebarWrapper({ children, justUpdated }: RightSidebarWrapperProps) {
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id ? parseInt(session.user.id) : null;
 
@@ -24,9 +25,14 @@ export default async function RightSidebarWrapper({ children }: RightSidebarWrap
   let activities: any[] = [];
   let leaderboard: any[] = [];
 
+  let isUpdated = justUpdated || false;
+
   if (userId) {
-    // Update streak on every page load (idempotent — only changes once per day)
-    await updateStreak(userId);
+    if (justUpdated === undefined) {
+      // Update streak on every page load (idempotent — only changes once per day)
+      const updateRes = await updateStreak(userId);
+      isUpdated = updateRes?.updated || false;
+    }
 
     // Fetch all sidebar data in parallel
     [streakData, activities, leaderboard] = await Promise.all([
@@ -46,7 +52,7 @@ export default async function RightSidebarWrapper({ children }: RightSidebarWrap
       {/* Right Sidebar Area (30%) */}
       <div className="lg:col-span-4">
         <div className="sticky top-[104px]">
-          <StreakWidget count={streakData.count} bestStreak={streakData.bestStreak} days={streakData.days} />
+          <StreakWidget count={streakData.count} bestStreak={streakData.bestStreak} days={streakData.days} justUpdated={isUpdated} />
           <LeaderboardWidget members={leaderboard} />
           <RecentActivitiesWidget activities={activities} />
         </div>

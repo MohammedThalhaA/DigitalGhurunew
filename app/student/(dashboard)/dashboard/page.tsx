@@ -17,6 +17,10 @@ export default async function StudentDashboardPage() {
   }
 
   const userId = parseInt(session.user.id);
+  // Update streak first so stats reflect the new streak count immediately
+  const { updateStreak } = await import("@/lib/activity-logger");
+  const updateRes = await updateStreak(userId);
+  const justUpdated = updateRes?.updated || false;
 
   // Fetch real data
   const stats = await getStudentStats(userId);
@@ -38,19 +42,22 @@ export default async function StudentDashboardPage() {
   let recommendedCourses: any[] = [];
   try {
     const recommendedRes = await pool.query(
-      `SELECT c.id, c.title, c.description, c."imageUrl" as image 
+      `SELECT c.id, c.title, c.description, c."imageUrl" as image, c.marketing_data 
        FROM courses c 
        LEFT JOIN enrollments e ON c.id = e."courseId" AND e."userId" = $1
        WHERE e.id IS NULL AND c."isPublished" = true
        LIMIT 4`,
       [userId]
     );
-    recommendedCourses = recommendedRes.rows.map(row => ({
-      id: row.id.toString(),
-      title: row.title,
-      subtitle: row.description?.substring(0, 60) || "",
-      image: row.image || "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
-    }));
+    recommendedCourses = recommendedRes.rows.map(row => {
+      const mData = row.marketing_data || {};
+      return {
+        id: row.id.toString(),
+        title: row.title || mData.title,
+        subtitle: (row.description || mData.description || "").substring(0, 60),
+        image: mData.cardImage || mData.thumbnail || row.image || "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
+      };
+    });
   } catch (error) {
     console.warn("Failed to fetch recommended courses:", error);
   }
@@ -73,7 +80,7 @@ export default async function StudentDashboardPage() {
   }
 
   return (
-    <RightSidebarWrapper>
+    <RightSidebarWrapper justUpdated={justUpdated}>
       
       {/* Greeting Row */}
       <div className="mb-8">
