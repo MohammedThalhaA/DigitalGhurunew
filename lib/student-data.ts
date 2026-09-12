@@ -29,7 +29,7 @@ export async function getStudentStats(userId: number) {
 
     // Enrollment counts
     const enrollRes = await pool.query(
-      `SELECT COUNT(*) as total, COUNT(*) FILTER (WHERE progress = 100) as done FROM enrollments WHERE "userId" = $1`,
+      `SELECT COUNT(*) as total, 0 as done FROM enrollments WHERE "userId" = $1`,
       [userId]
     );
     if (enrollRes.rows.length > 0) {
@@ -238,7 +238,7 @@ export async function getEnrolledCourses(userId: number) {
     const res = await pool.query(
       `SELECT 
          c.id, c.title, c.description, c."imageUrl", c.marketing_data,
-         e.progress, e."completedAt",
+         0 as progress, NULL as "completedAt",
          (SELECT COUNT(*) FROM modules m WHERE m."courseId" = c.id) as module_count,
          (SELECT COALESCE(SUM(
            CASE WHEN ch.duration ~ '^[0-9]+:[0-9]+$' 

@@ -115,7 +115,7 @@ export default function LMSNavbar() {
           {/* User Profile Dropdown */}
           <div className="relative">
             <button 
-              className="flex items-center gap-2 sm:gap-3 p-1 pr-2 sm:pr-3 rounded-full border border-ink-100 hover:bg-ink-50 transition-colors"
+              className="group flex items-center gap-2 sm:gap-3 p-1 pr-2 sm:pr-3 rounded-full border border-white/20 hover:bg-ink-50 transition-colors"
               onClick={() => setIsProfileOpen(!isProfileOpen)}
             >
               <div className="h-8 w-8 rounded-full bg-[#006FFF] flex items-center justify-center text-white font-heading font-semibold text-sm shadow-sm overflow-hidden">
@@ -125,10 +125,10 @@ export default function LMSNavbar() {
                   (user?.name || "S").charAt(0).toUpperCase()
                 )}
               </div>
-              <span className="hidden sm:block text-sm font-heading font-semibold text-white max-w-[120px] truncate">
+              <span className="hidden sm:block text-sm font-heading font-semibold text-white group-hover:text-ink-900 max-w-[120px] truncate transition-colors">
                 {user?.name || "Student"}
               </span>
-              <ChevronDown className="h-4 w-4 text-white/80 hidden sm:block" />
+              <ChevronDown className="h-4 w-4 text-white/80 group-hover:text-ink-900 hidden sm:block transition-colors" />
             </button>
 
             <AnimatePresence>
