@@ -9,7 +9,9 @@ import {
   LogOut,
   Video,
   Users,
-  BadgeDollarSign
+  BadgeDollarSign,
+  Briefcase,
+  FileText
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -27,6 +29,10 @@ export default function AdminSidebar() {
     { section: "User Management", items: [
       { name: "Users", href: "/admin/users", icon: Users },
       { name: "Enrollments", href: "/admin/enrollments", icon: BadgeDollarSign },
+    ]},
+    { section: "Hiring Management", items: [
+      { name: "Job Openings", href: "/admin/careers", icon: Briefcase },
+      { name: "Applications", href: "/admin/applications", icon: FileText },
     ]},
     { section: "Account", items: [
       { name: "Settings", href: "/admin/settings", icon: Settings },
