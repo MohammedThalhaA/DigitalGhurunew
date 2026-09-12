@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Mail, Phone, ClipboardList, X, CheckCircle2 } from "lucide-react";
+import { User, Mail, Phone, ClipboardList, X, CheckCircle2, FileText } from "lucide-react";
+import { submitLead } from "@/lib/actions/leads";
 
 export function useCourseGate(courseTitle: string) {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -46,7 +47,7 @@ export function useCourseGate(courseTitle: string) {
     const [successScreen, setSuccessScreen] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       setErrorMsg("");
 
@@ -62,17 +63,18 @@ export function useCourseGate(courseTitle: string) {
 
       setIsSubmitting(true);
 
-      // Simulate API submission
-      setTimeout(() => {
-        setIsSubmitting(false);
+      const res = await submitLead({ name, email, phone, courseTitle });
+      
+      setIsSubmitting(false);
+      
+      if (res.success) {
         setSuccessScreen(true);
-        // Log submission for marketing team
-        console.log(`[Lead Captured] Name: ${name}, Email: ${email}, Phone: ${phone}, Interest: ${courseTitle}`);
-        
         setTimeout(() => {
           handleSuccess();
         }, 1200);
-      }, 1000);
+      } else {
+        setErrorMsg(res.error || "Something went wrong.");
+      }
     };
 
     return (
@@ -107,10 +109,10 @@ export function useCourseGate(courseTitle: string) {
               {!successScreen ? (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="text-center space-y-1.5">
-                    <div className="h-10 w-10 bg-brand-blue/10 rounded-xl flex items-center justify-center mx-auto text-brand-blue mb-2">
-                      <ClipboardList className="h-5 w-5" />
+                    <div className="h-12 w-12 bg-brand-blue/10 rounded-2xl flex items-center justify-center mx-auto text-brand-blue mb-2 shadow-sm border border-brand-blue/20">
+                      <FileText className="h-6 w-6" />
                     </div>
-                    <h3 className="font-display text-xl font-bold text-ink-900">
+                    <h3 className="font-heading text-2xl font-black text-ink-900 tracking-tight">
                       Submit Your Details
                     </h3>
                     <p className="text-xs text-ink-400 max-w-xs mx-auto">
@@ -136,8 +138,8 @@ export function useCourseGate(courseTitle: string) {
                           type="text"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          placeholder="Your full name"
-                          className="w-full pl-10 pr-4 py-3 bg-ink-50/50 border border-ink-100 rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all"
+                          placeholder="Full Name"
+                          className="w-full pl-10 pr-4 py-3.5 bg-white border border-ink-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all shadow-sm"
                           required
                         />
                       </div>
@@ -154,8 +156,8 @@ export function useCourseGate(courseTitle: string) {
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="you@domain.com"
-                          className="w-full pl-10 pr-4 py-3 bg-ink-50/50 border border-ink-100 rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all"
+                          placeholder="Email Address"
+                          className="w-full pl-10 pr-4 py-3.5 bg-white border border-ink-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all shadow-sm"
                           required
                         />
                       </div>
@@ -172,8 +174,8 @@ export function useCourseGate(courseTitle: string) {
                           type="tel"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder="88259 48859"
-                          className="w-full pl-10 pr-4 py-3 bg-ink-50/50 border border-ink-100 rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all"
+                          placeholder="Phone Number"
+                          className="w-full pl-10 pr-4 py-3.5 bg-white border border-ink-200 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all shadow-sm"
                           required
                         />
                       </div>
@@ -183,7 +185,7 @@ export function useCourseGate(courseTitle: string) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 bg-brand-blue text-white rounded-xl text-sm font-bold shadow-md shadow-brand-blue/10 hover:bg-brand-blue/90 disabled:opacity-75 transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-brand-blue text-white rounded-xl text-base font-heading font-bold shadow-md shadow-brand-blue/20 hover:bg-brand-blue/90 disabled:opacity-75 transition-colors flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>

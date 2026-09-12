@@ -15,6 +15,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { submitApplication } from "@/lib/actions/careers";
+import HeroSection from "@/components/sections/HeroSection";
 
 const benefits = [
   {
@@ -102,27 +103,15 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-20 text-center border-b border-ink-100">
-        <div className="section-container relative z-10 max-w-4xl mx-auto space-y-6">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-1.5 h-10 bg-brand-orange rounded-full" />
-            <h1 className="heading-xl text-ink-900 leading-tight font-black uppercase">
-              Build the Future of <br className="hidden md:block" /> Tech & Digital Skills
-            </h1>
-          </div>
-          <p className="body-lg max-w-2xl mx-auto text-ink-600">
-            Join a cutting-edge institute that bridges the gap between education and industry. Whether you're an expert in digital marketing, full-stack development, or career counseling—scale your expertise alongside top industry leaders.
-          </p>
-          <div className="pt-6">
-            <a
-              href="#open-roles"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-700 text-white font-heading font-bold text-base shadow-md shadow-brand-blue/20 transition-all duration-200"
-            >
-              Explore Open Openings <ChevronDown className="h-5 w-5" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        eyebrow="JOIN THE TEAM"
+        title="Build the Future of"
+        titleHighlight="Tech & Digital Skills"
+        description="Join a cutting-edge institute that bridges the gap between education and industry. Whether you're an expert in digital marketing, full-stack development, or career counseling—scale your expertise alongside top industry leaders."
+        imageUrl="/Gallery Images/IMG-20260831-WA0006.jpg" 
+        primaryCta={{ label: "Explore Open Openings", href: "#open-roles" }}
+        secondaryCta={{ label: "Submit Speculative Application", href: "#speculative-form" }}
+      />
 
       {/* Why Join Us */}
       <section className="section-padding bg-white border-b border-ink-200">
@@ -370,7 +359,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          placeholder="Your Name"
+                          placeholder="Full Name"
                           className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm"
                           required
                         />
@@ -383,7 +372,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          placeholder="you@example.com"
+                          placeholder="Email Address"
                           className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm"
                           required
                         />
@@ -399,7 +388,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="88259 48859"
+                          placeholder="Phone Number"
                           className="w-full px-4 py-3.5 rounded-xl border border-ink-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors bg-white shadow-sm"
                           required
                         />
