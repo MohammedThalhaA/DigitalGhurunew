@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Trophy, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 interface LeaderboardMember {
   rank: number;
@@ -50,8 +51,12 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
             <div className="flex flex-col items-center flex-1">
               <div className="relative mb-3 flex flex-col items-center">
                 <span className={`absolute -top-3 -right-2 ${podiumConfig[1].badgeBg} ${podiumConfig[1].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#2</span>
-                <div className={`h-12 w-12 rounded-full ${topMembers[1].color} flex items-center justify-center text-white font-bold text-lg shadow-md`}>
-                  {topMembers[1].initial}
+                <div className={`h-12 w-12 rounded-full ${topMembers[1].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
+                  {topMembers[1].image ? (
+                    <Image src={topMembers[1].image} alt={topMembers[1].name} fill className="object-cover" />
+                  ) : (
+                    topMembers[1].initial
+                  )}
                 </div>
                 <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[60px]">{topMembers[1].name}</span>
               </div>
@@ -66,8 +71,12 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
               <div className="relative mb-3 flex flex-col items-center">
                 <Trophy className="absolute -top-6 text-amber-400 h-6 w-6 drop-shadow-md z-10" />
                 <span className={`absolute -top-3 -right-2 ${podiumConfig[0].badgeBg} ${podiumConfig[0].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#1</span>
-                <div className={`h-14 w-14 rounded-full ${topMembers[0].color} flex items-center justify-center text-white font-bold text-xl shadow-[0_4px_15px_rgba(245,158,11,0.4)] border-2 border-amber-300`}>
-                  {topMembers[0].initial}
+                <div className={`h-14 w-14 rounded-full ${topMembers[0].color} flex items-center justify-center text-white font-bold text-xl shadow-[0_4px_15px_rgba(245,158,11,0.4)] border-2 border-amber-300 overflow-hidden relative`}>
+                  {topMembers[0].image ? (
+                    <Image src={topMembers[0].image} alt={topMembers[0].name} fill className="object-cover" />
+                  ) : (
+                    topMembers[0].initial
+                  )}
                 </div>
                 <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[70px]">{topMembers[0].name}</span>
               </div>
@@ -81,8 +90,12 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
             <div className="flex flex-col items-center flex-1">
               <div className="relative mb-3 flex flex-col items-center">
                 <span className={`absolute -top-3 -right-2 ${podiumConfig[2].badgeBg} ${podiumConfig[2].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#3</span>
-                <div className={`h-12 w-12 rounded-full ${topMembers[2].color} flex items-center justify-center text-white font-bold text-lg shadow-md`}>
-                  {topMembers[2].initial}
+                <div className={`h-12 w-12 rounded-full ${topMembers[2].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
+                  {topMembers[2].image ? (
+                    <Image src={topMembers[2].image} alt={topMembers[2].name} fill className="object-cover" />
+                  ) : (
+                    topMembers[2].initial
+                  )}
                 </div>
                 <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[60px]">{topMembers[2].name}</span>
               </div>
@@ -106,8 +119,12 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
             <div className="h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold bg-ink-50 text-ink-400 border border-ink-100">
               #{member.rank}
             </div>
-            <div className={`h-10 w-10 rounded-full ${member.color} flex items-center justify-center text-white font-bold text-sm shadow-inner`}>
-              {member.initial}
+            <div className={`h-10 w-10 rounded-full ${member.color} flex items-center justify-center text-white font-bold text-sm shadow-inner overflow-hidden relative shrink-0`}>
+              {member.image ? (
+                <Image src={member.image} alt={member.name} fill className="object-cover" />
+              ) : (
+                member.initial
+              )}
             </div>
             <div className="flex-1 min-w-0">
               <p className="font-heading text-sm font-semibold text-ink-900 truncate">{member.name}</p>

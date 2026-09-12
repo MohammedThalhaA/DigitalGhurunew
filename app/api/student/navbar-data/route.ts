@@ -13,17 +13,20 @@ export async function GET() {
 
     const userId = parseInt(session.user.id);
 
-    // Fetch streak and notification count in parallel
+    // Fetch streak, notification count, and user details
     const [userRes, unreadCount] = await Promise.all([
-      pool.query(`SELECT streak_count FROM users WHERE id = $1`, [userId]),
+      pool.query(`SELECT streak_count, name, image FROM users WHERE id = $1`, [userId]),
       getUnreadNotificationCount(userId),
     ]);
 
-    const streak = userRes.rows[0]?.streak_count || 0;
+    const user = userRes.rows[0] || {};
+    const streak = user.streak_count || 0;
 
     return NextResponse.json({
       streak,
       unreadNotifications: unreadCount,
+      name: user.name || "Student",
+      image: user.image || null,
     });
   } catch (error) {
     return NextResponse.json({ streak: 0, unreadNotifications: 0 });

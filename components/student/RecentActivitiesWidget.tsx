@@ -39,7 +39,7 @@ export default function RecentActivitiesWidget({ activities }: RecentActivitiesW
             <p className="text-sm font-medium text-ink-400">No recent activity yet. Start learning!</p>
           </div>
         ) : (
-          activities.map((activity) => {
+          activities.slice(0, 4).map((activity) => {
             const mapping = iconMap[activity.type] || iconMap.login;
             const Icon = mapping.icon;
             return (

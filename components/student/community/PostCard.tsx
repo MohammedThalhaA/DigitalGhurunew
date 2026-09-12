@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { MessageSquare, Heart, Clock, MoreHorizontal, Send, Trash2 } from "lucide-react";
 import { toggleLike, createReply, deletePost, deleteReply } from "@/lib/community-actions";
 import { useTransition } from "react";
+import Image from "next/image";
 
 export default function PostCard({ post, currentUserId }: { post: any, currentUserId: number }) {
   const [isPending, startTransition] = useTransition();
@@ -61,8 +62,12 @@ export default function PostCard({ post, currentUserId }: { post: any, currentUs
       >
         <div className="flex items-start gap-4 md:gap-6">
           {/* Avatar */}
-          <div className={`h-12 w-12 rounded-full shrink-0 flex items-center justify-center text-lg font-bold ${post.isMentor ? 'bg-gradient-to-br from-brand-blue to-blue-800 text-white shadow-md' : 'bg-amber-100 text-amber-700'}`}>
-            {post.authorInitial}
+          <div className={`h-12 w-12 rounded-full shrink-0 flex items-center justify-center text-lg font-bold overflow-hidden relative ${post.isMentor ? 'bg-gradient-to-br from-brand-blue to-blue-800 text-white shadow-md' : 'bg-amber-100 text-amber-700'}`}>
+            {post.authorImage ? (
+              <Image src={post.authorImage} alt={post.authorName} fill className="object-cover" />
+            ) : (
+              post.authorInitial
+            )}
           </div>
 
           {/* Content */}
@@ -146,8 +151,12 @@ export default function PostCard({ post, currentUserId }: { post: any, currentUs
             {post.replies.map((reply: any) => (
               <div key={reply.id} className="mb-6 last:mb-0 group/reply">
                 <div className="flex items-start gap-4">
-                  <div className={`h-8 w-8 rounded-full shrink-0 flex items-center justify-center text-xs font-bold ${reply.isMentor ? 'bg-gradient-to-br from-brand-blue to-blue-800 text-white' : 'bg-amber-100 text-amber-700'}`}>
-                    {reply.authorInitial}
+                  <div className={`h-8 w-8 rounded-full shrink-0 flex items-center justify-center text-xs font-bold overflow-hidden relative ${reply.isMentor ? 'bg-gradient-to-br from-brand-blue to-blue-800 text-white' : 'bg-amber-100 text-amber-700'}`}>
+                    {reply.authorImage ? (
+                      <Image src={reply.authorImage} alt={reply.authorName} fill className="object-cover" />
+                    ) : (
+                      reply.authorInitial
+                    )}
                   </div>
                   <div className="flex-1 bg-white border border-ink-100 rounded-2xl rounded-tl-none p-4 shadow-sm relative">
                     <div className="flex items-center justify-between mb-1">

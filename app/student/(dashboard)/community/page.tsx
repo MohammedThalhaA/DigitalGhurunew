@@ -26,7 +26,7 @@ export default async function CommunityPage({
     let query = `
       SELECT 
         p.id, p.title, p.content, p.likes, p.tags, p."createdAt", 
-        u.name, u.role, p."userId",
+        u.name, u.role, u.image, p."userId",
         EXISTS(SELECT 1 FROM community_likes cl WHERE cl."postId" = p.id AND cl."userId" = $1) as "hasLiked",
         (SELECT COUNT(*) FROM community_replies cr WHERE cr."postId" = p.id) as comments
       FROM community_posts p
@@ -53,7 +53,7 @@ export default async function CommunityPage({
     
     if (postIds.length > 0) {
       const repliesRes = await pool.query(`
-        SELECT r.id, r."postId", r."userId", r.content, r."createdAt", u.name, u.role
+        SELECT r.id, r."postId", r."userId", r.content, r."createdAt", u.name, u.role, u.image
         FROM community_replies r
         JOIN users u ON r."userId" = u.id
         WHERE r."postId" = ANY($1)
@@ -82,6 +82,7 @@ export default async function CommunityPage({
             content: r.content,
             authorName: r.name || "Student",
             authorInitial: (r.name || "S").charAt(0).toUpperCase(),
+            authorImage: r.image || null,
             isMentor: r.role === 'INSTRUCTOR' || r.role === 'ADMIN',
             timeAgo: rTimeAgo,
             userId: r.userId
@@ -94,6 +95,7 @@ export default async function CommunityPage({
         content: row.content,
         authorName: row.name || "Student",
         authorInitial: (row.name || "S").charAt(0).toUpperCase(),
+        authorImage: row.image || null,
         likes: row.likes,
         comments: parseInt(row.comments),
         timeAgo: timeAgo,

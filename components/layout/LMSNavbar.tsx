@@ -21,7 +21,7 @@ export default function LMSNavbar() {
   const { data: session } = useSession();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [navData, setNavData] = useState({ streak: 0, unreadNotifications: 0 });
+  const [navData, setNavData] = useState({ streak: 0, unreadNotifications: 0, name: "", image: "" });
 
   const user = session?.user;
 
@@ -119,14 +119,14 @@ export default function LMSNavbar() {
               onClick={() => setIsProfileOpen(!isProfileOpen)}
             >
               <div className="h-8 w-8 rounded-full bg-[#006FFF] flex items-center justify-center text-white font-heading font-semibold text-sm shadow-sm overflow-hidden">
-                {user?.image ? (
-                  <Image src={user.image} alt={user.name || "User"} width={32} height={32} className="object-cover" />
+                {navData.image || user?.image ? (
+                  <Image src={(navData.image || user?.image) as string} alt={navData.name || user?.name || "User"} width={32} height={32} className="object-cover" />
                 ) : (
-                  (user?.name || "S").charAt(0).toUpperCase()
+                  (navData.name || user?.name || "S").charAt(0).toUpperCase()
                 )}
               </div>
               <span className="hidden sm:block text-sm font-heading font-semibold text-white group-hover:text-ink-900 max-w-[120px] truncate transition-colors">
-                {user?.name || "Student"}
+                {navData.name || user?.name || "Student"}
               </span>
               <ChevronDown className="h-4 w-4 text-white/80 group-hover:text-ink-900 hidden sm:block transition-colors" />
             </button>

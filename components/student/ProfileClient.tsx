@@ -1,15 +1,167 @@
 "use client";
 
-import React, { useState } from "react";
-import { User, Calendar, Bell, Mail, CreditCard, Shield, Smartphone, Save } from "lucide-react";
+import React, { useState, useTransition, useRef, useEffect } from "react";
+import { User, Calendar, Bell, Mail, CreditCard, Shield, Smartphone, Save, Upload, Link as LinkIcon, Loader2, CheckCircle, XCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { updateGeneralProfile, updatePassword, updateNotificationPreferences, uploadLocalImage, toggleTwoFactor, saveUpiId, removeUpiId } from "@/lib/profile-actions";
+import { useRouter } from "next/navigation";
 
 interface ProfileClientProps {
   user: any;
+  enrollments?: any[];
 }
 
-export default function ProfileClient({ user }: ProfileClientProps) {
+export default function ProfileClient({ user, enrollments = [] }: ProfileClientProps) {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("general");
+  const [isPending, startTransition] = useTransition();
+
+  // General Profile State
+  const [firstName, setFirstName] = useState(user?.name ? user.name.split(" ")[0] : "");
+  const [lastName, setLastName] = useState(user?.name ? user.name.split(" ").slice(1).join(" ") : "");
+  const [bio, setBio] = useState(user?.bio || "");
+  const [imageUrl, setImageUrl] = useState(user?.image || "");
+  
+  // Image Upload State
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  // Security State
+  const [currentPass, setCurrentPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+
+  // Notification State
+  const [notifCourse, setNotifCourse] = useState(user?.notification_course_announcements ?? true);
+  const [notifCommunity, setNotifCommunity] = useState(user?.notification_community_mentions ?? true);
+  const [notifMarketing, setNotifMarketing] = useState(user?.notification_marketing_emails ?? false);
+
+  // Custom Toast State
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  // Billing State
+  const [upiId, setUpiId] = useState(user?.upi_id || "");
+  const [paymentMode, setPaymentMode] = useState<'default' | 'update' | 'add'>('default');
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
+  const [upiInput, setUpiInput] = useState("");
+
+  const handleSaveUpi = (e: React.FormEvent) => {
+    e.preventDefault();
+    startTransition(async () => {
+      const res = await saveUpiId(upiInput);
+      if (res.success) {
+        setUpiId(upiInput);
+        setPaymentMode('default');
+        showToast("UPI ID saved successfully!", "success");
+      } else {
+        showToast("Failed to save UPI ID.", "error");
+      }
+    });
+  };
+
+  const handleRemoveUpi = () => {
+    startTransition(async () => {
+      const res = await removeUpiId();
+      if (res.success) {
+        setUpiId("");
+        setShowRemoveConfirm(false);
+        showToast("UPI ID removed.", "success");
+      } else {
+        showToast("Failed to remove UPI ID.", "error");
+      }
+    });
+  };
+
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  const handleGeneralSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    startTransition(async () => {
+      const fullName = `${firstName} ${lastName}`.trim();
+      const res = await updateGeneralProfile(fullName, bio, imageUrl);
+      if (res.success) showToast("Profile updated successfully!", "success");
+      else showToast("Failed to update profile.", "error");
+    });
+  };
+
+  const handlePasswordSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPass !== confirmPass) return showToast("New passwords do not match!", "error");
+    if (!currentPass || !newPass) return showToast("Please fill all fields!", "error");
+    
+    startTransition(async () => {
+      try {
+        const res = await updatePassword(currentPass, newPass);
+        if (res.success) {
+          showToast("Password updated successfully!", "success");
+          setCurrentPass(""); setNewPass(""); setConfirmPass("");
+        } else {
+          showToast(res.error || "Failed to update password.", "error");
+        }
+      } catch (err: any) {
+        showToast(err.message || "Failed to update password.", "error");
+      }
+    });
+  };
+
+  const handleNotifSave = () => {
+    startTransition(async () => {
+      const res = await updateNotificationPreferences(notifCourse, notifCommunity, notifMarketing);
+      if (res.success) showToast("Preferences saved successfully!", "success");
+      else showToast("Failed to save preferences.", "error");
+    });
+  };
+
+  const handle2FAToggle = () => {
+    startTransition(async () => {
+      const enable = !(user?.two_factor_enabled ?? false);
+      const res = await toggleTwoFactor(enable);
+      if (res.success) {
+        showToast(`2FA is now ${enable ? 'enabled' : 'disabled'}!`, "success");
+      } else {
+        showToast("Failed to toggle 2FA.", "error");
+      }
+    });
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) return showToast("File is larger than 5MB", "error");
+
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await uploadLocalImage(formData);
+      if (res.success) {
+        setImageUrl(res.url);
+        // Automatically save the new avatar
+        const fullName = `${firstName} ${lastName}`.trim();
+        await updateGeneralProfile(fullName, bio, res.url);
+        showToast("Avatar uploaded and saved successfully!", "success");
+      } else {
+        showToast("Failed to upload image.", "error");
+      }
+    } catch (err) {
+      showToast("Failed to upload image.", "error");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleUrlUpload = () => {
+    const url = prompt("Enter the URL of your new avatar image:");
+    if (url) {
+      setImageUrl(url);
+    }
+  };
 
   return (
     <div className="bg-white rounded-3xl border border-ink-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)] overflow-hidden flex flex-col md:flex-row min-h-[600px]">
@@ -87,20 +239,40 @@ export default function ProfileClient({ user }: ProfileClientProps) {
               
               <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
                 <div className="h-28 w-28 rounded-3xl bg-gradient-to-br from-ink-100 to-ink-200 flex items-center justify-center text-ink-400 relative overflow-hidden shadow-inner shrink-0">
-                  {user?.image ? (
-                    <Image src={user.image} alt={user?.name || "User"} fill className="object-cover" />
+                  {imageUrl ? (
+                    <Image src={imageUrl} alt={user?.name || "User"} fill className="object-cover" />
                   ) : (
                     <User className="h-12 w-12" />
+                  )}
+                  {isUploading && (
+                    <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
+                      <Loader2 className="h-8 w-8 animate-spin text-brand-blue" />
+                    </div>
                   )}
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-ink-900 mb-1">Avatar</h3>
                   <p className="text-sm font-medium text-ink-500 mb-4">Recommended size 400x400px. Max size of 5MB.</p>
                   <div className="flex flex-wrap gap-3">
-                    <button className="px-6 py-2.5 bg-ink-900 hover:bg-brand-blue text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-colors shadow-md">
-                      Upload New
+                    <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
+                    <button 
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={isUploading}
+                      className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-400 to-brand-orange hover:from-amber-500 hover:to-orange-600 disabled:opacity-70 text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                    >
+                      <Upload className="h-4 w-4" /> Upload
                     </button>
-                    <button className="px-6 py-2.5 rounded-full bg-ink-50 hover:bg-ink-100 text-ink-600 font-bold text-sm uppercase tracking-[0.15em] transition-colors border border-ink-100">
+                    <button 
+                      onClick={handleUrlUpload}
+                      disabled={isUploading}
+                      className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-ink-50 disabled:bg-ink-100 text-ink-900 text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-colors shadow-sm border border-ink-200"
+                    >
+                      <LinkIcon className="h-4 w-4" /> Link URL
+                    </button>
+                    <button 
+                      onClick={() => setImageUrl("")}
+                      className="px-5 py-2.5 rounded-full bg-red-50 hover:bg-red-100 text-red-600 font-bold text-sm uppercase tracking-[0.15em] transition-colors border border-red-100"
+                    >
                       Remove
                     </button>
                   </div>
@@ -109,24 +281,27 @@ export default function ProfileClient({ user }: ProfileClientProps) {
             </div>
 
             {/* Form Section */}
-            <div className="bg-white rounded-[32px] border border-ink-100 shadow-card group hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 relative p-8 relative overflow-hidden max-w-3xl">
+            <div className="bg-white rounded-[32px] border border-ink-100 shadow-card group hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 p-8 relative overflow-hidden max-w-3xl">
               <h3 className="font-display text-lg font-bold text-ink-900 mb-8 relative z-10">Personal Information</h3>
               
-              <form className="space-y-6 relative z-10">
+              <form onSubmit={handleGeneralSave} className="space-y-6 relative z-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-heading text-xs font-semibold text-ink-900 uppercase tracking-[0.15em] pl-1">First Name</label>
                     <input 
                       type="text" 
-                      defaultValue="Student"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                       className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all font-medium text-ink-900"
+                      required
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="font-heading text-xs font-semibold text-ink-900 uppercase tracking-[0.15em] pl-1">Last Name</label>
                     <input 
                       type="text" 
-                      defaultValue="User"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                       className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all font-medium text-ink-900"
                     />
                   </div>
@@ -148,14 +323,16 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                   <label className="font-heading text-xs font-semibold text-ink-900 uppercase tracking-[0.15em] pl-1">Bio</label>
                   <textarea 
                     rows={4}
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
                     placeholder="Tell us a little about yourself..."
                     className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all font-medium text-ink-900 resize-none"
                   ></textarea>
                 </div>
                 
                 <div className="pt-6 flex justify-end">
-                  <button type="button" className="flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 to-brand-orange hover:from-amber-500 hover:to-orange-600 text-white font-bold text-sm transition-all shadow-[0_4px_15px_rgba(245,158,11,0.3)] hover:shadow-[0_8px_25px_rgba(245,158,11,0.4)] transform hover:-translate-y-0.5 uppercase tracking-wider">
-                    <Save className="h-5 w-5" /> Save Changes
+                  <button disabled={isPending} type="submit" className="flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 to-brand-orange hover:from-amber-500 hover:to-orange-600 disabled:opacity-70 text-white font-bold text-sm transition-all shadow-[0_4px_15px_rgba(245,158,11,0.3)] hover:shadow-[0_8px_25px_rgba(245,158,11,0.4)] transform hover:-translate-y-0.5 uppercase tracking-wider">
+                    {isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />} Save Changes
                   </button>
                 </div>
               </form>
@@ -171,24 +348,24 @@ export default function ProfileClient({ user }: ProfileClientProps) {
               
               <div className="bg-white rounded-[32px] border border-ink-100 shadow-card group hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 relative p-8 mb-8">
                 <h3 className="font-display text-base font-bold text-ink-900 mb-6">Change Password</h3>
-                <form className="space-y-5">
+                <form onSubmit={handlePasswordSave} className="space-y-5">
                   <div className="space-y-2">
                     <label className="font-heading text-xs font-semibold text-ink-900 uppercase tracking-[0.15em] pl-1">Current Password</label>
-                    <input type="password" placeholder="••••••••" className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all font-medium text-ink-900" />
+                    <input type="password" value={currentPass} onChange={(e)=>setCurrentPass(e.target.value)} required placeholder="••••••••" className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all font-medium text-ink-900" />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-2">
                       <label className="font-heading text-xs font-semibold text-ink-900 uppercase tracking-[0.15em] pl-1">New Password</label>
-                      <input type="password" placeholder="••••••••" className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all font-medium text-ink-900" />
+                      <input type="password" value={newPass} onChange={(e)=>setNewPass(e.target.value)} required placeholder="••••••••" className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all font-medium text-ink-900" />
                     </div>
                     <div className="space-y-2">
                       <label className="font-heading text-xs font-semibold text-ink-900 uppercase tracking-[0.15em] pl-1">Confirm New</label>
-                      <input type="password" placeholder="••••••••" className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all font-medium text-ink-900" />
+                      <input type="password" value={confirmPass} onChange={(e)=>setConfirmPass(e.target.value)} required placeholder="••••••••" className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all font-medium text-ink-900" />
                     </div>
                   </div>
                   <div className="pt-4">
-                    <button type="button" className="px-6 py-3 bg-ink-900 hover:bg-brand-blue text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-colors shadow-md">
-                      Update Password
+                    <button type="submit" disabled={isPending} className="px-8 py-4 bg-gradient-to-r from-amber-400 to-brand-orange hover:from-amber-500 hover:to-orange-600 disabled:opacity-70 text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2">
+                      {isPending && <Loader2 className="h-4 w-4 animate-spin" />} Update Password
                     </button>
                   </div>
                 </form>
@@ -199,8 +376,15 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                   <h3 className="font-display text-base font-bold text-ink-900 mb-2">Two-Factor Authentication (2FA)</h3>
                   <p className="text-ink-500 font-medium text-sm max-w-md">Add an extra layer of security to your account. We'll ask for a verification code when you log in.</p>
                 </div>
-                <button type="button" className="shrink-0 px-6 py-3 bg-brand-blue hover:bg-blue-800 text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-colors shadow-md">
-                  Enable 2FA
+                <button 
+                  onClick={handle2FAToggle} 
+                  disabled={isPending}
+                  className={`shrink-0 px-6 py-3 text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-colors shadow-md flex items-center gap-2 ${
+                    user?.two_factor_enabled ? 'bg-red-500 hover:bg-red-600' : 'bg-brand-blue hover:bg-blue-800'
+                  }`}
+                >
+                  {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
+                  {user?.two_factor_enabled ? 'Disable 2FA' : 'Enable 2FA'}
                 </button>
               </div>
             </div>
@@ -211,7 +395,9 @@ export default function ProfileClient({ user }: ProfileClientProps) {
         {activeTab === "notifications" && (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
             <div className="max-w-3xl">
-              <h2 className="font-display text-lg font-bold text-ink-900 mb-6 pb-4 border-b border-ink-100">Notification Preferences</h2>
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-ink-100">
+                <h2 className="font-display text-lg font-bold text-ink-900">Notification Preferences</h2>
+              </div>
               
               <div className="bg-white rounded-[32px] border border-ink-100 shadow-card group hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden">
                 <div className="p-6 sm:p-8 flex items-center justify-between border-b border-ink-100 hover:bg-ink-50/50 transition-colors">
@@ -220,7 +406,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                     <p className="font-body text-sm text-ink-500">Updates, new modules, and announcements from your instructors.</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer shrink-0 ml-4">
-                    <input type="checkbox" className="sr-only peer" defaultChecked />
+                    <input type="checkbox" className="sr-only peer" checked={notifCourse} onChange={(e)=>setNotifCourse(e.target.checked)} />
                     <div className="w-11 h-6 bg-ink-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-400"></div>
                   </label>
                 </div>
@@ -231,20 +417,26 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                     <p className="font-body text-sm text-ink-500">Get notified when someone replies to your post or mentions you.</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer shrink-0 ml-4">
-                    <input type="checkbox" className="sr-only peer" defaultChecked />
+                    <input type="checkbox" className="sr-only peer" checked={notifCommunity} onChange={(e)=>setNotifCommunity(e.target.checked)} />
                     <div className="w-11 h-6 bg-ink-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
                   </label>
                 </div>
 
-                <div className="p-6 sm:p-8 flex items-center justify-between border-b border-ink-100 hover:bg-ink-50/50 transition-colors">
+                <div className="p-6 sm:p-8 flex items-center justify-between hover:bg-ink-50/50 transition-colors">
                   <div>
                     <h4 className="font-heading font-bold text-ink-900 mb-1">Marketing Emails</h4>
                     <p className="font-body text-sm text-ink-500">Receive offers, newsletters, and promotional content.</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer shrink-0 ml-4">
-                    <input type="checkbox" className="sr-only peer" />
+                    <input type="checkbox" className="sr-only peer" checked={notifMarketing} onChange={(e)=>setNotifMarketing(e.target.checked)} />
                     <div className="w-11 h-6 bg-ink-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-400"></div>
                   </label>
+                </div>
+                
+                <div className="p-6 sm:p-8 bg-ink-50/30 border-t border-ink-100 flex justify-start">
+                  <button onClick={handleNotifSave} disabled={isPending} className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 to-brand-orange hover:from-amber-500 hover:to-orange-600 disabled:opacity-70 text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2 transition-all">
+                    {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save Preferences
+                  </button>
                 </div>
               </div>
             </div>
@@ -268,17 +460,17 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-heading font-bold text-ink-900">MacBook Pro</h4>
+                        <h4 className="font-heading font-bold text-ink-900">Current Browser</h4>
                         <span className="bg-amber-400 text-white text-xs font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded-full">Current</span>
                       </div>
-                      <p className="font-body text-sm text-ink-500">Chrome on macOS • IP: 192.168.1.1</p>
+                      <p className="font-body text-sm text-ink-500">Active Session • Your IP</p>
                       <p className="text-xs font-bold text-emerald-600 mt-1">Active right now</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Other Device */}
-                <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                {/* Other Device Placeholder */}
+                <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 opacity-50 grayscale">
                   <div className="flex items-start gap-4">
                     <div className="h-12 w-12 rounded-full bg-ink-50 flex items-center justify-center text-ink-400 shrink-0">
                       <Smartphone className="h-5 w-5" />
@@ -289,7 +481,7 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                       <p className="text-xs font-medium text-ink-400 mt-1">Last active: 2 hours ago</p>
                     </div>
                   </div>
-                  <button className="px-5 py-2.5 rounded-full bg-white hover:bg-red-50 text-red-600 font-bold text-sm transition-colors border border-ink-200 hover:border-red-200">
+                  <button disabled className="px-5 py-2.5 rounded-full bg-white text-red-400 font-bold text-sm transition-colors border border-ink-200">
                     Revoke
                   </button>
                 </div>
@@ -310,37 +502,101 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                 <div className="bg-gradient-to-br from-ink-900 to-ink-950 rounded-[32px] p-8 text-white shadow-xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
                   <div className="relative z-10">
-                    <span className="bg-amber-400/20 text-amber-400 border border-amber-400/30 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-4 inline-block">Active Plan</span>
-                    <h3 className="text-3xl font-bold mb-1">Lifetime Access</h3>
-                    <p className="text-ink-300 text-sm font-medium mb-8">You have permanent access to all enrolled courses.</p>
-                    <button className="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold text-sm uppercase tracking-[0.15em] rounded-full transition-colors border border-white/10 backdrop-blur-sm">
+                    <span className="bg-amber-400/80 text-amber-950 border border-amber-400 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-4 inline-block shadow-sm">Active Plan</span>
+                    <h3 className="text-3xl font-bold mb-1 text-white">Lifetime Access</h3>
+                    <p className="text-ink-200 text-sm font-medium mb-8">You have permanent access to all enrolled courses.</p>
+                    <button onClick={() => router.push('/student/browse')} className="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold text-sm uppercase tracking-[0.15em] rounded-full transition-colors border border-white/10 backdrop-blur-sm">
                       Browse New Courses
                     </button>
                   </div>
                 </div>
 
-                {/* Payment Method Card */}
-                <div className="bg-white rounded-[32px] border border-ink-100 p-8 shadow-card group hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 relative flex flex-col">
-                  <h3 className="font-display text-base font-bold text-ink-900 mb-6">Payment Method</h3>
+                {/* Saved UPI ID Card */}
+                <div className="bg-white rounded-[32px] border border-ink-100 p-8 shadow-card group hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 relative flex flex-col overflow-hidden min-h-[300px]">
                   
-                  <div className="flex items-center gap-4 p-4 rounded-2xl border border-ink-200 bg-ink-50/50 mb-auto">
-                    <div className="w-14 h-10 bg-brand-blue rounded-md flex items-center justify-center shadow-sm">
-                      <span className="text-white font-bold italic text-xs">VISA</span>
-                    </div>
-                    <div>
-                      <p className="font-bold text-ink-900 leading-tight">Visa ending in 4242</p>
-                      <p className="text-xs font-medium text-ink-500">Expires 12/26</p>
-                    </div>
-                  </div>
+                  {/* Remove Confirmation Overlay */}
+                  <AnimatePresence>
+                    {showRemoveConfirm && (
+                      <motion.div 
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-white/90 backdrop-blur-md z-20 flex flex-col items-center justify-center p-6 text-center"
+                      >
+                        <h4 className="font-display font-bold text-ink-900 text-lg mb-2">Remove UPI ID?</h4>
+                        <p className="text-ink-500 text-sm font-medium mb-6">Are you sure you want to remove this UPI ID? You will need to enter it again for future fast checkouts.</p>
+                        <div className="flex gap-3 w-full">
+                          <button onClick={() => setShowRemoveConfirm(false)} disabled={isPending} className="flex-1 py-3 bg-ink-50 hover:bg-ink-100 text-ink-900 font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors border border-ink-200 disabled:opacity-50">Cancel</button>
+                          <button onClick={handleRemoveUpi} disabled={isPending} className="flex-1 py-3 bg-red-500 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors shadow-md disabled:opacity-50 flex justify-center items-center gap-2">
+                            {isPending && <Loader2 className="h-4 w-4 animate-spin" />} Yes, Remove
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
-                  <div className="mt-6 flex gap-3">
-                    <button className="flex-1 py-3 bg-ink-900 hover:bg-brand-blue text-white font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors">
-                      Update
-                    </button>
-                    <button className="flex-1 py-3 bg-ink-50 hover:bg-ink-100 text-ink-600 font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors border border-ink-100">
-                      Remove
-                    </button>
-                  </div>
+                  <h3 className="font-display text-base font-bold text-ink-900 mb-6">Saved UPI ID</h3>
+                  
+                  <AnimatePresence mode="wait">
+                    {paymentMode === 'default' && upiId && (
+                      <motion.div key="default" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="flex flex-col flex-1">
+                        <div className="flex items-center gap-4 p-4 rounded-2xl border border-ink-200 bg-ink-50/50 mb-auto">
+                          <div className="w-14 h-10 bg-brand-blue rounded-md flex items-center justify-center shadow-sm">
+                            <span className="text-white font-bold italic text-xs">UPI</span>
+                          </div>
+                          <div>
+                            <p className="font-bold text-ink-900 leading-tight">{upiId}</p>
+                            <p className="text-xs font-medium text-ink-500">Fast checkout enabled</p>
+                          </div>
+                        </div>
+
+                        <div className="mt-6 flex gap-3">
+                          <button onClick={() => { setUpiInput(upiId); setPaymentMode('update'); }} className="flex-1 py-3 bg-ink-900 hover:bg-brand-blue text-white font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors shadow-sm">
+                            Update
+                          </button>
+                          <button onClick={() => setShowRemoveConfirm(true)} className="flex-1 py-3 bg-ink-50 hover:bg-ink-100 text-red-500 font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors border border-red-100">
+                            Remove
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {paymentMode === 'default' && !upiId && (
+                      <motion.div key="no-upi" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="flex flex-col flex-1 items-center justify-center text-center">
+                        <div className="w-16 h-16 rounded-full bg-ink-50 flex items-center justify-center text-ink-300 mb-4">
+                          <Smartphone className="h-6 w-6" />
+                        </div>
+                        <p className="text-ink-500 font-medium mb-6">No UPI ID saved for fast checkout.</p>
+                        <button onClick={() => { setUpiInput(""); setPaymentMode('add'); }} className="w-full py-3 bg-gradient-to-r from-amber-400 to-brand-orange hover:from-amber-500 hover:to-orange-600 text-white font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                          Add UPI ID
+                        </button>
+                      </motion.div>
+                    )}
+
+                    {(paymentMode === 'update' || paymentMode === 'add') && (
+                      <motion.div key="form" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="flex flex-col flex-1">
+                        <form onSubmit={handleSaveUpi} className="flex flex-col flex-1">
+                          <div className="space-y-4 mb-auto">
+                            <p className="text-sm text-ink-500 font-medium mb-2">Enter your UPI ID to use Razorpay 1-click checkout in the future.</p>
+                            <input 
+                              type="text" 
+                              required
+                              value={upiInput}
+                              onChange={(e) => setUpiInput(e.target.value)}
+                              placeholder="e.g. name@okhdfcbank" 
+                              className="w-full px-4 py-3 bg-ink-50/50 border border-ink-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all font-medium text-sm" 
+                            />
+                          </div>
+                          <div className="mt-6 flex gap-3">
+                            <button type="button" onClick={() => setPaymentMode('default')} disabled={isPending} className="flex-1 py-3 bg-ink-50 hover:bg-ink-100 text-ink-600 font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors border border-ink-100 disabled:opacity-50">
+                              Cancel
+                            </button>
+                            <button type="submit" disabled={isPending} className="flex-1 py-3 bg-ink-900 hover:bg-brand-blue text-white font-bold text-xs uppercase tracking-[0.15em] rounded-full transition-colors shadow-sm disabled:opacity-50 flex justify-center items-center gap-2">
+                              {isPending && <Loader2 className="h-4 w-4 animate-spin" />} Save UPI ID
+                            </button>
+                          </div>
+                        </form>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
 
@@ -357,22 +613,24 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-ink-50 hover:bg-ink-50/30 transition-colors">
-                      <td className="py-4 px-6 text-sm font-medium text-ink-600">Sep 01, 2026</td>
-                      <td className="py-4 px-6 text-sm font-bold text-ink-900">AI Marketing Blueprint</td>
-                      <td className="py-4 px-6 text-sm font-bold text-ink-900">₹4,999</td>
-                      <td className="py-4 px-6 text-right">
-                        <button className="text-brand-blue hover:text-blue-800 text-sm font-bold transition-colors">Download</button>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-ink-50 hover:bg-ink-50/30 transition-colors">
-                      <td className="py-4 px-6 text-sm font-medium text-ink-600">Aug 15, 2026</td>
-                      <td className="py-4 px-6 text-sm font-bold text-ink-900">Digital Marketing Mastery</td>
-                      <td className="py-4 px-6 text-sm font-bold text-ink-900">₹9,999</td>
-                      <td className="py-4 px-6 text-right">
-                        <button className="text-brand-blue hover:text-blue-800 text-sm font-bold transition-colors">Download</button>
-                      </td>
-                    </tr>
+                    {enrollments.length === 0 ? (
+                      <tr>
+                        <td colSpan={4} className="py-8 text-center text-ink-500 font-medium">No billing history found.</td>
+                      </tr>
+                    ) : (
+                      enrollments.map((enr, i) => (
+                        <tr key={i} className="border-b border-ink-50 hover:bg-ink-50/30 transition-colors">
+                          <td className="py-4 px-6 text-sm font-medium text-ink-600">
+                            {new Date(enr.createdAt).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}
+                          </td>
+                          <td className="py-4 px-6 text-sm font-bold text-ink-900">{enr.title}</td>
+                          <td className="py-4 px-6 text-sm font-bold text-ink-900">₹{parseFloat(enr.pricePaid).toLocaleString()}</td>
+                          <td className="py-4 px-6 text-right">
+                            <button className="text-brand-blue hover:text-blue-800 text-sm font-bold transition-colors">Download</button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -382,6 +640,31 @@ export default function ProfileClient({ user }: ProfileClientProps) {
         )}
 
       </div>
+
+      {/* Custom Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            className={`fixed bottom-8 right-8 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border ${
+              toast.type === 'success' 
+                ? 'bg-emerald-50 border-emerald-100 text-emerald-900' 
+                : 'bg-red-50 border-red-100 text-red-900'
+            }`}
+          >
+            {toast.type === 'success' ? (
+              <CheckCircle className="h-5 w-5 text-emerald-500" />
+            ) : (
+              <XCircle className="h-5 w-5 text-red-500" />
+            )}
+            <span className="font-heading font-semibold text-sm">{toast.message}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
