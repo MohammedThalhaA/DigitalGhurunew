@@ -34,7 +34,7 @@ export default async function MyCoursesPage() {
             </div>
             <h3 className="text-xl font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors duration-200">No courses yet</h3>
             <p className="text-ink-500 font-medium mb-8">Browse our catalog to enroll in your first course!</p>
-            <Link href="/student/browse" className="inline-flex items-center gap-2 bg-brand-blue text-white font-heading font-bold py-4 px-8 rounded-xl hover:bg-blue-700 transition-all shadow-md">
+            <Link href="/student/browse" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-heading font-bold py-4 px-8 rounded-xl hover:shadow-lg transition-all shadow-md">
               Browse Courses
             </Link>
           </div>
@@ -123,7 +123,7 @@ export default async function MyCoursesPage() {
                           ? 'bg-white border-ink-200 text-ink-600 hover:bg-ink-50 hover:text-ink-900'
                           : course.progress === 0
                           ? 'bg-white border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white'
-                          : 'bg-brand-blue border-brand-blue text-white hover:bg-blue-800 hover:border-blue-800 shadow-sm'
+                          : 'bg-gradient-to-r from-[#FFB800] to-[#FF5C00] border-none text-white hover:shadow-lg shadow-md'
                       }`}>
                         {course.progress === 0 ? "Start Learning" : course.progress === 100 ? "Review Course" : "Resume Course"}
                         <ArrowRight className="h-4 w-4" />

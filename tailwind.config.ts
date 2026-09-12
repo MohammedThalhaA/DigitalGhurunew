@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        '6xl': '1400px',
+        '7xl': '1600px',
+      },
       colors: {
         brand: {
           blue: "#006FFF",

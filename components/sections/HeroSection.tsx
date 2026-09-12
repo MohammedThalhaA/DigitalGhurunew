@@ -34,7 +34,7 @@ export default function HeroSection({
   children,
 }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-ink-50 via-white to-brand-blue/5">
+    <section className="relative overflow-hidden bg-[#006FFF]">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl" />
@@ -74,23 +74,23 @@ export default function HeroSection({
             )}
 
             {/* Title */}
-            <h1 className="heading-xl text-ink-900 mb-4">
+            <h1 className="heading-xl text-white mb-4">
               {title}{" "}
               {titleHighlight && (
-                <span className="gradient-text">{titleHighlight}</span>
+                <span className="text-brand-gold">{titleHighlight}</span>
               )}
             </h1>
 
             {/* Subtitle */}
             {subtitle && (
-              <p className="heading-sm text-ink-600 font-normal mb-4">
+              <p className="heading-sm text-white/90 font-normal mb-4">
                 {subtitle}
               </p>
             )}
 
             {/* Description */}
             {description && (
-              <p className="body-lg mb-8 max-w-xl">{description}</p>
+              <p className="body-lg text-white/80 mb-8 max-w-xl">{description}</p>
             )}
 
             {/* CTAs */}

@@ -130,7 +130,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button className="flex items-center gap-1 px-3 py-2 text-base font-heading font-semibold text-ink-700 hover:text-brand-blue transition-colors duration-200">
+      <button className="flex items-center gap-1 px-3 py-2 text-base font-heading font-semibold text-white/90 hover:text-white transition-colors duration-200">
         {item.label}
         <ChevronDown
           className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -312,8 +312,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-nav border-b border-ink-100/50"
-          : "bg-white"
+          ? "bg-[#006FFF]/90 backdrop-blur-md shadow-nav border-b border-white/10"
+          : "bg-[#006FFF]"
       }`}
     >
       <nav className="section-container flex items-center justify-between h-[88px]">
@@ -337,13 +337,13 @@ export default function Navbar() {
                 href={item.href || "/"}
                 className={`px-3 py-2 text-base font-heading font-semibold transition-colors duration-200 ${
                   pathname === item.href
-                    ? "text-brand-blue"
-                    : "text-ink-700 hover:text-brand-blue"
+                    ? "text-brand-gold"
+                    : "text-white/90 hover:text-white"
                 }`}
               >
                 {item.label}
                 {pathname === item.href && (
-                  <span className="block h-0.5 mt-0.5 bg-brand-blue rounded-full" />
+                  <span className="block h-0.5 mt-0.5 bg-brand-gold rounded-full" />
                 )}
               </Link>
             )
@@ -354,7 +354,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-4">
           <Link
             href="/signin"
-            className="text-base font-heading font-semibold text-ink-700 hover:text-brand-blue transition-colors"
+            className="text-base font-heading font-semibold text-white/90 hover:text-white transition-colors"
           >
             Log In
           </Link>
@@ -370,7 +370,7 @@ export default function Navbar() {
           </Button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-2 text-ink-700 hover:text-brand-blue transition-colors"
+            className="p-2 text-white hover:text-brand-gold transition-colors"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             {mobileOpen ? (

@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     siteName: "Digital Ghuru",
   },
+  icons: {
+    icon: "/resources/student portal navbar logo.png",
+  },
 };
 
 export default function RootLayout({
