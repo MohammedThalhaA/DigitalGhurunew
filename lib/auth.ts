@@ -16,16 +16,18 @@ import PostgresAdapter from "@auth/pg-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import pool from "@/lib/db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import type { Adapter } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
   adapter: PostgresAdapter(pool) as Adapter,
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    }),
+    ...(process.env.GOOGLE_CLIENT_ID ? [
+      GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      })
+    ] : []),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
