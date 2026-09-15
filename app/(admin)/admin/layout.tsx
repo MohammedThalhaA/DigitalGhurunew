@@ -36,14 +36,24 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       {/* Admin Sidebar */}
       <aside className="w-64 bg-brand-blue text-white shrink-0 hidden md:flex flex-col">
         <div className="p-6 border-b border-white/10 shrink-0">
-          <Link href="/admin/dashboard" className="block hover:scale-[1.02] transition-transform">
+          <Link href="/admin/dashboard" className="flex items-center gap-3 group hover:scale-[1.02] transition-transform">
             <Image 
-              src="/resources/student portal navbar logo.png" 
-              alt="Digital Ghuru Admin Portal" 
-              width={300} 
-              height={80} 
-              className="h-20 w-auto object-contain scale-150 origin-left ml-2"
+              src="/logo-for-logins.png" 
+              alt="Digital Ghuru" 
+              width={120} 
+              height={120} 
+              className="h-12 w-auto object-contain"
+              priority
             />
+            <div className="relative w-36 h-10 -ml-10 overflow-hidden flex items-center justify-center pointer-events-none">
+              <Image 
+                src="/resources/Admin Portal.png" 
+                alt="Admin Portal" 
+                fill
+                className="object-contain scale-[3] origin-center"
+                priority
+              />
+            </div>
           </Link>
         </div>
 

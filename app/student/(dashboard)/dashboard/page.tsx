@@ -55,7 +55,8 @@ export default async function StudentDashboardPage() {
         id: row.id.toString(),
         title: row.title || mData.title,
         subtitle: (row.description || mData.description || "").substring(0, 60),
-        image: mData.cardImage || mData.thumbnail || row.image || "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
+        imageUrl: mData.cardImage || mData.thumbnail || row.image || "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
+        progress: 0
       };
     });
   } catch (error) {
@@ -138,7 +139,7 @@ export default async function StudentDashboardPage() {
               <TrendingUp className="h-6 w-6 text-rose-600" />
             </div>
             <div>
-              <p className="font-heading text-xs font-semibold text-ink-400 uppercase tracking-[0.15em] group-hover:text-rose-600 transition-colors duration-200">Progress</p>
+              <p className="font-heading text-xs font-semibold text-ink-400 uppercase tracking-[0.15em] group-hover:text-rose-600 transition-colors duration-200">Percentile</p>
               <p className="font-display text-xl font-bold text-ink-900">{stats.percentile}</p>
             </div>
           </div>
@@ -150,12 +151,12 @@ export default async function StudentDashboardPage() {
         <div className="mb-10 relative">
           <h2 className="eyebrow !text-amber-500 mb-4">Continue Learning</h2>
           <div className="bg-white rounded-3xl border border-ink-100 shadow-card overflow-hidden flex flex-col md:flex-row group relative z-10 hover:shadow-card-hover transition-all duration-300">
-            <div className="w-full md:w-[45%] lg:w-2/5 aspect-video relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-ink-100">
+            <div className="w-full md:w-[45%] lg:w-2/5 aspect-video relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-ink-100 bg-[#0B1221]">
                <Image 
                  src={activeCourse.imageUrl || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"} 
                  alt={activeCourse.title} 
                  fill 
-                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                 className="object-contain group-hover:scale-105 transition-transform duration-700" 
                />
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 shadow-lg">
@@ -204,47 +205,18 @@ export default async function StudentDashboardPage() {
         </div>
       )}
 
-      {/* My Learning Section */}
-      {myCourses.length > 0 && (
+      {/* Recommended Courses Section */}
+      {recommendedCourses.length > 0 && (
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display text-lg font-bold text-ink-900">My Learning</h2>
-            <Link href="/student/courses" className="font-heading text-xs font-semibold uppercase tracking-[0.15em] text-brand-blue hover:text-blue-700 transition-colors">
-              View All
+            <h2 className="font-display text-lg font-bold text-ink-900">Recommended Courses</h2>
+            <Link href="/student/browse" className="font-heading text-xs font-semibold uppercase tracking-[0.15em] text-brand-blue hover:text-blue-700 transition-colors">
+              Browse All
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {myCourses.map(course => (
+            {recommendedCourses.map(course => (
               <CourseProgressCard key={course.id} {...course} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Recommended Section */}
-      {recommendedCourses.length > 0 && (
-        <div className="mb-10">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display text-lg font-bold text-ink-900">Recommended for you</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {recommendedCourses.map((course) => (
-              <Link key={course.id} href={`/student/courses/${course.id}`} className="group bg-white rounded-[32px] border border-ink-100 hover:border-amber-400/50 shadow-[0_4px_20px_rgba(20,20,40,0.03)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.1)] flex flex-col hover:-translate-y-1 transition-all overflow-hidden relative h-full">
-                
-                <div className="w-full aspect-video flex items-center justify-center shrink-0 relative overflow-hidden bg-ink-900 border-b border-ink-50">
-                   <Image src={course.image} alt={course.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
-                
-                <div className="p-8 flex-1 flex flex-col min-w-0 bg-white">
-                  <h3 className="font-display font-bold text-ink-900 text-base mb-3 group-hover:text-brand-blue transition-colors line-clamp-1">{course.title}</h3>
-                  <p className="font-body text-sm text-ink-500 mb-8 line-clamp-2 leading-relaxed">{course.subtitle}</p>
-                  
-                  <div className="mt-auto flex justify-between items-center text-xs font-bold uppercase tracking-[0.15em] pt-5 border-t border-ink-100">
-                     <span className="text-amber-500 group-hover:text-amber-600 transition-colors">Explore Course</span>
-                     <span className="text-amber-500 group-hover:translate-x-1 transition-transform group-hover:text-amber-600">&rarr;</span>
-                  </div>
-                </div>
-              </Link>
             ))}
           </div>
         </div>

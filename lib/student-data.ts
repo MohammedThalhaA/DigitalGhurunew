@@ -251,7 +251,18 @@ export async function getEnrolledCourses(userId: number) {
     const res = await pool.query(
       `SELECT 
          c.id, c.title, c.description, c."imageUrl", c.marketing_data,
-         0 as progress, NULL as "completedAt",
+         (
+           SELECT COUNT(*) FROM user_progress up 
+           JOIN chapters ch ON up."chapterId" = ch.id 
+           JOIN modules m ON ch."moduleId" = m.id 
+           WHERE m."courseId" = c.id AND up."userId" = $1 AND up."isCompleted" = true
+         ) as completed_chapters,
+         (
+           SELECT COUNT(*) FROM chapters ch 
+           JOIN modules m ON ch."moduleId" = m.id 
+           WHERE m."courseId" = c.id
+         ) as total_chapters,
+         NULL as "completedAt",
          (SELECT COUNT(*) FROM modules m WHERE m."courseId" = c.id) as module_count,
          (SELECT COUNT(*) * 600 FROM chapters ch JOIN modules m ON ch."moduleId" = m.id WHERE m."courseId" = c.id) as total_seconds
        FROM courses c
@@ -268,13 +279,17 @@ export async function getEnrolledCourses(userId: number) {
       const timeEstimate = hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
       
       const mData = row.marketing_data || {};
+      
+      const completed = parseInt(row.completed_chapters) || 0;
+      const total = parseInt(row.total_chapters) || 0;
+      const progress = total === 0 ? 0 : Math.round((completed / total) * 100);
 
       return {
         id: row.id.toString(),
         title: row.title || mData.title,
         description: row.description || mData.description || "",
         imageUrl: mData.cardImage || mData.thumbnail || row.imageUrl || null,
-        progress: row.progress || 0,
+        progress: progress,
         completedAt: row.completedAt,
         modules: parseInt(row.module_count) || 0,
         timeEstimate,

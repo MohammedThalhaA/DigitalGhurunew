@@ -49,15 +49,24 @@ export default function LMSNavbar() {
             <Menu className="h-6 w-6" />
           </button>
           
-          <Link href="/student/dashboard" className="flex items-center gap-3 group shrink-0 h-full py-2 lg:-ml-2 xl:-ml-4">
-            <Image 
-              src="/resources/student portal navbar logo.png" 
-              alt="Digital Ghuru Student Portal" 
-              width={400} 
-              height={100} 
-              className="h-14 sm:h-16 md:h-20 w-auto object-contain scale-125 md:scale-[1.35] origin-left hover:scale-[1.3] md:hover:scale-[1.4] transition-transform"
-              priority
-            />
+          <Link href="/student/dashboard" className="flex items-center gap-3 group shrink-0 h-full py-2 ml-2 sm:ml-4 lg:ml-6">
+              <Image 
+                src="/logo-for-logins.png" 
+                alt="Digital Ghuru" 
+                width={120} 
+                height={120} 
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform hover:scale-105"
+                priority
+              />
+              <div className="relative w-28 sm:w-36 md:w-48 h-8 sm:h-10 md:h-12 -ml-8 sm:-ml-10 md:-ml-12 overflow-hidden flex items-center justify-center pointer-events-none">
+                <Image 
+                  src="/resources/student portal.png" 
+                  alt="Student Portal" 
+                  fill
+                  className="object-contain scale-[2.5] sm:scale-[3] origin-center"
+                  priority
+                />
+              </div>
           </Link>
         </div>
 
@@ -187,12 +196,20 @@ export default function LMSNavbar() {
               <div className="p-4 border-b border-ink-100 flex items-center justify-between">
                 <Link href="/student/dashboard" className="flex items-center gap-3 group ml-2 mt-2" onClick={() => setIsMobileMenuOpen(false)}>
                   <Image 
-                    src="/resources/student portal navbar logo.png" 
-                    alt="Digital Ghuru Student Portal" 
-                    width={250} 
-                    height={70} 
-                    className="h-10 sm:h-12 w-auto object-contain scale-125 origin-left"
+                    src="/logo-for-logins.png" 
+                    alt="Digital Ghuru" 
+                    width={100} 
+                    height={100} 
+                    className="h-10 sm:h-12 w-auto object-contain"
                   />
+                  <div className="relative w-24 sm:w-32 h-6 sm:h-8 -ml-6 sm:-ml-8 overflow-hidden flex items-center justify-center pointer-events-none">
+                    <Image 
+                      src="/resources/student portal.png" 
+                      alt="Student Portal" 
+                      fill
+                      className="object-contain scale-[2.5] sm:scale-[3] origin-center"
+                    />
+                  </div>
                 </Link>
                 <button 
                   onClick={() => setIsMobileMenuOpen(false)}
