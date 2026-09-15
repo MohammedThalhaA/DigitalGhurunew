@@ -162,7 +162,7 @@ export default function PremiumCurriculum({ curriculum }: PremiumCurriculumProps
                   Join 10,000+ learners and get industry-ready with Digital Ghuru.
                 </p>
                 
-                <button className="w-full py-4 bg-white text-[#5E4DFF] rounded-xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(255,255,255,0.3)] mt-2 mb-6 relative z-10 hover:bg-gray-50">
+                <button className="w-full py-4 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white rounded-xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg mt-2 mb-6 relative z-10">
                   Enroll Now <ArrowRight className="h-5 w-5" />
                 </button>
 

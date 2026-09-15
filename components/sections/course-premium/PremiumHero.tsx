@@ -93,7 +93,7 @@ export default function PremiumHero({
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-8 py-4 bg-[#5E4DFF] hover:bg-[#4d3ecc] text-white rounded-[14px] font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_-6px_rgba(94,77,255,0.5)]">
+              <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white rounded-[14px] font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_-6px_rgba(255,92,0,0.5)]">
                 Enroll Now <ArrowRight className="h-4 w-4" />
               </button>
               <button className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/5 text-white rounded-[14px] font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2">
@@ -172,12 +172,8 @@ export default function PremiumHero({
                 )}
               </div>
 
-              <button className="w-full py-4 bg-[#5E4DFF] hover:bg-[#4d3ecc] text-white rounded-[14px] font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_-6px_rgba(94,77,255,0.5)] mb-3">
+              <button className="w-full py-4 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white rounded-[14px] font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_-6px_rgba(255,92,0,0.5)] mb-8">
                 Enroll Now <ArrowRight className="h-4 w-4" />
-              </button>
-
-              <button className="w-full py-3 bg-transparent hover:bg-gray-50 text-[#52627A] border border-gray-200 rounded-[14px] font-bold text-sm transition-colors flex items-center justify-center gap-2 mb-8">
-                <Heart className="h-4 w-4" /> Add to Wishlist
               </button>
 
               <div className="border-t border-gray-100 pt-6">

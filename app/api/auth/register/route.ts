@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
 import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
+import { sendVerificationEmail } from "@/lib/email";
 
 export async function POST(req: Request) {
   try {
@@ -24,7 +26,19 @@ export async function POST(req: Request) {
       [name, email, hashedPassword]
     );
 
-    return NextResponse.json({ message: "User created", user: result.rows[0] }, { status: 201 });
+    // Generate Verification Token
+    const token = uuidv4();
+    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    
+    await pool.query(
+      `INSERT INTO verification_token (identifier, token, expires) VALUES ($1, $2, $3)`,
+      [email, token, expires]
+    );
+
+    // Send email asynchronously
+    sendVerificationEmail(email, token).catch(console.error);
+
+    return NextResponse.json({ message: "User created, verification email sent", user: result.rows[0] }, { status: 201 });
   } catch (error) {
     console.error("Registration error:", error);
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });

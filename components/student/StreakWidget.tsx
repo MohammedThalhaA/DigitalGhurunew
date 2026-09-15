@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface StreakWidgetProps {
   count: number;
   bestStreak: number;
-  days: { label: string; active: boolean }[];
+  days: { label: string; active: boolean; dateStr?: string }[];
   justUpdated?: boolean;
 }
 
@@ -16,8 +16,13 @@ export default function StreakWidget({ count, bestStreak, days, justUpdated = fa
 
   useEffect(() => {
     if (justUpdated) {
-      setShowAnimation(true);
-      setTimeout(() => setShowAnimation(false), 3000);
+      const todayStr = new Date().toDateString();
+      const lastAnimated = sessionStorage.getItem("streakAnimatedDate");
+      if (lastAnimated !== todayStr) {
+        setShowAnimation(true);
+        sessionStorage.setItem("streakAnimatedDate", todayStr);
+        setTimeout(() => setShowAnimation(false), 3000);
+      }
     }
   }, [justUpdated]);
 
@@ -88,7 +93,9 @@ export default function StreakWidget({ count, bestStreak, days, justUpdated = fa
 
       <div className="flex items-center justify-between mb-6 pb-6 border-b border-ink-50 relative z-10">
         <div>
-          <h3 className="font-heading text-xs font-semibold text-amber-500 uppercase tracking-[0.15em] mb-1.5 group-hover:text-amber-600 transition-colors duration-200">Learning Streak</h3>
+          <h3 className="font-heading text-xs font-semibold text-amber-500 uppercase tracking-[0.15em] mb-1.5 group-hover:text-amber-600 transition-colors duration-200">
+            Learning Streak • {new Date().getFullYear()}
+          </h3>
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-xl bg-white shadow-md flex items-center justify-center border border-ink-100/50 group-hover:scale-110 transition-transform duration-300">
               <Flame className="h-5 w-5 text-amber-600" />
@@ -117,9 +124,16 @@ export default function StreakWidget({ count, bestStreak, days, justUpdated = fa
             >
               {day.active && <Flame className="h-4 w-4" />}
             </motion.div>
-            <span className={`text-xs font-bold uppercase tracking-wider ${day.active ? "text-brand-orange" : "text-ink-400"}`}>
-              {day.label}
-            </span>
+            <div className="flex flex-col items-center">
+              <span className={`text-xs font-bold uppercase tracking-wider ${day.active ? "text-brand-orange" : "text-ink-400"}`}>
+                {day.label}
+              </span>
+              {day.dateStr && (
+                <span className={`text-[10px] font-medium mt-0.5 ${day.active ? "text-orange-500" : "text-ink-300"}`}>
+                  {day.dateStr}
+                </span>
+              )}
+            </div>
           </div>
         ))}
       </div>

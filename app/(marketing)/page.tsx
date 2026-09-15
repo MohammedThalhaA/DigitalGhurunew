@@ -96,44 +96,49 @@ const comparisonRows = [
   { feature: "Agency-style campaign training", us: true, others: false },
 ];
 
-const founders = [
+const mentors = [
   {
-    name: "Founder Name",
-    role: "Founder & Chief Mentor",
-    credentials: [
-      "Google Certified AI-Powered Digital Marketing Expert",
-      "10+ years in AI-powered digital marketing industry",
-      "Trained 500+ students across India",
-      "Speaker at major AI-powered digital marketing summits",
-    ],
+    name: "Mr. Bala",
+    role: "Digital Marketing Expert",
+    bio: "Specializes in search engine optimization and analytics. Brings over a decade of experience driving online growth for top-tier brands through data-driven campaigns.",
+  },
+  {
+    name: "Mr. Prakash",
+    role: "Digital Marketing Expert",
+    bio: "An expert in paid advertising and social media strategy. Passionate about teaching advanced scaling techniques and maximizing return on ad spend.",
+  },
+  {
+    name: "Mr. Soorya",
+    role: "Graphic Designer and Video Editing",
+    bio: "A creative visionary skilled in visual storytelling. Equips students with the tools to craft compelling visual assets and engaging video content.",
+  },
+  {
+    name: "Mr. Soundarajan",
+    role: "Web Developer",
+    bio: "A full-stack developer with extensive experience building robust web applications. Focuses on bridging the gap between technical execution and marketing goals.",
   },
 ];
 
 const testimonials = [
   {
-    quote: "Digital Ghuru completely transformed my career. The hands-on training and placement support helped me land my dream job within weeks of completing the course.",
-    name: "Student Name",
-    role: "AI-Powered Digital Marketing Executive — Company",
+    quote: "The hands-on practice with live ad budgets made all the difference. I felt completely ready for my first agency role.",
+    name: "Arjun Reddy",
+    role: "Performance Marketer",
   },
   {
-    quote: "The best investment I've made in my career. The mentors are incredible and the curriculum covers everything you need to succeed in AI-powered digital marketing.",
-    name: "Student Name",
-    role: "SEO Specialist — Company",
+    quote: "The mentors actually work in the industry, so we learned current AI strategies rather than outdated textbook theories.",
+    name: "Priya Sharma",
+    role: "Social Media Executive",
   },
   {
-    quote: "Unlike other institutes, Digital Ghuru focuses on practical skills. We worked on real projects for real clients, which gave me the confidence to excel.",
-    name: "Student Name",
-    role: "Social Media Manager — Company",
+    quote: "Switching careers was intimidating, but the step-by-step guidance and portfolio building helped me land a job within two months of graduating.",
+    name: "Mohammed Tariq",
+    role: "SEO Analyst",
   },
   {
-    quote: "The AI-integrated learning modules were a game changer. I learned how to use cutting-edge tools that are actually used in the industry today.",
-    name: "Student Name",
-    role: "Content Strategist — Company",
-  },
-  {
-    quote: "The community at Digital Ghuru is amazing. Even after completing the course, the support and networking opportunities continue to benefit my career.",
-    name: "Student Name",
-    role: "Freelance Digital Marketer",
+    quote: "I loved the agency-style environment. Working on real client briefs during the course gave me the exact experience interviewers were looking for.",
+    name: "Sneha Patel",
+    role: "Digital Strategist",
   },
 ];
 
@@ -327,9 +332,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="max-w-md mx-auto">
-            {founders.map((founder, idx) => (
-              <FounderCard key={idx} {...founder} />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {mentors.map((mentor, idx) => (
+              <FounderCard key={idx} {...mentor} />
             ))}
           </div>
         </div>
@@ -376,16 +381,12 @@ export default function HomePage() {
             </div>
 
             <div className="relative">
-              <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-brand-blue/5 via-brand-gold/5 to-brand-orange/5 flex items-center justify-center border border-ink-100">
-                <div className="text-center p-8">
-                  <Star className="h-16 w-16 text-brand-gold mx-auto mb-4" />
-                  <p className="font-display text-3xl font-bold text-ink-900 mb-2">
-                    95%+
-                  </p>
-                  <p className="font-heading text-ink-500">
-                    Placement Success Rate
-                  </p>
-                </div>
+              <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card border border-ink-100">
+                <img
+                  src="/resources/Image 2.png"
+                  alt="Success Story"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

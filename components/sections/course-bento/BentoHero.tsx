@@ -60,7 +60,7 @@ export default function BentoHero({
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
               <Link 
                 href="/signup" 
-                className="w-full sm:w-auto px-10 py-5 bg-brand-blue text-white rounded-3xl font-black text-lg hover:bg-blue-600 hover:-translate-y-1 transition-all duration-300 shadow-[0_8px_30px_-12px_rgba(0,118,255,0.4)] flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white rounded-3xl font-black text-lg hover:brightness-110 hover:-translate-y-1 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
               >
                 Enroll Now <span className="font-medium opacity-80 pl-2 border-l border-white/20">{discountedPrice}</span>
               </Link>

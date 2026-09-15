@@ -34,7 +34,7 @@ export default function HeroSection({
   children,
 }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#006FFF]">
+    <section className="relative overflow-hidden bg-white">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl" />
@@ -74,23 +74,23 @@ export default function HeroSection({
             )}
 
             {/* Title */}
-            <h1 className="heading-xl text-white mb-4">
+            <h1 className="heading-xl text-ink-900 mb-4">
               {title}{" "}
               {titleHighlight && (
-                <span className="text-brand-gold">{titleHighlight}</span>
+                <span className="bg-gradient-to-r from-[#FFB800] to-[#FF5C00] bg-clip-text text-transparent">{titleHighlight}</span>
               )}
             </h1>
 
             {/* Subtitle */}
             {subtitle && (
-              <p className="heading-sm text-white/90 font-normal mb-4">
+              <p className="heading-sm text-ink-700 font-normal mb-4">
                 {subtitle}
               </p>
             )}
 
             {/* Description */}
             {description && (
-              <p className="body-lg text-white/80 mb-8 max-w-xl">{description}</p>
+              <p className="body-lg text-ink-600 mb-8 max-w-xl">{description}</p>
             )}
 
             {/* CTAs */}
@@ -130,7 +130,7 @@ export default function HeroSection({
                 <img
                   src={imageUrl}
                   alt="Hero"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto max-h-[450px] lg:max-h-[550px] object-cover object-center"
                 />
               </div>
             ) : children ? (

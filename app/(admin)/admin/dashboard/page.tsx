@@ -2,7 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
 import Button from "@/components/ui/Button";
-import { Users, BookOpen, Video, Plus, IndianRupee, Calendar, Activity } from "lucide-react";
+import { Users, BookOpen, Video, Plus, IndianRupee, Calendar, Activity, Settings } from "lucide-react";
+import LogoutButton from "@/components/ui/LogoutButton";
 
 export default async function AdminDashboard() {
   const session = await getServerSession(authOptions);
@@ -38,10 +39,13 @@ export default async function AdminDashboard() {
           <h1 className="font-display text-2xl md:text-3xl font-bold text-ink-900 mb-2">Admin Dashboard</h1>
           <p className="font-body text-base text-ink-500">Manage courses, modules, and platform statistics.</p>
         </div>
-        <Button variant="primary" href="/admin/courses/new" className="hidden sm:flex">
-          <Plus className="h-4 w-4 mr-2" />
-          Upload Video Module
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button variant="primary" href="/admin/settings" className="hidden sm:flex">
+            <Settings className="h-4 w-4 mr-2" />
+            Settings
+          </Button>
+          <LogoutButton />
+        </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -156,7 +160,7 @@ export default async function AdminDashboard() {
         
         <div className="flex flex-wrap gap-4">
           <Button variant="primary" href="/admin/courses/new">
-            Upload Video Module
+            Create Course
           </Button>
           <Button variant="outline" href="/admin/courses">
             Manage Courses

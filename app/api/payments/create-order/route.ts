@@ -3,11 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Razorpay from "razorpay";
 import pool from "@/lib/db";
-
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID || "test_key",
-  key_secret: process.env.RAZORPAY_KEY_SECRET || "test_secret",
-});
+import { getPlatformSettings } from "@/lib/settings";
 
 export async function POST(req: Request) {
   try {
@@ -20,6 +16,12 @@ export async function POST(req: Request) {
     if (!courseId) {
       return NextResponse.json({ error: "Course ID is required" }, { status: 400 });
     }
+
+    const settings = await getPlatformSettings();
+    const razorpay = new Razorpay({
+      key_id: settings.razorpay_key_id || process.env.RAZORPAY_KEY_ID || "test_key",
+      key_secret: settings.razorpay_key_secret || process.env.RAZORPAY_KEY_SECRET || "test_secret",
+    });
 
     // Fetch the course price
     const courseRes = await pool.query(`SELECT id, price FROM courses WHERE id = $1`, [courseId]);

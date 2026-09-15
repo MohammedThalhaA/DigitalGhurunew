@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import crypto from "crypto";
 import pool from "@/lib/db";
+import { getPlatformSettings } from "@/lib/settings";
 
 export async function POST(req: Request) {
   try {
@@ -18,7 +19,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing parameters" }, { status: 400 });
     }
 
-    const secret = process.env.RAZORPAY_KEY_SECRET || "test_secret";
+    const settings = await getPlatformSettings();
+    const secret = settings.razorpay_key_secret || process.env.RAZORPAY_KEY_SECRET || "test_secret";
 
     // Verify the signature
     const generated_signature = crypto

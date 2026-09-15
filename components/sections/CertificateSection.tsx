@@ -116,7 +116,7 @@ export default function CertificateSection() {
                 </div>
 
                 <div className="text-right space-y-1">
-                  <p className="font-mono italic font-bold text-ink-800">M. Thalha A.</p>
+                  <p className="font-mono italic font-bold text-ink-800">Manish Madhavan</p>
                   <p className="text-ink-400 font-semibold uppercase">Institute Director</p>
                 </div>
               </div>

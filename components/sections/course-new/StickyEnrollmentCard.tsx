@@ -61,7 +61,7 @@ export default function StickyEnrollmentCard({ originalPrice, discountedPrice, i
 
         {/* CTA Buttons */}
         <div className="space-y-3.5 mb-7">
-          <Link href="/signup" className="block w-full bg-brand-blue hover:bg-blue-600 text-white text-center font-black py-4 text-lg transition-all shadow-[0_4px_14px_0_rgba(0,118,255,0.39)] hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] hover:-translate-y-0.5 rounded-2xl">
+          <Link href="/signup" className="block w-full bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white text-center font-black py-4 text-lg transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 rounded-2xl">
             Enroll Now
           </Link>
           <Link href="/contact" className="block w-full bg-white border-2 border-ink-100 hover:border-ink-200 hover:bg-ink-50 text-ink-900 text-center font-black py-3.5 transition-colors rounded-2xl">

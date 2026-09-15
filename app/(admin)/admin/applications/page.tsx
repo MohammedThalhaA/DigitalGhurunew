@@ -2,6 +2,7 @@ import React from "react";
 import pool from "@/lib/db";
 import { FileText, Calendar, CheckCircle2, XCircle, Clock } from "lucide-react";
 import ApplicationStatusSelect from "./ApplicationStatusSelect";
+import ExportApplicationsButton from "./ExportApplicationsButton";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +28,7 @@ export default async function AdminApplicationsPage() {
             <FileText className="h-5 w-5 text-brand-blue" />
             Recent Submissions ({applications.length})
           </h2>
+          <ExportApplicationsButton applications={applications} />
         </div>
 
         {applications.length === 0 ? (

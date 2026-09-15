@@ -150,7 +150,7 @@ export default async function StudentDashboardPage() {
         <div className="mb-10 relative">
           <h2 className="eyebrow !text-amber-500 mb-4">Continue Learning</h2>
           <div className="bg-white rounded-3xl border border-ink-100 shadow-card overflow-hidden flex flex-col md:flex-row group relative z-10 hover:shadow-card-hover transition-all duration-300">
-            <div className="md:w-2/5 aspect-video md:aspect-auto relative overflow-hidden shrink-0">
+            <div className="w-full md:w-[45%] lg:w-2/5 aspect-video relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-ink-100">
                <Image 
                  src={activeCourse.imageUrl || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"} 
                  alt={activeCourse.title} 
@@ -232,9 +232,7 @@ export default async function StudentDashboardPage() {
               <Link key={course.id} href={`/student/courses/${course.id}`} className="group bg-white rounded-[32px] border border-ink-100 hover:border-amber-400/50 shadow-[0_4px_20px_rgba(20,20,40,0.03)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.1)] flex flex-col hover:-translate-y-1 transition-all overflow-hidden relative h-full">
                 
                 <div className="w-full aspect-video flex items-center justify-center shrink-0 relative overflow-hidden bg-ink-900 border-b border-ink-50">
-                   <Image src={course.image} alt={course.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" />
-                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                   <PlayCircle className="h-14 w-14 text-white/90 group-hover:text-white group-hover:scale-110 transition-transform duration-500 relative z-10 drop-shadow-lg" />
+                   <Image src={course.image} alt={course.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 
                 <div className="p-8 flex-1 flex flex-col min-w-0 bg-white">

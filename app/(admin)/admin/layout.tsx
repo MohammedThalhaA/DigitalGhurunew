@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import AdminSidebar from "./AdminSidebar";
 import Image from "next/image";
 import Link from "next/link";
+import pool from "@/lib/db";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
@@ -17,11 +18,24 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect("/student/dashboard"); 
   }
 
+  // Always fetch latest profile from DB for the admin layout
+  let adminName = session.user.name;
+  let adminImage = session.user.image || null;
+  try {
+    const res = await pool.query("SELECT name, image FROM users WHERE email = $1", [session.user.email]);
+    if (res.rows.length > 0) {
+      adminName = res.rows[0].name || adminName;
+      adminImage = res.rows[0].image || adminImage;
+    }
+  } catch (error) {
+    console.error("Failed to fetch admin profile for layout:", error);
+  }
+
   return (
     <div className="flex h-screen bg-[#fafafa] selection:bg-brand-blue/20 font-sans overflow-hidden">
       {/* Admin Sidebar */}
-      <aside className="w-64 bg-white border-r border-ink-100 shrink-0 hidden md:flex flex-col">
-        <div className="p-6 border-b border-ink-100 shrink-0">
+      <aside className="w-64 bg-brand-blue text-white shrink-0 hidden md:flex flex-col">
+        <div className="p-6 border-b border-white/10 shrink-0">
           <Link href="/admin/dashboard" className="block hover:scale-[1.02] transition-transform">
             <Image 
               src="/resources/student portal navbar logo.png" 
@@ -33,14 +47,20 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </Link>
         </div>
 
-        <div data-lenis-prevent="true" className="flex-1 overflow-y-auto p-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-ink-100">
-              <div className="h-12 w-12 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue font-display font-bold text-xl shadow-sm">
-                {(session.user.name || "A").charAt(0).toUpperCase()}
-              </div>
+          <div data-lenis-prevent="true" className="flex-1 overflow-y-auto p-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
+              {adminImage ? (
+                <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-white/20 shrink-0 relative">
+                  <Image src={adminImage} alt="Admin" fill className="object-cover" />
+                </div>
+              ) : (
+                <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center text-white font-display font-bold text-xl shadow-sm shrink-0">
+                  {(adminName || "A").charAt(0).toUpperCase()}
+                </div>
+              )}
               <div>
-                <p className="font-heading font-semibold text-ink-900 line-clamp-1">{session.user.name}</p>
-                <p className="font-heading text-xs font-semibold text-ink-500 uppercase tracking-[0.15em]">Admin</p>
+                <p className="font-heading font-semibold text-white line-clamp-1" title={adminName ?? undefined}>{adminName}</p>
+                <p className="font-heading text-xs font-semibold text-white/70 uppercase tracking-[0.15em]">Admin</p>
               </div>
             </div>
 

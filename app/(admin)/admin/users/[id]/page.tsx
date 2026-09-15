@@ -15,7 +15,7 @@ export default async function AdminUserDetailsPage({ params }: { params: { id: s
 
   // Fetch user details
   const userRes = await pool.query(
-    `SELECT id, name, email, role, "isBlocked", "emailVerified", "createdAt", streak_count, last_login 
+    `SELECT id, name, email, role, "isBlocked", "emailVerified", "createdAt", streak_count, last_login, image 
      FROM users WHERE id = $1`,
     [userId]
   );
@@ -49,9 +49,17 @@ export default async function AdminUserDetailsPage({ params }: { params: { id: s
       <div className="bg-white rounded-3xl border border-ink-100 shadow-card overflow-hidden">
         <div className="p-8 border-b border-ink-100 flex items-start justify-between bg-ink-50/30">
           <div className="flex items-center gap-6">
-            <div className="h-24 w-24 rounded-full bg-gradient-to-br from-brand-blue to-purple-600 flex items-center justify-center text-white font-display text-4xl shadow-md border-4 border-white">
-              {user.name ? user.name.charAt(0).toUpperCase() : "U"}
-            </div>
+            {user.image ? (
+              <img 
+                src={user.image} 
+                alt={user.name || "User"} 
+                className="h-24 w-24 rounded-full object-cover shadow-md border-4 border-white shrink-0" 
+              />
+            ) : (
+              <div className="h-24 w-24 rounded-full bg-gradient-to-br from-brand-blue to-purple-600 flex items-center justify-center text-white font-display text-4xl shadow-md border-4 border-white shrink-0">
+                {user.name ? user.name.charAt(0).toUpperCase() : "U"}
+              </div>
+            )}
             <div>
               <h1 className="font-display text-3xl font-bold text-ink-900 flex items-center gap-3">
                 {user.name || "Unknown User"}

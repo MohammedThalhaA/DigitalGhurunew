@@ -23,7 +23,7 @@ export default function CareerForm({ initialData }: CareerFormProps) {
     location: initialData?.location || "",
     type: initialData?.type || "Full-Time",
     description: initialData?.description || "",
-    isActive: initialData !== undefined ? initialData.isActive : true,
+    isActive: initialData?.isActive ?? true,
   });
 
   const [responsibilities, setResponsibilities] = useState<string[]>(

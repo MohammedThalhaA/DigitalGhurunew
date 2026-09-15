@@ -13,7 +13,7 @@ export default async function AdminUsersPage() {
 
   // Fetch all users
   const res = await pool.query(
-    `SELECT id, name, email, role, "isBlocked", "emailVerified", "createdAt" FROM users ORDER BY "createdAt" DESC`
+    `SELECT id, name, email, role, "isBlocked", "emailVerified", "createdAt", image FROM users ORDER BY "createdAt" DESC`
   );
   // Default to empty array if no results or createdAt missing from old schema
   const users = res.rows.map(user => ({
@@ -62,13 +62,22 @@ export default async function AdminUsersPage() {
                 {users.map((user) => (
                   <tr key={user.id} className="hover:bg-ink-50/30 transition-colors">
                     <td className="p-4">
-                      <div className="flex flex-col">
-                        <Link href={`/admin/users/${user.id}`} className="font-display font-bold text-ink-900 hover:text-brand-blue transition-colors">
-                          {user.name || "Unknown"}
-                        </Link>
-                        <span className="text-sm text-ink-500 flex items-center gap-1 mt-0.5">
-                          <Mail className="h-3 w-3" /> {user.email}
-                        </span>
+                      <div className="flex items-center gap-3">
+                        {user.image ? (
+                          <img src={user.image} alt={user.name || "User"} className="h-10 w-10 rounded-full object-cover shrink-0 border border-ink-200" />
+                        ) : (
+                          <div className="h-10 w-10 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-lg shrink-0 uppercase">
+                            {user.name ? user.name.charAt(0) : "U"}
+                          </div>
+                        )}
+                        <div className="flex flex-col">
+                          <Link href={`/admin/users/${user.id}`} className="font-display font-bold text-ink-900 hover:text-brand-blue transition-colors">
+                            {user.name || "Unknown"}
+                          </Link>
+                          <span className="text-sm text-ink-500 flex items-center gap-1 mt-0.5">
+                            <Mail className="h-3 w-3" /> {user.email}
+                          </span>
+                        </div>
                       </div>
                     </td>
                     <td className="p-4">

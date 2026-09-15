@@ -87,7 +87,7 @@ export default function UdemyStyleHero({
 
             {/* Mobile-only CTA (hidden on desktop because sticky card handles it) */}
             <div className="mt-8 lg:hidden">
-               <Link href="/signup" className="block w-full text-center bg-brand-blue hover:bg-blue-600 text-white font-black py-4 rounded-2xl transition-all shadow-[0_4px_14px_0_rgba(0,118,255,0.39)] text-lg">
+               <Link href="/signup" className="block w-full text-center bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white font-black py-4 rounded-2xl transition-all shadow-md hover:shadow-lg text-lg">
                  Enroll Now
                </Link>
             </div>

@@ -55,11 +55,6 @@ export default function PhotoGallery({
         alt={img.alt}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
       />
-      <div className="absolute inset-0 bg-ink-900/0 group-hover:bg-ink-900/25 transition-colors duration-300 flex items-end p-4">
-        <span className="text-white text-xs font-heading font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-ink-900/60 backdrop-blur-sm px-3 py-1.5 rounded-lg line-clamp-1 text-left w-full">
-          {img.alt}
-        </span>
-      </div>
     </motion.button>
   );
 

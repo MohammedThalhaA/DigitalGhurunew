@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, Clock } from "lucide-react";
+import { Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import HeroSection from "@/components/sections/HeroSection";
 import LocationCard from "@/components/cards/LocationCard";
 import FAQAccordion from "@/components/sections/FAQAccordion";
@@ -12,6 +12,11 @@ const locations = [
   {
     name: "Anna Nagar Office",
     address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
+    phone: "+91 8825948859",
+  },
+  {
+    name: "Ameerpet Office",
+    address: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad, Telangana 500073",
     phone: "+91 8825948859",
   },
 ];
@@ -44,6 +49,7 @@ export default function ContactPage() {
         titleHighlight="Learning Journey"
         description="Have questions? Want to book a free demo class? We're here to help you take the first step."
         primaryCta={{ label: "Call Us Now", href: "tel:+918825948859" }}
+        imageUrl="/images/contact_hero.jpg"
       />
 
       {/* Contact Form + Info */}
@@ -189,10 +195,10 @@ export default function ContactPage() {
               {/* Quick Action Buttons */}
               <div className="space-y-3">
                 <Button variant="secondary" className="w-full" href="tel:+918825948859">
-                  📞 Call Us Now
+                  <Phone className="h-5 w-5" /> Call Us Now
                 </Button>
                 <Button variant="outline" className="w-full" href="https://wa.me/918825948859">
-                  💬 WhatsApp Us
+                  <MessageCircle className="h-5 w-5" /> WhatsApp Us
                 </Button>
               </div>
             </motion.div>

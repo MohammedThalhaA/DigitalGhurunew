@@ -66,7 +66,7 @@ export default function PremiumBottomCTA({ courseTitle }: PremiumBottomCTAProps)
             <span className="text-blue-300 text-xs line-through">₹7,999</span>
           </div>
           
-          <button className="px-8 py-3 bg-[#4f46e5] hover:bg-[#4338ca] text-white rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+          <button className="px-8 py-3 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
             Enroll Now <ArrowRight className="h-4 w-4" />
           </button>
         </div>

@@ -8,7 +8,7 @@ export default function CourseSidebarClient({ modules }: { modules: any[] }) {
   const [activeLesson, setActiveLesson] = useState<string>("Funnel Optimization");
 
   return (
-    <div className="w-full xl:w-[450px] shrink-0">
+    <div className="w-full lg:w-[380px] xl:w-[420px] shrink-0 bg-white lg:border-l border-ink-200 lg:h-full lg:overflow-y-auto p-4 sm:p-6 shadow-[-10px_0_30px_rgba(0,0,0,0.02)] z-20">
       {/* Tabs */}
       <div className="flex items-center gap-8 border-b border-ink-200 mb-8 px-2">
         <button 

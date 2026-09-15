@@ -50,12 +50,8 @@ export default function LinearSidebarCard({
           )}
         </div>
 
-        <button className="w-full py-4 bg-brand-blue hover:bg-blue-700 text-white rounded-lg heading-sm transition-colors flex items-center justify-center gap-2 mb-3 shadow-md">
+        <button className="w-full py-4 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white rounded-lg heading-sm transition-all flex items-center justify-center gap-2 mb-8 shadow-md hover:shadow-lg">
           Enroll Now <ArrowRight className="h-5 w-5" />
-        </button>
-
-        <button className="w-full py-3 bg-white hover:bg-ink-50 text-ink-900 border border-ink-300 rounded-lg font-heading font-bold text-sm transition-colors flex items-center justify-center gap-2 mb-8">
-          <Heart className="h-4 w-4" /> Add to Wishlist
         </button>
 
         <div className="border-t border-ink-100 pt-6">

@@ -43,7 +43,7 @@ export default function DigitalMarketingBentoLayout({ course }: DigitalMarketing
             <span className="text-sm text-ink-400 line-through font-bold">{course.originalPrice}</span>
           )}
         </div>
-        <a href="/signup" className="px-6 py-3 bg-brand-blue text-white rounded-full font-black text-sm shadow-[0_4px_14px_0_rgba(0,118,255,0.39)]">
+        <a href="/signup" className="px-6 py-3 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 text-white rounded-full font-black text-sm shadow-md hover:shadow-lg transition-all">
           Enroll Now
         </a>
       </div>

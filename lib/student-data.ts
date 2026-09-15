@@ -94,10 +94,23 @@ export async function getStudentStreak(userId: number) {
     );
 
     const activeDays = new Set(activityRes.rows.map((r: any) => parseInt(r.dow)));
-    defaultStreak.days = defaultStreak.days.map((day, idx) => ({
-      ...day,
-      active: activeDays.has(idx + 1), // ISODOW: 1=Mon, 7=Sun
-    }));
+    
+    // Calculate dates for current week (Mon-Sun)
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // 0 = Sun, 1 = Mon
+    const diffToMonday = now.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+    const monday = new Date(now.setDate(diffToMonday));
+    monday.setHours(0,0,0,0);
+
+    defaultStreak.days = defaultStreak.days.map((day, idx) => {
+      const dayDate = new Date(monday);
+      dayDate.setDate(monday.getDate() + idx);
+      return {
+        ...day,
+        dateStr: `${dayDate.getDate()} ${dayDate.toLocaleString('default', { month: 'short' })}`,
+        active: activeDays.has(idx + 1), // ISODOW: 1=Mon, 7=Sun
+      };
+    });
 
     return defaultStreak;
   } catch (error) {
@@ -240,11 +253,7 @@ export async function getEnrolledCourses(userId: number) {
          c.id, c.title, c.description, c."imageUrl", c.marketing_data,
          0 as progress, NULL as "completedAt",
          (SELECT COUNT(*) FROM modules m WHERE m."courseId" = c.id) as module_count,
-         (SELECT COALESCE(SUM(
-           CASE WHEN ch.duration ~ '^[0-9]+:[0-9]+$' 
-                THEN SPLIT_PART(ch.duration, ':', 1)::int * 60 + SPLIT_PART(ch.duration, ':', 2)::int
-                ELSE 600 END
-         ), 0) FROM chapters ch JOIN modules m ON ch."moduleId" = m.id WHERE m."courseId" = c.id) as total_seconds
+         (SELECT COUNT(*) * 600 FROM chapters ch JOIN modules m ON ch."moduleId" = m.id WHERE m."courseId" = c.id) as total_seconds
        FROM courses c
        JOIN enrollments e ON c.id = e."courseId"
        WHERE e."userId" = $1

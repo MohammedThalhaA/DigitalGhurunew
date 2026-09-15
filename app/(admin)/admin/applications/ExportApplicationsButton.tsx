@@ -4,22 +4,23 @@ import React from "react";
 import { Download } from "lucide-react";
 import Button from "@/components/ui/Button";
 
-interface ExportLeadsButtonProps {
-  leads: any[];
+interface ExportApplicationsButtonProps {
+  applications: any[];
 }
 
-export default function ExportLeadsButton({ leads }: ExportLeadsButtonProps) {
+export default function ExportApplicationsButton({ applications }: ExportApplicationsButtonProps) {
   const handleExport = () => {
-    if (leads.length === 0) return;
+    if (applications.length === 0) return;
 
     // Build CSV content
-    const headers = ["Name", "Email", "Phone", "Course Interest", "Date Submitted"];
-    const rows = leads.map((lead) => [
-      `"${lead.name.replace(/"/g, '""')}"`,
-      `"${lead.email}"`,
-      `"${lead.phone}"`,
-      `"${lead.courseTitle.replace(/"/g, '""')}"`,
-      `"${new Date(lead.createdAt).toLocaleString()}"`,
+    const headers = ["Name", "Email", "Phone", "Job Title / Role", "Status", "Date Submitted"];
+    const rows = applications.map((app) => [
+      `"${(app.name || "").replace(/"/g, '""')}"`,
+      `"${app.email || ""}"`,
+      `"${app.phone || ""}"`,
+      `"${(app.jobTitle || app.careerSlug || "Speculative").replace(/"/g, '""')}"`,
+      `"${app.status || "PENDING"}"`,
+      `"${new Date(app.createdAt).toLocaleString()}"`,
     ]);
 
     const csvContent = [headers.join(","), ...rows.map(row => row.join(","))].join("\n");
@@ -29,7 +30,7 @@ export default function ExportLeadsButton({ leads }: ExportLeadsButtonProps) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `Course_Leads_${new Date().toISOString().split("T")[0]}.csv`);
+    link.setAttribute("download", `Job_Applications_${new Date().toISOString().split("T")[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     
@@ -41,7 +42,7 @@ export default function ExportLeadsButton({ leads }: ExportLeadsButtonProps) {
   return (
     <Button
       onClick={handleExport}
-      disabled={leads.length === 0}
+      disabled={applications.length === 0}
       variant="primary"
       className="flex items-center gap-2"
     >
