@@ -45,6 +45,8 @@ export default function ModernLinearCourseLayout({ course }: ModernLinearCourseL
           {/* Right Column - Sticky Sidebar */}
           <div className="col-span-1 lg:col-span-4 lg:sticky lg:top-8 z-30 order-first lg:order-last lg:-mt-32">
             <LinearSidebarCard 
+              courseId={course.id}
+              courseTitle={course.title}
               originalPrice={course.originalPrice}
               discountedPrice={course.discountedPrice}
               moduleCount={course.curriculum?.length}

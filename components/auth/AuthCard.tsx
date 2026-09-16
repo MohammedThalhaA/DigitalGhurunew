@@ -309,27 +309,7 @@ function SignInForm({ email, setEmail, password, setPassword, onSubmit, error, l
         </div>
       </form>
 
-      <div className="mt-8 border-t border-ink-100 pt-6 w-full">
-        <p className="text-[10px] text-ink-400 font-bold uppercase tracking-wider text-center mb-4">Quick Demo</p>
-        <div className="flex gap-2">
-          <Button 
-            type="button" 
-            variant="outline" 
-            className="flex-1 text-[10px] py-1.5 px-0 rounded-lg whitespace-nowrap"
-            onClick={() => { setEmail("student@demo.com"); setPassword("password123"); }}
-          >
-            Demo Student
-          </Button>
-          <Button 
-            type="button" 
-            variant="outline" 
-            className="flex-1 text-[10px] py-1.5 px-0 rounded-lg whitespace-nowrap"
-            onClick={() => { setEmail("admin@demo.com"); setPassword("password123"); }}
-          >
-            Super Admin
-          </Button>
-        </div>
-      </div>
+
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { Trophy, TrendingUp, Lock } from "lucide-react";
@@ -174,8 +175,18 @@ export default async function LeaderboardPage() {
                     <span className={`w-8 text-center font-bold ${rankTextColors[member.rank] || 'text-ink-300'} ${member.rank <= 3 ? 'text-xl' : 'text-base'}`}>
                       #{member.rank}
                     </span>
-                    <div className={`h-12 w-12 rounded-full flex items-center justify-center text-white font-bold shadow-inner ${member.color}`}>
-                      {member.initial}
+                    <div className={`h-12 w-12 rounded-full flex items-center justify-center text-white font-bold shadow-inner relative overflow-hidden ${member.color}`}>
+                      {member.image ? (
+                        <Image 
+                          src={member.image} 
+                          alt={member.name} 
+                          fill 
+                          sizes="48px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        member.initial
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-heading font-bold text-ink-900 text-base">{member.name}</p>

@@ -106,7 +106,7 @@ export default function PostCard({ post, currentUserId }: { post: any, currentUs
               )}
             </div>
 
-            <h3 className="text-xl font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors">
+            <h3 className="text-xl font-display font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors">
               {post.title}
             </h3>
             

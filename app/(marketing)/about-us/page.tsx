@@ -41,7 +41,7 @@ const locations = [
     city: "Our Campus",
     address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
     phone: "+91 8825948859",
-    email: "support@digitalghuru.in",
+    email: "contact@digitalghuru.in",
     gradient: "from-brand-blue to-blue-600",
   },
   {
@@ -49,7 +49,7 @@ const locations = [
     city: "Our Campus",
     address: "[Mock Data] Our Campus Hi-Tech City, Madhapur, Our Campus, Telangana - 500081",
     phone: "+91 9999999999",
-    email: "Our Campus@digitalghuru.in",
+    email: "contact@digitalghuru.in",
     gradient: "from-brand-orange to-orange-600",
   },
 ];

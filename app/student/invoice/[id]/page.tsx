@@ -100,7 +100,7 @@ export default async function InvoicePage({ params }: { params: { id: string } }
           <div className="text-right">
             <h3 className="font-heading text-xs font-bold text-brand-orange uppercase tracking-[0.15em] mb-4 print:mb-2">Pay To</h3>
             <p className="font-heading text-lg font-bold text-ink-900 mb-1">Digital Ghuru</p>
-            <p className="font-body text-sm text-ink-600">contact@digitalghuru.com</p>
+            <p className="font-body text-sm text-ink-600">contact@digitalghuru.in</p>
             <p className="font-body text-sm text-ink-600">GSTIN: 29XXXXX9999X1Z5</p>
           </div>
         </div>

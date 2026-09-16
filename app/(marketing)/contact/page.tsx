@@ -168,7 +168,7 @@ export default function ContactPage() {
                   </a>
 
                   <a
-                    href="mailto:hello@digitalghuru.com"
+                    href="mailto:contact@digitalghuru.in"
                     className="flex items-center gap-3 text-sm text-ink-600 hover:text-brand-blue transition-colors"
                   >
                     <div className="h-10 w-10 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
@@ -176,7 +176,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-heading font-semibold text-ink-800">Email</p>
-                      <p>hello@digitalghuru.com</p>
+                      <p>contact@digitalghuru.in</p>
                     </div>
                   </a>
 

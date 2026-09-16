@@ -22,6 +22,9 @@ export default function LMSNavbar() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [navData, setNavData] = useState({ streak: 0, unreadNotifications: 0, name: "", image: "" });
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [loadingNotifs, setLoadingNotifs] = useState(false);
 
   const user = session?.user;
 
@@ -33,6 +36,40 @@ export default function LMSNavbar() {
         .catch(() => {});
     }
   }, [session?.user?.id, pathname]);
+
+  const fetchNotifications = async () => {
+    setLoadingNotifs(true);
+    try {
+      const res = await fetch("/api/notifications");
+      const data = await res.json();
+      setNotifications(data.notifications || []);
+      setNavData(prev => ({ ...prev, unreadNotifications: data.unreadCount || 0 }));
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoadingNotifs(false);
+    }
+  };
+
+  const markRead = async (id: number) => {
+    try {
+      await fetch("/api/notifications", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notificationId: id })
+      });
+      setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
+      setNavData(prev => ({ ...prev, unreadNotifications: Math.max(0, prev.unreadNotifications - 1) }));
+    } catch (e) {}
+  };
+
+  const markAllRead = async () => {
+    try {
+      await fetch("/api/notifications", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: "{}" });
+      setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+      setNavData(prev => ({ ...prev, unreadNotifications: 0 }));
+    } catch (e) {}
+  };
 
   return (
     <div className="fixed top-4 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8 z-50 flex justify-center pointer-events-none">
@@ -112,20 +149,89 @@ export default function LMSNavbar() {
             <span className="text-sm font-heading font-semibold text-amber-900">{navData.streak}</span>
           </div>
 
-          <Link href="/student/notifications" className="h-10 w-10 rounded-full flex items-center justify-center text-white/80 hover:bg-white/10 hover:text-white transition-colors relative">
-            <Bell className="h-5 w-5" />
-            {navData.unreadNotifications > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 h-5 w-5 rounded-full bg-brand-orange ring-2 ring-white flex items-center justify-center text-[10px] font-bold text-white">
-                {navData.unreadNotifications > 9 ? '9+' : navData.unreadNotifications}
-              </span>
-            )}
-          </Link>
+          {/* Notifications Dropdown */}
+          <div className="relative">
+            <button 
+              onClick={() => {
+                setIsNotifOpen(!isNotifOpen);
+                setIsProfileOpen(false);
+                if (!isNotifOpen && notifications.length === 0) {
+                  fetchNotifications();
+                }
+              }}
+              className="h-10 w-10 rounded-full flex items-center justify-center text-white/80 hover:bg-white/10 hover:text-white transition-colors relative"
+            >
+              <Bell className="h-5 w-5" />
+              {navData.unreadNotifications > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 h-5 w-5 rounded-full bg-brand-orange ring-2 ring-white flex items-center justify-center text-[10px] font-bold text-white">
+                  {navData.unreadNotifications > 9 ? '9+' : navData.unreadNotifications}
+                </span>
+              )}
+            </button>
+            
+            <AnimatePresence>
+              {isNotifOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-2 w-80 bg-white border border-ink-100 shadow-[0_20px_40px_rgb(0,0,0,0.1)] rounded-2xl overflow-hidden z-50"
+                >
+                  <div className="p-4 border-b border-ink-100 bg-ink-50/50 flex items-center justify-between">
+                    <p className="font-heading font-semibold text-ink-900">Notifications</p>
+                    {navData.unreadNotifications > 0 && (
+                      <button 
+                        onClick={markAllRead}
+                        className="text-xs font-bold text-brand-blue hover:text-blue-800 transition-colors"
+                      >
+                        Mark all read
+                      </button>
+                    )}
+                  </div>
+                  <div className="max-h-80 overflow-y-auto">
+                    {loadingNotifs ? (
+                      <div className="p-8 text-center text-ink-400 font-medium text-sm">Loading...</div>
+                    ) : notifications.length === 0 ? (
+                      <div className="p-8 text-center text-ink-400 font-medium text-sm">No new notifications</div>
+                    ) : (
+                      <div className="flex flex-col">
+                        {notifications.map((notif: any) => (
+                          <div 
+                            key={notif.id} 
+                            onClick={() => markRead(notif.id)}
+                            className={`p-4 border-b border-ink-50 last:border-0 hover:bg-ink-50 cursor-pointer transition-colors ${!notif.isRead ? 'bg-blue-50/30' : ''}`}
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className={`mt-0.5 h-2 w-2 rounded-full shrink-0 ${!notif.isRead ? 'bg-brand-blue' : 'bg-transparent'}`} />
+                              <div>
+                                <p className={`text-sm ${!notif.isRead ? 'font-bold text-ink-900' : 'font-medium text-ink-700'}`}>
+                                  {notif.title}
+                                </p>
+                                <p className="text-xs text-ink-500 mt-1 line-clamp-2">{notif.message}</p>
+                                <p className="text-[10px] text-ink-400 mt-2 uppercase font-bold tracking-wider">
+                                  {new Date(notif.createdAt).toLocaleDateString()}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* User Profile Dropdown */}
           <div className="relative">
             <button 
               className="group flex items-center gap-2 sm:gap-3 p-1 pr-2 sm:pr-3 rounded-full border border-white/20 hover:bg-ink-50 transition-colors"
-              onClick={() => setIsProfileOpen(!isProfileOpen)}
+              onClick={() => {
+                setIsProfileOpen(!isProfileOpen);
+                setIsNotifOpen(false);
+              }}
             >
               <div className="h-8 w-8 rounded-full bg-[#006FFF] flex items-center justify-center text-white font-heading font-semibold text-sm shadow-sm overflow-hidden">
                 {navData.image || user?.image ? (
@@ -147,7 +253,7 @@ export default function LMSNavbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full mt-2 w-64 bg-white border border-ink-100 shadow-[0_20px_40px_rgb(0,0,0,0.1)] rounded-2xl overflow-hidden"
+                  className="absolute right-0 top-full mt-2 w-64 bg-white border border-ink-100 shadow-[0_20px_40px_rgb(0,0,0,0.1)] rounded-2xl overflow-hidden z-50"
                 >
                   <div className="p-4 border-b border-ink-100 bg-ink-50/50">
                     <p className="font-heading font-semibold text-ink-900 truncate">{user?.name}</p>

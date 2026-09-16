@@ -12,7 +12,8 @@ import {
   BadgeDollarSign,
   Briefcase,
   FileText,
-  PhoneCall
+  PhoneCall,
+  CreditCard
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -29,6 +30,7 @@ export default function AdminSidebar() {
     { section: "User Management", items: [
       { name: "Users", href: "/admin/users", icon: Users },
       { name: "Enrollments", href: "/admin/enrollments", icon: BadgeDollarSign },
+      { name: "Payments", href: "/admin/payments", icon: CreditCard },
     ]},
     { section: "Sales & Leads", items: [
       { name: "Course Leads", href: "/admin/leads", icon: PhoneCall },

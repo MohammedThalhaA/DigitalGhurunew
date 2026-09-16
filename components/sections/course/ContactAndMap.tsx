@@ -58,7 +58,7 @@ export default function ContactAndMap({ course }: { course?: any }) {
                 </div>
                 <div className="flex-1">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Email</p>
-                  <p className="text-lg font-bold text-blue-600">info@digitalghuru.in</p>
+                  <p className="text-lg font-bold text-blue-600">contact@digitalghuru.in</p>
                 </div>
               </div>
             </motion.div>

@@ -179,6 +179,44 @@ async function initDB() {
       );
     `);
 
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS payment_requests (
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        "courseId" INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+        amount DECIMAL(10,2),
+        utr_number VARCHAR(100),
+        status VARCHAR(20) DEFAULT 'PENDING',
+        "createdAt" TIMESTAMPTZ DEFAULT NOW(),
+        "reviewedAt" TIMESTAMPTZ,
+        "reviewedBy" INTEGER REFERENCES users(id)
+      );
+    `);
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS community_replies (
+        id SERIAL PRIMARY KEY,
+        "postId" INTEGER REFERENCES community_posts(id) ON DELETE CASCADE,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        content TEXT NOT NULL,
+        "createdAt" TIMESTAMPTZ DEFAULT NOW(),
+        "updatedAt" TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS notifications (
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        type VARCHAR(50) DEFAULT 'info',
+        title VARCHAR(255) NOT NULL,
+        message TEXT NOT NULL,
+        "relatedUrl" TEXT,
+        "isRead" BOOLEAN DEFAULT false,
+        "createdAt" TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
+
     console.log("✅ Successfully created raw PostgreSQL tables for LMS and NextAuth.");
   } catch (err) {
     console.error("❌ Error creating tables:", err);

@@ -60,19 +60,10 @@ export default function SupportPage() {
             <p className="text-sm text-ink-500 mb-6">
               Send us a detailed email regarding your issue and our team will get back to you within 24 hours.
             </p>
-            <Button variant="primary" className="w-full">support@digitalghuru.com</Button>
+            <Button variant="primary" className="w-full">contact@digitalghuru.in</Button>
           </div>
 
-          <div className="bg-white rounded-2xl border border-ink-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 flex flex-col items-center text-center">
-            <div className="h-16 w-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-              <MessageCircle className="h-8 w-8" />
-            </div>
-            <h3 className="text-lg font-bold text-ink-900 mb-2">Community Discord</h3>
-            <p className="text-sm text-ink-500 mb-6">
-              Join our exclusive Discord server to ask questions, network with peers, and get immediate help.
-            </p>
-            <Button variant="outline" className="w-full">Join Discord</Button>
-          </div>
+
         </div>
       </div>
     </div>

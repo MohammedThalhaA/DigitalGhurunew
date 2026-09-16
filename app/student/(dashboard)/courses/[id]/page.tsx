@@ -51,6 +51,7 @@ export default async function StudentCourseDetailsPage({
   const finalCourse: CourseData = {
     ...(staticCourse || {}),
     ...dbCourse.marketing_data,
+    id: dbCourse.id,
     title: dbCourse.title,
     description: dbCourse.description || dbCourse.marketing_data?.description || staticCourse?.description,
   } as CourseData;

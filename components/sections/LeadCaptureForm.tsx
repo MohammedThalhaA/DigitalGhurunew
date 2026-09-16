@@ -94,8 +94,8 @@ export default function LeadCaptureForm() {
                 </div>
                 <div>
                   <p className="text-xs text-ink-400 font-semibold uppercase">Email Us</p>
-                  <a href="mailto:admissions@digitalghuru.com" className="text-sm font-bold hover:text-brand-blue transition-colors">
-                    admissions@digitalghuru.com
+                  <a href="mailto:contact@digitalghuru.in" className="text-sm font-bold hover:text-brand-blue transition-colors">
+                    contact@digitalghuru.in
                   </a>
                 </div>
               </div>

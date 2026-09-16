@@ -49,7 +49,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   }
 
   const info = await transporter.sendMail({
-    from: process.env.EMAIL_FROM || '"Digital Ghuru" <noreply@digitalghuru.in>',
+    from: process.env.EMAIL_FROM || '"Digital Ghuru" <contact@digitalghuru.in>',
     to: email,
     subject: "Verify your email - Digital Ghuru",
     html: `

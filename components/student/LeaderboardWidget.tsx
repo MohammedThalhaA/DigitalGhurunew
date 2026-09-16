@@ -43,66 +43,82 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
         <span className="font-heading text-xs font-semibold text-amber-500 bg-amber-50 border border-amber-100 px-3 py-1.5 rounded-full">THIS WEEK</span>
       </div>
 
-      {topMembers.length >= 3 ? (
+      {topMembers.length > 0 ? (
         <>
           {/* Podium Section */}
           <div className="px-6 pt-8 pb-4 flex items-end justify-center gap-3 relative z-10 border-b border-ink-50">
             {/* Rank 2 */}
-            <div className="flex flex-col items-center flex-1">
-              <div className="relative mb-3 flex flex-col items-center">
-                <span className={`absolute -top-3 -right-2 ${podiumConfig[1].badgeBg} ${podiumConfig[1].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#2</span>
-                <div className={`h-12 w-12 rounded-full ${topMembers[1].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
-                  {topMembers[1].image ? (
-                    <Image src={topMembers[1].image} alt={topMembers[1].name} fill className="object-cover" />
-                  ) : (
-                    topMembers[1].initial
-                  )}
-                </div>
-                <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[60px]">{topMembers[1].name}</span>
-              </div>
-              <div className={`w-full ${podiumConfig[1].podiumHeight} ${podiumConfig[1].podiumColor} rounded-t-2xl border-t-4 ${podiumConfig[1].borderColor} flex items-center justify-center flex-col shadow-inner`}>
-                <span className={`${podiumConfig[1].pointsColor} font-bold text-xs`}>{topMembers[1].points}</span>
-                <span className={`${podiumConfig[1].xpColor} text-[9px] font-bold`}>XP</span>
-              </div>
+            <div className="flex flex-col items-center flex-1 h-full justify-end">
+              {topMembers[1] ? (
+                <>
+                  <div className="relative mb-3 flex flex-col items-center">
+                    <span className={`absolute -top-3 -right-2 ${podiumConfig[1].badgeBg} ${podiumConfig[1].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#2</span>
+                    <div className={`h-12 w-12 rounded-full ${topMembers[1].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
+                      {topMembers[1].image ? (
+                        <Image src={topMembers[1].image} alt={topMembers[1].name} fill className="object-cover" />
+                      ) : (
+                        topMembers[1].initial
+                      )}
+                    </div>
+                    <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[60px]">{topMembers[1].name}</span>
+                  </div>
+                  <div className={`w-full ${podiumConfig[1].podiumHeight} ${podiumConfig[1].podiumColor} rounded-t-2xl border-t-4 ${podiumConfig[1].borderColor} flex items-center justify-center flex-col shadow-inner`}>
+                    <span className={`${podiumConfig[1].pointsColor} font-bold text-xs`}>{topMembers[1].points}</span>
+                    <span className={`${podiumConfig[1].xpColor} text-[9px] font-bold`}>XP</span>
+                  </div>
+                </>
+              ) : (
+                <div className={`w-full ${podiumConfig[1].podiumHeight} bg-ink-50 rounded-t-2xl border-t-4 border-ink-100 flex items-center justify-center flex-col mt-auto opacity-50`}></div>
+              )}
             </div>
 
             {/* Rank 1 */}
-            <div className="flex flex-col items-center flex-1 -mt-4">
-              <div className="relative mb-3 flex flex-col items-center">
-                <Trophy className="absolute -top-6 text-amber-400 h-6 w-6 drop-shadow-md z-10" />
-                <span className={`absolute -top-3 -right-2 ${podiumConfig[0].badgeBg} ${podiumConfig[0].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#1</span>
-                <div className={`h-14 w-14 rounded-full ${topMembers[0].color} flex items-center justify-center text-white font-bold text-xl shadow-[0_4px_15px_rgba(245,158,11,0.4)] border-2 border-amber-300 overflow-hidden relative`}>
-                  {topMembers[0].image ? (
-                    <Image src={topMembers[0].image} alt={topMembers[0].name} fill className="object-cover" />
-                  ) : (
-                    topMembers[0].initial
-                  )}
-                </div>
-                <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[70px]">{topMembers[0].name}</span>
-              </div>
-              <div className={`w-full ${podiumConfig[0].podiumHeight} ${podiumConfig[0].podiumColor} rounded-t-2xl border-t-4 ${podiumConfig[0].borderColor} flex items-center justify-center flex-col shadow-inner`}>
-                <span className={`${podiumConfig[0].pointsColor} font-bold text-sm`}>{topMembers[0].points}</span>
-                <span className={`${podiumConfig[0].xpColor} text-[9px] font-bold`}>XP</span>
-              </div>
+            <div className="flex flex-col items-center flex-1 -mt-4 h-full justify-end">
+              {topMembers[0] && (
+                <>
+                  <div className="relative mb-3 flex flex-col items-center">
+                    <Trophy className="absolute -top-6 text-amber-400 h-6 w-6 drop-shadow-md z-10" />
+                    <span className={`absolute -top-3 -right-2 ${podiumConfig[0].badgeBg} ${podiumConfig[0].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#1</span>
+                    <div className={`h-14 w-14 rounded-full ${topMembers[0].color} flex items-center justify-center text-white font-bold text-xl shadow-[0_4px_15px_rgba(245,158,11,0.4)] border-2 border-amber-300 overflow-hidden relative`}>
+                      {topMembers[0].image ? (
+                        <Image src={topMembers[0].image} alt={topMembers[0].name} fill className="object-cover" />
+                      ) : (
+                        topMembers[0].initial
+                      )}
+                    </div>
+                    <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[70px]">{topMembers[0].name}</span>
+                  </div>
+                  <div className={`w-full ${podiumConfig[0].podiumHeight} ${podiumConfig[0].podiumColor} rounded-t-2xl border-t-4 ${podiumConfig[0].borderColor} flex items-center justify-center flex-col shadow-inner`}>
+                    <span className={`${podiumConfig[0].pointsColor} font-bold text-sm`}>{topMembers[0].points}</span>
+                    <span className={`${podiumConfig[0].xpColor} text-[9px] font-bold`}>XP</span>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Rank 3 */}
-            <div className="flex flex-col items-center flex-1">
-              <div className="relative mb-3 flex flex-col items-center">
-                <span className={`absolute -top-3 -right-2 ${podiumConfig[2].badgeBg} ${podiumConfig[2].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#3</span>
-                <div className={`h-12 w-12 rounded-full ${topMembers[2].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
-                  {topMembers[2].image ? (
-                    <Image src={topMembers[2].image} alt={topMembers[2].name} fill className="object-cover" />
-                  ) : (
-                    topMembers[2].initial
-                  )}
-                </div>
-                <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[60px]">{topMembers[2].name}</span>
-              </div>
-              <div className={`w-full ${podiumConfig[2].podiumHeight} ${podiumConfig[2].podiumColor} rounded-t-2xl border-t-4 ${podiumConfig[2].borderColor} flex items-center justify-center flex-col shadow-inner`}>
-                <span className={`${podiumConfig[2].pointsColor} font-bold text-xs`}>{topMembers[2].points}</span>
-                <span className={`${podiumConfig[2].xpColor} text-[9px] font-bold`}>XP</span>
-              </div>
+            <div className="flex flex-col items-center flex-1 h-full justify-end">
+              {topMembers[2] ? (
+                <>
+                  <div className="relative mb-3 flex flex-col items-center">
+                    <span className={`absolute -top-3 -right-2 ${podiumConfig[2].badgeBg} ${podiumConfig[2].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#3</span>
+                    <div className={`h-12 w-12 rounded-full ${topMembers[2].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
+                      {topMembers[2].image ? (
+                        <Image src={topMembers[2].image} alt={topMembers[2].name} fill className="object-cover" />
+                      ) : (
+                        topMembers[2].initial
+                      )}
+                    </div>
+                    <span className="font-heading text-xs font-semibold text-ink-900 mt-2 truncate max-w-[60px]">{topMembers[2].name}</span>
+                  </div>
+                  <div className={`w-full ${podiumConfig[2].podiumHeight} ${podiumConfig[2].podiumColor} rounded-t-2xl border-t-4 ${podiumConfig[2].borderColor} flex items-center justify-center flex-col shadow-inner`}>
+                    <span className={`${podiumConfig[2].pointsColor} font-bold text-xs`}>{topMembers[2].points}</span>
+                    <span className={`${podiumConfig[2].xpColor} text-[9px] font-bold`}>XP</span>
+                  </div>
+                </>
+              ) : (
+                <div className={`w-full ${podiumConfig[2].podiumHeight} bg-ink-50 rounded-t-2xl border-t-4 border-ink-100 flex items-center justify-center flex-col mt-auto opacity-50`}></div>
+              )}
             </div>
           </div>
         </>

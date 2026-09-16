@@ -9,32 +9,38 @@ interface CourseProgressCardProps {
   subtitle: string;
   progress: number;
   imageUrl?: string | null;
+  enrolled?: boolean;
 }
 
-export default function CourseProgressCard({ id, title, subtitle, progress, imageUrl }: CourseProgressCardProps) {
+export default function CourseProgressCard({ id, title, subtitle, progress, imageUrl, enrolled = true }: CourseProgressCardProps) {
+  const detailHref = `/student/courses/${id}`;
+  const learnHref = `/student/learn/${id}`;
+  const cardHref = enrolled ? (progress > 0 ? learnHref : detailHref) : detailHref;
   return (
     <div className="bg-white rounded-[32px] border border-ink-100 hover:border-brand-blue/30 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col group relative overflow-hidden h-full">
       
       {/* Thumbnail */}
-      <Link href={`/student/courses/${id}`} className="w-full aspect-video relative overflow-hidden bg-gradient-to-br from-brand-blue to-blue-800 shrink-0 group/thumb block border-b border-ink-50">
+      <Link href={detailHref} className="w-full aspect-video relative overflow-hidden bg-gradient-to-br from-brand-blue to-blue-800 shrink-0 group/thumb block border-b border-ink-50">
         {imageUrl ? (
           <>
             <Image src={imageUrl} alt={title} fill className="object-cover group-hover/thumb:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-black/20 group-hover/thumb:bg-black/10 transition-colors"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <PlayCircle className="h-14 w-14 text-white/90 group-hover/thumb:text-white group-hover/thumb:scale-110 transition-all duration-500 drop-shadow-lg" />
-            </div>
+            {enrolled && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <PlayCircle className="h-14 w-14 text-white/90 group-hover/thumb:text-white group-hover/thumb:scale-110 transition-all duration-500 drop-shadow-lg" />
+              </div>
+            )}
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-blue to-blue-800">
-            <PlayCircle className="h-14 w-14 text-white opacity-80 group-hover/thumb:opacity-100 group-hover/thumb:text-amber-400 group-hover/thumb:scale-110 transition-all duration-500" />
+            {enrolled && <PlayCircle className="h-14 w-14 text-white opacity-80 group-hover/thumb:opacity-100 group-hover/thumb:text-amber-400 group-hover/thumb:scale-110 transition-all duration-500" />}
           </div>
         )}
       </Link>
 
       {/* Content */}
       <div className="p-6 flex-1 flex flex-col min-w-0 bg-white relative z-10">
-        <Link href={`/student/courses/${id}`} className="block mb-6 relative z-10">
+        <Link href={detailHref} className="block mb-6 relative z-10">
           <h3 className="font-display text-base font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors line-clamp-1">{title}</h3>
           <p className="text-sm font-medium text-ink-500 line-clamp-2 leading-relaxed">{subtitle}</p>
         </Link>
@@ -55,12 +61,14 @@ export default function CourseProgressCard({ id, title, subtitle, progress, imag
             </div>
           </div>
           
-          <Link href={`/student/learn/${id}`} className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-heading font-semibold transition-all shadow-md hover:shadow-lg uppercase tracking-wide ${
-            progress > 0 
-              ? "bg-brand-blue text-white hover:bg-blue-800 hover:shadow-brand-blue/30" 
-              : "bg-gradient-to-r from-amber-400 to-brand-orange text-white hover:from-amber-500 hover:to-orange-600 hover:shadow-orange-500/30"
+          <Link href={cardHref} className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-heading font-semibold transition-all shadow-md hover:shadow-lg uppercase tracking-wide ${
+            !enrolled
+              ? "bg-gradient-to-r from-amber-400 to-brand-orange text-white hover:from-amber-500 hover:to-orange-600 hover:shadow-orange-500/30"
+              : progress > 0 
+                ? "bg-brand-blue text-white hover:bg-blue-800 hover:shadow-brand-blue/30" 
+                : "bg-gradient-to-r from-amber-400 to-brand-orange text-white hover:from-amber-500 hover:to-orange-600 hover:shadow-orange-500/30"
           }`}>
-            {progress > 0 ? "Continue Learning" : "Start Course"} <ArrowRight className="h-4 w-4" />
+            {!enrolled ? "View Details" : progress > 0 ? "Continue Learning" : "Start Course"} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
