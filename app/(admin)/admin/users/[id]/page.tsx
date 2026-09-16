@@ -2,7 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
 import Link from "next/link";
-import { ArrowLeft, User, Mail, Calendar, ShieldCheck, ShieldAlert, Activity, Book, Flame, MailCheck, MailWarning } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft, User, Mail, Calendar, ShieldCheck, ShieldAlert, Activity, Book, Flame, MailCheck, MailWarning, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 
 export default async function AdminUserDetailsPage({ params }: { params: { id: string } }) {
@@ -26,7 +27,8 @@ export default async function AdminUserDetailsPage({ params }: { params: { id: s
 
   // Fetch user enrollments
   const enrollmentsRes = await pool.query(
-    `SELECT e.id, e."pricePaid", e."createdAt", c.title as course_title, c.id as course_id
+    `SELECT e.id, e."pricePaid", e."createdAt", c.title as course_title, c.id as course_id,
+            COALESCE(c.marketing_data->>'cardImage', c.marketing_data->>'thumbnail') as course_image
      FROM enrollments e
      JOIN courses c ON e."courseId" = c.id
      WHERE e."userId" = $1
@@ -143,14 +145,31 @@ export default async function AdminUserDetailsPage({ params }: { params: { id: s
                 {enrollments.map(enrollment => (
                   <li key={enrollment.id} className="p-4 rounded-xl border border-ink-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 transition-colors">
                     <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="font-bold text-ink-900 flex items-center gap-2">
-                          <Book className="h-4 w-4 text-brand-blue" />
-                          {enrollment.course_title}
-                        </p>
-                        <p className="text-xs text-ink-500 mt-1">
-                          Enrolled on {new Date(enrollment.createdAt).toLocaleDateString()}
-                        </p>
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-12 w-16 rounded-xl overflow-hidden flex-shrink-0 border border-ink-200 shadow-sm">
+                          {enrollment.course_image ? (
+                            <Image src={enrollment.course_image} alt={enrollment.course_title} fill className="object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 relative">
+                              <div
+                                className="absolute inset-0 opacity-20 pointer-events-none"
+                                style={{
+                                  backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
+                                  backgroundSize: "6px 6px"
+                                }}
+                              />
+                              <Sparkles className="w-4 h-4 text-brand-orange relative z-10" />
+                            </div>
+                          )}
+                        </div>
+                        <div>
+                          <p className="font-bold text-ink-900">
+                            {enrollment.course_title}
+                          </p>
+                          <p className="text-xs text-ink-500 mt-1">
+                            Enrolled on {new Date(enrollment.createdAt).toLocaleDateString()}
+                          </p>
+                        </div>
                       </div>
                       <span className="font-bold text-green-600 text-sm bg-green-50 px-2 py-1 rounded-md">
                         ₹{Number(enrollment.pricePaid || 0).toLocaleString()}

@@ -99,22 +99,26 @@ const comparisonRows = [
 const mentors = [
   {
     name: "Mr. Bala",
-    role: "Digital Marketing Expert",
+    role: "Digital Marketing Trainer",
+    photoUrl: "/resources/Bala Sir.jpeg",
     bio: "Specializes in search engine optimization and analytics. Brings over a decade of experience driving online growth for top-tier brands through data-driven campaigns.",
   },
   {
     name: "Mr. Prakash",
-    role: "Digital Marketing Expert",
+    role: "Digital Marketing Trainer",
+    photoUrl: "/resources/Prakash Sir.jpeg",
     bio: "An expert in paid advertising and social media strategy. Passionate about teaching advanced scaling techniques and maximizing return on ad spend.",
   },
   {
     name: "Mr. Soorya",
-    role: "Graphic Designer and Video Editing",
+    role: "Graphic Designer and Video Editing Trainer",
+    photoUrl: "/resources/Soorya Sir.jpeg",
     bio: "A creative visionary skilled in visual storytelling. Equips students with the tools to craft compelling visual assets and engaging video content.",
   },
   {
     name: "Mr. Soundarajan",
-    role: "Web Developer",
+    role: "Web Developer Trainer",
+    photoUrl: "/resources/Soundharajan Sir.jpeg",
     bio: "A full-stack developer with extensive experience building robust web applications. Focuses on bridging the gap between technical execution and marketing goals.",
   },
 ];

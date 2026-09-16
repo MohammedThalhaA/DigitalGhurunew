@@ -44,7 +44,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
     });
 
     if (res?.error) {
-      setError("Invalid email or password");
+      setError(res.error === "CredentialsSignin" ? "Invalid email or password" : res.error);
       setLoading(false);
     } else {
       const session = await getSession();
@@ -189,9 +189,9 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
                 <Image 
                   src="/logo-final dG.webp" 
                   alt="Digital Ghuru" 
-                  width={280} 
-                  height={70} 
-                  className="mb-10 object-contain h-20 w-auto"
+                  width={350} 
+                  height={100} 
+                  className="mb-10 object-contain h-28 w-auto"
                 />
                 <h2 className="font-display text-4xl font-bold text-white mb-6">New Here?</h2>
                 <p className="font-body text-base text-white/90 mb-10 max-w-[280px] leading-relaxed">
@@ -216,9 +216,9 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
                 <Image 
                   src="/logo-final dG.webp" 
                   alt="Digital Ghuru" 
-                  width={280} 
-                  height={70} 
-                  className="mb-10 object-contain h-20 w-auto"
+                  width={350} 
+                  height={100} 
+                  className="mb-10 object-contain h-28 w-auto"
                 />
                 <h2 className="font-display text-4xl font-bold text-white mb-6">Welcome Back!</h2>
                 <p className="font-body text-base text-white/90 mb-10 max-w-[280px] leading-relaxed">

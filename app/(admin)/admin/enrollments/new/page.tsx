@@ -11,11 +11,11 @@ export default async function NewEnrollmentPage() {
   if (!session?.user?.id || session.user.role !== "ADMIN") return null;
 
   // Fetch all users to select from
-  const usersRes = await pool.query(`SELECT id, name, email FROM users ORDER BY name ASC`);
+  const usersRes = await pool.query(`SELECT id, name, email, image FROM users ORDER BY name ASC`);
   const users = usersRes.rows;
 
   // Fetch all courses to select from
-  const coursesRes = await pool.query(`SELECT id, title, price FROM courses ORDER BY title ASC`);
+  const coursesRes = await pool.query(`SELECT id, title, price, COALESCE(marketing_data->>'cardImage', marketing_data->>'thumbnail') as "imageUrl" FROM courses ORDER BY title ASC`);
   const courses = coursesRes.rows;
 
   return (

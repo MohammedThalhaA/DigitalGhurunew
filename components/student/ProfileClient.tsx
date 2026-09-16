@@ -4,6 +4,7 @@ import React, { useState, useTransition, useRef, useEffect } from "react";
 import { User, Calendar, Bell, Mail, CreditCard, Shield, Smartphone, Save, Upload, Link as LinkIcon, Loader2, CheckCircle, XCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { updateGeneralProfile, updatePassword, updateNotificationPreferences, uploadLocalImage, toggleTwoFactor, saveUpiId, removeUpiId } from "@/lib/profile-actions";
 import { useRouter } from "next/navigation";
 
@@ -626,7 +627,9 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
                           <td className="py-4 px-6 text-sm font-bold text-ink-900">{enr.title}</td>
                           <td className="py-4 px-6 text-sm font-bold text-ink-900">₹{parseFloat(enr.pricePaid).toLocaleString()}</td>
                           <td className="py-4 px-6 text-right">
-                            <button className="text-brand-blue hover:text-blue-800 text-sm font-bold transition-colors">Download</button>
+                            <Link href={`/student/invoice/${enr.id}`} target="_blank" className="text-brand-blue hover:text-blue-800 text-sm font-bold transition-colors inline-block">
+                              Download
+                            </Link>
                           </td>
                         </tr>
                       ))

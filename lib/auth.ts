@@ -39,31 +39,16 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        // Offline/Demo fallback to allow UI work even if Neon DB is unreachable
-        if (credentials.email === "student@demo.com" && credentials.password === "password123") {
-          return {
-            id: "1",
-            name: "Demo Student",
-            email: "student@demo.com",
-            role: "STUDENT",
-          };
-        }
-        
-        if (credentials.email === "admin@demo.com" && credentials.password === "password123") {
-          return {
-            id: "2",
-            name: "Demo Admin",
-            email: "admin@demo.com",
-            role: "ADMIN",
-          };
-        }
-
         try {
           const res = await pool.query("SELECT * FROM users WHERE email = $1", [credentials.email]);
           const user = res.rows[0];
 
           if (!user || !user.password) {
             throw new Error("Invalid credentials");
+          }
+
+          if (user.isBlocked) {
+            throw new Error("Your account has been blocked. Please contact support.");
           }
 
           const isCorrectPassword = await bcrypt.compare(credentials.password, user.password);
@@ -81,9 +66,9 @@ export const authOptions: NextAuthOptions = {
             email: user.email,
             role: user.role,
           };
-        } catch (error) {
+        } catch (error: any) {
           console.error("Database error during authorization:", error);
-          throw new Error("Invalid credentials or Database Unreachable");
+          throw new Error(error.message || "Invalid credentials or Database Unreachable");
         }
       }
     })

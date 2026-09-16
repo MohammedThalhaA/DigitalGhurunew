@@ -118,7 +118,7 @@ export default function StreakWidget({ count, bestStreak, days, justUpdated = fa
               transition={{ delay: 0.5, duration: 0.5 }}
               className={`w-full aspect-square rounded-2xl flex items-center justify-center transition-all ${
                 day.active 
-                  ? "bg-gradient-to-br from-amber-400 to-brand-orange text-white shadow-md transform -translate-y-1" 
+                  ? "bg-gradient-to-br from-amber-400 to-brand-orange text-white shadow-md" 
                   : "bg-ink-50 text-transparent border-2 border-ink-100"
               }`}
             >

@@ -2,8 +2,15 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
 import Link from "next/link";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
-import { BadgeDollarSign, Plus, Calendar, Book, User } from "lucide-react";
+import { BadgeDollarSign, Plus, Calendar, Book, User, Sparkles } from "lucide-react";
+
+// Helper to get initials
+function getInitials(name: string) {
+  if (!name) return "U";
+  return name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase();
+}
 
 export default async function AdminEnrollmentsPage() {
   const session = await getServerSession(authOptions);
@@ -13,8 +20,8 @@ export default async function AdminEnrollmentsPage() {
   // Fetch all enrollments with user and course info
   const res = await pool.query(
     `SELECT e.id, e."pricePaid", e."createdAt", 
-            u.name as user_name, u.email as user_email,
-            c.title as course_title
+            u.name as user_name, u.email as user_email, u.image as user_image,
+            c.title as course_title, COALESCE(c.marketing_data->>'cardImage', c.marketing_data->>'thumbnail') as course_image
      FROM enrollments e
      JOIN users u ON e."userId" = u.id
      JOIN courses c ON e."courseId" = c.id
@@ -65,19 +72,44 @@ export default async function AdminEnrollmentsPage() {
                 {enrollments.map((enrollment) => (
                   <tr key={enrollment.id} className="hover:bg-ink-50/30 transition-colors">
                     <td className="p-4">
-                      <div className="flex flex-col">
-                        <span className="font-display font-bold text-ink-900 flex items-center gap-1.5">
-                          <User className="h-4 w-4 text-ink-400" />
-                          {enrollment.user_name || "Unknown"}
-                        </span>
-                        <span className="text-sm text-ink-500 ml-5.5 mt-0.5">
-                          {enrollment.user_email}
-                        </span>
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-10 w-10 rounded-full overflow-hidden flex-shrink-0 border border-ink-200">
+                          {enrollment.user_image ? (
+                            <Image src={enrollment.user_image} alt={enrollment.user_name || "User"} fill className="object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold text-xs tracking-wider shadow-inner">
+                              {getInitials(enrollment.user_name)}
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="font-display font-bold text-ink-900">
+                            {enrollment.user_name || "Unknown"}
+                          </span>
+                          <span className="text-sm text-ink-500 mt-0.5">
+                            {enrollment.user_email}
+                          </span>
+                        </div>
                       </div>
                     </td>
                     <td className="p-4">
-                      <div className="flex items-center gap-2">
-                        <Book className="h-4 w-4 text-brand-blue" />
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-10 w-14 rounded-xl overflow-hidden flex-shrink-0 border border-ink-200">
+                          {enrollment.course_image ? (
+                            <Image src={enrollment.course_image} alt={enrollment.course_title} fill className="object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 relative">
+                              <div
+                                className="absolute inset-0 opacity-20 pointer-events-none"
+                                style={{
+                                  backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
+                                  backgroundSize: "6px 6px"
+                                }}
+                              />
+                              <Sparkles className="w-4 h-4 text-brand-orange relative z-10" />
+                            </div>
+                          )}
+                        </div>
                         <span className="font-semibold text-ink-800">{enrollment.course_title}</span>
                       </div>
                     </td>
