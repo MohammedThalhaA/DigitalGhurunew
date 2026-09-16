@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { useSession } from "next-auth/react";
 
 /* ─── Navigation Data ─── */
 interface NavSubItem {
@@ -283,6 +284,7 @@ function MobileNavGroup({
 
 /* ─── Main Navbar ─── */
 export default function Navbar() {
+  const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();

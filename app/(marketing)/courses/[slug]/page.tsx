@@ -65,6 +65,7 @@ export default async function CoursePage({
       ...dbCourse.marketing_data,
       title: dbCourse.title,
       description: dbCourse.description || dbCourse.marketing_data.description || staticCourse?.description,
+      id: dbCourse.id,
     } as CourseData;
 
     // If curriculum isn't in marketing_data, fetch from modules/chapters tables

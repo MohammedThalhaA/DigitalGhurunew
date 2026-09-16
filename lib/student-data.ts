@@ -218,27 +218,30 @@ export async function getLeaderboard(limit = 10) {
     );
 
     const colors = [
-      "from-amber-400 to-amber-500",
-      "from-slate-300 to-slate-400",
-      "from-amber-700 to-amber-900",
-      "from-brand-blue to-blue-700",
-      "from-brand-orange to-orange-600",
-      "from-emerald-400 to-emerald-600",
-      "from-blue-400 to-blue-600",
-      "from-purple-400 to-purple-600",
-      "from-pink-400 to-pink-600",
-      "from-ink-400 to-ink-600",
+      "bg-gradient-to-br from-amber-400 to-amber-500",
+      "bg-gradient-to-br from-slate-300 to-slate-400",
+      "bg-gradient-to-br from-amber-700 to-amber-900",
+      "bg-gradient-to-br from-blue-500 to-blue-700",
+      "bg-gradient-to-br from-orange-400 to-orange-600",
+      "bg-gradient-to-br from-emerald-400 to-emerald-600",
+      "bg-gradient-to-br from-cyan-400 to-cyan-600",
+      "bg-gradient-to-br from-purple-400 to-purple-600",
+      "bg-gradient-to-br from-pink-400 to-pink-600",
+      "bg-gradient-to-br from-slate-600 to-slate-800",
     ];
 
-    return res.rows.map((row: any, idx: number) => ({
-      rank: idx + 1,
-      name: row.name || "Student",
-      initial: (row.name || "S").charAt(0).toUpperCase(),
-      image: row.image,
-      points: row.xp_points || 0,
-      level: row.level || 1,
-      color: `bg-gradient-to-br ${colors[idx % colors.length]}`,
-    }));
+    return res.rows.map((row: any, idx: number) => {
+      const hasImage = row.image && typeof row.image === "string" && row.image.trim() !== "" && row.image !== "null";
+      return {
+        rank: idx + 1,
+        name: row.name || "Student",
+        initial: (row.name || "S").charAt(0).toUpperCase(),
+        image: hasImage ? row.image : null,
+        points: row.xp_points || 0,
+        level: row.level || 1,
+        color: colors[idx % colors.length],
+      };
+    });
   } catch (error) {
     console.warn("Failed to fetch leaderboard:", error);
     return [];

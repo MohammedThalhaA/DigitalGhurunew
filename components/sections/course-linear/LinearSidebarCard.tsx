@@ -2,14 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { 
   ArrowRight, ShieldCheck, BookOpen, Clock, MapPin, 
   Award, Loader2, CheckCircle2, ArrowLeft, CreditCard, 
-  QrCode, AlertCircle 
+  QrCode, AlertCircle, FileDown 
 } from "lucide-react";
 import { useRazorpay } from "@/lib/useRazorpay";
 import { QRCodeSVG } from "qrcode.react";
+import { useCourseGate } from "@/components/shared/useCourseGate";
 
 interface LinearSidebarCardProps {
   courseId?: number;
@@ -27,15 +28,17 @@ export default function LinearSidebarCard({
   courseTitle,
   originalPrice,
   discountedPrice,
-  moduleCount,
-  duration,
-  format,
+  moduleCount = 12,
+  duration = "6 Months",
+  format = "Hybrid (Offline + Online)",
   previewImage,
 }: LinearSidebarCardProps) {
   const { data: session } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
   const { processPayment } = useRazorpay();
 
+  // Core States
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [enrolled, setEnrolled] = useState(false);
@@ -90,8 +93,8 @@ export default function LinearSidebarCard({
   const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${numericPrice}&cu=INR&tn=${encodeURIComponent(`Course Enrollment: ${courseTitle}`)}`;
 
   const handleEnrollClick = () => {
-    if (!session?.user) {
-      router.push("/signin");
+    if (!pathname.startsWith("/student")) {
+      router.push("/signup");
       return;
     }
 
@@ -166,8 +169,37 @@ export default function LinearSidebarCard({
     }
   };
 
+  const getBrochureUrl = (title?: string) => {
+    if (!title) return null;
+    const t = title.toLowerCase();
+    if (t.includes('marketing')) return '/Courses/AI Powered Digital Marketing Course.pdf';
+    if (t.includes('react') || t.includes('stack')) return '/Courses/React JS Full Stack Development.pdf';
+    if (t.includes('data science')) return '/Courses/Data Science with AI Course.pdf';
+    if (t.includes('design') || t.includes('video')) return '/Courses/Creative Design and video editing course.pdf';
+    return null;
+  };
+
+  const { GateModalComponent, triggerAction } = useCourseGate(courseTitle || "Course");
+  
+  const handleDownloadBrochure = () => {
+    triggerAction(() => {
+      const url = getBrochureUrl(courseTitle);
+      if (!url) {
+        alert("Brochure not available for this course yet.");
+        return;
+      }
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = url.split('/').pop() || "Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  };
+
   return (
     <div className="bg-white rounded-lg border border-ink-200 shadow-[0_8px_30px_rgba(0,0,0,0.08)] overflow-hidden relative">
+      <GateModalComponent />
       
       {/* Course Image */}
       <div className="relative w-full aspect-video bg-ink-900 overflow-hidden border-b border-ink-100">
@@ -201,13 +233,13 @@ export default function LinearSidebarCard({
             )}
 
             {checkingEnrollment ? (
-              <div className="w-full py-4 bg-ink-100 text-ink-400 rounded-lg heading-sm flex items-center justify-center gap-2 mb-8">
+              <div className="w-full py-4 bg-ink-100 text-ink-400 rounded-lg heading-sm flex items-center justify-center gap-2 mb-3">
                 <Loader2 className="h-5 w-5 animate-spin" /> Checking...
               </div>
             ) : enrolled ? (
               <button
                 onClick={handleGoToCourse}
-                className="w-full py-4 bg-brand-blue hover:bg-blue-800 text-white rounded-lg heading-sm transition-all flex items-center justify-center gap-2 mb-8 shadow-md hover:shadow-lg"
+                className="w-full py-4 bg-brand-blue hover:bg-blue-800 text-white rounded-lg heading-sm transition-all flex items-center justify-center gap-2 mb-3 shadow-md hover:shadow-lg"
               >
                 <CheckCircle2 className="h-5 w-5" /> Go to Course
               </button>
@@ -215,11 +247,18 @@ export default function LinearSidebarCard({
               <button
                 onClick={handleEnrollClick}
                 disabled={loading}
-                className="w-full py-4 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-lg heading-sm transition-all flex items-center justify-center gap-2 mb-8 shadow-md hover:shadow-lg"
+                className="w-full py-4 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-lg heading-sm transition-all flex items-center justify-center gap-2 mb-3 shadow-md hover:shadow-lg"
               >
                 Enroll Now <ArrowRight className="h-5 w-5" />
               </button>
             )}
+
+            <button
+              onClick={handleDownloadBrochure}
+              className="w-full py-3.5 bg-white border-2 border-brand-blue text-brand-blue hover:bg-blue-50 rounded-lg heading-sm transition-all flex items-center justify-center gap-2 mb-8 shadow-sm hover:shadow-md"
+            >
+              <FileDown className="h-5 w-5" /> Download Brochure
+            </button>
 
             <div className="border-t border-ink-100 pt-6">
               <p className="font-heading text-sm font-bold text-ink-900 mb-4">This course includes:</p>

@@ -222,11 +222,26 @@ export default function HomePage() {
     });
   };
 
+  const getBrochureUrl = (title?: string) => {
+    if (!title) return null;
+    const t = title.toLowerCase();
+    if (t.includes('marketing')) return '/Courses/AI Powered Digital Marketing Course.pdf';
+    if (t.includes('react') || t.includes('stack')) return '/Courses/React JS Full Stack Development.pdf';
+    if (t.includes('data science')) return '/Courses/Data Science with AI Course.pdf';
+    if (t.includes('design') || t.includes('video')) return '/Courses/Creative Design and video editing course.pdf';
+    return null;
+  };
+
   const handleDownloadBrochure = (title: string) => {
     triggerAction(() => {
+      const url = getBrochureUrl(title);
+      if (!url) {
+        alert("Brochure not available for this course yet.");
+        return;
+      }
       const link = document.createElement("a");
-      link.href = "/digitalghuru-brochure.txt";
-      link.download = `${title.replace(/\s+/g, "_")}_Brochure.txt`;
+      link.href = url;
+      link.download = url.split('/').pop() || "Brochure.pdf";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

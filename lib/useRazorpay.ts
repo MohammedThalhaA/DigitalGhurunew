@@ -80,6 +80,11 @@ export function useRazorpay() {
           theme: {
             color: "#3399cc",
           },
+          modal: {
+            ondismiss: function () {
+              onError(new Error("Payment cancelled by user."));
+            },
+          },
         };
 
         if (user.upi_id) {
