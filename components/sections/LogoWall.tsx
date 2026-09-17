@@ -98,14 +98,15 @@ export default function LogoWall({
           {/* Moving Ticker */}
           <motion.div
             className="flex gap-20 shrink-0 min-w-full items-center justify-around"
-            animate={{ x: ["0%", "-33.333%"] }}
+            animate={{ x: ["0%", "-50%"] }}
             transition={{
               ease: "linear",
-              duration: 20,
+              duration: 25,
               repeat: Infinity,
             }}
           >
-            {triplicatedLogos.map((logo, idx) => {
+            {/* Duplicate array 6 times instead of 3 to ensure it heavily overflows large screens, and move by -50% (3 sets) */}
+            {[...logos, ...logos, ...logos, ...logos, ...logos, ...logos].map((logo, idx) => {
               const svgLogo = getLogoSvg(logo.name);
 
               return (
@@ -114,8 +115,12 @@ export default function LogoWall({
                   className="shrink-0 flex items-center justify-center group mx-2"
                 >
                   <div className="flex items-center gap-3.5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 select-none">
-                    <div className="h-7 w-7 flex items-center justify-center shrink-0">
-                      {svgLogo}
+                    <div className="h-16 w-16 flex items-center justify-center shrink-0">
+                      {svgLogo ? (
+                        svgLogo
+                      ) : logo.logoUrl ? (
+                        <img src={logo.logoUrl} alt={logo.name} className="h-full w-full object-contain scale-[1.75]" />
+                      ) : null}
                     </div>
                     <span className="font-display text-base md:text-lg font-bold text-ink-900 tracking-wide">
                       {logo.name}

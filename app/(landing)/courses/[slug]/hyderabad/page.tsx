@@ -113,5 +113,5 @@ export default async function HyderabadCoursePage({
   };
 
   // Every course uses the unified Modern Linear Layout with all 5 common career & project sections
-  return <ModernLinearCourseLayout course={finalCourse} />;
+  return <ModernLinearCourseLayout course={finalCourse} hideBreadcrumbs={true} />;
 }

@@ -9,6 +9,7 @@ interface LinearHeroProps {
   subtitle?: string;
   description?: string;
   bannerImage?: string;
+  hideBreadcrumbs?: boolean;
 }
 
 export default function LinearHero({
@@ -16,6 +17,7 @@ export default function LinearHero({
   subtitle,
   description,
   bannerImage,
+  hideBreadcrumbs = false,
 }: LinearHeroProps) {
   return (
     <section className="relative w-full bg-surface-dark pt-16 pb-32 border-b border-white/10 overflow-hidden">
@@ -52,13 +54,15 @@ export default function LinearHero({
       <div className="section-container relative z-10">
         
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-sm font-body font-medium text-ink-400 mb-6">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <ChevronRight className="h-4 w-4" />
-          <Link href="/#course-grid" className="hover:text-white transition-colors">Courses</Link>
-          <ChevronRight className="h-4 w-4" />
-          <span className="text-white line-clamp-1">{title}</span>
-        </nav>
+        {!hideBreadcrumbs && (
+          <nav className="flex items-center gap-2 text-sm font-body font-medium text-ink-400 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="h-4 w-4" />
+            <Link href="/#course-grid" className="hover:text-white transition-colors">Courses</Link>
+            <ChevronRight className="h-4 w-4" />
+            <span className="text-white line-clamp-1">{title}</span>
+          </nav>
+        )}
 
         {/* Banner Placeholder Status Badge */}
         {!bannerImage && (

@@ -17,9 +17,10 @@ import LinearFAQs from "./LinearFAQs";
 
 interface ModernLinearCourseLayoutProps {
   course: any;
+  hideBreadcrumbs?: boolean;
 }
 
-export default function ModernLinearCourseLayout({ course }: ModernLinearCourseLayoutProps) {
+export default function ModernLinearCourseLayout({ course, hideBreadcrumbs = false }: ModernLinearCourseLayoutProps) {
   return (
     <div className="bg-white text-ink-900">
       {/* 1. Full Width Hero */}
@@ -28,6 +29,7 @@ export default function ModernLinearCourseLayout({ course }: ModernLinearCourseL
         subtitle={course.subtitle}
         description={course.description}
         bannerImage={course.bannerImage || course.marketing_data?.bannerImage || course.heroImage}
+        hideBreadcrumbs={hideBreadcrumbs}
       />
       
       {/* 2. Top Section: Overview + Sidebar (70/30) */}

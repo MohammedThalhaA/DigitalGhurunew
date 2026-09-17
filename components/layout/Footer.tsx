@@ -17,17 +17,19 @@ const locations = [
     address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
     phone: "+91 8825948859",
   },
-  /* PLACEHOLDER: Add more campus locations as needed */
+  {
+    name: "Ameerpet Office",
+    address: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad - 500073",
+    phone: "+91 8825948859",
+  }
 ];
 
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Institute", href: "/about-us" },
   { label: "Our Courses", href: "/courses/ai-powered-digital-marketing" },
-  { label: "Success Stories", href: "/success-stories" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
-  { label: "Cancellation & Refund Policy", href: "/refund-policy" },
 ];
 
 const courseLinks = [
@@ -61,13 +63,13 @@ export default function Footer() {
                   <h5 className="font-heading font-semibold text-white text-sm">
                     {loc.name}
                   </h5>
-                  <div className="flex items-start gap-2 text-white/70 text-sm">
+                  <div className="flex items-start gap-2 text-white/90 text-sm">
                     <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
                     <span>{loc.address}</span>
                   </div>
                   <a
-                    href={`tel:${loc.phone.replace(/\s/g, "")}`}
-                    className="flex items-center gap-2 text-white/70 text-sm hover:text-brand-gold transition-colors duration-200"
+                    href={`tel:${loc.phone.replace(/\\s/g, "")}`}
+                    className="flex items-center gap-2 text-white/90 text-sm hover:text-brand-gold transition-colors duration-200"
                   >
                     <Phone className="h-4 w-4 shrink-0" />
                     <span>{loc.phone}</span>
@@ -87,7 +89,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 hover:text-brand-gold transition-colors duration-200"
+                    className="text-sm text-white/90 hover:text-brand-gold transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -106,7 +108,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 hover:text-brand-gold transition-colors duration-200"
+                    className="text-sm text-white/90 hover:text-brand-gold transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -127,7 +129,7 @@ export default function Footer() {
             </Link>
 
             {/* PLACEHOLDER: Replace with real Digital Ghuru description */}
-            <p className="font-body text-sm text-white/70 leading-relaxed mb-6">
+            <p className="font-body text-sm text-white/90 leading-relaxed mb-6">
               Digital Ghuru is a premier digital marketing institute offering
               industry-leading courses with hands-on training, expert mentors,
               and dedicated placement support for every student.
@@ -142,7 +144,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className={`h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-all duration-200 ${social.hoverClass}`}
+                  className={`h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center text-white/90 hover:text-white transition-all duration-200 ${social.hoverClass}`}
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -155,11 +157,11 @@ export default function Footer() {
       {/* ── Bottom Bar ── */}
       <div className="border-t border-white/10">
         <div className="section-container py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-white/70">
             © {new Date().getFullYear()} Digital Ghuru. All rights reserved.
           </p>
           {/* PLACEHOLDER: Optional credit line */}
-          <p className="text-sm text-white/40">
+          <p className="text-sm text-white/60">
             Crafted with passion for digital excellence
           </p>
         </div>

@@ -26,12 +26,9 @@ import PhotoGallery from "@/components/sections/PhotoGallery";
 /* ─── Mock Data & Branding Configs ─── */
 
 const hiringPartners = [
-  { name: "Google", logoUrl: "https://logo.clearbit.com/google.com" },
-  { name: "Meta", logoUrl: "https://logo.clearbit.com/meta.com" },
-  { name: "HubSpot", logoUrl: "https://logo.clearbit.com/hubspot.com" },
-  { name: "Zoho", logoUrl: "https://logo.clearbit.com/zoho.com" },
-  { name: "Shopify", logoUrl: "https://logo.clearbit.com/shopify.com" },
-  { name: "Freshworks", logoUrl: "https://logo.clearbit.com/freshworks.com" },
+  { name: "Zoho", logoUrl: "" },
+  { name: "Freshworks", logoUrl: "" },
+  { name: "Atriowings", logoUrl: "/atriowings.png" },
 ];
 
 const galleryImages = [
