@@ -128,34 +128,16 @@ const programs = [
   },
 ];
 
-const books = [
-  {
-    title: "Become a Digital Brand",
-    status: "Bestseller",
-    desc: "Your step-by-step guide to building a strong personal brand online. From choosing your niche to becoming an influencer.",
-  },
-  {
-    title: "AI Marketing Playbook",
-    status: "New Release",
-    desc: "Learn how to leverage AI tools to automate marketing workflows, generate high-quality leads, and scale your agency.",
-  },
-];
-
 const whyChooseUs = [
   { title: "Agency-Style Learning", desc: "Real-world environments that mirror top agencies.", icon: Briefcase, accent: "blue" },
-  { title: "\u20b9300+ Crores in Ads", desc: "Spent on live paid advertising campaigns.", icon: IndianRupee, accent: "orange" },
-  { title: "Certified Partner", desc: "Google & Meta Certified Partner Agency.", icon: ShieldCheck, accent: "gold" },
   { title: "Future-Ready AI", desc: "Curriculum powered by AI & Automation.", icon: Bot, accent: "blue" },
   { title: "Live Client Projects", desc: "Real budgets, real brands, real results.", icon: PieChart, accent: "orange" },
   { title: "100% Placement", desc: "Dedicated career placement assistance.", icon: GraduationCap, accent: "gold" },
-  { title: "Global Exposure", desc: "International & corporate opportunities.", icon: Globe2, accent: "blue" },
-  { title: "Award-Winning", desc: "Globally recognized AI-powered institute.", icon: Trophy, accent: "orange" },
 ];
 
 const statsData = [
   { value: "500+", label: "Students Trained", description: "Across workshops, online & offline programs", icon: Users, accent: "blue" },
   { value: "500+", label: "Students Placed", description: "In top agencies & corporate roles", icon: TrendingUp, accent: "orange" },
-  { value: "50+", label: "Industry Partners", description: "Leading brands & hiring companies", icon: Briefcase, accent: "gold" },
 ];
 
 /* ─── Shared section header ─── */
@@ -219,7 +201,7 @@ export default function AboutUsPage() {
         titleHighlight="AI-Powered Digital Marketing Institute"
         description="With over 500+ students trained, Digital Ghuru is an award-winning AI-powered digital marketing institute shaping the future of marketing talent across India."
         primaryCta={{ label: "View Our Courses", href: "/courses" }}
-        secondaryCta={{ label: "Meet Our Founders", href: "#founders" }}
+        imageUrl="/images/about-hero.jpg"
       />
 
       {/* ━━━ VISION & MISSION ━━━ */}
@@ -447,7 +429,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.6 }}
               className="lg:col-span-5"
             >
-              <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full bg-white/8 text-white/70 mb-6">Impact</span>
+              <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full bg-white/10 text-white/90 mb-6">Impact</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight leading-[1.1]">
                 Already Transforming Careers
               </h2>
@@ -459,14 +441,14 @@ export default function AboutUsPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:col-span-7"
             >
-              <p className="text-lg text-white/50 leading-relaxed lg:max-w-xl">
+              <p className="text-lg text-white/90 leading-relaxed lg:max-w-xl">
                 Digital Ghuru has successfully trained and placed students through workshops, offline classes, and our AI-powered post-graduate programs.
               </p>
             </motion.div>
           </div>
 
           {/* Stat cards */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {statsData.map((stat, idx) => {
               const Icon = stat.icon;
               const ac = accentClasses(stat.accent);
@@ -477,21 +459,19 @@ export default function AboutUsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.12 }}
-                  className="group relative rounded-3xl p-8 sm:p-10 bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] hover:bg-white/[0.07] hover:border-white/[0.15] transition-all duration-400"
+                  className="group relative rounded-3xl p-8 sm:p-10 bg-white shadow-xl hover:-translate-y-2 transition-all duration-400"
                 >
-                  {/* Glow on hover */}
-                  <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${ac.glow} to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-400`} />
-
                   <div className="relative z-10">
-                    <div className={`h-12 w-12 rounded-xl ${ac.bg} border ${ac.border} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className={`h-5 w-5 ${ac.text}`} />
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className={`h-12 w-12 rounded-2xl flex items-center justify-center bg-gradient-to-br ${ac.glow} to-transparent border ${ac.border}`}>
+                        <Icon className={`h-6 w-6 ${ac.text}`} />
+                      </div>
                     </div>
-
-                    <div className="font-heading text-5xl sm:text-6xl font-black text-white mb-2 tracking-tight">
+                    <div className={`font-heading text-5xl sm:text-6xl font-black ${ac.text} mb-2 tracking-tight`}>
                       {stat.value}
                     </div>
-                    <h3 className="text-lg font-bold text-white/90 mb-2">{stat.label}</h3>
-                    <p className="text-sm text-white/40 leading-relaxed">{stat.description}</p>
+                    <h3 className="text-xl font-bold text-ink-900 mb-2">{stat.label}</h3>
+                    <p className="text-ink-600 leading-relaxed">{stat.description}</p>
                   </div>
                 </motion.div>
               );
@@ -572,215 +552,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* ━━━ FOUNDERS ━━━ */}
-      <section id="founders" className="py-24 md:py-32 bg-ink-50 relative overflow-hidden">
-        <div className="pointer-events-none absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-brand-blue/4 rounded-full blur-[120px]" />
 
-        <div className="section-container">
-          <SectionHeader
-            eyebrow="Leadership"
-            title="Meet Our Founders"
-            description="Visionaries driving the future of marketing education in India and globally."
-          />
-
-          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {founders.map((founder, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.15 }}
-                className="group bg-white rounded-3xl border border-ink-100/60 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.08)] transition-all duration-400 overflow-hidden"
-              >
-                <div className={`h-1.5 ${idx === 0 ? "bg-gradient-to-r from-brand-blue to-blue-400" : "bg-gradient-to-r from-brand-orange to-orange-400"}`} />
-
-                <div className="p-8 sm:p-10">
-                  <div className="flex items-center gap-5 mb-8">
-                    <div className={`h-20 w-20 rounded-2xl flex items-center justify-center shrink-0 ${
-                      idx === 0 ? "bg-gradient-to-br from-brand-blue/15 to-brand-blue/5" : "bg-gradient-to-br from-brand-orange/15 to-brand-orange/5"
-                    }`}>
-                      <Users className={`h-10 w-10 ${idx === 0 ? "text-brand-blue/50" : "text-brand-orange/50"}`} />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-heading font-black text-ink-900">{founder.name}</h3>
-                      <span className={`text-sm font-bold tracking-wide uppercase ${idx === 0 ? "text-brand-blue" : "text-brand-orange"}`}>
-                        {founder.role}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="text-ink-600 leading-[1.8] mb-8">{founder.bio}</p>
-
-                  <div className="space-y-3 mb-8">
-                    {founder.credentials.map((cred, cidx) => (
-                      <div key={cidx} className="flex items-center gap-3">
-                        <Star className={`h-4 w-4 shrink-0 ${idx === 0 ? "text-brand-blue" : "text-brand-orange"}`} />
-                        <span className="text-sm text-ink-700 font-medium">{cred}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-6 pt-6 border-t border-ink-100">
-                    {founder.socialStats.map((ss) => (
-                      <div key={ss.platform} className="text-center">
-                        <p className={`font-heading text-xl font-black ${idx === 0 ? "text-brand-blue" : "text-brand-orange"}`}>{ss.count}</p>
-                        <p className="text-xs text-ink-400 font-medium mt-0.5">{ss.platform}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━ TEDx & BOOKS ━━━ */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
-        <div className="pointer-events-none absolute -bottom-40 right-0 w-[400px] h-[400px] bg-brand-orange/4 rounded-full blur-[100px]" />
-
-        <div className="section-container">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
-            {/* TEDx Talks */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="h-10 w-10 rounded-xl bg-red-500/10 flex items-center justify-center">
-                  <Video className="h-5 w-5 text-red-500" />
-                </div>
-                <h2 className="text-3xl font-heading font-black text-ink-900 tracking-tight">TEDx Talks</h2>
-              </div>
-              <p className="text-ink-500 mb-10 leading-relaxed text-lg">
-                Watch our founders share insights on the future of work, AI in marketing, and building digital brands on the TEDx stage.
-              </p>
-
-              <div className="space-y-5">
-                {[1, 2].map((i) => (
-                  <div key={i} className="group flex gap-5 p-5 rounded-2xl bg-ink-50/80 border border-ink-100/50 hover:bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-pointer">
-                    <div className="w-36 h-24 bg-gradient-to-br from-ink-200 to-ink-300 rounded-xl flex items-center justify-center shrink-0 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-ink-900/20 group-hover:bg-ink-900/10 transition-colors duration-300" />
-                      <div className="h-12 w-12 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <Play className="h-5 w-5 text-red-500 ml-0.5" />
-                      </div>
-                    </div>
-                    <div className="flex flex-col justify-center">
-                      <span className="text-[11px] font-bold text-red-500 uppercase tracking-[0.15em] mb-1.5">TEDx Talk</span>
-                      <h4 className="font-bold text-ink-900 group-hover:text-brand-blue transition-colors leading-snug">
-                        The Future of Marketing [Placeholder]
-                      </h4>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Books */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="h-10 w-10 rounded-xl bg-brand-blue/8 flex items-center justify-center">
-                  <BookOpen className="h-5 w-5 text-brand-blue" />
-                </div>
-                <h2 className="text-3xl font-heading font-black text-ink-900 tracking-tight">Books Authored</h2>
-              </div>
-              <p className="text-ink-500 mb-10 leading-relaxed text-lg">
-                We believe in learning from real-world experience. Explore the books authored by our experts.
-              </p>
-
-              <div className="space-y-5">
-                {books.map((book, idx) => (
-                  <div key={idx} className="group rounded-2xl bg-ink-50/80 border border-ink-100/50 p-6 hover:bg-white hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-all duration-300 overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-brand-gold/8 to-transparent rounded-bl-3xl" />
-
-                    <div className="relative z-10">
-                      <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-heading font-bold text-ink-900">{book.title}</h3>
-                        <span className="text-[11px] font-bold px-3 py-1.5 bg-brand-gold/15 text-brand-gold rounded-full tracking-wide uppercase shrink-0 ml-3">
-                          {book.status}
-                        </span>
-                      </div>
-                      <p className="text-ink-500 leading-relaxed">{book.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━ TIMELINE ━━━ */}
-      <section className="py-24 md:py-32 bg-ink-50 relative overflow-hidden">
-        <div className="section-container">
-          <SectionHeader
-            eyebrow="Our Journey"
-            title="Digital Ghuru&apos;s Timeline"
-            description="From humble beginnings to becoming India's leading AI-powered digital marketing institute."
-          />
-
-          {/* Desktop horizontal timeline */}
-          <div className="hidden md:block relative">
-            <div className="absolute top-[52px] left-0 right-0 h-[2px] bg-ink-200" />
-            <div className="absolute top-[52px] left-0 right-0 h-[2px] bg-gradient-to-r from-brand-blue via-brand-orange to-brand-gold" style={{ clipPath: "inset(0 0 0 0)" }} />
-
-            <div className="grid grid-cols-5 gap-6">
-              {milestones.map((m, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="relative pt-24 text-center group"
-                >
-                  <div className="absolute top-[42px] left-1/2 -translate-x-1/2 z-10">
-                    <div className="h-5 w-5 rounded-full bg-white border-[3px] border-brand-blue group-hover:border-brand-orange group-hover:scale-125 transition-all duration-300 shadow-sm" />
-                  </div>
-
-                  <div className="font-heading text-2xl font-black text-brand-blue group-hover:text-brand-orange transition-colors mb-3">
-                    {m.year}
-                  </div>
-                  <p className="text-sm text-ink-500 leading-relaxed">{m.milestone}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile vertical timeline */}
-          <div className="md:hidden relative pl-10">
-            <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-brand-blue via-brand-orange to-brand-gold" />
-
-            <div className="space-y-10">
-              {milestones.map((m, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className="relative"
-                >
-                  <div className="absolute -left-[26px] top-1 h-4 w-4 rounded-full bg-white border-[3px] border-brand-blue shadow-sm" />
-
-                  <div className="bg-white rounded-2xl border border-ink-100/60 shadow-sm p-6">
-                    <div className="font-heading text-xl font-black text-brand-blue mb-2">{m.year}</div>
-                    <p className="text-sm text-ink-500 leading-relaxed">{m.milestone}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ━━━ RECOGNITIONS ━━━ */}
       <section className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-brand-blue via-blue-600 to-brand-blue">
