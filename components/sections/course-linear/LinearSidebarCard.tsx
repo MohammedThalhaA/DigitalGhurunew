@@ -21,6 +21,7 @@ interface LinearSidebarCardProps {
   duration?: string;
   format?: string;
   previewImage?: string;
+  brochureUrl?: string;
 }
 
 export default function LinearSidebarCard({
@@ -32,6 +33,7 @@ export default function LinearSidebarCard({
   duration = "6 Months",
   format = "Hybrid (Offline + Online)",
   previewImage,
+  brochureUrl,
 }: LinearSidebarCardProps) {
   const { data: session } = useSession();
   const router = useRouter();
@@ -169,7 +171,7 @@ export default function LinearSidebarCard({
     }
   };
 
-  const getBrochureUrl = (title?: string) => {
+  const getBrochureUrlFallback = (title?: string) => {
     if (!title) return null;
     const t = title.toLowerCase();
     if (t.includes('marketing')) return '/Courses/AI Powered Digital Marketing Course.pdf';
@@ -183,7 +185,7 @@ export default function LinearSidebarCard({
   
   const handleDownloadBrochure = () => {
     triggerAction(() => {
-      const url = getBrochureUrl(courseTitle);
+      const url = brochureUrl || getBrochureUrlFallback(courseTitle);
       if (!url) {
         alert("Brochure not available for this course yet.");
         return;

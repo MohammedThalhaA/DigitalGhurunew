@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
 import Button from "@/components/ui/Button";
 import { Search, Filter, PlayCircle } from "lucide-react";
+import CourseCard from "@/components/cards/CourseCard";
 
 export default async function BrowseCoursesPage() {
   const session = await getServerSession(authOptions);
@@ -36,35 +37,28 @@ export default async function BrowseCoursesPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {courses.map((course) => (
-          <div key={course.id} className="group relative overflow-hidden bg-white border border-ink-100 rounded-3xl shadow-card hover:shadow-card-hover hover:border-brand-blue/30 hover:-translate-y-1 transition-all duration-300 flex flex-col">
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="aspect-video bg-ink-50 relative overflow-hidden shrink-0 border-b border-ink-100">
-              {course.imageUrl ? (
-                <img src={course.imageUrl} alt={course.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-ink-300">
-                  <PlayCircle className="h-12 w-12" />
-                </div>
-              )}
-              <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-ink-900 shadow-sm">
-                {course.price ? `₹${course.price}` : "Free"}
-              </div>
+        {courses.map((course) => {
+          const mData = course.marketing_data || {};
+          const cardImage = mData.cardImage || course.imageUrl || mData.thumbnail || "";
+          
+          return (
+            <div key={course.id} className="h-full">
+              <CourseCard
+                title={course.title || mData.title || "Course Title"}
+                blurb={course.description || mData.description || ""}
+                format={mData.format || "Classroom + Online"}
+                duration={mData.duration || "3 to 6 Months"}
+                brochureUrl={mData.brochureUrl || ""}
+                originalPrice={mData.originalPrice || "—"}
+                discountedPrice={mData.discountedPrice || (course.price ? `₹${Number(course.price).toLocaleString('en-IN')}` : "Contact Us")}
+                cardImage={cardImage}
+                image={cardImage}
+                ctaText="View Details"
+                ctaHref={`/student/courses/${course.id}`}
+              />
             </div>
-              <div className="p-6 md:p-8 flex flex-col flex-1 bg-white">
-                <h3 className="font-display text-base font-bold text-ink-900 mb-2 line-clamp-2 group-hover:text-brand-blue transition-colors duration-200">{course.title}</h3>
-                <p className="body-md text-ink-500 line-clamp-2 mb-6 flex-1">{course.description}</p>
-                
-                <div className="mt-auto">
-                  <Button variant="primary" className="w-full font-heading font-semibold py-4 shadow-md rounded-xl hover:shadow-lg transition-all">
-                    Enroll Now
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
         {courses.length === 0 && (
           <div className="col-span-full py-12 text-center text-ink-500">
             No courses available at the moment. Check back later!

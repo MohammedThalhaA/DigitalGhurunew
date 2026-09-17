@@ -34,7 +34,7 @@ export default async function MyCoursesPage() {
             </div>
             <h3 className="text-xl font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors duration-200">No courses yet</h3>
             <p className="text-ink-500 font-medium mb-8">Browse our catalog to enroll in your first course!</p>
-            <Link href="/student/browse" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-heading font-bold py-4 px-8 rounded-xl hover:shadow-lg transition-all shadow-md">
+            <Link href="/student/browse" className="inline-flex items-center gap-2 bg-brand-blue text-white font-heading font-bold py-3 px-6 rounded-xl hover:bg-blue-700 transition-colors shadow-sm">
               Browse Courses
             </Link>
           </div>

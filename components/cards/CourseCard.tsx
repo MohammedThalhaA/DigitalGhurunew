@@ -16,6 +16,7 @@ interface CourseCardProps {
   thumbnail?: string;
   originalPrice?: string;
   discountedPrice?: string;
+  brochureUrl?: string;
   ctaText?: string;
   ctaHref?: string;
   onViewDetails?: (href: string) => void;
@@ -32,6 +33,7 @@ export default function CourseCard({
   thumbnail,
   originalPrice,
   discountedPrice,
+  brochureUrl,
   ctaText = "View Details",
   ctaHref = "/contact",
   onViewDetails,
@@ -55,7 +57,7 @@ export default function CourseCard({
     }
   };
 
-  const getBrochureUrl = (courseTitle?: string) => {
+  const getBrochureUrlFallback = (courseTitle?: string) => {
     if (!courseTitle) return null;
     const t = courseTitle.toLowerCase();
     if (t.includes('marketing')) return '/Courses/AI Powered Digital Marketing Course.pdf';
@@ -69,7 +71,7 @@ export default function CourseCard({
     if (onDownloadBrochure) {
       onDownloadBrochure(title);
     } else {
-      const url = getBrochureUrl(title);
+      const url = brochureUrl || getBrochureUrlFallback(title);
       if (!url) {
         alert("Brochure not available for this course yet.");
         return;

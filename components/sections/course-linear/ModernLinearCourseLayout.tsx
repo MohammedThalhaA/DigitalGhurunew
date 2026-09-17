@@ -54,6 +54,7 @@ export default function ModernLinearCourseLayout({ course, hideBreadcrumbs = fal
               moduleCount={course.curriculum?.length}
               duration={course.duration}
               format={course.format}
+              brochureUrl={course.brochureUrl}
               previewImage={course.cardImage || course.marketing_data?.cardImage || course.bannerImage || course.marketing_data?.bannerImage}
             />
           </div>

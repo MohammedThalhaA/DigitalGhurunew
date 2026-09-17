@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Mail, Globe, CreditCard, Save, RefreshCw, User, Upload } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface SettingsData {
   platform_name: string;
@@ -28,6 +29,7 @@ export default function SettingsForm() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetchSettings();
@@ -132,6 +134,7 @@ export default function SettingsForm() {
       
       if (settingsRes.ok && (!profile || profileRes?.ok)) {
         setMessage({ type: "success", text: "Settings and profile saved successfully!" });
+        router.refresh();
         setTimeout(() => setMessage(null), 4000);
       } else {
         throw new Error("Failed to save data");

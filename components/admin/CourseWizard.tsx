@@ -347,6 +347,7 @@ function normalizeWizardData(initialData?: any) {
 
     const cardImage = initialData.cardImage || mData.cardImage || initialData.thumbnail || mData.thumbnail || "";
     const bannerImage = initialData.bannerImage || mData.bannerImage || initialData.heroImage || mData.heroImage || "";
+    const brochureUrl = initialData.brochureUrl || mData.brochureUrl || "";
 
     return {
       title: initialData.title || mData.title || "",
@@ -362,9 +363,11 @@ function normalizeWizardData(initialData?: any) {
       isPublished: initialData.isPublished ?? false,
       cardImage,
       bannerImage,
+      brochureUrl,
       marketing_data: {
         cardImage,
         bannerImage,
+        brochureUrl,
         highlightsData: mData.highlightsData || initialData.highlightsData || [],
         designedToHelp: mData.designedToHelp || initialData.designedToHelp || { title: "This course is designed to help you", description: "", benefits: [] },
         numberedFeatures: mData.numberedFeatures || initialData.numberedFeatures || { title: "", description: "", features: [] },
@@ -391,13 +394,18 @@ export default function CourseWizard({
   const [data, setData] = useState<any>(() => normalizeWizardData(initialData));
   const [uploadingCard, setUploadingCard] = useState(false);
   const [uploadingBanner, setUploadingBanner] = useState(false);
+  const [uploadingBrochure, setUploadingBrochure] = useState(false);
   const cardFileInputRef = useRef<HTMLInputElement | null>(null);
   const bannerFileInputRef = useRef<HTMLInputElement | null>(null);
+  const brochureFileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleFileUpload = async (file: File, type: "card" | "banner") => {
+  const handleFileUpload = async (file: File, type: "card" | "banner" | "brochure") => {
     const isCard = type === "card";
+    const isBanner = type === "banner";
+    const isBrochure = type === "brochure";
     if (isCard) setUploadingCard(true);
-    else setUploadingBanner(true);
+    else if (isBanner) setUploadingBanner(true);
+    else if (isBrochure) setUploadingBrochure(true);
 
     try {
       const formData = new FormData();
@@ -418,13 +426,20 @@ export default function CourseWizard({
             marketing_data: { ...prev.marketing_data, cardImage: json.url }
           }));
           toast.success("Card Image Uploaded", "Course card thumbnail has been updated.");
-        } else {
+        } else if (isBanner) {
           setData((prev: any) => ({
             ...prev,
             bannerImage: json.url,
             marketing_data: { ...prev.marketing_data, bannerImage: json.url }
           }));
           toast.success("Banner Image Uploaded", "Course detail banner image has been updated.");
+        } else if (isBrochure) {
+          setData((prev: any) => ({
+            ...prev,
+            brochureUrl: json.url,
+            marketing_data: { ...prev.marketing_data, brochureUrl: json.url }
+          }));
+          toast.success("Brochure Uploaded", "Course brochure has been updated.");
         }
       } else {
         toast.error("Upload Failed", json.error || "Could not upload image. Please try again.");
@@ -434,7 +449,8 @@ export default function CourseWizard({
       toast.error("Upload Failed", "Network or server error during upload.");
     } finally {
       if (isCard) setUploadingCard(false);
-      else setUploadingBanner(false);
+      else if (isBanner) setUploadingBanner(false);
+      else if (isBrochure) setUploadingBrochure(false);
     }
   };
 
@@ -834,6 +850,55 @@ export default function CourseWizard({
                       )}
                     </Button>
                   </div>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-ink-100 shadow-sm flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="font-heading text-sm font-bold text-ink-900 flex items-center gap-1.5">
+                      Course Brochure (PDF)
+                    </label>
+                  </div>
+                  <p className="text-xs text-ink-500 mb-3">
+                    Upload the course syllabus or brochure in PDF format.
+                  </p>
+
+                  <input
+                    type="text"
+                    value={data.brochureUrl || ""}
+                    onChange={e => setData({ ...data, brochureUrl: e.target.value, marketing_data: { ...data.marketing_data, brochureUrl: e.target.value } })}
+                    placeholder="Paste brochure URL (e.g. /uploads/courses/brochure.pdf)"
+                    className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-ink-200 focus:border-brand-blue outline-none mb-3"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="file"
+                    ref={brochureFileInputRef}
+                    accept="application/pdf"
+                    className="hidden"
+                    onChange={e => {
+                      const file = e.target.files?.[0];
+                      if (file) handleFileUpload(file, "brochure");
+                      e.target.value = "";
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={uploadingBrochure}
+                    onClick={() => brochureFileInputRef.current?.click()}
+                    className="w-full flex items-center justify-center gap-2 border-dashed border-ink-300 hover:border-brand-blue hover:text-brand-blue"
+                  >
+                    {uploadingBrochure ? (
+                      <><Loader2 className="w-4 h-4 animate-spin text-brand-blue" /> Uploading Brochure...</>
+                    ) : (
+                      <><Upload className="w-4 h-4" /> Upload Brochure PDF</>
+                    )}
+                  </Button>
                 </div>
               </div>
             </div>

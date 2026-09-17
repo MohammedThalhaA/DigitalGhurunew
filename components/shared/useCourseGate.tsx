@@ -4,8 +4,10 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Phone, ClipboardList, X, CheckCircle2, FileText } from "lucide-react";
 import { submitLead } from "@/lib/actions/leads";
+import { useSession } from "next-auth/react";
 
 export function useCourseGate(courseTitle: string) {
+  const { data: session } = useSession();
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [pendingCallback, setPendingCallback] = useState<(() => void) | null>(null);
@@ -13,14 +15,14 @@ export function useCourseGate(courseTitle: string) {
   // Sync state with localStorage on mount
   useEffect(() => {
     const submitted = localStorage.getItem("dg_lead_submitted");
-    if (submitted === "true") {
+    if (submitted === "true" || session?.user) {
       setIsUnlocked(true);
     }
-  }, []);
+  }, [session]);
 
   const triggerAction = (callback: () => void) => {
-    // If already submitted, execute immediately
-    if (isUnlocked || localStorage.getItem("dg_lead_submitted") === "true") {
+    // If already submitted or logged in, execute immediately
+    if (isUnlocked || localStorage.getItem("dg_lead_submitted") === "true" || session?.user) {
       callback();
     } else {
       // Store the callback to execute after successful form submission

@@ -26,11 +26,12 @@ export async function POST(req: Request) {
       "image/webp",
       "image/svg+xml",
       "image/gif",
-      "image/jpg"
+      "image/jpg",
+      "application/pdf"
     ];
     if (!validMimeTypes.includes(file.type)) {
       return NextResponse.json(
-        { error: "Invalid file type. Please upload a JPEG, PNG, WebP, or SVG image." },
+        { error: "Invalid file type. Please upload an image or PDF." },
         { status: 400 }
       );
     }

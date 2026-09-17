@@ -53,6 +53,7 @@ export interface CourseData {
   location: string;
   originalPrice: string;
   discountedPrice: string;
+  brochureUrl?: string;
   usps: string[];
   overviewLearnings?: string[];
   overviewDescription?: React.ReactNode[];

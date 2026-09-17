@@ -199,6 +199,7 @@ export default function HomePage() {
               blurb: c.description || mData.description || "",
               format: mData.format || "Classroom + Online",
               duration: mData.duration || "3 to 6 Months",
+              brochureUrl: mData.brochureUrl || "",
               discountedPrice:
                 mData.discountedPrice ||
                 (c.price ? `₹${Number(c.price).toLocaleString()}` : "Contact Us"),
