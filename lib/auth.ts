@@ -21,7 +21,6 @@ import type { Adapter } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
   adapter: {
-    ...(PostgresAdapter(pool) as Adapter),
     async createUser(user: any) {
       const { rows } = await pool.query(
         'INSERT INTO users (name, email, "emailVerified", image, role) VALUES ($1, $2, $3, $4, $5) RETURNING *',
@@ -68,6 +67,24 @@ export const authOptions: NextAuthOptions = {
         ]
       );
       return account;
+    },
+    async updateUser(user: any) {
+      // Build dynamic SET clause for updating user
+      const updates = [];
+      const values = [];
+      let i = 1;
+      for (const [key, value] of Object.entries(user)) {
+        if (key === 'id') continue; // Don't update ID
+        updates.push(`"${key}" = $${i}`);
+        values.push(value);
+        i++;
+      }
+      values.push(user.id);
+      const { rows } = await pool.query(
+        `UPDATE users SET ${updates.join(', ')} WHERE id = $${i} RETURNING *`,
+        values
+      );
+      return { ...rows[0], id: rows[0].id.toString() };
     }
   } as Adapter,
   providers: [
