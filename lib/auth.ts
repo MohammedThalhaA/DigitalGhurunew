@@ -20,7 +20,56 @@ import bcrypt from "bcryptjs";
 import type { Adapter } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PostgresAdapter(pool) as Adapter,
+  adapter: {
+    ...(PostgresAdapter(pool) as Adapter),
+    async createUser(user: any) {
+      const { rows } = await pool.query(
+        'INSERT INTO users (name, email, "emailVerified", image, role) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [user.name, user.email, user.emailVerified, user.image, 'STUDENT']
+      );
+      return { ...rows[0], id: rows[0].id.toString() };
+    },
+    async getUser(id: string) {
+      const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+      if (!rows[0]) return null;
+      return { ...rows[0], id: rows[0].id.toString() };
+    },
+    async getUserByEmail(email: string) {
+      const { rows } = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+      if (!rows[0]) return null;
+      return { ...rows[0], id: rows[0].id.toString() };
+    },
+    async getUserByAccount({ providerAccountId, provider }: any) {
+      const { rows } = await pool.query(
+        `SELECT u.* FROM users u JOIN accounts a ON u.id = a."userId" 
+         WHERE a.provider = $1 AND a."providerAccountId" = $2`,
+        [provider, providerAccountId]
+      );
+      if (!rows[0]) return null;
+      return { ...rows[0], id: rows[0].id.toString() };
+    },
+    async linkAccount(account: any) {
+      await pool.query(
+        `INSERT INTO accounts (
+          "userId", type, provider, "providerAccountId", access_token, token_type, id_token, refresh_token, scope, expires_at, session_state
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+        [
+          account.userId,
+          account.type,
+          account.provider,
+          account.providerAccountId,
+          account.access_token,
+          account.token_type,
+          account.id_token,
+          account.refresh_token,
+          account.scope,
+          account.expires_at,
+          account.session_state
+        ]
+      );
+      return account;
+    }
+  } as Adapter,
   providers: [
     ...(process.env.GOOGLE_CLIENT_ID ? [
       GoogleProvider({

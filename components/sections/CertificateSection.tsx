@@ -47,7 +47,7 @@ export default function CertificateSection() {
               ))}
             </ul>
             <div className="pt-2">
-              <Button variant="primary" size="lg" href="/contact">
+              <Button variant="primary" size="lg" href="#course-grid">
                 Download Syllabus & Brochure
               </Button>
             </div>

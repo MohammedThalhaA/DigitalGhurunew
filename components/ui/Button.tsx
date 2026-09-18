@@ -13,6 +13,8 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  target?: string;
+  download?: boolean | string;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -43,6 +45,8 @@ export default function Button({
   children,
   onClick,
   type = "button",
+  target,
+  download,
 }: ButtonProps) {
   const baseStyles =
     "inline-flex items-center justify-center gap-2 font-heading font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none";
@@ -56,7 +60,7 @@ export default function Button({
 
   if (href && !disabled) {
     return (
-      <Link href={href} className={combinedStyles}>
+      <Link href={href} className={combinedStyles} target={target} download={download}>
         {children}
       </Link>
     );
