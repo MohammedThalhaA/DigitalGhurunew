@@ -122,21 +122,30 @@ export default function Footer() {
 
           {/* ── Column 4: About + Social ── */}
           <div>
-            {/* Logo */}
-            <Link href="/" className="flex items-center shrink-0 mb-4">
-              <img
-                src="/logo-final dG.webp"
-                alt="Digital Ghuru Logo"
-                className="h-16 w-auto object-contain"
-              />
-            </Link>
+            {/* Logos: Digital Ghuru X Jaighurudeva */}
+            <div className="flex items-center gap-4 mb-6">
+              <Link href="/" className="shrink-0">
+                <img
+                  src="/logo-final dG.webp"
+                  alt="Digital Ghuru Logo"
+                  className="h-16 w-auto object-contain"
+                />
+              </Link>
+              <span className="text-white/60 font-medium text-lg shrink-0">✕</span>
+              <a href="https://jaighurudeva.in/" target="_blank" rel="noopener noreferrer" className="shrink-0">
+                <img
+                  src="/partners/jaighurudevalogo.png"
+                  alt="Jaighurudeva Educational Academy"
+                  className="h-16 w-auto object-contain scale-110"
+                />
+              </a>
+            </div>
 
-            {/* PLACEHOLDER: Replace with real Digital Ghuru description */}
-            <p className="font-body text-base text-white/90 leading-relaxed mb-6">
-              Digital Ghuru is a premier digital marketing institute offering
-              industry-leading courses with hands-on training, expert mentors,
-              and dedicated placement support for every student.
-            </p>
+            <div className="mb-6 space-y-4">
+              <p className="font-body text-base text-white/90 leading-relaxed">
+                In proud collaboration with <a href="https://jaighurudeva.in/" target="_blank" rel="noopener noreferrer" className="text-white font-semibold hover:text-brand-gold transition-colors">Jaighurudeva Educational Academy</a>, combining our digital expertise with their legacy of academic excellence and personalized mentorship.
+              </p>
+            </div>
 
             {/* Social Icons */}
             <div className="flex items-center gap-3">
@@ -163,7 +172,6 @@ export default function Footer() {
           <p className="text-base text-white/70">
             © {new Date().getFullYear()} Digital Ghuru. All rights reserved.
           </p>
-          {/* PLACEHOLDER: Optional credit line */}
           <p className="text-base text-white/60">
             Crafted with passion for digital excellence
           </p>
