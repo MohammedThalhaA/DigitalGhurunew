@@ -157,11 +157,25 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
     }
   };
 
-  const handleUrlUpload = () => {
-    const url = prompt("Enter the URL of your new avatar image:");
-    if (url) {
-      setImageUrl(url);
-    }
+  const [showUrlModal, setShowUrlModal] = useState(false);
+  const [urlInput, setUrlInput] = useState("");
+
+  const handleUrlUploadSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!urlInput) return;
+    
+    startTransition(async () => {
+      setImageUrl(urlInput);
+      const fullName = `${firstName} ${lastName}`.trim();
+      const res = await updateGeneralProfile(fullName, bio, urlInput);
+      if (res.success) {
+        showToast("Avatar URL saved successfully!", "success");
+        setShowUrlModal(false);
+        setUrlInput("");
+      } else {
+        showToast("Failed to save avatar URL.", "error");
+      }
+    });
   };
 
   return (
@@ -264,7 +278,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
                       <Upload className="h-4 w-4" /> Upload
                     </button>
                     <button 
-                      onClick={handleUrlUpload}
+                      onClick={() => setShowUrlModal(true)}
                       disabled={isUploading}
                       className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-ink-50 disabled:bg-ink-100 text-ink-900 text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-colors shadow-sm border border-ink-200"
                     >
@@ -664,6 +678,57 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
               <XCircle className="h-5 w-5 text-red-500" />
             )}
             <span className="font-heading font-semibold text-sm">{toast.message}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Custom URL Modal */}
+      <AnimatePresence>
+        {showUrlModal && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-ink-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0, y: 20 }} 
+              animate={{ scale: 1, opacity: 1, y: 0 }} 
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              className="bg-white rounded-[32px] border border-ink-100 shadow-2xl p-8 max-w-md w-full relative"
+            >
+              <h3 className="font-display text-xl font-bold text-ink-900 mb-2">Link Avatar URL</h3>
+              <p className="text-ink-500 font-medium text-sm mb-6">Enter a direct link to an image. (Make sure the URL ends with .png, .jpg, etc.)</p>
+              
+              <form onSubmit={handleUrlUploadSubmit} className="space-y-6">
+                <input 
+                  type="url" 
+                  required
+                  placeholder="https://example.com/my-avatar.jpg"
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  className="w-full px-5 py-4 bg-ink-50/50 border border-ink-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all font-medium text-ink-900"
+                />
+                
+                <div className="flex gap-3">
+                  <button 
+                    type="button" 
+                    onClick={() => { setShowUrlModal(false); setUrlInput(""); }}
+                    disabled={isPending}
+                    className="flex-1 py-3 bg-ink-50 hover:bg-ink-100 text-ink-600 font-bold text-sm uppercase tracking-[0.15em] rounded-full transition-colors border border-ink-100 disabled:opacity-50"
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="submit" 
+                    disabled={isPending}
+                    className="flex-1 py-3 bg-gradient-to-r from-amber-400 to-brand-orange hover:from-amber-500 hover:to-orange-600 text-white font-bold text-sm uppercase tracking-[0.15em] rounded-full transition-all shadow-md disabled:opacity-50 flex justify-center items-center gap-2"
+                  >
+                    {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save
+                  </button>
+                </div>
+              </form>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

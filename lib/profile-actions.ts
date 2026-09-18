@@ -72,8 +72,8 @@ export async function uploadLocalImage(formData: FormData) {
   
   const buffer = Buffer.from(await file.arrayBuffer());
   
-  // Create uploads directory if it doesn't exist
-  const uploadsDir = path.join(process.cwd(), "public", "uploads");
+  // Save to a persistent 'uploads' folder OUTSIDE of 'public' so Next.js doesn't block it
+  const uploadsDir = path.join(process.cwd(), "uploads");
   try {
     await fs.access(uploadsDir);
   } catch {
@@ -86,7 +86,8 @@ export async function uploadLocalImage(formData: FormData) {
   
   await fs.writeFile(filePath, buffer);
   
-  const url = `/uploads/${filename}`;
+  // Return a URL that points to our custom API route
+  const url = `/api/uploads/${filename}`;
   return { success: true, url };
 }
 
