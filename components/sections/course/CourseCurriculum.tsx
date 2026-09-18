@@ -15,7 +15,7 @@ export default function CourseCurriculum({ course }: { course?: any }) {
   if (!course || !course.curriculum) return null;
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAFAFA] relative overflow-hidden" id="curriculum">
+    <section className="section-padding bg-[#FAFAFA] relative overflow-hidden" id="curriculum">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-brand-blue/5 to-purple-500/5 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -81,7 +81,7 @@ export default function CourseCurriculum({ course }: { course?: any }) {
               </div>
               <div>
                 <h3 className="text-xl font-heading font-black text-ink-900">Module Breakdown</h3>
-                <p className="text-sm text-ink-500 font-medium">{course.curriculum.length} Core Modules</p>
+                <p className="text-base text-ink-500 font-medium">{course.curriculum.length} Core Modules</p>
               </div>
             </div>
             

@@ -107,11 +107,11 @@ export default async function AdminDashboard() {
                 <div key={enrollment.id} className="p-4 flex items-center justify-between hover:bg-ink-50/50 transition-colors">
                   <div>
                     <p className="font-bold text-ink-900 text-sm">{enrollment.user_name}</p>
-                    <p className="text-xs text-ink-500 line-clamp-1">{enrollment.course_title}</p>
+                    <p className="text-sm text-ink-500 line-clamp-1">{enrollment.course_title}</p>
                   </div>
                   <div className="text-right">
                     <p className="font-bold text-green-600 text-sm">₹{Number(enrollment.pricePaid || 0).toLocaleString()}</p>
-                    <p className="text-xs text-ink-400 flex items-center justify-end gap-1 mt-0.5">
+                    <p className="text-sm text-ink-400 flex items-center justify-end gap-1 mt-0.5">
                       <Calendar className="h-3 w-3" />
                       {new Date(enrollment.createdAt).toLocaleDateString()}
                     </p>
@@ -139,10 +139,10 @@ export default async function AdminDashboard() {
                 <div key={user.id} className="p-4 flex items-center justify-between hover:bg-ink-50/50 transition-colors">
                   <div>
                     <p className="font-bold text-ink-900 text-sm">{user.name || "Unknown"}</p>
-                    <p className="text-xs text-ink-500">{user.email}</p>
+                    <p className="text-sm text-ink-500">{user.email}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-ink-400 flex items-center justify-end gap-1">
+                    <p className="text-sm text-ink-400 flex items-center justify-end gap-1">
                       <Calendar className="h-3 w-3" />
                       {new Date(user.createdAt || new Date()).toLocaleDateString()}
                     </p>

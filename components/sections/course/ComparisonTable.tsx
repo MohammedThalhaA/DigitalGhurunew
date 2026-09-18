@@ -73,7 +73,7 @@ export default function ComparisonTable({ course }: { course?: any }) {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAFAFA] relative border-b border-ink-200">
+    <section className="section-padding bg-[#FAFAFA] relative border-b border-ink-200">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-16">

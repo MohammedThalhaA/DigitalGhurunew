@@ -31,7 +31,7 @@ export default function SimpleAccordion({ items }: { items: { question: string, 
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-4 text-sm text-ink-600 leading-relaxed whitespace-pre-line">
+                  <div className="px-6 pb-4 text-base text-ink-600 leading-relaxed whitespace-pre-line">
                     {item.answer}
                   </div>
                 </motion.div>

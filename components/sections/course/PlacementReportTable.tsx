@@ -29,7 +29,7 @@ export default function PlacementReportTable({ course }: { course?: any }) {
   });
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAFAFA] relative">
+    <section className="section-padding bg-[#FAFAFA] relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-blue/5 pointer-events-none" />
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

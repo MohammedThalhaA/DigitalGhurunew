@@ -88,14 +88,14 @@ export default function PaymentsClient({ initialPayments }: { initialPayments: P
             ) : (
               payments.map((payment) => (
                 <tr key={payment.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="py-4 px-6 font-medium text-sm text-ink-600">
+                  <td className="py-4 px-6 font-medium text-base text-ink-600">
                     {format(new Date(payment.createdAt), "MMM d, yyyy h:mm a")}
                   </td>
                   <td className="py-4 px-6">
                     <div className="font-bold text-ink-900 text-sm">{payment.userName}</div>
-                    <div className="text-xs text-ink-500">{payment.userEmail}</div>
+                    <div className="text-sm text-ink-500">{payment.userEmail}</div>
                   </td>
-                  <td className="py-4 px-6 font-medium text-sm text-ink-700">
+                  <td className="py-4 px-6 font-medium text-base text-ink-700">
                     {payment.courseTitle}
                   </td>
                   <td className="py-4 px-6 font-bold text-brand-blue text-sm">

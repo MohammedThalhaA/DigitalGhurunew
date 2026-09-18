@@ -101,7 +101,7 @@ export default function LogoWall({
             animate={{ x: ["0%", "-50%"] }}
             transition={{
               ease: "linear",
-              duration: 25,
+              duration: Math.max(30, logos.length * 6),
               repeat: Infinity,
             }}
           >
@@ -115,16 +115,20 @@ export default function LogoWall({
                   className="shrink-0 flex items-center justify-center group mx-2"
                 >
                   <div className="flex items-center gap-3.5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 select-none">
-                    <div className="h-16 w-16 flex items-center justify-center shrink-0">
-                      {svgLogo ? (
-                        svgLogo
-                      ) : logo.logoUrl ? (
-                        <img src={logo.logoUrl} alt={logo.name} className="h-full w-full object-contain scale-[1.75]" />
-                      ) : null}
-                    </div>
-                    <span className="font-display text-base md:text-lg font-bold text-ink-900 tracking-wide">
-                      {logo.name}
-                    </span>
+                    {svgLogo ? (
+                      <>
+                        <div className="h-16 w-16 flex items-center justify-center shrink-0">
+                          {svgLogo}
+                        </div>
+                        <span className="font-display text-base md:text-lg font-bold text-ink-900 tracking-wide">
+                          {logo.name}
+                        </span>
+                      </>
+                    ) : logo.logoUrl ? (
+                      <div className="h-24 w-auto flex items-center justify-center shrink-0 px-4">
+                        <img src={logo.logoUrl} alt={logo.name} className="h-full w-auto object-contain max-w-[200px] scale-[1.25]" />
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               );

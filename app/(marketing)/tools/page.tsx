@@ -68,7 +68,7 @@ export default function ToolsHubPage() {
                   <h3 className="font-display text-xl font-bold text-ink-900 mb-3">
                     {tool.title}
                   </h3>
-                  <p className="text-ink-500 leading-relaxed text-sm md:text-base mb-6">
+                  <p className="text-ink-500 leading-relaxed text-base md:text-lg mb-6">
                     {tool.description}
                   </p>
                 </div>

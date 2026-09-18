@@ -36,7 +36,7 @@ export default function NewsletterPage() {
                   Subscribe to Digital Ghuru Insider
                 </h2>
               </div>
-              <p className="text-sm text-ink-600 mb-6 leading-relaxed">
+              <p className="text-base text-ink-600 mb-6 leading-relaxed">
                 No spam, ever. Only actionable digital marketing strategies, AI tools recommendations, case studies, and career guidance written by our chief mentors.
               </p>
 

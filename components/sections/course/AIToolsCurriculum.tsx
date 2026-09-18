@@ -52,7 +52,7 @@ const standardToolsList = [
 
 export default function AIToolsCurriculum() {
   return (
-    <section className="py-20 lg:py-28 bg-[#FAFAFA] relative overflow-hidden">
+    <section className="section-padding bg-[#FAFAFA] relative overflow-hidden">
       {/* Decorative gradient blob */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-brand-blue/5 to-purple-500/5 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 

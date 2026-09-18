@@ -74,7 +74,7 @@ export default async function AdminUsersPage() {
                           <Link href={`/admin/users/${user.id}`} className="font-display font-bold text-ink-900 hover:text-brand-blue transition-colors">
                             {user.name || "Unknown"}
                           </Link>
-                          <span className="text-sm text-ink-500 flex items-center gap-1 mt-0.5">
+                          <span className="text-base text-ink-500 flex items-center gap-1 mt-0.5">
                             <Mail className="h-3 w-3" /> {user.email}
                           </span>
                         </div>
@@ -100,7 +100,7 @@ export default async function AdminUsersPage() {
                         </span>
                       )}
                     </td>
-                    <td className="p-4 text-sm text-ink-600">
+                    <td className="p-4 text-base text-ink-600">
                       <div className="flex items-center gap-1.5">
                         <Calendar className="h-3.5 w-3.5 text-ink-400" />
                         {new Date(user.createdAt).toLocaleDateString()}

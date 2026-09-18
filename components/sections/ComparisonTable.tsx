@@ -63,7 +63,7 @@ export default function ComparisonTable({
                 idx % 2 === 0 ? "bg-white" : "bg-ink-50/50"
               } ${idx !== rows.length - 1 ? "border-b border-ink-100" : ""}`}
             >
-              <div className="px-6 py-4 text-sm text-ink-700 font-body">
+              <div className="px-6 py-4 text-base text-ink-700 font-body">
                 {row.feature}
               </div>
               <div className="px-4 py-4 flex justify-center">

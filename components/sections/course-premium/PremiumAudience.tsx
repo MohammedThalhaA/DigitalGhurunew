@@ -35,7 +35,7 @@ export default function PremiumAudience() {
   ];
 
   return (
-    <section id="audience" className="py-24 bg-[#F6F8FC] overflow-hidden">
+    <section id="audience" className="section-padding bg-[#F6F8FC] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         
         <div className="flex flex-col xl:flex-row gap-12">

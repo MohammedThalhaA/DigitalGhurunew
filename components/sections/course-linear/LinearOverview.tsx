@@ -20,7 +20,7 @@ export default function LinearOverview({ learnings, description }: LinearOvervie
                 <div className="h-6 w-6 rounded-full bg-blue-50/90 text-brand-blue flex items-center justify-center shrink-0 mt-0.5 border border-blue-100 group-hover:scale-110 group-hover:bg-brand-blue group-hover:text-white transition-all duration-200 shadow-2xs">
                   <Check className="h-3.5 w-3.5 stroke-[3]" />
                 </div>
-                <span className="font-body text-sm font-medium text-ink-800 leading-relaxed group-hover:text-ink-950 transition-colors">
+                <span className="font-body text-base font-medium text-ink-800 leading-relaxed group-hover:text-ink-950 transition-colors">
                   {item}
                 </span>
               </li>
@@ -32,7 +32,7 @@ export default function LinearOverview({ learnings, description }: LinearOvervie
       {description && description.length > 0 && (
         <div>
           <h3 className="heading-sm text-ink-900 mb-4">Course Description</h3>
-          <div className="font-body text-ink-600 text-sm leading-relaxed space-y-4">
+          <div className="font-body text-ink-600 text-base leading-relaxed space-y-4">
             {description.map((paragraph, idx) => (
               <p key={idx}>{paragraph}</p>
             ))}

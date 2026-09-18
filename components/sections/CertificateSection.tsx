@@ -40,7 +40,7 @@ export default function CertificateSection() {
               {highlights.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                   <CheckCircle2 className="h-5 w-5 text-brand-blue shrink-0 mt-0.5" />
-                  <span className="text-sm md:text-base text-ink-700 font-medium">
+                  <span className="text-base md:text-lg text-ink-700 font-medium">
                     {item}
                   </span>
                 </li>
@@ -90,10 +90,10 @@ export default function CertificateSection() {
                 <p className="font-display text-lg md:text-2xl font-extrabold text-ink-900 border-b border-ink-100 pb-2 max-w-sm mx-auto tracking-wide">
                   Your Full Name
                 </p>
-                <p className="text-[10px] md:text-xs text-ink-500 max-w-md mx-auto leading-relaxed mt-3">
+                <p className="text-[10px] md:text-sm text-ink-500 max-w-md mx-auto leading-relaxed mt-3">
                   has successfully completed the intensive classroom syllabus and practical evaluation for the
                 </p>
-                <p className="font-heading text-sm md:text-base font-bold text-brand-orange mt-2 uppercase tracking-wide">
+                <p className="font-heading text-base md:text-lg font-bold text-brand-orange mt-2 uppercase tracking-wide">
                   Advanced AI-Powered Digital Marketing Program
                 </p>
                 <p className="text-[9px] text-ink-400 mt-2">

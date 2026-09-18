@@ -10,7 +10,7 @@ export default function AdminSettingsPage() {
         </div>
         <div>
           <h1 className="font-display text-2xl md:text-3xl font-bold text-ink-900">Platform Settings</h1>
-          <p className="font-body text-ink-500 text-sm md:text-base mt-1">Configure global platform settings, payment gateways, and notifications.</p>
+          <p className="font-body text-ink-500 text-base md:text-lg mt-1">Configure global platform settings, payment gateways, and notifications.</p>
         </div>
       </div>
 

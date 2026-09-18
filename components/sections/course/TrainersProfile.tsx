@@ -56,7 +56,7 @@ export default function TrainersProfile({ course }: { course?: any }) {
   }));
 
   return (
-    <section className="py-20 lg:py-32 bg-[#FAFAFA] relative overflow-hidden">
+    <section className="section-padding bg-[#FAFAFA] relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-blue/5 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl opacity-50 translate-y-1/3 -translate-x-1/4 pointer-events-none" />

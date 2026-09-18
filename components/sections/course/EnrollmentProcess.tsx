@@ -28,7 +28,7 @@ const steps = [
 
 export default function EnrollmentProcess() {
   return (
-    <section className="py-20 lg:py-32 bg-white relative overflow-hidden">
+    <section className="section-padding bg-white relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
       

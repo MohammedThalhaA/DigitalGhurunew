@@ -79,7 +79,7 @@ export default async function InvoicePage({ params }: { params: { id: string } }
               className="h-20 w-auto object-contain mb-4"
               priority
             />
-            <p className="font-body text-sm text-ink-500 max-w-[200px]">
+            <p className="font-body text-base text-ink-500 max-w-[200px]">
               Advanced Digital Marketing & IT Training Institute
             </p>
           </div>
@@ -95,13 +95,13 @@ export default async function InvoicePage({ params }: { params: { id: string } }
           <div>
             <h3 className="font-heading text-xs font-bold text-brand-orange uppercase tracking-[0.15em] mb-4 print:mb-2">Billed To</h3>
             <p className="font-heading text-lg font-bold text-ink-900 mb-1">{enrollment.name}</p>
-            <p className="font-body text-sm text-ink-600">{enrollment.email}</p>
+            <p className="font-body text-base text-ink-600">{enrollment.email}</p>
           </div>
           <div className="text-right">
             <h3 className="font-heading text-xs font-bold text-brand-orange uppercase tracking-[0.15em] mb-4 print:mb-2">Pay To</h3>
             <p className="font-heading text-lg font-bold text-ink-900 mb-1">Digital Ghuru</p>
-            <p className="font-body text-sm text-ink-600">contact@digitalghuru.in</p>
-            <p className="font-body text-sm text-ink-600">GSTIN: 29XXXXX9999X1Z5</p>
+            <p className="font-body text-base text-ink-600">contact@digitalghuru.in</p>
+            <p className="font-body text-base text-ink-600">GSTIN: 29XXXXX9999X1Z5</p>
           </div>
         </div>
 
@@ -119,7 +119,7 @@ export default async function InvoicePage({ params }: { params: { id: string } }
               <tr className="border-b border-ink-100">
                 <td className="py-6 px-2">
                   <p className="font-heading font-bold text-ink-900">{enrollment.courseTitle}</p>
-                  <p className="font-body text-sm text-ink-500 mt-1">Full Lifetime Access + Certifications</p>
+                  <p className="font-body text-base text-ink-500 mt-1">Full Lifetime Access + Certifications</p>
                 </td>
                 <td className="py-6 px-2 text-center font-body text-ink-900">1</td>
                 <td className="py-6 px-2 text-right font-body font-bold text-ink-900">

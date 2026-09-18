@@ -16,7 +16,7 @@ export default function PremiumTools({ tools }: PremiumToolsProps) {
   ];
 
   return (
-    <section id="tools" className="py-24 bg-[#F6F8FC] overflow-hidden">
+    <section id="tools" className="section-padding bg-[#F6F8FC] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">

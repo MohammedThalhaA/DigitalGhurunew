@@ -119,7 +119,7 @@ export default function CareerForm({ initialData }: CareerFormProps) {
             className="w-full px-4 py-3 border border-ink-200 rounded-xl bg-ink-50 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue disabled:opacity-60"
             required
           />
-          {!initialData && <p className="text-xs text-ink-500">Must be unique (e.g. senior-developer)</p>}
+          {!initialData && <p className="text-sm text-ink-500">Must be unique (e.g. senior-developer)</p>}
         </div>
 
         <div className="space-y-2">

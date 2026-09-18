@@ -65,7 +65,7 @@ export default function StudentReviewsGrid({ course }: { course?: any }) {
   });
 
   return (
-    <section className="py-20 lg:py-32 bg-[#FAFAFA] relative overflow-hidden">
+    <section className="section-padding bg-[#FAFAFA] relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute inset-0 z-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1557683311-eac922347aa1?auto=format&fit=crop&q=80')] bg-cover bg-center mix-blend-overlay" />
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#FAFAFA] via-white/80 to-[#FAFAFA]" />

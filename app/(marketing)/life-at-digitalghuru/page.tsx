@@ -22,8 +22,6 @@ const galleryImages = [
   { src: "/Gallery Images/IMG-20260831-WA0015.jpg", alt: "Mentorship and career counseling discussion" },
   { src: "/Gallery Images/IMG-20260831-WA0016.jpg", alt: "Interactive tech session on generative AI marketing" },
   { src: "/Gallery Images/IMG-20260831-WA0017.jpg", alt: "Alumni sharing placement interview tips" },
-  { src: "/Gallery Images/IMG-20260831-WA0018.jpg", alt: "Hands-on SEO audit lab practice" },
-  { src: "/Gallery Images/IMG-20260831-WA0019.jpg", alt: "Celebrating student project completions" },
   { src: "/Gallery Images/IMG-20260831-WA0020.jpg", alt: "Mentorship guidance for digital campaign launch" },
 ];
 
@@ -105,7 +103,7 @@ export default function LifeAtPage() {
                 <h3 className="font-heading text-lg font-bold text-ink-900 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-ink-500 leading-relaxed">
+                <p className="text-base text-ink-500 leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -115,7 +113,7 @@ export default function LifeAtPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-brand-blue to-brand-blue/90 py-16 md:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-r from-brand-blue to-brand-blue/90 section-padding">
         <div className="section-container relative z-10 text-center">
           <h2 className="heading-lg text-white mb-4">
             Come Experience It Yourself

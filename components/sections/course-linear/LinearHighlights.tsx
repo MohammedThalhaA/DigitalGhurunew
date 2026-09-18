@@ -72,7 +72,7 @@ export default function LinearHighlights({ highlights }: LinearHighlightsProps) 
                   <h3 className="font-heading text-lg font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200">
                     {highlight.title}
                   </h3>
-                  <p className="text-sm text-ink-500 leading-relaxed">
+                  <p className="text-base text-ink-500 leading-relaxed">
                     {highlight.description}
                   </p>
                 </div>

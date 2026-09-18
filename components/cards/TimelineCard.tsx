@@ -14,7 +14,7 @@ export default function TimelineCard({ year, milestone }: TimelineCardProps) {
           {year}
         </div>
         {/* Milestone */}
-        <p className="text-sm text-ink-600 leading-relaxed">{milestone}</p>
+        <p className="text-base text-ink-600 leading-relaxed">{milestone}</p>
         {/* Connector dot */}
         <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-brand-blue border-2 border-white shadow-sm" />
       </div>

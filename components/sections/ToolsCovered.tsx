@@ -166,7 +166,7 @@ export default function ToolsCovered() {
                   <h3 className="font-heading text-base font-bold text-ink-900">
                     {tool.name}
                   </h3>
-                  <p className="text-xs text-ink-500 leading-relaxed">
+                  <p className="text-sm text-ink-500 leading-relaxed">
                     {tool.description}
                   </p>
                 </div>

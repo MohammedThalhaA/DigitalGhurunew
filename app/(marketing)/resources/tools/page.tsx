@@ -129,7 +129,7 @@ export default function DigitalMarketingToolsPage() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans">
       {/* ─── HEADER ─── */}
-      <header className="bg-white border-b border-slate-200 py-16 md:py-24">
+      <header className="bg-white border-b border-slate-200 section-padding">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-heading font-black text-slate-900 tracking-tight leading-tight mb-4">

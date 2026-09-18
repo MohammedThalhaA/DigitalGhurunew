@@ -92,7 +92,7 @@ export default function ManualEnrollmentForm({ users, courses }: ManualEnrollmen
       <div className="space-y-4">
         <div>
           <h3 className="text-lg font-bold text-ink-900">Select Student</h3>
-          <p className="text-sm text-ink-500">Choose the student who will receive access.</p>
+          <p className="text-base text-ink-500">Choose the student who will receive access.</p>
         </div>
 
         <div className="relative">
@@ -136,7 +136,7 @@ export default function ManualEnrollmentForm({ users, courses }: ManualEnrollmen
                   <p className={`font-bold truncate ${isSelected ? "text-brand-blue" : "text-ink-900"}`}>
                     {user.name}
                   </p>
-                  <p className="text-xs text-ink-500 truncate">{user.email}</p>
+                  <p className="text-sm text-ink-500 truncate">{user.email}</p>
                 </div>
                 {isSelected && (
                   <CheckCircle2 className="h-5 w-5 text-brand-blue flex-shrink-0" />
@@ -151,7 +151,7 @@ export default function ManualEnrollmentForm({ users, courses }: ManualEnrollmen
       <div className="space-y-4 pt-6 border-t border-ink-100">
         <div>
           <h3 className="text-lg font-bold text-ink-900">Select Course</h3>
-          <p className="text-sm text-ink-500">Which course should they be enrolled in?</p>
+          <p className="text-base text-ink-500">Which course should they be enrolled in?</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -217,7 +217,7 @@ export default function ManualEnrollmentForm({ users, courses }: ManualEnrollmen
       <div className="space-y-4 pt-6 border-t border-ink-100">
         <div>
           <h3 className="text-lg font-bold text-ink-900">Price Details</h3>
-          <p className="text-sm text-ink-500">Record the amount paid for this enrollment.</p>
+          <p className="text-base text-ink-500">Record the amount paid for this enrollment.</p>
         </div>
         
         <div className="max-w-md">

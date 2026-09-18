@@ -17,11 +17,13 @@ import { useSession } from "next-auth/react";
 interface NavSubItem {
   label: string;
   href: string;
+  target?: string;
 }
 
 interface NavDropdownItem {
   label: string;
   href?: string;
+  target?: string;
   children?: NavSubItem[];
 }
 
@@ -31,14 +33,11 @@ interface NavItem {
   children?: NavDropdownItem[];
 }
 
-const navItems: NavItem[] = [
+const staticNavItems: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Courses",
-    children: [
-      { label: "AI-Powered Digital Marketing", href: "/courses/ai-powered-digital-marketing" },
-      { label: "React JS Full Stack Development", href: "/courses/react-js-full-stack-development" },
-    ],
+    children: [], // filled dynamically
   },
   {
     label: "Resources",
@@ -50,6 +49,19 @@ const navItems: NavItem[] = [
   { label: "Contact Us", href: "/contact" },
   { label: "Careers", href: "/careers" },
 ];
+
+function buildNavItems(courses: { title: string; slug: string }[]): NavItem[] {
+  const courseChildren: NavDropdownItem[] = [];
+  for (const course of courses) {
+    courseChildren.push(
+      { label: course.title, href: `/courses/${course.slug}` },
+      { label: `${course.title} in Hyderabad`, href: `/courses/${course.slug}/hyderabad`, target: "_blank" },
+    );
+  }
+  return staticNavItems.map((item) =>
+    item.label === "Courses" ? { ...item, children: courseChildren } : item
+  );
+}
 
 /* ─── Dropdown Animations ─── */
 const dropdownVariants = {
@@ -109,6 +121,8 @@ function DesktopSubDropdown({ item }: { item: NavDropdownItem }) {
               <Link
                 key={child.href}
                 href={child.href}
+                target={child.target}
+                rel={child.target === "_blank" ? "noopener noreferrer" : undefined}
                 className="block px-4 py-2.5 font-body text-sm text-ink-700 hover:bg-brand-blue/5 hover:text-brand-blue rounded-lg transition-colors duration-150"
               >
                 {child.label}
@@ -154,6 +168,8 @@ function DesktopDropdown({ item }: { item: NavItem }) {
                 <Link
                   key={child.href || child.label}
                   href={child.href || "#"}
+                  target={child.target}
+                  rel={child.target === "_blank" ? "noopener noreferrer" : undefined}
                   className="block px-4 py-2.5 font-body text-base text-ink-700 hover:bg-brand-blue/5 hover:text-brand-blue rounded-lg transition-colors duration-150"
                 >
                   {child.label}
@@ -202,7 +218,9 @@ function MobileAccordion({
                 <Link
                   key={child.href}
                   href={child.href}
-                  onClick={onClose}
+                  target={child.target}
+                  rel={child.target === "_blank" ? "noopener noreferrer" : undefined}
+                  onClick={child.target === "_blank" ? undefined : onClose}
                   className="block px-4 py-2.5 text-sm text-ink-500 hover:text-brand-blue transition-colors"
                 >
                   {child.label}
@@ -287,7 +305,26 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [navItems, setNavItems] = useState<NavItem[]>(staticNavItems);
   const pathname = usePathname();
+
+  // Fetch courses and build dynamic nav
+  useEffect(() => {
+    async function fetchCourses() {
+      try {
+        const res = await fetch("/api/courses");
+        if (res.ok) {
+          const courses = await res.json();
+          if (Array.isArray(courses) && courses.length > 0) {
+            setNavItems(buildNavItems(courses));
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch courses for nav:", err);
+      }
+    }
+    fetchCourses();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

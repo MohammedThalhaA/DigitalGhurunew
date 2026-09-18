@@ -206,7 +206,7 @@ export default function SettingsForm() {
                   <div className="h-16 w-16 relative rounded-full overflow-hidden border border-ink-200">
                     <Image src={profile.image} alt="Profile" fill className="object-cover" />
                   </div>
-                  <span className="text-sm text-ink-500">Current avatar preview</span>
+                  <span className="text-base text-ink-500">Current avatar preview</span>
                 </div>
               )}
             </div>

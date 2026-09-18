@@ -37,7 +37,7 @@ export default function BlogCard({
 
       <div className="flex flex-col flex-1 p-5">
         {/* Meta Row */}
-        <div className="flex items-center gap-3 text-xs text-ink-400 mb-3">
+        <div className="flex items-center gap-3 text-sm text-ink-400 mb-3">
           <span>{date}</span>
           {readTime && (
             <>
@@ -56,7 +56,7 @@ export default function BlogCard({
         </h3>
 
         {/* Excerpt */}
-        <p className="text-sm text-ink-500 leading-relaxed flex-1 line-clamp-3 mb-4">
+        <p className="text-base text-ink-500 leading-relaxed flex-1 line-clamp-3 mb-4">
           {excerpt}
         </p>
 

@@ -39,7 +39,7 @@ export default function MediaAndFAQ({ course }: { course?: any }) {
   const displayFaqs = course?.faqs && course.faqs.length > 0 ? course.faqs : faqs;
 
   return (
-    <section className="py-20 lg:py-32 bg-[#FAFAFA] relative overflow-hidden">
+    <section className="section-padding bg-[#FAFAFA] relative overflow-hidden">
       {/* Premium glowing background blobs */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-[100px] opacity-70 -translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[100px] opacity-70 translate-x-1/3 pointer-events-none" />

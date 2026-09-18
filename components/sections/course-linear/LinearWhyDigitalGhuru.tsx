@@ -92,7 +92,7 @@ export default function LinearWhyDigitalGhuru({ title, reasons }: LinearWhyDigit
             </div>
             <div>
               <h3 className="font-heading font-bold text-ink-900 text-base">{reason.title}</h3>
-              <p className="font-body text-sm text-ink-500 leading-relaxed mt-1">{reason.description}</p>
+              <p className="font-body text-base text-ink-500 leading-relaxed mt-1">{reason.description}</p>
             </div>
           </div>
         ))}
@@ -109,7 +109,7 @@ function TreeCard({ iconName, title, description, color, align }: { iconName?: s
         {iconName ? <IconRenderer name={iconName} className="h-6 w-6" /> : null}
       </div>
       <h3 className="font-heading font-bold text-ink-900 text-lg mb-2 group-hover:text-brand-blue transition-colors">{title}</h3>
-      <p className="font-body text-sm text-ink-500 leading-relaxed">{description}</p>
+      <p className="font-body text-base text-ink-500 leading-relaxed">{description}</p>
     </div>
   );
 }

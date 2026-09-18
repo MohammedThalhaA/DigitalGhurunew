@@ -110,7 +110,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
         description="Join a cutting-edge institute that bridges the gap between education and industry. Whether you're an expert in digital marketing, full-stack development, or career counseling—scale your expertise alongside top industry leaders."
         imageUrl="/images/careers_hero.jpg" 
         primaryCta={{ label: "Explore Open Openings", href: "#open-roles" }}
-        secondaryCta={{ label: "Submit Speculative Application", href: "#speculative-form" }}
+        secondaryCta={{ label: "Submit Application", href: "#speculative-form" }}
       />
 
       {/* Why Join Us */}
@@ -144,7 +144,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                       <h3 className="font-heading text-lg font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200">
                         {benefit.title}
                       </h3>
-                      <p className="text-sm text-ink-500 leading-relaxed">
+                      <p className="text-base text-ink-500 leading-relaxed">
                         {benefit.description}
                       </p>
                     </div>
@@ -170,8 +170,8 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
 
           <div className="max-w-4xl mx-auto space-y-6">
             {jobs.length === 0 ? (
-              <div className="text-center p-12 bg-white rounded-3xl border border-ink-100 shadow-sm">
-                <p className="text-ink-500">No active job openings at the moment. Feel free to submit a speculative application below!</p>
+              <div className="py-12 text-center bg-white rounded-3xl border border-ink-200">
+                <p className="text-ink-500">No active job openings at the moment. Feel free to submit an application below!</p>
               </div>
             ) : jobs.map((job) => {
               const isExpanded = expandedJobId === job.id;
@@ -196,7 +196,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                       <h3 className="font-heading text-xl md:text-2xl font-bold text-ink-900">
                         {job.title}
                       </h3>
-                      <div className="flex flex-wrap items-center gap-6 text-sm text-ink-500 font-medium">
+                      <div className="flex flex-wrap items-center gap-6 text-base text-ink-500 font-medium">
                         <span className="flex items-center gap-2">
                           <MapPin className="h-4 w-4 text-ink-400" />
                           {job.location}
@@ -242,7 +242,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                                 {job.responsibilities.map((resp: string, idx: number) => (
                                   <li key={idx} className="flex items-start gap-3">
                                     <div className="mt-2 w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" />
-                                    <span className="text-sm text-ink-600 leading-relaxed">{resp}</span>
+                                    <span className="text-base text-ink-600 leading-relaxed">{resp}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -257,7 +257,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                                 {job.requirements.map((req: string, idx: number) => (
                                   <li key={idx} className="flex items-start gap-3">
                                     <div className="mt-2 w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" />
-                                    <span className="text-sm text-ink-600 leading-relaxed">{req}</span>
+                                    <span className="text-base text-ink-600 leading-relaxed">{req}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -314,7 +314,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                   <span className="relative z-10">{process.step}</span>
                 </div>
                 <h3 className="font-heading text-lg font-bold text-ink-900">{process.label}</h3>
-                <p className="text-sm text-ink-500 leading-relaxed px-4">{process.desc}</p>
+                <p className="text-base text-ink-500 leading-relaxed px-4">{process.desc}</p>
               </div>
             ))}
           </div>
@@ -336,11 +336,11 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                     className="space-y-6"
                   >
                     <div className="text-center pb-6 border-b border-ink-100">
-                      <h3 className="font-heading text-2xl font-bold text-ink-900 mb-3">
+                      <h3 className="font-heading text-2xl font-bold text-ink-900 mb-2">
                         Submit Your Application
                       </h3>
-                      <p className="text-sm text-ink-500">
-                        Don&apos;t find an active opening matching your domain? Submit a speculative application and we will reach out if a role opens.
+                      <p className="text-ink-500 text-sm md:text-base leading-relaxed">
+                        Don&apos;t find an active opening matching your domain? Submit an application and we will reach out if a role opens.
                       </p>
                     </div>
 
@@ -405,7 +405,8 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                           {jobs.map((job) => (
                             <option key={job.slug} value={job.slug}>{job.title}</option>
                           ))}
-                          <option value="speculative">Other / Speculative</option>
+                          <option value="marketing">Performance Marketing</option>
+                          <option value="speculative">Other / General Application</option>
                         </select>
                       </div>
                     </div>
@@ -428,7 +429,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 mt-4 rounded-xl bg-brand-blue text-white font-heading font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-700 shadow-md shadow-brand-blue/20 transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed"
+                      className="w-full py-4 mt-4 rounded-xl bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-heading font-bold text-base flex items-center justify-center gap-2 hover:brightness-110 shadow-md shadow-orange-500/20 transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>

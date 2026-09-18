@@ -58,7 +58,7 @@ export default function Timeline({
                   <div className="font-display text-2xl font-bold text-brand-blue mb-2">
                     {m.year}
                   </div>
-                  <p className="text-sm text-ink-600 leading-relaxed">
+                  <p className="text-base text-ink-600 leading-relaxed">
                     {m.milestone}
                   </p>
                 </div>

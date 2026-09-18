@@ -58,7 +58,7 @@ export default function WhyUsDifferentiators({ course }: { course?: any }) {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-white relative">
+    <section className="section-padding bg-white relative">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
           

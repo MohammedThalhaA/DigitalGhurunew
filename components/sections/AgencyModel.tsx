@@ -98,7 +98,7 @@ export default function AgencyModel() {
                 <h3 className="font-heading text-lg font-bold text-ink-900 mb-3 group-hover:text-brand-blue transition-colors duration-200">
                   {step.title}
                 </h3>
-                <p className="text-sm text-ink-500 leading-relaxed max-w-xs">
+                <p className="text-base text-ink-500 leading-relaxed max-w-xs">
                   {step.description}
                 </p>
               </motion.div>

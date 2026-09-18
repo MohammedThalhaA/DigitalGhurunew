@@ -20,7 +20,7 @@ export default function PremiumCurriculum({ curriculum }: PremiumCurriculumProps
   };
 
   return (
-    <section id="modules" className="py-24 bg-white overflow-hidden">
+    <section id="modules" className="section-padding bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

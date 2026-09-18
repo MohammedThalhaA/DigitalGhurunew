@@ -99,7 +99,7 @@ export default function FeesAndInclusions({ course }: { course?: any }) {
       </div>
 
       {/* Bottom White Section: Payment & Inclusions */}
-      <div className="bg-[#FAFAFA] py-20 lg:py-28 relative border-b border-ink-200">
+      <div className="bg-[#FAFAFA] section-padding relative border-b border-ink-200">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             

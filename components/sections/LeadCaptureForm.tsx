@@ -26,11 +26,10 @@ export default function LeadCaptureForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
 
-    // Simple validation
     if (!formData.name || !formData.email || !formData.phone) {
       setErrorMsg("Please fill out all required fields.");
       return;
@@ -43,11 +42,23 @@ export default function LeadCaptureForm() {
 
     setIsSubmitting(true);
 
-    // Simulate API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to submit form.");
+      }
+
       setIsSuccess(true);
-    }, 1500);
+    } catch (err: any) {
+      setErrorMsg(err.message || "An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -81,7 +92,7 @@ export default function LeadCaptureForm() {
                   <PhoneCall className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-xs text-ink-400 font-semibold uppercase">Call Admissions</p>
+                  <p className="text-sm text-ink-400 font-semibold uppercase">Call Admissions</p>
                   <a href="tel:+918825948859" className="text-sm font-bold hover:text-brand-blue transition-colors">
                     +91 88259 48859
                   </a>
@@ -93,7 +104,7 @@ export default function LeadCaptureForm() {
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-xs text-ink-400 font-semibold uppercase">Email Us</p>
+                  <p className="text-sm text-ink-400 font-semibold uppercase">Email Us</p>
                   <a href="mailto:contact@digitalghuru.in" className="text-sm font-bold hover:text-brand-blue transition-colors">
                     contact@digitalghuru.in
                   </a>
@@ -124,7 +135,7 @@ export default function LeadCaptureForm() {
                       <h3 className="font-heading text-xl font-bold text-ink-900 mb-1">
                         Book a Free Demo Seat
                       </h3>
-                      <p className="text-sm text-ink-500">
+                      <p className="text-base text-ink-500">
                         Fill in your details below and we will contact you to block your seat.
                       </p>
                     </div>
@@ -231,7 +242,7 @@ export default function LeadCaptureForm() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 rounded-xl bg-brand-blue text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-brand-blue/90 shadow-md shadow-brand-blue/20 transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed"
+                      className="w-full py-4 rounded-xl bg-gradient-to-r from-[#FFB800] to-[#FF5C00] text-white font-semibold text-sm flex items-center justify-center gap-2 hover:brightness-110 shadow-md shadow-orange-500/20 transition-all duration-200 disabled:opacity-75 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
@@ -260,7 +271,7 @@ export default function LeadCaptureForm() {
                       <h3 className="font-heading text-2xl font-bold text-ink-900">
                         Seat Reservation Successful!
                       </h3>
-                      <p className="text-sm text-ink-500 max-w-sm mx-auto leading-relaxed">
+                      <p className="text-base text-ink-500 max-w-sm mx-auto leading-relaxed">
                         Thank you, <span className="font-semibold text-ink-900">{formData.name}</span>. An admissions coordinator has reserved your demo seat and will call you at <span className="font-semibold text-ink-900">{formData.phone}</span> within 24 hours.
                       </p>
                     </div>

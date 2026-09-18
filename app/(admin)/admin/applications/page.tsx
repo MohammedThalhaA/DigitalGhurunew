@@ -47,7 +47,7 @@ export default async function AdminApplicationsPage() {
                     </span>
                   </div>
                   
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-ink-500 font-medium">
+                  <div className="flex flex-wrap items-center gap-4 text-base text-ink-500 font-medium">
                     <a href={`mailto:${app.email}`} className="hover:text-brand-blue hover:underline">{app.email}</a>
                     <span>•</span>
                     <a href={`tel:${app.phone}`} className="hover:text-brand-blue hover:underline">{app.phone}</a>
@@ -60,7 +60,7 @@ export default async function AdminApplicationsPage() {
 
                   {app.bio && (
                     <div className="pt-2">
-                      <p className="text-sm text-ink-600 bg-white border border-ink-200 p-3 rounded-xl italic relative">
+                      <p className="text-base text-ink-600 bg-white border border-ink-200 p-3 rounded-xl italic relative">
                         <span className="absolute -top-2 left-3 bg-white px-1 text-[10px] font-bold text-ink-400 uppercase tracking-wider">Cover Note</span>
                         {app.bio}
                       </p>

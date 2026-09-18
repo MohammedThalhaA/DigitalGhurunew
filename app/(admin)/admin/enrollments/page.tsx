@@ -86,7 +86,7 @@ export default async function AdminEnrollmentsPage() {
                           <span className="font-display font-bold text-ink-900">
                             {enrollment.user_name || "Unknown"}
                           </span>
-                          <span className="text-sm text-ink-500 mt-0.5">
+                          <span className="text-base text-ink-500 mt-0.5">
                             {enrollment.user_email}
                           </span>
                         </div>
@@ -118,7 +118,7 @@ export default async function AdminEnrollmentsPage() {
                         ₹{Number(enrollment.pricePaid || 0).toLocaleString()}
                       </span>
                     </td>
-                    <td className="p-4 text-right text-sm text-ink-600">
+                    <td className="p-4 text-right text-base text-ink-600">
                       <div className="flex items-center justify-end gap-1.5">
                         <Calendar className="h-3.5 w-3.5 text-ink-400" />
                         {new Date(enrollment.createdAt).toLocaleDateString()}

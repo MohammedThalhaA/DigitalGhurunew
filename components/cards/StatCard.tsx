@@ -66,7 +66,7 @@ export default function StatCard({
         {displayValue.toLocaleString()}
         {suffix}
       </div>
-      <p className="font-body text-sm md:text-base text-ink-500">{label}</p>
+      <p className="font-body text-base md:text-lg text-ink-500">{label}</p>
     </div>
   );
 }

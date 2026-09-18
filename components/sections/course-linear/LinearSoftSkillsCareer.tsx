@@ -111,7 +111,7 @@ export default function LinearSoftSkillsCareer({
                     <h3 className="font-heading text-xl font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-ink-500 leading-relaxed">
+                    <p className="text-base text-ink-500 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
@@ -164,7 +164,7 @@ export default function LinearSoftSkillsCareer({
                     <h3 className="font-heading text-xl font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-ink-500 leading-relaxed">
+                    <p className="text-base text-ink-500 leading-relaxed">
                       {item.description}
                     </p>
                   </div>

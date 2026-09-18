@@ -63,7 +63,7 @@ export default function NextBatchGrid({ course }: { course?: any }) {
   }
 
   return (
-    <section className="py-20 relative bg-[#FAFAFA] overflow-hidden">
+    <section className="section-padding relative bg-[#FAFAFA] overflow-hidden">
       {/* Background Decor */}
       <div className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-50 to-[#FAFAFA] -z-10" />
       <div className="absolute top-0 right-0 opacity-[0.03] pointer-events-none">

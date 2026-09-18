@@ -26,9 +26,26 @@ import PhotoGallery from "@/components/sections/PhotoGallery";
 /* ─── Mock Data & Branding Configs ─── */
 
 const hiringPartners = [
-  { name: "Zoho", logoUrl: "" },
-  { name: "Freshworks", logoUrl: "" },
-  { name: "Atriowings", logoUrl: "/atriowings.png" },
+  { name: "NEWS GHURU", logoUrl: "/partners/NEWS GHURU LOGO PNG.png" },
+  { name: "PRS", logoUrl: "/partners/PRS LOGO.png" },
+  { name: "Blessence", logoUrl: "/partners/blessence.png" },
+  { name: "Brand 03", logoUrl: "/partners/brand03.png" },
+  { name: "Brand 1", logoUrl: "/partners/brand1.png" },
+  { name: "Dhara", logoUrl: "/partners/dhara.jpeg" },
+  { name: "Divine", logoUrl: "/partners/divine.jpeg" },
+  { name: "Joyson Trust", logoUrl: "/partners/joysontrust.png" },
+  { name: "MCars", logoUrl: "/partners/mcars.png" },
+  { name: "Meera Filngs", logoUrl: "/partners/meera filngs.png" },
+  { name: "Miniso", logoUrl: "/partners/miniso poster logo.png" },
+  { name: "Mithra", logoUrl: "/partners/mithra.jpeg" },
+  { name: "MK", logoUrl: "/partners/mk.png" },
+  { name: "New Brand 3", logoUrl: "/partners/newbrand3.png" },
+  { name: "Sai", logoUrl: "/partners/sai.jpeg" },
+  { name: "School", logoUrl: "/partners/school.png" },
+  { name: "Sissers", logoUrl: "/partners/sissers.png" },
+  { name: "Sivaji Sons", logoUrl: "/partners/sivajisons.png" },
+  { name: "UE Logo", logoUrl: "/partners/uelogo.png" },
+  { name: "VR Tech", logoUrl: "/partners/vrtech.png" },
 ];
 
 const galleryImages = [
@@ -45,8 +62,6 @@ const galleryImages = [
   { src: "/Gallery Images/IMG-20260831-WA0015.jpg", alt: "Mentorship and career counseling discussion" },
   { src: "/Gallery Images/IMG-20260831-WA0016.jpg", alt: "Interactive tech session on generative AI marketing" },
   { src: "/Gallery Images/IMG-20260831-WA0017.jpg", alt: "Alumni sharing placement interview tips" },
-  { src: "/Gallery Images/IMG-20260831-WA0018.jpg", alt: "Hands-on SEO audit lab practice" },
-  { src: "/Gallery Images/IMG-20260831-WA0019.jpg", alt: "Celebrating student project completions" },
   { src: "/Gallery Images/IMG-20260831-WA0020.jpg", alt: "Mentorship guidance for digital campaign launch" },
 ];
 
@@ -388,7 +403,7 @@ export default function HomePage() {
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
-                    <span className="text-ink-700 text-sm md:text-base">{item}</span>
+                    <span className="text-ink-700 text-base md:text-lg">{item}</span>
                   </div>
                 ))}
               </div>

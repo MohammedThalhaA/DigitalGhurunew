@@ -137,7 +137,7 @@ export default async function AdminUserDetailsPage({ params }: { params: { id: s
             </h2>
             
             {enrollments.length === 0 ? (
-              <p className="text-sm text-ink-500 italic bg-ink-50 p-4 rounded-xl text-center">
+              <p className="text-base text-ink-500 italic bg-ink-50 p-4 rounded-xl text-center">
                 This user is not enrolled in any courses yet.
               </p>
             ) : (
@@ -166,7 +166,7 @@ export default async function AdminUserDetailsPage({ params }: { params: { id: s
                           <p className="font-bold text-ink-900">
                             {enrollment.course_title}
                           </p>
-                          <p className="text-xs text-ink-500 mt-1">
+                          <p className="text-sm text-ink-500 mt-1">
                             Enrolled on {new Date(enrollment.createdAt).toLocaleDateString()}
                           </p>
                         </div>

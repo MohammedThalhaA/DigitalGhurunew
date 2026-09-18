@@ -77,7 +77,7 @@ export default function StickyEnrollmentCard({ originalPrice, discountedPrice, i
         {/* This course includes */}
         <div>
           <h4 className="font-bold text-ink-900 mb-4 text-lg">This course includes:</h4>
-          <ul className="space-y-3.5 text-sm text-ink-600 font-medium">
+          <ul className="space-y-3.5 text-base text-ink-600 font-medium">
             <li className="flex items-center gap-3">
               <MonitorPlay className="h-4 w-4 shrink-0" /> Live & Recorded Sessions
             </li>

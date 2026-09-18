@@ -4,7 +4,7 @@ import { ArrowRight, PhoneCall, Laptop, Bot, FolderKanban, BriefcaseBusiness, Ch
 
 export default function PremiumHighlights() {
   return (
-    <section id="highlights" className="py-24 bg-white">
+    <section id="highlights" className="section-padding bg-white">
       <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         
         {/* Header */}

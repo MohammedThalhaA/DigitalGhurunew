@@ -42,7 +42,7 @@ export default function HeroSection({
       </div>
 
       <div className="section-container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-72px)] py-16 md:py-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-72px)] py-16 md:section-padding">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

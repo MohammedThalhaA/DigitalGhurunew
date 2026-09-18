@@ -32,7 +32,7 @@ export default function WhoShouldJoin({ whoIsThisFor }: WhoShouldJoinProps) {
             
             <ul className="space-y-3 bg-ink-50/30 p-5 rounded-2xl">
               {persona.points.map((point, pIdx) => (
-                <li key={pIdx} className="flex gap-3 items-start text-sm text-ink-700 font-bold">
+                <li key={pIdx} className="flex gap-3 items-start text-base text-ink-700 font-bold">
                   <span className="text-brand-blue font-black mt-0.5">•</span>
                   <span className="leading-tight">{point}</span>
                 </li>

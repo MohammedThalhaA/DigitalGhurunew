@@ -7,7 +7,6 @@ import {
   Instagram,
   Linkedin,
   Twitter,
-  Youtube,
 } from "lucide-react";
 
 /* ─── Footer Data (PLACEHOLDER: Replace with real Digital Ghuru data) ─── */
@@ -20,6 +19,11 @@ const locations = [
   {
     name: "Ameerpet Office",
     address: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad - 500073",
+    phone: "+91 8825948859",
+  },
+  {
+    name: "Korattur Office",
+    address: '2nd Floor, No. 1A, "Gurudev Complex", S1, 57th St, Venkatraman Nagar, Korattur, Chennai 600050',
     phone: "+91 8825948859",
   }
 ];
@@ -39,11 +43,10 @@ const courseLinks = [
 
 /* PLACEHOLDER: Replace with real Digital Ghuru social media URLs */
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com/digitalghuru", label: "Facebook", hoverClass: "hover:bg-[#1877F2]" },
-  { icon: Instagram, href: "https://instagram.com/digitalghuru", label: "Instagram", hoverClass: "hover:bg-[#E4405F]" },
+  { icon: Facebook, href: "https://www.facebook.com/share/1D1vTjqQWX/", label: "Facebook", hoverClass: "hover:bg-[#1877F2]" },
+  { icon: Instagram, href: "https://www.instagram.com/digitalghuru?igsi=MWlqanV6MnZ4cW1vYg==", label: "Instagram", hoverClass: "hover:bg-[#E4405F]" },
   { icon: Linkedin, href: "https://linkedin.com/company/digitalghuru", label: "LinkedIn", hoverClass: "hover:bg-[#0A66C2]" },
-  { icon: Twitter, href: "https://twitter.com/digitalghuru", label: "Twitter", hoverClass: "hover:bg-[#1DA1F2]" },
-  { icon: Youtube, href: "https://youtube.com/@digitalghuru", label: "YouTube", hoverClass: "hover:bg-[#FF0000]" },
+  { icon: Twitter, href: "https://x.com/digital_ghuru?s=20", label: "X", hoverClass: "hover:bg-[#000000]" },
 ];
 
 export default function Footer() {
@@ -54,22 +57,22 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* ── Column 1: Locations ── */}
           <div>
-            <h4 className="font-display text-lg font-bold text-white mb-6">
+            <h4 className="font-display text-xl font-bold text-white mb-6">
               Our Campus
             </h4>
             <div className="space-y-6">
               {locations.map((loc) => (
                 <div key={loc.name} className="space-y-2">
-                  <h5 className="font-heading font-semibold text-white text-sm">
+                  <h5 className="font-heading font-semibold text-white text-base">
                     {loc.name}
                   </h5>
-                  <div className="flex items-start gap-2 text-white/90 text-sm">
-                    <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2 text-white/90 text-base">
+                    <MapPin className="h-5 w-5 shrink-0 mt-0.5" />
                     <span>{loc.address}</span>
                   </div>
                   <a
                     href={`tel:${loc.phone.replace(/\\s/g, "")}`}
-                    className="flex items-center gap-2 text-white/90 text-sm hover:text-brand-gold transition-colors duration-200"
+                    className="flex items-center gap-2 text-white/90 text-base hover:text-brand-gold transition-colors duration-200"
                   >
                     <Phone className="h-4 w-4 shrink-0" />
                     <span>{loc.phone}</span>
@@ -81,7 +84,7 @@ export default function Footer() {
 
           {/* ── Column 2: Quick Links ── */}
           <div>
-            <h4 className="font-display text-lg font-bold text-white mb-6">
+            <h4 className="font-display text-xl font-bold text-white mb-6">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -89,7 +92,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/90 hover:text-brand-gold transition-colors duration-200"
+                    className="text-base text-white/90 hover:text-brand-gold transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -100,7 +103,7 @@ export default function Footer() {
 
           {/* ── Column 3: Course Links ── */}
           <div>
-            <h4 className="font-display text-lg font-bold text-white mb-6">
+            <h4 className="font-display text-xl font-bold text-white mb-6">
               Our Courses
             </h4>
             <ul className="space-y-3">
@@ -108,7 +111,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/90 hover:text-brand-gold transition-colors duration-200"
+                    className="text-base text-white/90 hover:text-brand-gold transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -129,7 +132,7 @@ export default function Footer() {
             </Link>
 
             {/* PLACEHOLDER: Replace with real Digital Ghuru description */}
-            <p className="font-body text-sm text-white/90 leading-relaxed mb-6">
+            <p className="font-body text-base text-white/90 leading-relaxed mb-6">
               Digital Ghuru is a premier digital marketing institute offering
               industry-leading courses with hands-on training, expert mentors,
               and dedicated placement support for every student.
@@ -157,11 +160,11 @@ export default function Footer() {
       {/* ── Bottom Bar ── */}
       <div className="border-t border-white/10">
         <div className="section-container py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-sm text-white/70">
+          <p className="text-base text-white/70">
             © {new Date().getFullYear()} Digital Ghuru. All rights reserved.
           </p>
           {/* PLACEHOLDER: Optional credit line */}
-          <p className="text-sm text-white/60">
+          <p className="text-base text-white/60">
             Crafted with passion for digital excellence
           </p>
         </div>

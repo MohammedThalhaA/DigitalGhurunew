@@ -89,7 +89,7 @@ export default function LinearWhoIsThisFor({ audiences }: LinearWhoIsThisForProp
                     {audience.points.map((point, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <div className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${dotColor}`} />
-                        <span className="text-sm text-ink-500 leading-relaxed">
+                        <span className="text-base text-ink-500 leading-relaxed">
                           {point}
                         </span>
                       </li>

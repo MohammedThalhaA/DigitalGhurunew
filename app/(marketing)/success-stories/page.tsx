@@ -81,7 +81,7 @@ export default function SuccessStoriesPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-brand-blue to-brand-blue/90 py-16 md:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-r from-brand-blue to-brand-blue/90 section-padding">
         <div className="section-container relative z-10 text-center">
           <h2 className="heading-lg text-white mb-4">
             Your Success Story Starts Here

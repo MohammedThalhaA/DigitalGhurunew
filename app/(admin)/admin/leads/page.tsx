@@ -60,10 +60,10 @@ export default async function AdminLeadsPage() {
                     </td>
                     <td className="p-4">
                       <div className="space-y-1">
-                        <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 text-sm text-ink-600 hover:text-brand-blue transition-colors">
+                        <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 text-base text-ink-600 hover:text-brand-blue transition-colors">
                           <Mail className="h-3 w-3 text-ink-400" /> {lead.email}
                         </a>
-                        <a href={`tel:${lead.phone}`} className="flex items-center gap-1.5 text-sm text-ink-600 hover:text-brand-blue transition-colors">
+                        <a href={`tel:${lead.phone}`} className="flex items-center gap-1.5 text-base text-ink-600 hover:text-brand-blue transition-colors">
                           <Phone className="h-3 w-3 text-ink-400" /> {lead.phone}
                         </a>
                       </div>
@@ -74,7 +74,7 @@ export default async function AdminLeadsPage() {
                       </span>
                     </td>
                     <td className="p-4 pr-6">
-                      <span className="flex items-center gap-1.5 text-sm text-ink-500">
+                      <span className="flex items-center gap-1.5 text-base text-ink-500">
                         <Calendar className="h-4 w-4 text-ink-400" />
                         {new Date(lead.createdAt).toLocaleDateString()}
                       </span>

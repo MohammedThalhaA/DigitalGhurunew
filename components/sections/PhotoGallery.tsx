@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X as XIcon } from "lucide-react";
+import { X as XIcon, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PhotoGalleryProps {
   title?: string;
@@ -40,6 +40,36 @@ export default function PhotoGallery({
 
     return () => clearInterval(interval);
   }, [images, layout, isPaused]);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      if (e.key === "ArrowLeft") {
+        setLightboxIndex(lightboxIndex === 0 ? images.length - 1 : lightboxIndex - 1);
+      } else if (e.key === "ArrowRight") {
+        setLightboxIndex(lightboxIndex === images.length - 1 ? 0 : lightboxIndex + 1);
+      } else if (e.key === "Escape") {
+        setLightboxIndex(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex, images.length]);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (lightboxIndex !== null) {
+      setLightboxIndex(lightboxIndex === 0 ? images.length - 1 : lightboxIndex - 1);
+    }
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (lightboxIndex !== null) {
+      setLightboxIndex(lightboxIndex === images.length - 1 ? 0 : lightboxIndex + 1);
+    }
+  };
 
   // Helper to render individual image items
   const renderImageItem = (img: { src: string; alt: string }, idx: number) => (
@@ -132,16 +162,35 @@ export default function PhotoGallery({
               >
                 <button
                   onClick={() => setLightboxIndex(null)}
-                  className="absolute -top-12 right-0 text-white hover:text-brand-gold transition-colors p-2"
+                  className="absolute -top-12 right-0 text-white hover:text-brand-orange transition-colors p-2 z-50"
                   aria-label="Close lightbox"
                 >
                   <XIcon className="h-8 w-8" />
                 </button>
+
+                {/* Prev Button */}
+                <button
+                  onClick={handlePrev}
+                  className="absolute left-4 md:-left-16 top-1/2 -translate-y-1/2 p-3 bg-brand-blue/80 hover:bg-brand-orange text-white rounded-full backdrop-blur-sm transition-colors z-50 shadow-lg"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-8 w-8" />
+                </button>
+
                 <img
                   src={images[lightboxIndex].src}
                   alt={images[lightboxIndex].alt}
                   className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
                 />
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNext}
+                  className="absolute right-4 md:-right-16 top-1/2 -translate-y-1/2 p-3 bg-brand-blue/80 hover:bg-brand-orange text-white rounded-full backdrop-blur-sm transition-colors z-50 shadow-lg"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-8 w-8" />
+                </button>
               </motion.div>
             </motion.div>
           )}

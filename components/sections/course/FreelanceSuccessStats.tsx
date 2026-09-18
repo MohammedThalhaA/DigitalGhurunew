@@ -16,7 +16,7 @@ const freelanceSuccess = [
 
 export default function FreelanceSuccessStats() {
   return (
-    <section className="py-20 lg:py-28 bg-white relative">
+    <section className="section-padding bg-white relative">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Placement Stats Grid */}

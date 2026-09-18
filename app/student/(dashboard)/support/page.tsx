@@ -57,7 +57,7 @@ export default function SupportPage() {
               <Mail className="h-8 w-8" />
             </div>
             <h3 className="text-lg font-bold text-ink-900 mb-2">Email Support</h3>
-            <p className="text-sm text-ink-500 mb-6">
+            <p className="text-base text-ink-500 mb-6">
               Send us a detailed email regarding your issue and our team will get back to you within 24 hours.
             </p>
             <Button variant="primary" className="w-full">contact@digitalghuru.in</Button>

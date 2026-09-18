@@ -97,7 +97,7 @@ export default function CreateUserPage() {
                 className="w-full px-4 py-3 rounded-xl border border-ink-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all"
                 placeholder="••••••••"
               />
-              <p className="text-xs text-ink-400">The user can change this later in their profile settings.</p>
+              <p className="text-sm text-ink-400">The user can change this later in their profile settings.</p>
             </div>
 
             <div className="space-y-2">

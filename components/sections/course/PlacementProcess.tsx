@@ -42,7 +42,7 @@ const steps = [
 
 export default function PlacementProcess() {
   return (
-    <section className="py-20 lg:py-32 relative bg-white overflow-hidden">
+    <section className="section-padding relative bg-white overflow-hidden">
       {/* Background Decor */}
       <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--tw-colors-ink-100) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
       <div className="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-brand-blue/5 to-transparent pointer-events-none" />

@@ -149,7 +149,7 @@ export default function CourseCard({
         <h3 className="font-display text-xl font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors duration-200 line-clamp-2">
           {title}
         </h3>
-        <p className="text-sm text-ink-500 leading-relaxed mb-4 flex-1 line-clamp-3">
+        <p className="text-base text-ink-500 leading-relaxed mb-4 flex-1 line-clamp-3">
           {blurb}
         </p>
 

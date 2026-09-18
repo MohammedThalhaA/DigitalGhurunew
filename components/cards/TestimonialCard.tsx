@@ -27,7 +27,7 @@ export default function TestimonialCard({
       <Quote className="h-8 w-8 text-brand-gold mb-4 shrink-0" />
 
       {/* Quote Text */}
-      <p className="text-ink-600 leading-relaxed text-sm md:text-base flex-1 mb-6">
+      <p className="text-ink-600 leading-relaxed text-base md:text-lg flex-1 mb-6">
         &ldquo;{quote}&rdquo;
       </p>
 
@@ -53,7 +53,7 @@ export default function TestimonialCard({
           <p className="font-heading text-sm font-semibold text-ink-900">
             {name}
           </p>
-          <p className="text-xs text-ink-400">{role}</p>
+          <p className="text-sm text-ink-400">{role}</p>
         </div>
       </div>
     </motion.div>

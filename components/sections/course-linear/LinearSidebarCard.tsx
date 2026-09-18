@@ -263,33 +263,33 @@ export default function LinearSidebarCard({
             </button>
 
             <div className="border-t border-ink-100 pt-6">
-              <p className="font-heading text-sm font-bold text-ink-900 mb-4">This course includes:</p>
+              <p className="font-heading text-base font-bold text-ink-900 mb-4">This course includes:</p>
               <ul className="space-y-3.5">
-                <li className="flex items-center gap-3 font-body text-ink-700 text-sm font-medium group">
+                <li className="flex items-center gap-3 font-body text-ink-700 text-base font-medium group">
                   <div className="p-2 rounded-xl bg-blue-50 text-blue-600 group-hover:scale-110 group-hover:bg-blue-100 transition-all shadow-2xs">
                     <BookOpen className="h-4 w-4 shrink-0" />
                   </div>
                   <span>{moduleCount ? `${moduleCount} comprehensive modules` : "12 comprehensive modules"}</span>
                 </li>
-                <li className="flex items-center gap-3 font-body text-ink-700 text-sm font-medium group">
+                <li className="flex items-center gap-3 font-body text-ink-700 text-base font-medium group">
                   <div className="p-2 rounded-xl bg-amber-50 text-amber-600 group-hover:scale-110 group-hover:bg-amber-100 transition-all shadow-2xs">
                     <Clock className="h-4 w-4 shrink-0" />
                   </div>
                   <span>{duration || "3 to 6 months"} duration</span>
                 </li>
-                <li className="flex items-center gap-3 font-body text-ink-700 text-sm font-medium group">
+                <li className="flex items-center gap-3 font-body text-ink-700 text-base font-medium group">
                   <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-100 transition-all shadow-2xs">
                     <MapPin className="h-4 w-4 shrink-0" />
                   </div>
                   <span>{format || "Classroom + Online"}</span>
                 </li>
-                <li className="flex items-center gap-3 font-body text-ink-700 text-sm font-medium group">
+                <li className="flex items-center gap-3 font-body text-ink-700 text-base font-medium group">
                   <div className="p-2 rounded-xl bg-purple-50 text-purple-600 group-hover:scale-110 group-hover:bg-purple-100 transition-all shadow-2xs">
                     <ShieldCheck className="h-4 w-4 shrink-0" />
                   </div>
                   <span>Placement assistance</span>
                 </li>
-                <li className="flex items-center gap-3 font-body text-ink-700 text-sm font-medium group">
+                <li className="flex items-center gap-3 font-body text-ink-700 text-base font-medium group">
                   <div className="p-2 rounded-xl bg-rose-50 text-rose-600 group-hover:scale-110 group-hover:bg-rose-100 transition-all shadow-2xs">
                     <Award className="h-4 w-4 shrink-0" />
                   </div>

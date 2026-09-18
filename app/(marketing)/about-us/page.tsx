@@ -38,19 +38,27 @@ import Button from "@/components/ui/Button";
 const locations = [
   {
     name: "Anna Nagar Office",
-    city: "Our Campus",
-    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
+    city: "Chennai",
+    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102.",
     phone: "+91 8825948859",
     email: "contact@digitalghuru.in",
     gradient: "from-brand-blue to-blue-600",
   },
   {
-    name: "Main Campus",
-    city: "Our Campus",
-    address: "[Mock Data] Our Campus Hi-Tech City, Madhapur, Our Campus, Telangana - 500081",
-    phone: "+91 9999999999",
+    name: "Ameerpet Office",
+    city: "Hyderabad",
+    address: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad - 500073.",
+    phone: "+91 8825948859",
     email: "contact@digitalghuru.in",
     gradient: "from-brand-orange to-orange-600",
+  },
+  {
+    name: "Korattur Office",
+    city: "Chennai",
+    address: '2nd Floor, No. 1A, "Gurudev Complex", S1, 57th St, Venkatraman Nagar, Korattur, Chennai, Tamil Nadu 600050',
+    phone: "+91 8825948859",
+    email: "contact@digitalghuru.in",
+    gradient: "from-brand-gold to-yellow-500",
   },
 ];
 
@@ -93,6 +101,20 @@ const milestones = [
   { year: "2021", milestone: "Got affiliated with top universities and launched advanced certificate courses. Crossed the 100,000 students mark." },
   { year: "2023", milestone: "Hosted national and international events, expanding our team and launching specialized AI integration courses." },
   { year: "2025", milestone: "Launched India's first-ever 1-Year MBA in Digital Marketing, offering a globally accredited and focused AI-powered curriculum." },
+];
+
+const coreValues = [
+  { title: "Innovation First", desc: "Embracing AI and next-gen tech in all our curriculums.", icon: Zap, accent: "blue" },
+  { title: "Practical Excellence", desc: "Focusing on real execution over textbook theory.", icon: Target, accent: "orange" },
+  { title: "Student Success", desc: "Dedicated to holistic mentorship and long-term career growth.", icon: GraduationCap, accent: "gold" },
+  { title: "Integrity", desc: "Honest feedback, transparent outcomes, and real expectations.", icon: ShieldCheck, accent: "blue" },
+];
+
+const methodologies = [
+  { step: "01", title: "Foundation & Strategy", desc: "Master the fundamentals of digital marketing strategy, consumer psychology, and market research before touching any tools." },
+  { step: "02", title: "Live Agency Projects", desc: "Work on real client briefs with actual budgets. Experience the pressure and thrill of a true agency environment." },
+  { step: "03", title: "AI Tool Integration", desc: "Learn to scale your output using advanced AI tools like ChatGPT, Midjourney, and automated workflow builders." },
+  { step: "04", title: "Placement & Portfolio", desc: "Build a robust portfolio of live campaigns and prepare for interviews with our dedicated placement cell." },
 ];
 
 const programs = [
@@ -212,7 +234,7 @@ export default function AboutUsPage() {
 
         {/* ── Vision Block ── */}
         <div className="relative z-10 border-b border-ink-100/60">
-          <div className="section-container py-24 md:py-32">
+          <div className="section-container section-padding">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               {/* Left — Decorative & Label */}
               <motion.div
@@ -256,7 +278,7 @@ export default function AboutUsPage() {
 
         {/* ── Mission Block ── */}
         <div className="relative z-10">
-          <div className="section-container py-24 md:py-32">
+          <div className="section-container section-padding">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               {/* Left — Decorative & Label */}
               <motion.div
@@ -324,8 +346,134 @@ export default function AboutUsPage() {
         </div>
       </section>
 
+      {/* ━━━ CORE VALUES ━━━ */}
+      <section className="section-padding bg-ink-50 relative overflow-hidden">
+        <div className="section-container relative z-10">
+          <SectionHeader
+            eyebrow="Our Principles"
+            title="Core Values"
+            description="The driving forces behind every program, mentorship session, and campaign we build."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {coreValues.map((val, idx) => {
+              const Icon = val.icon;
+              const ac = accentClasses(val.accent);
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative bg-white rounded-[2rem] p-8 border border-ink-100 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-400 overflow-hidden"
+                >
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${ac.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full`} />
+                  
+                  <div className="relative z-10">
+                    <div className={`h-14 w-14 rounded-2xl ${ac.bg} ${ac.border} border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className={`h-6 w-6 ${ac.text}`} />
+                    </div>
+                    <h3 className="text-xl font-bold font-heading text-ink-900 mb-3">{val.title}</h3>
+                    <p className="text-ink-600 leading-relaxed">{val.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━ TEACHING METHODOLOGY ━━━ */}
+      <section className="section-padding bg-white relative overflow-hidden">
+        <div className="section-container relative z-10">
+          <SectionHeader
+            eyebrow="Process"
+            title="Our Teaching Methodology"
+            description="A proven, step-by-step approach transforming beginners into highly capable AI-powered marketers."
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {methodologies.map((method, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="relative group"
+              >
+                {/* Connector line for desktop */}
+                {idx !== methodologies.length - 1 && (
+                  <div className="hidden lg:block absolute top-12 left-[60%] w-full h-[2px] bg-gradient-to-r from-brand-orange/30 to-transparent z-0" />
+                )}
+                
+                <div className="relative z-10 flex flex-col items-start">
+                  <div className="h-24 w-24 rounded-[2rem] bg-gradient-to-br from-brand-orange to-orange-600 flex items-center justify-center text-white font-heading text-3xl font-black mb-6 shadow-xl shadow-brand-orange/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    {method.step}
+                  </div>
+                  <h3 className="text-xl font-bold font-heading text-ink-900 mb-3">{method.title}</h3>
+                  <p className="text-ink-500 leading-relaxed">{method.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━ THE ECOSYSTEM ━━━ */}
+      <section className="section-padding bg-ink-900 relative overflow-hidden">
+        <div className="pointer-events-none absolute top-1/2 right-0 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[120px] -translate-y-1/2" />
+        <div className="section-container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full bg-white/10 text-white/80 mb-6">
+                The Environment
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight leading-[1.1] mb-6">
+                The Digital Ghuru Ecosystem
+              </h2>
+              <p className="text-lg text-white/70 leading-relaxed mb-8">
+                More than just classrooms, we provide a holistic environment designed for accelerated growth, networking, and continuous learning.
+              </p>
+              
+              <ul className="space-y-6">
+                {[
+                  { icon: Laptop, text: "Access to Premium Tools & Software (Semrush, Midjourney, etc.)" },
+                  { icon: Users, text: "Dedicated Mentorship Pods for personalized guidance" },
+                  { icon: Building2, text: "Direct Exposure to Hiring Partners & Agency Founders" },
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-4 text-white">
+                    <div className="h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                      <item.icon className="h-5 w-5 text-brand-gold" />
+                    </div>
+                    <span className="font-medium text-lg">{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10"
+            >
+              <img src="/images/Hero Image.jpeg" alt="Digital Ghuru Ecosystem" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ━━━ PROGRAMS ━━━ */}
-      <section className="py-24 md:py-32 bg-ink-50 relative overflow-hidden">
+      <section className="section-padding bg-ink-50 relative overflow-hidden">
         <div className="pointer-events-none absolute -top-40 -right-40 w-[500px] h-[500px] bg-brand-blue/4 rounded-full blur-[100px]" />
 
         <div className="section-container">
@@ -369,7 +517,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* ━━━ WHY CHOOSE US ━━━ */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <section className="section-padding bg-white relative overflow-hidden">
         <div className="pointer-events-none absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-gold/4 rounded-full blur-[120px]" />
 
         <div className="section-container relative z-10">
@@ -399,7 +547,7 @@ export default function AboutUsPage() {
                       <Icon className={`h-5 w-5 ${ac.text}`} />
                     </div>
                     <h3 className="text-lg font-bold font-heading text-ink-900 mb-1.5">{feature.title}</h3>
-                    <p className="text-sm text-ink-500 leading-relaxed">{feature.desc}</p>
+                    <p className="text-base text-ink-500 leading-relaxed">{feature.desc}</p>
                   </div>
                 </motion.div>
               );
@@ -419,7 +567,7 @@ export default function AboutUsPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-brand-gold/6 rounded-full blur-[60px]" />
         </div>
 
-        <div className="section-container relative z-10 py-24 md:py-32">
+        <div className="section-container relative z-10 section-padding">
           {/* Section intro — left-aligned editorial style */}
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end mb-20">
             <motion.div
@@ -481,7 +629,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* ━━━ CAMPUSES ━━━ */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <section className="section-padding bg-white relative overflow-hidden">
         <div className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/3 rounded-full blur-[120px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-orange/3 rounded-full blur-[100px]" />
 
@@ -555,7 +703,7 @@ export default function AboutUsPage() {
 
 
       {/* ━━━ RECOGNITIONS ━━━ */}
-      <section className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-brand-blue via-blue-600 to-brand-blue">
+      <section className="section-padding relative overflow-hidden bg-gradient-to-br from-brand-blue via-blue-600 to-brand-blue">
         <div className="pointer-events-none absolute top-0 right-1/4 w-[400px] h-[400px] bg-white/5 rounded-full blur-[80px]" />
         <div className="pointer-events-none absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-brand-gold/10 rounded-full blur-[60px]" />
 

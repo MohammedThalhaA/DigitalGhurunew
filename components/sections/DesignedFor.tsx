@@ -110,7 +110,7 @@ export default function DesignedFor() {
                     <h3 className="font-heading text-xl font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200">
                       {audience.title}
                     </h3>
-                    <p className="text-sm text-ink-500 leading-relaxed">
+                    <p className="text-base text-ink-500 leading-relaxed">
                       {audience.description}
                     </p>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ink-50 text-xs font-semibold text-ink-700 border border-ink-100/50">
