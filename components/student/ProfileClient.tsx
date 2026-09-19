@@ -79,13 +79,17 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
     setTimeout(() => setToast(null), 3000);
   };
 
-  const handleGeneralSave = (e: React.FormEvent) => {
+  const handleProfileSave = (e: React.FormEvent) => {
     e.preventDefault();
     startTransition(async () => {
-      const fullName = `${firstName} ${lastName}`.trim();
-      const res = await updateGeneralProfile(fullName, bio, imageUrl);
-      if (res.success) showToast("Profile updated successfully!", "success");
-      else showToast("Failed to update profile.", "error");
+      try {
+        const fullName = `${firstName} ${lastName}`.trim();
+        const res = await updateGeneralProfile(fullName, bio, imageUrl);
+        if (res.success) showToast("Profile updated successfully!", "success");
+        else showToast("Failed to update profile.", "error");
+      } catch (error: any) {
+        showToast(error.message || "An unexpected error occurred.", "error");
+      }
     });
   };
 
@@ -167,13 +171,17 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
     startTransition(async () => {
       setImageUrl(urlInput);
       const fullName = `${firstName} ${lastName}`.trim();
-      const res = await updateGeneralProfile(fullName, bio, urlInput);
-      if (res.success) {
-        showToast("Avatar URL saved successfully!", "success");
-        setShowUrlModal(false);
-        setUrlInput("");
-      } else {
-        showToast("Failed to save avatar URL.", "error");
+      try {
+        const res = await updateGeneralProfile(fullName, bio, urlInput);
+        if (res.success) {
+          showToast("Avatar URL saved successfully!", "success");
+          setShowUrlModal(false);
+          setUrlInput("");
+        } else {
+          showToast("Failed to save avatar URL.", "error");
+        }
+      } catch (error: any) {
+        showToast(error.message || "An unexpected error occurred.", "error");
       }
     });
   };
@@ -299,7 +307,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
             <div className="bg-white rounded-[32px] border border-ink-100 shadow-card group hover:shadow-card-hover hover:border-brand-blue/30 transition-all duration-300 p-8 relative overflow-hidden max-w-3xl">
               <h3 className="font-display text-lg font-bold text-ink-900 mb-8 relative z-10">Personal Information</h3>
               
-              <form onSubmit={handleGeneralSave} className="space-y-6 relative z-10">
+              <form onSubmit={handleProfileSave} className="space-y-6 relative z-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-heading text-xs font-semibold text-ink-900 uppercase tracking-[0.15em] pl-1">First Name</label>
