@@ -75,7 +75,7 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
 
@@ -86,11 +86,23 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
 
-    // Simulate API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+
       setIsSuccess(true);
-    }, 1500);
+    } catch (error) {
+      setErrorMsg("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

@@ -70,3 +70,99 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     console.log("==========================================");
   }
 };
+
+export const sendContactEmail = async (
+  name: string,
+  email: string,
+  phone: string,
+  subject: string,
+  message: string
+) => {
+  let transporter;
+  let isEthereal = false;
+
+  try {
+    const settings = await getPlatformSettings();
+
+    if (settings.smtp_host && settings.smtp_user && settings.smtp_password) {
+      transporter = nodemailer.createTransport({
+        host: settings.smtp_host,
+        port: parseInt(settings.smtp_port || "587", 10),
+        secure: settings.smtp_port === "465",
+        auth: {
+          user: settings.smtp_user,
+          pass: settings.smtp_password,
+        },
+      });
+    } else {
+      isEthereal = true;
+      const testAccount = await nodemailer.createTestAccount();
+      transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+          user: testAccount.user,
+          pass: testAccount.pass,
+        },
+      });
+    }
+  } catch (error) {
+    isEthereal = true;
+    const testAccount = await nodemailer.createTestAccount();
+    transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+  }
+
+  const toEmail = "contact@digitalghuru.in"; 
+
+  const info = await transporter.sendMail({
+    from: process.env.EMAIL_FROM || '"Digital Ghuru Website" <contact@digitalghuru.in>',
+    to: toEmail,
+    replyTo: email,
+    subject: `New Contact Form Inquiry: ${subject}`,
+    html: `
+      <div style="font-family: sans-serif; max-w-xl mx-auto p-6 bg-slate-50 border border-slate-100 rounded-xl shadow-sm">
+        <h2 style="color: #111827;">New Contact Form Submission</h2>
+        <p style="color: #4b5563; font-size: 16px;">You have received a new message from the website contact form:</p>
+        
+        <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; font-weight: bold; width: 120px;">Name:</td>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">${name}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Email:</td>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><a href="mailto:${email}">${email}</a></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Phone:</td>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">${phone || 'N/A'}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Subject:</td>
+            <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">${subject}</td>
+          </tr>
+        </table>
+        
+        <div style="margin-top: 20px;">
+          <h3 style="color: #111827; margin-bottom: 10px;">Message:</h3>
+          <p style="color: #4b5563; font-size: 15px; line-height: 1.5; white-space: pre-wrap; background-color: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">${message}</p>
+        </div>
+      </div>
+    `,
+  });
+
+  if (isEthereal) {
+    console.log("==========================================");
+    console.log("✉️  Email Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    console.log("==========================================");
+  }
+};
