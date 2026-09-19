@@ -1,7 +1,18 @@
-import { HelpCircle, Mail, MessageCircle } from "lucide-react";
+"use client";
+
+import React, { useState } from "react";
+import { HelpCircle, Mail } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 export default function SupportPage() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("contact@digitalghuru.in");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="space-y-10 w-full">
       {/* Hero Section */}
@@ -60,10 +71,15 @@ export default function SupportPage() {
             <p className="text-base text-ink-500 mb-6">
               Send us a detailed email regarding your issue and our team will get back to you within 24 hours.
             </p>
-            <Button variant="primary" href="mailto:contact@digitalghuru.in" className="w-full">contact@digitalghuru.in</Button>
+            <Button 
+              variant="primary" 
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@digitalghuru.in" 
+              target="_blank"
+              className="w-full"
+            >
+              Email Support via Gmail
+            </Button>
           </div>
-
-
         </div>
       </div>
     </div>

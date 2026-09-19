@@ -59,6 +59,16 @@ export default function Button({
   const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${accentOverride || sizeStyles[size]} ${disabledStyles} ${className}`;
 
   if (href && !disabled) {
+    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+    
+    if (isExternal) {
+      return (
+        <a href={href} className={combinedStyles} target={target} download={download}>
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={combinedStyles} target={target} download={download}>
         {children}
