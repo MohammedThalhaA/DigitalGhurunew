@@ -23,12 +23,12 @@ const tools = [
   },
 ];
 
-const staggerContainer = {
+const staggerContainer: any = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.08 } },
 };
 
-const fadeUpItem = {
+const fadeUpItem: any = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };

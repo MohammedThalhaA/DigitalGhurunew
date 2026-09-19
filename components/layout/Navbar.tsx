@@ -64,7 +64,7 @@ function buildNavItems(courses: { title: string; slug: string }[]): NavItem[] {
 }
 
 /* ─── Dropdown Animations ─── */
-const dropdownVariants = {
+const dropdownVariants: any = {
   hidden: { opacity: 0, y: -8, scale: 0.98 },
   visible: {
     opacity: 1,
@@ -79,7 +79,7 @@ const dropdownVariants = {
   },
 };
 
-const flyoutVariants = {
+const flyoutVariants: any = {
   hidden: { opacity: 0, x: -12 },
   visible: {
     opacity: 1,

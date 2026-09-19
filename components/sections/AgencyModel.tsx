@@ -31,14 +31,14 @@ const steps = [
   },
 ];
 
-const staggerContainer = {
+const staggerContainer: any = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.15 },
   },
 };
 
-const itemAnimation = {
+const itemAnimation: any = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

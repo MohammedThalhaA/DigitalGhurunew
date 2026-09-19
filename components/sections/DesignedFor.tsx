@@ -43,14 +43,14 @@ const targetAudience = [
   },
 ];
 
-const staggerContainer = {
+const staggerContainer: any = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.15 },
   },
 };
 
-const cardAnimation = {
+const cardAnimation: any = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
