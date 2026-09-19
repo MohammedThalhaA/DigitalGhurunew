@@ -260,10 +260,10 @@ export default function LMSNavbar() {
                     <p className="font-body text-xs text-ink-500 truncate">{user?.email}</p>
                   </div>
                   <div className="p-2 flex flex-col gap-1">
-                    <Link href="/student/profile" className="px-4 py-2 font-body text-sm text-ink-700 hover:bg-ink-50 rounded-xl transition-colors text-left w-full">
+                    <Link href="/student/profile" onClick={() => setIsProfileOpen(false)} className="px-4 py-2 font-body text-sm text-ink-700 hover:bg-ink-50 rounded-xl transition-colors text-left w-full">
                       My Profile
                     </Link>
-                    <Link href="/student/certificates" className="px-4 py-2 font-body text-sm text-ink-700 hover:bg-ink-50 rounded-xl transition-colors text-left w-full">
+                    <Link href="/student/certificates" onClick={() => setIsProfileOpen(false)} className="px-4 py-2 font-body text-sm text-ink-700 hover:bg-ink-50 rounded-xl transition-colors text-left w-full">
                       My Certificates
                     </Link>
                     <div className="h-px bg-ink-100 my-1 mx-2" />

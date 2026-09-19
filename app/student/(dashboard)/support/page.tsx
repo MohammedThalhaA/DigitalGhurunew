@@ -60,7 +60,7 @@ export default function SupportPage() {
             <p className="text-base text-ink-500 mb-6">
               Send us a detailed email regarding your issue and our team will get back to you within 24 hours.
             </p>
-            <Button variant="primary" className="w-full">contact@digitalghuru.in</Button>
+            <Button variant="primary" href="mailto:contact@digitalghuru.in" className="w-full">contact@digitalghuru.in</Button>
           </div>
 
 

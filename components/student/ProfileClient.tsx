@@ -271,7 +271,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
                     <button 
                       onClick={() => fileInputRef.current?.click()}
                       disabled={isUploading}
-                      className="px-5 py-2.5 rounded-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold text-sm uppercase tracking-[0.15em] transition-colors shadow-button flex items-center gap-2 disabled:opacity-70"
+                      className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#FFB800] to-[#FF5C00] hover:brightness-110 disabled:opacity-70 text-white text-sm font-heading font-semibold tracking-[0.15em] uppercase rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                     >
                       {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
                       {isUploading ? "Uploading..." : "Upload"}
