@@ -62,8 +62,22 @@ export default function Button({
     const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("#");
     
     if (isExternal) {
+      const isAnchor = href.startsWith("#");
+      
       return (
-        <a href={href} className={combinedStyles} target={target} download={download}>
+        <a 
+          href={href} 
+          className={combinedStyles} 
+          target={target} 
+          download={download}
+          onClick={(e) => {
+            if (isAnchor && typeof window !== "undefined" && (window as any).lenis) {
+              e.preventDefault();
+              (window as any).lenis.scrollTo(href);
+            }
+            if (onClick) onClick();
+          }}
+        >
           {children}
         </a>
       );

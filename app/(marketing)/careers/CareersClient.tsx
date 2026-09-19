@@ -267,7 +267,11 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
                           <div className="pt-6 border-t border-ink-200 flex justify-start">
                             <a
                               href="#speculative-form"
-                              onClick={() => {
+                              onClick={(e) => {
+                                if (typeof window !== "undefined" && (window as any).lenis) {
+                                  e.preventDefault();
+                                  (window as any).lenis.scrollTo("#speculative-form");
+                                }
                                 setFormData({
                                   ...formData,
                                   category: job.slug,

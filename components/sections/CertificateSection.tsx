@@ -47,18 +47,7 @@ export default function CertificateSection() {
               ))}
             </ul>
             <div className="pt-2">
-              <Button 
-                variant="primary" 
-                size="lg" 
-                onClick={() => {
-                  if ((window as any).lenis) {
-                    (window as any).lenis.scrollTo("#course-grid");
-                  } else {
-                    const el = document.getElementById("course-grid");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
+              <Button variant="primary" size="lg" href="#course-grid">
                 Download Syllabus & Brochure
               </Button>
             </div>
