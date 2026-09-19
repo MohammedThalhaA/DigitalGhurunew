@@ -235,7 +235,7 @@ export default function LMSNavbar() {
             >
               <div className="h-8 w-8 rounded-full bg-[#006FFF] flex items-center justify-center text-white font-heading font-semibold text-sm shadow-sm overflow-hidden">
                 {navData.image || user?.image ? (
-                  <Image src={(navData.image || user?.image) as string} alt={navData.name || user?.name || "User"} width={32} height={32} className="object-cover" />
+                  <img src={(navData.image || user?.image) as string} alt={navData.name || user?.name || "User"} className="object-cover w-full h-full" />
                 ) : (
                   (navData.name || user?.name || "S").charAt(0).toUpperCase()
                 )}

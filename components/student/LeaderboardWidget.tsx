@@ -55,7 +55,7 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
                     <span className={`absolute -top-3 -right-2 ${podiumConfig[1].badgeBg} ${podiumConfig[1].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#2</span>
                     <div className={`h-12 w-12 rounded-full ${topMembers[1].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
                       {topMembers[1].image ? (
-                        <Image src={topMembers[1].image} alt={topMembers[1].name} fill className="object-cover" />
+                        <img src={topMembers[1].image} alt={topMembers[1].name} className="object-cover w-full h-full" />
                       ) : (
                         topMembers[1].initial
                       )}
@@ -81,7 +81,7 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
                     <span className={`absolute -top-3 -right-2 ${podiumConfig[0].badgeBg} ${podiumConfig[0].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#1</span>
                     <div className={`h-14 w-14 rounded-full ${topMembers[0].color} flex items-center justify-center text-white font-bold text-xl shadow-[0_4px_15px_rgba(245,158,11,0.4)] border-2 border-amber-300 overflow-hidden relative`}>
                       {topMembers[0].image ? (
-                        <Image src={topMembers[0].image} alt={topMembers[0].name} fill className="object-cover" />
+                        <img src={topMembers[0].image} alt={topMembers[0].name} className="object-cover w-full h-full" />
                       ) : (
                         topMembers[0].initial
                       )}
@@ -104,7 +104,7 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
                     <span className={`absolute -top-3 -right-2 ${podiumConfig[2].badgeBg} ${podiumConfig[2].badgeText} text-xs font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm border border-white`}>#3</span>
                     <div className={`h-12 w-12 rounded-full ${topMembers[2].color} flex items-center justify-center text-white font-bold text-lg shadow-md overflow-hidden relative`}>
                       {topMembers[2].image ? (
-                        <Image src={topMembers[2].image} alt={topMembers[2].name} fill className="object-cover" />
+                        <img src={topMembers[2].image} alt={topMembers[2].name} className="object-cover w-full h-full" />
                       ) : (
                         topMembers[2].initial
                       )}
@@ -137,7 +137,7 @@ export default function LeaderboardWidget({ members }: LeaderboardWidgetProps) {
             </div>
             <div className={`h-10 w-10 rounded-full ${member.color} flex items-center justify-center text-white font-bold text-sm shadow-inner overflow-hidden relative shrink-0`}>
               {member.image ? (
-                <Image src={member.image} alt={member.name} fill className="object-cover" />
+                <img src={member.image} alt={member.name} className="object-cover w-full h-full" />
               ) : (
                 member.initial
               )}

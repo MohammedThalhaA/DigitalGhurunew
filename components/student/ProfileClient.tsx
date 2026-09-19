@@ -255,7 +255,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
               <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
                 <div className="h-28 w-28 rounded-3xl bg-gradient-to-br from-ink-100 to-ink-200 flex items-center justify-center text-ink-400 relative overflow-hidden shadow-inner shrink-0">
                   {imageUrl ? (
-                    <Image src={imageUrl} alt={user?.name || "User"} fill className="object-cover" />
+                    <img src={imageUrl} alt={user?.name || "User"} className="object-cover w-full h-full" />
                   ) : (
                     <User className="h-12 w-12" />
                   )}
