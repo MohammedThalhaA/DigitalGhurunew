@@ -5,6 +5,8 @@ import { PlayCircle, FileText, ChevronDown, ChevronUp, CheckCircle2, CheckCircle
 import Link from "next/link";
 import { markChapterComplete } from "@/app/actions/progress";
 import { useRouter } from "next/navigation";
+import confetti from "canvas-confetti";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function CoursePlayerClient({ 
   modules, 
@@ -36,6 +38,7 @@ export default function CoursePlayerClient({
   const [activeLesson, setActiveLesson] = useState<any>(defaultLesson);
   const [isCompleting, setIsCompleting] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [levelUpData, setLevelUpData] = useState<{ show: boolean; newLevel: number }>({ show: false, newLevel: 0 });
 
   // Calculate overall progress
   let totalLessons = 0;
@@ -72,15 +75,23 @@ export default function CoursePlayerClient({
         activeLesson.isCompleted = true;
         setLocalCompletedCount(prev => prev + 1);
         
-        if (res.xpEarned > 0) {
+        if (res.xpEarned > 0 && !res.leveledUp) {
           setToastMessage(`+${res.xpEarned} XP Earned!`);
           setTimeout(() => setToastMessage(""), 3000);
         }
+        
         if (res.leveledUp) {
           setTimeout(() => {
-            setToastMessage(`Level Up! You are now Level ${res.newLevel} 🏆`);
-            setTimeout(() => setToastMessage(""), 4000);
-          }, 1000);
+            setLevelUpData({ show: true, newLevel: res.newLevel });
+            confetti({
+              particleCount: 150,
+              spread: 70,
+              origin: { y: 0.6 },
+              colors: ['#FFB800', '#FF5C00', '#0055A5', '#4ADE80']
+            });
+            // Auto-hide after 5 seconds
+            setTimeout(() => setLevelUpData({ show: false, newLevel: 0 }), 5000);
+          }, 500);
         }
       }
 
@@ -128,6 +139,35 @@ export default function CoursePlayerClient({
   return (
     <div className="flex flex-1 overflow-hidden relative">
       
+      {/* Level Up Modal */}
+      <AnimatePresence>
+        {levelUpData.show && (
+          <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+            <motion.div 
+              initial={{ scale: 0.5, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 20 }}
+              transition={{ type: "spring", bounce: 0.5 }}
+              className="bg-white rounded-2xl p-8 shadow-2xl flex flex-col items-center max-w-sm w-full mx-4 border-2 border-[#FFB800]"
+            >
+              <div className="h-20 w-20 bg-gradient-to-tr from-[#FFB800] to-[#FF5C00] rounded-full flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+                <span className="text-4xl">🏆</span>
+              </div>
+              <h2 className="font-display text-3xl font-bold text-ink-900 mb-2">Level Up!</h2>
+              <p className="text-ink-500 font-medium text-center mb-8">
+                Congratulations! You've reached <strong className="text-brand-blue">Level {levelUpData.newLevel}</strong>. Keep up the great work!
+              </p>
+              <button 
+                onClick={() => setLevelUpData({ show: false, newLevel: 0 })}
+                className="w-full py-3.5 bg-brand-blue hover:bg-blue-800 text-white rounded-xl heading-sm transition-all shadow-md"
+              >
+                Awesome!
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Toast Notification */}
       {toastMessage && (
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-brand-blue text-white px-6 py-3 rounded-full shadow-2xl font-bold animate-bounce">

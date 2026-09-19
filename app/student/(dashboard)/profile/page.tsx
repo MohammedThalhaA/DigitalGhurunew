@@ -18,7 +18,8 @@ export default async function StudentProfilePage() {
            notification_course_announcements, 
            notification_community_mentions, 
            notification_marketing_emails, 
-           two_factor_enabled
+           two_factor_enabled,
+           upi_id
     FROM users 
     WHERE id = $1
   `, [userId]);

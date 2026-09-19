@@ -88,9 +88,7 @@ export function useRazorpay() {
         };
 
         if (user.upi_id) {
-            // Optional: If you want to automatically trigger UPI flow if upi_id exists, 
-            // you can pre-fill UPI details or adjust Razorpay UI options based on their docs.
-            // options.prefill.vpa = user.upi_id; 
+          options.prefill.vpa = user.upi_id; 
         }
 
         const paymentObject = new (window as any).Razorpay(options);

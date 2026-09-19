@@ -29,7 +29,7 @@ export default function ProfileStatsCard({
         <div className="relative">
           <div className="h-16 w-16 rounded-full bg-gradient-to-br from-brand-blue to-blue-600 flex items-center justify-center text-white font-bold text-2xl shadow-md border-2 border-white relative z-10 overflow-hidden">
             {image ? (
-              <Image src={image} alt={name} width={64} height={64} className="object-cover" />
+              <img src={image} alt={name} className="object-cover w-16 h-16 rounded-full" />
             ) : (
               name.charAt(0).toUpperCase()
             )}

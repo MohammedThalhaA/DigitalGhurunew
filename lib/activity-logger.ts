@@ -62,9 +62,25 @@ export async function createNotification(
   type: "info" | "success" | "alert",
   title: string,
   message: string,
-  relatedUrl?: string
+  relatedUrl?: string,
+  category: "general" | "course_announcement" | "community_mention" | "marketing" = "general"
 ) {
   try {
+    // If the notification belongs to an opt-in/opt-out category, check user preferences first
+    if (category !== "general") {
+      const prefsRes = await pool.query(
+        `SELECT notification_course_announcements, notification_community_mentions, notification_marketing_emails FROM users WHERE id = $1`,
+        [userId]
+      );
+      
+      if (prefsRes.rows.length > 0) {
+        const prefs = prefsRes.rows[0];
+        if (category === "course_announcement" && !prefs.notification_course_announcements) return;
+        if (category === "community_mention" && !prefs.notification_community_mentions) return;
+        if (category === "marketing" && !prefs.notification_marketing_emails) return;
+      }
+    }
+
     await pool.query(
       `INSERT INTO notifications ("userId", type, title, message, "relatedUrl") VALUES ($1, $2, $3, $4, $5)`,
       [userId, type, title, message, relatedUrl || null]

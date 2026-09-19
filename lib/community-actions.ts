@@ -69,7 +69,8 @@ export async function toggleLike(postId: number) {
           "info",
           "New Like",
           `${liker_name || 'Someone'} liked your post "${title}"`,
-          `/student/community`
+          `/student/community`,
+          "community_mention"
         );
       }
     }
@@ -103,7 +104,8 @@ export async function createReply(postId: number, content: string) {
         "info",
         "New Reply",
         `${replier_name || 'Someone'} replied to your post "${title}"`,
-        `/student/community`
+        `/student/community`,
+        "community_mention"
       );
     }
   }

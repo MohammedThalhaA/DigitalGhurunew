@@ -4,6 +4,7 @@ import pool from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
+import { calculateLevel } from "@/lib/activity-logger";
 
 export async function markChapterComplete(chapterId: number, courseId: number) {
   const session = await getServerSession(authOptions);
@@ -51,9 +52,8 @@ export async function markChapterComplete(chapterId: number, courseId: number) {
       const newXp = xpRes.rows[0].xp_points;
       const currentLevel = xpRes.rows[0].level || 1;
       
-      // 3. Level Up Logic (Every 100 XP = 1 Level)
-      // Level 1 = 0-99, Level 2 = 100-199, etc.
-      const calculatedLevel = Math.floor(newXp / 100) + 1;
+      // 3. Level Up Logic (Using centralized threshold array)
+      const calculatedLevel = calculateLevel(newXp);
       
       let leveledUp = false;
       if (calculatedLevel > currentLevel) {

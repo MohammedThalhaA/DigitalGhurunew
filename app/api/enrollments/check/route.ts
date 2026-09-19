@@ -29,9 +29,13 @@ export async function GET(req: Request) {
       [parseInt(session.user.id), parseInt(courseId)]
     );
 
+    const userRes = await pool.query(`SELECT upi_id FROM users WHERE id = $1`, [parseInt(session.user.id)]);
+    const upiId = userRes.rows[0]?.upi_id;
+
     return NextResponse.json({ 
       enrolled: res.rows.length > 0,
-      hasPendingRequest: pendingRes.rows.length > 0
+      hasPendingRequest: pendingRes.rows.length > 0,
+      upiId: upiId
     });
   } catch (error: any) {
     console.error("Error checking enrollment:", error);

@@ -52,6 +52,7 @@ export default function LinearSidebarCard({
   const [utrNumber, setUtrNumber] = useState("");
   const [hasPendingRequest, setHasPendingRequest] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [savedUpiId, setSavedUpiId] = useState("");
 
   const upiId = process.env.NEXT_PUBLIC_UPI_ID || "manishmadhava91@okicici";
   const upiName = process.env.NEXT_PUBLIC_UPI_NAME || "Manish Madhava";
@@ -68,6 +69,7 @@ export default function LinearSidebarCard({
       .then(data => {
         setEnrolled(!!data.enrolled);
         setHasPendingRequest(!!data.hasPendingRequest);
+        if (data.upiId) setSavedUpiId(data.upiId);
         if (data.hasPendingRequest) {
           setSubmitted(true);
           setShowCheckout(true);
@@ -122,6 +124,7 @@ export default function LinearSidebarCard({
       {
         name: session?.user?.name || "",
         email: session?.user?.email || "",
+        upi_id: savedUpiId
       },
       () => {
         // Success
