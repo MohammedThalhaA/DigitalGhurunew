@@ -43,7 +43,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
 
   // Billing State
   const [upiId, setUpiId] = useState(user?.upi_id || "");
-  const [paymentMode, setPaymentMode] = useState<'default' | 'update' | 'add'>('default');
+  const [paymentMode, setPaymentMode] = useState<'default' | 'update' | 'add' | 'none'>('default');
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const [upiInput, setUpiInput] = useState("");
 
@@ -55,6 +55,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
         setUpiId(upiInput);
         setPaymentMode('default');
         showToast("UPI ID saved successfully!", "success");
+        router.refresh();
       } else {
         showToast("Failed to save UPI ID.", "error");
       }
@@ -67,7 +68,9 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
       if (res.success) {
         setUpiId("");
         setShowRemoveConfirm(false);
+        setPaymentMode('none');
         showToast("UPI ID removed.", "success");
+        router.refresh();
       } else {
         showToast("Failed to remove UPI ID.", "error");
       }
@@ -85,8 +88,12 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
       try {
         const fullName = `${firstName} ${lastName}`.trim();
         const res = await updateGeneralProfile(fullName, bio, imageUrl);
-        if (res.success) showToast("Profile updated successfully!", "success");
-        else showToast(res.error || "Failed to update profile.", "error");
+        if (res.success) {
+          showToast("Profile updated successfully!", "success");
+          router.refresh();
+        } else {
+          showToast(res.error || "Failed to update profile.", "error");
+        }
       } catch (error: any) {
         showToast(error.message || "An unexpected error occurred.", "error");
       }
@@ -116,8 +123,12 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
   const handleNotifSave = () => {
     startTransition(async () => {
       const res = await updateNotificationPreferences(notifCourse, notifCommunity, notifMarketing);
-      if (res.success) showToast("Preferences saved successfully!", "success");
-      else showToast("Failed to save preferences.", "error");
+      if (res.success) {
+        showToast("Preferences saved successfully!", "success");
+        router.refresh();
+      } else {
+        showToast("Failed to save preferences.", "error");
+      }
     });
   };
 
@@ -127,8 +138,9 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
       const res = await toggleTwoFactor(enable);
       if (res.success) {
         showToast(`2FA is now ${enable ? 'enabled' : 'disabled'}!`, "success");
+        router.refresh();
       } else {
-        showToast("Failed to toggle 2FA.", "error");
+        showToast("Failed to update 2FA settings.", "error");
       }
     });
   };
@@ -151,6 +163,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
         const fullName = `${firstName} ${lastName}`.trim();
         await updateGeneralProfile(fullName, bio, res.url);
         showToast("Avatar uploaded and saved successfully!", "success");
+        router.refresh();
       } else {
         showToast("Failed to upload image.", "error");
       }
@@ -177,6 +190,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
           showToast("Avatar URL saved successfully!", "success");
           setShowUrlModal(false);
           setUrlInput("");
+          router.refresh();
         } else {
           showToast(res.error || "Failed to save avatar URL.", "error");
         }

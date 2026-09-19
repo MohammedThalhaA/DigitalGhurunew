@@ -6,13 +6,12 @@ import pool from "@/lib/db";
 import { getEnrolledCourses } from "@/lib/student-data";
 
 export default async function StudentProfilePage() {
-  const session = await getServerSession(authOptions);
-  
-  if (!session?.user?.id) return null;
-
-  const userId = parseInt(session.user.id);
-  
   try {
+    const session = await getServerSession(authOptions);
+    
+    if (!session?.user?.id) return null;
+
+    const userId = parseInt(session.user.id);
     // Fetch full user data
     const userRes = await pool.query(`
       SELECT id, name, email, image, bio, 
