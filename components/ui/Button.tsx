@@ -59,7 +59,7 @@ export default function Button({
   const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${accentOverride || sizeStyles[size]} ${disabledStyles} ${className}`;
 
   if (href && !disabled) {
-    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("#");
     
     if (isExternal) {
       return (

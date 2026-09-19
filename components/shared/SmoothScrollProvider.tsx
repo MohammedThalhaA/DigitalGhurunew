@@ -22,6 +22,7 @@ export default function SmoothScrollProvider({
     });
 
     lenisRef.current = lenis;
+    (window as any).lenis = lenis;
 
     // Sync Lenis scroll position to GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);

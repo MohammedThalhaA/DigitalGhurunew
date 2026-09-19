@@ -407,9 +407,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <Button variant="primary" href="/success-stories">
-                View All Success Stories
-              </Button>
+
             </div>
 
             <div className="relative">
