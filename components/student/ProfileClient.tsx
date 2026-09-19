@@ -86,7 +86,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
         const fullName = `${firstName} ${lastName}`.trim();
         const res = await updateGeneralProfile(fullName, bio, imageUrl);
         if (res.success) showToast("Profile updated successfully!", "success");
-        else showToast("Failed to update profile.", "error");
+        else showToast(res.error || "Failed to update profile.", "error");
       } catch (error: any) {
         showToast(error.message || "An unexpected error occurred.", "error");
       }
@@ -178,7 +178,7 @@ export default function ProfileClient({ user, enrollments = [] }: ProfileClientP
           setShowUrlModal(false);
           setUrlInput("");
         } else {
-          showToast("Failed to save avatar URL.", "error");
+          showToast(res.error || "Failed to save avatar URL.", "error");
         }
       } catch (error: any) {
         showToast(error.message || "An unexpected error occurred.", "error");

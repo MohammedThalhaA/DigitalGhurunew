@@ -15,13 +15,18 @@ async function getUserId() {
 }
 
 export async function updateGeneralProfile(name: string, bio: string, image: string | null) {
-  const userId = await getUserId();
-  await pool.query(
-    `UPDATE users SET name = $1, bio = $2, image = $3 WHERE id = $4`,
-    [name, bio, image, userId]
-  );
-  revalidatePath('/student/profile');
-  return { success: true };
+  try {
+    const userId = await getUserId();
+    await pool.query(
+      `UPDATE users SET name = $1, bio = $2, image = $3 WHERE id = $4`,
+      [name, bio, image, userId]
+    );
+    revalidatePath('/student/profile');
+    return { success: true };
+  } catch (error: any) {
+    console.error("Error in updateGeneralProfile:", error);
+    return { success: false, error: error.message || "Unknown database error" };
+  }
 }
 
 export async function updatePassword(currentPass: string, newPass: string) {
