@@ -3,17 +3,17 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, ChevronDown, Zap, Search, Menu, X } from "lucide-react";
+import { Bell, ChevronDown, Zap, Search, Menu, X, Home, BookOpen, Users, Trophy, LifeBuoy } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 
 const navLinks = [
-  { name: "Dashboard", href: "/student/dashboard" },
-  { name: "My Courses", href: "/student/courses" },
-  { name: "Community", href: "/student/community" },
-  { name: "Leaderboard", href: "/student/leaderboard" },
-  { name: "Support", href: "/student/support" },
+  { name: "Dashboard", href: "/student/dashboard", icon: Home, shortName: "Home" },
+  { name: "My Courses", href: "/student/courses", icon: BookOpen, shortName: "Courses" },
+  { name: "Community", href: "/student/community", icon: Users, shortName: "Social" },
+  { name: "Leaderboard", href: "/student/leaderboard", icon: Trophy, shortName: "Ranks" },
+  { name: "Support", href: "/student/support", icon: LifeBuoy, shortName: "Help" },
 ];
 
 export default function LMSNavbar() {
@@ -72,19 +72,14 @@ export default function LMSNavbar() {
   };
 
   return (
-    <div className="fixed top-4 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8 z-50 flex justify-center pointer-events-none">
+    <>
+      <div className="fixed top-4 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8 z-50 flex justify-center pointer-events-none">
       <nav className="h-[72px] bg-[#006FFF] border border-white/10 rounded-[32px] flex items-center shadow-[0_8px_30px_rgba(20,20,40,0.06)] pointer-events-auto w-full max-w-[1600px] transition-all duration-300">
         <div className="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
         
-        {/* Left: Logo & Mobile Menu Toggle */}
+        {/* Left: Logo */}
         <div className="flex items-center gap-4">
-          <button 
-            className="lg:hidden p-2 -ml-2 text-white/80 hover:text-white transition-colors"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
           
           <Link href="/student/dashboard" className="flex items-center gap-3 group shrink-0 h-full py-2 ml-2 sm:ml-4 lg:ml-6">
               <Image 
@@ -281,84 +276,30 @@ export default function LMSNavbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Sidebar */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-ink-900/40 backdrop-blur-sm z-40 lg:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 bottom-0 w-[280px] bg-white z-50 shadow-2xl flex flex-col"
+      </nav>
+      </div>
+
+      {/* Mobile Floating Bottom Navigation */}
+      <div className="lg:hidden fixed bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-gray-100 rounded-full h-[68px] flex items-center justify-around z-[100] px-2 pointer-events-auto">
+        {navLinks.map((link) => {
+          const isActive = pathname === link.href || pathname?.startsWith(link.href + '/');
+          const Icon = link.icon;
+          return (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`flex flex-col items-center justify-center w-[20%] h-full gap-1 transition-all duration-300 ${isActive ? 'text-[#FF5C00] -translate-y-1' : 'text-gray-400 hover:text-gray-600'}`}
             >
-              <div className="p-4 border-b border-ink-100 flex items-center justify-between">
-                <Link href="/student/dashboard" className="flex items-center gap-3 group ml-2 mt-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Image 
-                    src="/logo-for-logins.png" 
-                    alt="Digital Ghuru" 
-                    width={100} 
-                    height={100} 
-                    className="h-10 sm:h-12 w-auto object-contain"
-                  />
-                  <div className="relative w-24 sm:w-32 h-6 sm:h-8 -ml-6 sm:-ml-8 overflow-hidden flex items-center justify-center pointer-events-none">
-                    <Image 
-                      src="/resources/student portal.png" 
-                      alt="Student Portal" 
-                      fill
-                      className="object-contain scale-[2.5] sm:scale-[3] origin-center"
-                    />
-                  </div>
-                </Link>
-                <button 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 text-ink-500 hover:text-ink-900 hover:bg-ink-50 rounded-lg transition-colors"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+              <div className={`relative p-1.5 rounded-full transition-colors ${isActive ? 'bg-gradient-to-r from-[#FFB800] to-[#FF5C00] shadow-md shadow-orange-500/30' : ''}`}>
+                 <Icon className={`h-5 w-5 ${isActive ? 'text-white' : ''}`} />
               </div>
-              <div className="p-4 flex flex-col gap-2 flex-1 overflow-y-auto">
-                {navLinks.map((link) => {
-                  const isActive = pathname === link.href || pathname?.startsWith(link.href + '/');
-                  return (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`px-4 py-3 rounded-xl font-heading font-semibold transition-colors ${
-                        isActive 
-                          ? "bg-brand-blue/10 text-brand-blue" 
-                          : "text-ink-600 hover:bg-ink-50 hover:text-ink-900"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  )
-                })}
-              </div>
-              <div className="p-4 border-t border-ink-100 bg-ink-50/50">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-heading text-xs font-semibold text-ink-500 uppercase tracking-[0.15em]">Your Streak</span>
-                  <div className="flex items-center gap-1.5 bg-white border border-amber-100 px-2.5 py-1 rounded-full">
-                    <div className="h-4 w-4 rounded-full bg-gradient-to-br from-amber-400 to-brand-orange flex items-center justify-center">
-                      <Zap className="h-2.5 w-2.5 text-white fill-white" />
-                    </div>
-                    <span className="font-heading text-xs font-semibold text-amber-900">4 Days</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </nav>
-    </div>
+              <span className={`text-[9px] font-bold uppercase tracking-wider transition-opacity ${isActive ? 'opacity-100' : 'opacity-70'}`}>
+                 {link.shortName}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </>
   );
 }

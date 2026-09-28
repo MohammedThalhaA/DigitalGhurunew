@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { PlayCircle, FileText, ChevronDown, ChevronUp, CheckCircle2, CheckCircle, ChevronLeft } from "lucide-react";
+import { PlayCircle, FileText, ChevronDown, ChevronUp, CheckCircle2, CheckCircle, ChevronLeft, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { markChapterComplete } from "@/app/actions/progress";
 import { useRouter } from "next/navigation";
@@ -39,6 +39,7 @@ export default function CoursePlayerClient({
   const [isCompleting, setIsCompleting] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [levelUpData, setLevelUpData] = useState<{ show: boolean; newLevel: number }>({ show: false, newLevel: 0 });
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // Calculate overall progress
   let totalLessons = 0;
@@ -59,6 +60,7 @@ export default function CoursePlayerClient({
   const handleLessonSelect = (lesson: any, moduleIdx: number) => {
     setActiveLesson(lesson);
     setExpandedModule(moduleIdx);
+    setIsMobileSidebarOpen(false);
   };
 
   const handleNextLesson = async () => {
@@ -137,7 +139,7 @@ export default function CoursePlayerClient({
   };
 
   return (
-    <div className="flex flex-1 overflow-hidden relative">
+    <div className="flex flex-col lg:flex-row flex-1 overflow-hidden relative">
       
       {/* Level Up Modal */}
       <AnimatePresence>
@@ -175,8 +177,28 @@ export default function CoursePlayerClient({
         </div>
       )}
 
-      {/* Left Column: Curriculum Sidebar */}
-      <div className="w-[320px] lg:w-[380px] shrink-0 border-r border-gray-200 bg-white h-full flex flex-col overflow-hidden">
+      {/* Mobile Overlay */}
+      {isMobileSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-30 lg:hidden backdrop-blur-sm transition-opacity"
+          onClick={() => setIsMobileSidebarOpen(false)}
+        />
+      )}
+
+      {/* Left Column: Curriculum Sidebar (Bottom Sheet on Mobile) */}
+      <div className={`fixed lg:relative inset-x-0 bottom-0 lg:inset-auto lg:left-0 lg:top-0 z-40 w-full lg:w-[320px] xl:w-[380px] bg-white h-[85vh] lg:h-full rounded-t-[2rem] lg:rounded-none flex flex-col overflow-hidden transition-transform duration-300 ease-in-out border-t lg:border-t-0 lg:border-r border-gray-200 shadow-[0_-20px_40px_rgba(0,0,0,0.1)] lg:shadow-none ${isMobileSidebarOpen ? 'translate-y-0 lg:translate-x-0 lg:translate-y-0' : 'translate-y-full lg:translate-x-0 lg:translate-y-0'}`}>
+        
+        {/* Mobile Drag Handle & Close Button */}
+        <div className="lg:hidden w-full flex items-center justify-center pt-4 pb-2 bg-white sticky top-0 z-10 rounded-t-[2rem]">
+           <div className="w-12 h-1.5 bg-gray-200 rounded-full"></div>
+           <button 
+             onClick={() => setIsMobileSidebarOpen(false)}
+             className="absolute top-4 right-6 p-2 bg-gray-50 hover:bg-gray-100 rounded-full text-gray-400"
+           >
+             <X className="h-4 w-4" />
+           </button>
+        </div>
+
         {/* Course Hero Banner & Progress */}
         <div className="shrink-0 relative overflow-hidden bg-[#0B1221] flex flex-col">
            <img 
@@ -263,13 +285,15 @@ export default function CoursePlayerClient({
       </div>
 
       {/* Right Column: Player Area */}
-      <div className="flex-1 bg-white h-full overflow-y-auto relative flex flex-col p-6">
+      <div className="flex-1 bg-white h-full overflow-y-auto relative flex flex-col p-4 lg:p-6 w-full">
         
         {/* Breadcrumbs */}
-        <div className="mb-4 text-sm text-gray-500 flex items-center gap-2">
-           <span>Module {expandedModule + 1}</span>
-           <span>/</span>
-           <span className="text-gray-800 font-medium">Video: {activeLesson?.title || "Select a lesson"}</span>
+        <div className="mb-4 flex items-center justify-between gap-2">
+           <div className="text-sm text-gray-500 flex items-center gap-1 sm:gap-2 overflow-hidden">
+              <span className="shrink-0">Module {expandedModule + 1}</span>
+              <span className="shrink-0 hidden sm:inline">/</span>
+              <span className="text-gray-800 font-medium truncate">Video: {activeLesson?.title || "Select a lesson"}</span>
+           </div>
         </div>
 
         {/* Video Player Container */}
@@ -339,7 +363,7 @@ export default function CoursePlayerClient({
         </div>
         
         {/* Next Lesson Button */}
-        <div className="absolute bottom-6 right-6">
+        <div className="mt-6 flex justify-end pb-4 lg:pb-0">
            <button 
               onClick={handleNextLesson}
               disabled={isCompleting || !activeLesson}
@@ -349,6 +373,19 @@ export default function CoursePlayerClient({
            </button>
         </div>
 
+      </div>
+
+      {/* Mobile Floating Bottom Navigation */}
+      <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-20 bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100 rounded-full px-8 py-3 flex items-center gap-8">
+        <Link href="/student/dashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-800 transition-colors">
+           <ChevronLeft className="h-5 w-5" />
+           <span className="text-[9px] font-bold uppercase tracking-wider">Back</span>
+        </Link>
+        <div className="w-px h-8 bg-gray-200"></div>
+        <button onClick={() => setIsMobileSidebarOpen(true)} className="flex flex-col items-center gap-1 text-[#0055A5] hover:scale-110 transition-transform">
+           <Menu className="h-5 w-5" />
+           <span className="text-[9px] font-bold uppercase tracking-wider">Modules</span>
+        </button>
       </div>
     </div>
   );
