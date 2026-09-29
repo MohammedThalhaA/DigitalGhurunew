@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 export const dynamic = 'force-dynamic';
 
@@ -56,9 +57,9 @@ export async function POST(req: Request) {
 
     // Insert course
     const result = await pool.query(
-      `INSERT INTO courses (title, description, price, marketing_data, "instructorId") 
-       VALUES ($1, $2, $3, $4, $5) RETURNING id`,
-      [title, description || null, discountedPrice ? parseInt(discountedPrice) : 0, finalMarketingData, parseInt(session.user.id)]
+      `INSERT INTO courses (title, description, price, marketing_data, "instructorId", slug, "isPublished") 
+       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+      [title, description || null, discountedPrice ? parseInt(discountedPrice) : 0, JSON.stringify(finalMarketingData), parseInt(session.user.id), rest.slug || null, true]
     );
 
     const courseId = result.rows[0].id;
@@ -90,9 +91,15 @@ export async function POST(req: Request) {
       }
     }
 
+    revalidatePath("/");
+    revalidatePath("/courses");
+    revalidatePath("/admin/courses");
+    revalidatePath("/admin/dashboard");
+
     return NextResponse.json({ course: result.rows[0] });
   } catch (error) {
     console.error("[COURSES_POST]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
