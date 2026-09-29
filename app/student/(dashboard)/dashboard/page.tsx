@@ -35,7 +35,7 @@ export default async function StudentDashboardPage() {
     title: c.title,
     subtitle: c.description?.substring(0, 60) || "",
     progress: c.progress,
-    imageUrl: c.imageUrl || "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
+    imageUrl: c.imageUrl?.trim() || null,
   }));
 
   // Recommended courses: courses NOT enrolled in
@@ -51,11 +51,12 @@ export default async function StudentDashboardPage() {
     );
     recommendedCourses = recommendedRes.rows.map(row => {
       const mData = row.marketing_data || {};
+      const img = mData.cardImage || mData.thumbnail || row.image || "";
       return {
         id: row.id.toString(),
         title: row.title || mData.title,
         subtitle: (row.description || mData.description || "").substring(0, 60),
-        imageUrl: mData.cardImage || mData.thumbnail || row.image || "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
+        imageUrl: img.trim() || null,
         progress: 0
       };
     });
@@ -152,12 +153,18 @@ export default async function StudentDashboardPage() {
           <h2 className="eyebrow !text-amber-500 mb-4">Continue Learning</h2>
           <div className="bg-white rounded-3xl border border-ink-100 shadow-card overflow-hidden flex flex-col md:flex-row group relative z-10 hover:shadow-card-hover transition-all duration-300">
             <div className="w-full md:w-[45%] lg:w-2/5 aspect-video relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-ink-100 bg-[#0B1221]">
-               <Image 
-                 src={activeCourse.imageUrl || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"} 
-                 alt={activeCourse.title} 
-                 fill 
-                 className="object-contain group-hover:scale-105 transition-transform duration-700" 
-               />
+               {activeCourse.imageUrl ? (
+                 <Image 
+                   src={activeCourse.imageUrl} 
+                   alt={activeCourse.title} 
+                   fill 
+                   className="object-contain group-hover:scale-105 transition-transform duration-700" 
+                 />
+               ) : (
+                 <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/80 to-blue-900 flex items-center justify-center">
+                   <BookOpen className="w-16 h-16 text-white/50" />
+                 </div>
+               )}
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 shadow-lg">
                  <span className="text-white text-xs font-bold tracking-[0.15em] uppercase shadow-sm">In Progress</span>

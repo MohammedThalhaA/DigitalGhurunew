@@ -287,11 +287,13 @@ export async function getEnrolledCourses(userId: number) {
       const total = parseInt(row.total_chapters) || 0;
       const progress = total === 0 ? 0 : Math.round((completed / total) * 100);
 
+      const img = mData.cardImage || mData.thumbnail || row.imageUrl || "";
+
       return {
         id: row.id.toString(),
         title: row.title || mData.title,
         description: row.description || mData.description || "",
-        imageUrl: mData.cardImage || mData.thumbnail || row.imageUrl || null,
+        imageUrl: img.trim() || null,
         progress: progress,
         completedAt: row.completedAt,
         modules: parseInt(row.module_count) || 0,
