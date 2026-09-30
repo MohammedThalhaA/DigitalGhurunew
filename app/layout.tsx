@@ -32,6 +32,12 @@ export const metadata: Metadata = {
     "online marketing training",
     "SEO course",
     "social media marketing",
+    "AI powered digital marketing in chennai",
+    "AI powered digital marketing in hyderabad",
+    "AI digital marketing institute in chennai",
+    "AI digital marketing training in hyderabad",
+    "best AI digital marketing course",
+    "learn AI marketing online"
   ],
   openGraph: {
     type: "website",
