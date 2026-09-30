@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     siteName: "Digital Ghuru",
   },
+  verification: {
+    google: "sWZnDRqXj6ys5_qrgitJDx4uuZJGhsNMZFk8ol3yC7c",
+  },
 };
 
 export default function RootLayout({
