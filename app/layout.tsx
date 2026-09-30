@@ -45,7 +45,10 @@ export const metadata: Metadata = {
     siteName: "Digital Ghuru",
   },
   verification: {
-    google: "sWZnDRqXj6ys5_qrgitJDx4uuZJGhsNMZFk8ol3yC7c",
+    google: [
+      "sWZnDRqXj6ys5_qrgitJDx4uuZJGhsNMZFk8ol3yC7c",
+      "j-TCAkG3DX-r6XrsUqtBwR2PDlXflZ5NygYi1lBLD1U"
+    ],
   },
 };
 
