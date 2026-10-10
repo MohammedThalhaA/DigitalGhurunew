@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
+import Image from "next/image";
 
 interface TrustBadge {
   label: string;
@@ -126,11 +127,14 @@ export default function HeroSection({
             className="relative"
           >
             {imageUrl ? (
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <img
+              <div className="rounded-3xl overflow-hidden shadow-2xl relative w-full h-[450px] lg:h-[550px]">
+                <Image
                   src={imageUrl}
                   alt="Hero"
-                  className="w-full h-auto max-h-[450px] lg:max-h-[550px] object-cover object-center"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center"
                 />
               </div>
             ) : children ? (

@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import Image from "next/image";
 
 interface TestimonialCardProps {
   quote: string;
@@ -35,11 +36,15 @@ export default function TestimonialCard({
       <div className="flex items-center gap-3 pt-4 border-t border-ink-100">
         <div className="h-10 w-10 rounded-full bg-gradient-to-br from-brand-blue/10 to-brand-gold/10 overflow-hidden flex items-center justify-center shrink-0">
           {photoUrl ? (
-            <img
-              src={photoUrl}
-              alt={name}
-              className="w-full h-full object-cover"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={photoUrl}
+                alt={name}
+                fill
+                sizes="40px"
+                className="object-cover"
+              />
+            </div>
           ) : (
             <span className="font-display text-sm font-bold text-brand-blue">
               {name

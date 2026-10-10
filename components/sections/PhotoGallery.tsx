@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X as XIcon, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 interface PhotoGalleryProps {
   title?: string;
@@ -80,10 +81,12 @@ export default function PhotoGallery({
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
-      <img
+      <Image
         src={img.src}
         alt={img.alt}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        fill
+        sizes="320px"
+        className="object-cover group-hover:scale-105 transition-transform duration-300"
       />
     </motion.button>
   );
@@ -112,10 +115,12 @@ export default function PhotoGallery({
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
               >
-                <img
+                <Image
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-ink-900/0 group-hover:bg-ink-900/20 transition-colors duration-300" />
               </motion.button>
@@ -177,11 +182,15 @@ export default function PhotoGallery({
                   <ChevronLeft className="h-8 w-8" />
                 </button>
 
-                <img
-                  src={images[lightboxIndex].src}
-                  alt={images[lightboxIndex].alt}
-                  className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
-                />
+                <div className="relative w-[90vw] h-[80vh] md:w-[80vw] md:h-[80vh]">
+                  <Image
+                    src={images[lightboxIndex].src}
+                    alt={images[lightboxIndex].alt}
+                    fill
+                    className="object-contain"
+                    sizes="100vw"
+                  />
+                </div>
 
                 {/* Next Button */}
                 <button

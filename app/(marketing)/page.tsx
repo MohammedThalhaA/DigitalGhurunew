@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, Star } from "lucide-react";
+import Image from "next/image";
 import HeroSection from "@/components/sections/HeroSection";
 import CourseCard from "@/components/cards/CourseCard";
 import StatCard from "@/components/cards/StatCard";
@@ -437,11 +438,13 @@ export default function HomePage() {
             </div>
 
             <div className="relative">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card border border-ink-100">
-                <img
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-card border border-ink-100">
+                <Image
                   src="/resources/Image 2.png"
                   alt="Success Story"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>

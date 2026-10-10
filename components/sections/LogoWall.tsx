@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface LogoItem {
   name: string;
@@ -125,8 +126,8 @@ export default function LogoWall({
                         </span>
                       </>
                     ) : logo.logoUrl ? (
-                      <div className="h-24 w-auto flex items-center justify-center shrink-0 px-4">
-                        <img src={logo.logoUrl} alt={logo.name} className="h-full w-auto object-contain max-w-[200px] scale-[1.25]" />
+                      <div className="h-24 w-48 relative flex items-center justify-center shrink-0 px-4">
+                        <Image src={logo.logoUrl} alt={logo.name} fill sizes="200px" className="object-contain scale-[1.25]" />
                       </div>
                     ) : null}
                   </div>
