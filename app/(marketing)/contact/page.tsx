@@ -7,6 +7,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import LocationCard from "@/components/cards/LocationCard";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 import Button from "@/components/ui/Button";
+import ObfuscatedEmail from "@/components/ui/ObfuscatedEmail";
 
 const offices = [
   {
@@ -153,9 +154,9 @@ export default function ContactPage() {
               </div>
               <h3 className="font-heading text-xl font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors duration-300">General Inquiries</h3>
               <p className="text-base text-ink-500 mb-6 flex-1">Drop us an email for partnerships, support, or detailed syllabus requests.</p>
-              <a href="mailto:contact@digitalghuru.com" className="inline-flex items-center gap-1.5 text-brand-blue font-bold hover:text-brand-orange transition-colors">
+              <ObfuscatedEmail domain="digitalghuru.com" className="inline-flex items-center gap-1.5 text-brand-blue font-bold hover:text-brand-orange transition-colors">
                 contact@digitalghuru.com <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </a>
+              </ObfuscatedEmail>
             </motion.div>
 
             {/* Visit Campus */}
@@ -398,7 +399,7 @@ export default function ContactPage() {
                       </div>
                       <div className="bg-white p-6 shadow-[0_4px_24px_rgb(0,0,0,0.04)] flex flex-col items-center justify-center text-center h-[180px]">
                         <h4 className="font-heading text-xl font-bold text-ink-900 mb-3">Email Us</h4>
-                        <p className="text-ink-700 font-medium">{office.email}</p>
+                        <ObfuscatedEmail domain={office.email.split('@')[1]} className="text-ink-700 font-medium">{office.email}</ObfuscatedEmail>
                       </div>
                     </div>
                   </div>

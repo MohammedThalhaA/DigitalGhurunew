@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, PhoneCall, Mail } from "lucide-react";
+import ObfuscatedEmail from "@/components/ui/ObfuscatedEmail";
 
 export default function LeadCaptureForm() {
   const [formData, setFormData] = useState({
@@ -105,9 +106,7 @@ export default function LeadCaptureForm() {
                 </div>
                 <div>
                   <p className="text-sm text-ink-400 font-semibold uppercase">Email Us</p>
-                  <a href="mailto:contact@digitalghuru.in" className="text-sm font-bold hover:text-brand-blue transition-colors">
-                    contact@digitalghuru.in
-                  </a>
+                  <ObfuscatedEmail className="text-sm font-bold hover:text-brand-blue transition-colors" />
                 </div>
               </div>
             </div>
