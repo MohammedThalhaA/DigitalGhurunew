@@ -78,11 +78,26 @@ export default function LogoWall({
   eyebrow,
   logos,
 }: LogoWallProps) {
-  // Triplicate the logo array to achieve a seamless, continuous marquee looping effect
-  const triplicatedLogos = [...logos, ...logos, ...logos];
+  const [inView, setInView] = React.useState(false);
+  const sectionRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "150px" }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="section-padding bg-white overflow-hidden">
+    <section ref={sectionRef} className="section-padding bg-white overflow-hidden">
       <div className="w-full">
         {/* Header */}
         {(eyebrow || title) && (
@@ -129,15 +144,21 @@ export default function LogoWall({
                       </>
                     ) : logo.logoUrl ? (
                       <div className="h-20 w-44 flex items-center justify-center shrink-0 px-4">
-                        <Image
-                          src={logo.logoUrl}
-                          alt={logo.name}
-                          width={logo.width || 200}
-                          height={logo.height || 200}
-                          loading="lazy"
-                          className="max-h-16 w-auto max-w-[150px] object-contain scale-[1.15]"
-                          style={{ width: "auto", height: "auto" }}
-                        />
+                        {inView ? (
+                          <Image
+                            src={logo.logoUrl}
+                            alt={logo.name}
+                            width={logo.width || 200}
+                            height={logo.height || 200}
+                            loading="lazy"
+                            className="max-h-16 w-auto max-w-[150px] object-contain scale-[1.15]"
+                            style={{ width: "auto", height: "auto" }}
+                          />
+                        ) : (
+                          <span className="font-display text-sm md:text-base font-bold text-ink-400 tracking-wide select-none">
+                            {logo.name}
+                          </span>
+                        )}
                       </div>
                     ) : null}
                   </div>

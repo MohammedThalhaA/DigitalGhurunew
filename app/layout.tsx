@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
@@ -164,23 +165,20 @@ export default function RootLayout({
           const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-DGHRU20261";
           return (
             <>
-              <script
-                async
+              <Script
                 src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+                strategy="lazyOnload"
               />
-              <script
-                id="google-analytics"
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${gaId}', {
-                      page_path: window.location.pathname,
-                    });
-                  `,
-                }}
-              />
+              <Script id="google-analytics" strategy="lazyOnload">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}', {
+                    page_path: window.location.pathname,
+                  });
+                `}
+              </Script>
             </>
           );
         })()}
