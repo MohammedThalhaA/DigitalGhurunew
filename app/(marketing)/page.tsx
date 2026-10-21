@@ -198,13 +198,20 @@ const fadeUpItem: any = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
+let cachedHomePageCourses: typeof initialCourses | null = null;
+
 export default function HomePage() {
   const router = useRouter();
   const { triggerAction, GateModalComponent } = useCourseGate("Digital Ghuru Courses");
-  const [courseList, setCourseList] = useState<typeof initialCourses>([]);
-  const [coursesLoading, setCoursesLoading] = useState(true);
+  const [courseList, setCourseList] = useState<typeof initialCourses>(() => cachedHomePageCourses || initialCourses);
+  const [coursesLoading, setCoursesLoading] = useState(() => !cachedHomePageCourses);
 
   useEffect(() => {
+    if (cachedHomePageCourses) {
+      setCoursesLoading(false);
+      return;
+    }
+
     fetch("/api/courses")
       .then((res) => {
         if (!res.ok) throw new Error(`API returned ${res.status}`);
@@ -228,8 +235,10 @@ export default function HomePage() {
               ctaHref: c.slug ? `/courses/${c.slug}` : `/courses/${c.id}`,
             };
           });
+          cachedHomePageCourses = dbCourses;
           setCourseList(dbCourses);
         } else {
+          cachedHomePageCourses = initialCourses;
           setCourseList(initialCourses);
         }
       })

@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === "production") {
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
     max: 10,
+    idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 10000,
   });
 } else {
@@ -20,10 +21,15 @@ if (process.env.NODE_ENV === "production") {
       connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false },
       max: 5, // Lower max in dev to prevent connection exhaustion during hot reloads
+      idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 10000,
     });
   }
   pool = global.pool;
 }
+
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle pg client:", err);
+});
 
 export default pool;

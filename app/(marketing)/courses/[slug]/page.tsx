@@ -16,7 +16,7 @@ import CourseFAQs from "@/components/sections/course-new/CourseFAQs";
 
 import ModernLinearCourseLayout from "@/components/sections/course-linear/ModernLinearCourseLayout";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 const getCourseData = cache(async (slug: string): Promise<CourseData | null> => {
   let dbCourse = null;

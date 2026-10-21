@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export async function GET() {
   try {
@@ -14,7 +14,11 @@ export async function GET() {
        WHERE "isPublished" = true 
        ORDER BY id ASC`
     );
-    return NextResponse.json(res.rows);
+    return NextResponse.json(res.rows, {
+      headers: {
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+      },
+    });
   } catch (error) {
     console.error("[COURSES_GET]", error);
     return NextResponse.json({ error: "Failed to fetch courses" }, { status: 500 });

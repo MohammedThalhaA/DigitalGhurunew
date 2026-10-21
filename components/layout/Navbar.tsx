@@ -300,22 +300,28 @@ function MobileNavGroup({
   );
 }
 
+let cachedNavCourses: any[] | null = null;
+
 /* ─── Main Navbar ─── */
 export default function Navbar() {
   const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [navItems, setNavItems] = useState<NavItem[]>(staticNavItems);
+  const [navItems, setNavItems] = useState<NavItem[]>(() =>
+    cachedNavCourses ? buildNavItems(cachedNavCourses) : staticNavItems
+  );
   const pathname = usePathname();
 
-  // Fetch courses and build dynamic nav
+  // Fetch courses and build dynamic nav (cached in memory)
   useEffect(() => {
+    if (cachedNavCourses) return;
     async function fetchCourses() {
       try {
         const res = await fetch("/api/courses");
         if (res.ok) {
           const courses = await res.json();
           if (Array.isArray(courses) && courses.length > 0) {
+            cachedNavCourses = courses;
             setNavItems(buildNavItems(courses));
           }
         }

@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
   images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 86400,
     remotePatterns: [
       {
         protocol: 'https',
@@ -23,18 +26,22 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Cache static public assets
+        source: '/(images|partners|resources|tools|Gallery\\ Images)/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
     ];
   },
   experimental: {
     serverComponentsExternalPackages: ['pg'],
   },
   output: "standalone",
-  webpack: (config, { dev }) => {
-    if (dev) {
-      config.cache = false;
-    }
-    return config;
-  },
 };
 
 export default nextConfig;
