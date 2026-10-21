@@ -398,7 +398,7 @@ export default function HomePage() {
         <div className="section-container">
           <div className="text-center mb-12">
             <p className="eyebrow mb-3">MEET THE MENTOR</p>
-            <h2 className="heading-lg mb-4 text-ink-900 font-bold">Learn From the Best</h2>
+            <h3 className="heading-lg mb-4 text-ink-900 font-bold">Learn From the Best</h3>
             <p className="body-lg max-w-2xl mx-auto text-ink-500">
               Our mentors are seasoned industry professionals who bring real-world experience into every session.
             </p>
@@ -428,9 +428,9 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="eyebrow mb-3">SUCCESS STORIES</p>
-              <h2 className="heading-lg mb-6 text-ink-900 font-bold">
+              <h3 className="heading-lg mb-6 text-ink-900 font-bold">
                 Our Alumni Are Making Waves in the Industry
-              </h2>
+              </h3>
               <p className="body-lg mb-6 text-ink-500">
                 From fresh graduates to career switchers, our students have gone on to work with leading brands, agencies, and startups across India and beyond.
               </p>

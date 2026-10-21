@@ -79,9 +79,9 @@ export default function LeadCaptureForm() {
             className="lg:col-span-5 space-y-6"
           >
             <p className="eyebrow">ADMISSIONS OPEN</p>
-            <h2 className="heading-lg text-ink-900">
+            <h3 className="heading-lg text-ink-900">
               Start Your Digital Marketing Career Today
-            </h2>
+            </h3>
             <p className="body-lg text-ink-500">
               Have questions about our course fee, duration, classroom location, or placement record? Get in touch with our admissions specialist for a free 1-on-1 counseling session.
             </p>
