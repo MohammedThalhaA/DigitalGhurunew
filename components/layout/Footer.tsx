@@ -94,6 +94,7 @@ export default function Footer() {
                   width={256}
                   height={311}
                   className="h-14 w-auto object-contain"
+                  style={{ width: "auto" }}
                 />
               </Link>
               <span className="text-white/60 font-medium text-lg shrink-0">✕</span>
@@ -109,6 +110,7 @@ export default function Footer() {
                   width={209}
                   height={200}
                   className="h-14 w-auto object-contain scale-110"
+                  style={{ width: "auto" }}
                 />
               </a>
             </div>

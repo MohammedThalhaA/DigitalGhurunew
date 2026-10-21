@@ -131,12 +131,11 @@ export default function HeroSection({
               >
                 <Image
                   src={imageUrl}
-                  alt="Hero"
-                  fill
+                  alt="Digital Ghuru — AI-Integrated Digital Marketing Institute"
+                  width={550}
+                  height={550}
                   priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px"
-                  style={{ objectFit: "cover" }}
-                  className="object-cover object-center"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
             ) : children ? (

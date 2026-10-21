@@ -23,9 +23,10 @@ export default function LocationCard({
           <Image
             src={imageUrl}
             alt={name}
-            fill
+            width={384}
+            height={216}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 384px"
-            className="object-cover hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
       )}

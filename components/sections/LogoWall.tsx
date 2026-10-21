@@ -8,6 +8,8 @@ interface LogoItem {
   name: string;
   logoUrl: string;
   href?: string;
+  width?: number;
+  height?: number;
 }
 
 interface LogoWallProps {
@@ -130,10 +132,11 @@ export default function LogoWall({
                         <Image
                           src={logo.logoUrl}
                           alt={logo.name}
-                          width={160}
-                          height={64}
+                          width={logo.width || 200}
+                          height={logo.height || 200}
                           loading="lazy"
                           className="max-h-16 w-auto max-w-[150px] object-contain scale-[1.15]"
+                          style={{ width: "auto", height: "auto" }}
                         />
                       </div>
                     ) : null}

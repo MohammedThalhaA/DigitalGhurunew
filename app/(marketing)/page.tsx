@@ -27,26 +27,26 @@ import PhotoGallery from "@/components/sections/PhotoGallery";
 /* ─── Mock Data & Branding Configs ─── */
 
 const hiringPartners = [
-  { name: "NEWS GHURU", logoUrl: "/partners/NEWS GHURU LOGO PNG.webp" },
-  { name: "PRS", logoUrl: "/partners/PRS LOGO.webp" },
-  { name: "Blessence", logoUrl: "/partners/blessence.webp" },
-  { name: "Brand 03", logoUrl: "/partners/brand03.webp" },
-  { name: "Brand 1", logoUrl: "/partners/brand1.webp" },
-  { name: "Dhara", logoUrl: "/partners/dhara.webp" },
-  { name: "Divine", logoUrl: "/partners/divine.webp" },
-  { name: "Joyson Trust", logoUrl: "/partners/joysontrust.webp" },
-  { name: "MCars", logoUrl: "/partners/mcars.webp" },
-  { name: "Meera Filngs", logoUrl: "/partners/meera filngs.webp" },
-  { name: "Miniso", logoUrl: "/partners/miniso poster logo.webp" },
-  { name: "Mithra", logoUrl: "/partners/mithra.webp" },
-  { name: "MK", logoUrl: "/partners/mk.webp" },
-  { name: "New Brand 3", logoUrl: "/partners/newbrand3.webp" },
-  { name: "Sai", logoUrl: "/partners/sai.webp" },
-  { name: "School", logoUrl: "/partners/school.webp" },
-  { name: "Sissers", logoUrl: "/partners/sissers.webp" },
-  { name: "Sivaji Sons", logoUrl: "/partners/sivajisons.webp" },
-  { name: "UE Logo", logoUrl: "/partners/uelogo.webp" },
-  { name: "VR Tech", logoUrl: "/partners/vrtech.webp" },
+  { name: "NEWS GHURU", logoUrl: "/partners/NEWS GHURU LOGO PNG.webp", width: 250, height: 200 },
+  { name: "PRS", logoUrl: "/partners/PRS LOGO.webp", width: 400, height: 177 },
+  { name: "Blessence", logoUrl: "/partners/blessence.webp", width: 400, height: 116 },
+  { name: "Brand 03", logoUrl: "/partners/brand03.webp", width: 200, height: 200 },
+  { name: "Brand 1", logoUrl: "/partners/brand1.webp", width: 200, height: 200 },
+  { name: "Dhara", logoUrl: "/partners/dhara.webp", width: 268, height: 200 },
+  { name: "Divine", logoUrl: "/partners/divine.webp", width: 310, height: 200 },
+  { name: "Joyson Trust", logoUrl: "/partners/joysontrust.webp", width: 200, height: 200 },
+  { name: "MCars", logoUrl: "/partners/mcars.webp", width: 196, height: 200 },
+  { name: "Meera Filngs", logoUrl: "/partners/meera filngs.webp", width: 400, height: 179 },
+  { name: "Miniso", logoUrl: "/partners/miniso poster logo.webp", width: 143, height: 200 },
+  { name: "Mithra", logoUrl: "/partners/mithra.webp", width: 200, height: 200 },
+  { name: "MK", logoUrl: "/partners/mk.webp", width: 200, height: 200 },
+  { name: "New Brand 3", logoUrl: "/partners/newbrand3.webp", width: 200, height: 200 },
+  { name: "Sai", logoUrl: "/partners/sai.webp", width: 200, height: 200 },
+  { name: "School", logoUrl: "/partners/school.webp", width: 204, height: 200 },
+  { name: "Sissers", logoUrl: "/partners/sissers.webp", width: 396, height: 144 },
+  { name: "Sivaji Sons", logoUrl: "/partners/sivajisons.webp", width: 214, height: 113 },
+  { name: "UE Logo", logoUrl: "/partners/uelogo.webp", width: 400, height: 112 },
+  { name: "VR Tech", logoUrl: "/partners/vrtech.webp", width: 200, height: 200 },
 ];
 
 const galleryImages = [
@@ -454,11 +454,10 @@ export default function HomePage() {
               <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden shadow-card border border-ink-100">
                 <Image
                   src="/resources/Image 2.webp"
-                  alt="Success Story"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
+                  alt="Digital Ghuru Alumni Success Story"
+                  width={512}
+                  height={512}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
