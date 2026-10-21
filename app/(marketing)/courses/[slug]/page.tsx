@@ -94,6 +94,9 @@ export async function generateMetadata({
   return {
     title: course.title,
     description: course.description || "Master digital marketing with Digital Ghuru's premium courses.",
+    alternates: {
+      canonical: `https://digitalghuru.com/courses/${params.slug}`,
+    },
     keywords: [
       course.title,
       "AI powered digital marketing in chennai",
@@ -150,7 +153,7 @@ export default async function CoursePage({
     "provider": {
       "@type": "Organization",
       "name": "Digital Ghuru",
-      "sameAs": "https://digitalghuru.in"
+      "sameAs": "https://digitalghuru.com"
     }
   };
 

@@ -356,13 +356,17 @@ export default function Navbar() {
 
   return (
     <header
+      style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[#006FFF]/90 backdrop-blur-md shadow-nav border-b border-white/10"
           : "bg-[#006FFF]"
       }`}
     >
-      <nav className="section-container flex items-center justify-between h-[88px]">
+      <nav 
+        style={{ height: "88px" }}
+        className="section-container flex items-center justify-between h-[88px]"
+      >
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center shrink-0">
           <Image
@@ -370,6 +374,7 @@ export default function Navbar() {
             alt="Digital Ghuru Logo"
             width={256}
             height={311}
+            priority
             className="h-16 w-auto object-contain"
           />
         </Link>

@@ -24,6 +24,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${baseTitle} in Chennai`,
     description: `Join the best ${baseTitle} in Chennai at Digital Ghuru. Live practical training at our Anna Nagar & Korattur campuses with 100% placement support.`,
+    alternates: {
+      canonical: `https://digitalghuru.com/courses/${params.slug}/chennai`,
+    },
   };
 }
 

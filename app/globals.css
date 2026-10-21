@@ -106,6 +106,58 @@
   }
 }
 
+/* ─── Responsive Media Queries for Global Breakpoints ─── */
+@media (max-width: 639px) {
+  .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .heading-xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .heading-lg {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .heading-xl {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heading-xl {
+    font-size: 3.75rem;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-container {
+    max-width: 88rem;
+  }
+}
+
 /* ─── Scrollbar Styling ─── */
 ::-webkit-scrollbar {
   display: none;

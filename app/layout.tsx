@@ -18,13 +18,18 @@ const inter = Inter({
   display: "swap",
 });
 
+const getBaseUrl = () => {
+  const envUrl = process.env.NEXT_PUBLIC_APP_URL;
+  if (envUrl && !envUrl.includes("digitalghuru.in") && !envUrl.includes("www.digitalghuru.com")) {
+    return envUrl;
+  }
+  return "https://digitalghuru.com";
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://digitalghuru.com')
-  ),
+  metadataBase: new URL(getBaseUrl()),
   alternates: {
-    canonical: '/',
+    canonical: "https://digitalghuru.com",
   },
   icons: {
     icon: [
@@ -40,6 +45,17 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
   },
   manifest: '/site.webmanifest',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   title: {
     default: "Digital Ghuru — Premier Digital Marketing Institute",
     template: "%s | Digital Ghuru",
@@ -70,6 +86,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
+    url: "https://digitalghuru.com",
     siteName: "Digital Ghuru",
   },
   verification: {
@@ -94,6 +111,34 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* Critical CSS for layout stability and responsive design media queries */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+              main { padding-top: 88px; }
+              .fixed { position: fixed; }
+              .pt-\\[88px\\] { padding-top: 88px; }
+
+              /* Mobile-First Responsive Breakpoints */
+              @media (max-width: 639px) {
+                .section-container { padding-left: 1rem; padding-right: 1rem; }
+              }
+              @media (min-width: 640px) {
+                .section-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+              }
+              @media (min-width: 768px) {
+                .section-container { padding-left: 2rem; padding-right: 2rem; }
+              }
+              @media (min-width: 1024px) {
+                .section-container { max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 2rem; padding-right: 2rem; }
+              }
+              @media (min-width: 1280px) {
+                .section-container { max-width: 1400px; }
+              }
+            `,
+          }}
+        />
       </head>
       <body className={`${inter.variable} ${outfit.variable} font-body antialiased`}>
         {/* Google Analytics 4 (GA4) - Non-blocking async loading */}

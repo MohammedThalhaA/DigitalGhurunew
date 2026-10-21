@@ -2,8 +2,11 @@ import { MetadataRoute } from 'next';
 import pool from "@/lib/db";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Use the production URL as base, fallback to localhost for dev
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://digitalghuru.com';
+  // Use the canonical production URL as base
+  const envUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const baseUrl = (envUrl && !envUrl.includes("digitalghuru.in") && !envUrl.includes("www.digitalghuru.com"))
+    ? envUrl
+    : 'https://digitalghuru.com';
 
   // 1. Fetch dynamic courses from the database
   let courseUrls: MetadataRoute.Sitemap = [];
@@ -34,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/life-at-digitalghuru',
     '/success-stories',
     '/verify',
+    '/refund-policy',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

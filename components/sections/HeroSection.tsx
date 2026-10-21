@@ -43,21 +43,19 @@ export default function HeroSection({
       </div>
 
       <div className="section-container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-72px)] py-16 md:section-padding">
+        <div 
+          style={{ minHeight: "calc(100vh - 88px)" }}
+          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-88px)] py-16 md:section-padding"
+        >
           {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             {/* Trust Badges */}
             {trustBadges && trustBadges.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.4 }}
-                className="flex flex-wrap gap-2 mb-6"
-              >
+              <div className="flex flex-wrap gap-2 mb-6">
                 {trustBadges.map((badge) => (
                   <span
                     key={badge.label}
@@ -66,7 +64,7 @@ export default function HeroSection({
                     {badge.label}
                   </span>
                 ))}
-              </motion.div>
+              </div>
             )}
 
             {/* Eyebrow */}
@@ -127,7 +125,10 @@ export default function HeroSection({
             className="relative"
           >
             {imageUrl ? (
-              <div className="rounded-3xl overflow-hidden shadow-2xl relative w-full h-[450px] lg:h-[550px]">
+              <div 
+                style={{ minHeight: "450px", aspectRatio: "600 / 550" }}
+                className="rounded-3xl overflow-hidden shadow-2xl relative w-full h-[450px] lg:h-[550px]"
+              >
                 <Image
                   src={imageUrl}
                   alt="Hero"

@@ -24,6 +24,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${baseTitle} in Hyderabad`,
     description: `Join the best ${baseTitle} in Hyderabad at Digital Ghuru. Live practical training at our Ameerpet campus with 100% placement support.`,
+    alternates: {
+      canonical: `https://digitalghuru.com/courses/${params.slug}/hyderabad`,
+    },
   };
 }
 

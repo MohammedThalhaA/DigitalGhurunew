@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Careers & Open Positions",
   description:
     "Explore career opportunities, digital marketing trainer roles, and staff positions at Digital Ghuru institute and agency.",
+  alternates: {
+    canonical: "https://digitalghuru.com/careers",
+  },
 };
 
 export default async function CareersPage() {

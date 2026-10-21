@@ -4,6 +4,9 @@ import HeroSection from "@/components/sections/HeroSection";
 export const metadata = {
   title: "Cancellation & Refund Policy",
   description: "Learn about the cancellation and refund policy for Digital Ghuru courses and workshops.",
+  alternates: {
+    canonical: "https://digitalghuru.com/refund-policy",
+  },
 };
 
 export default function RefundPolicyPage() {

@@ -80,7 +80,7 @@ export default function ContactAndMap({ course }: { course?: any }) {
                 </div>
                 <div className="flex-1">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Website</p>
-                  <p className="text-lg font-bold text-blue-600">digitalghuru.in</p>
+                  <p className="text-lg font-bold text-blue-600">digitalghuru.com</p>
                 </div>
               </div>
             </motion.div>

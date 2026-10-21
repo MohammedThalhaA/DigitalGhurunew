@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
-  experimental: {
-    optimizeCss: true,
-  },
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400,
@@ -67,7 +64,45 @@ const nextConfig = {
     ];
   },
   experimental: {
+    optimizeCss: true,
     serverComponentsExternalPackages: ['pg'],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.digitalghuru.com',
+          },
+        ],
+        destination: 'https://digitalghuru.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.digitalghuru.in',
+          },
+        ],
+        destination: 'https://digitalghuru.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'digitalghuru.in',
+          },
+        ],
+        destination: 'https://digitalghuru.com/:path*',
+        permanent: true,
+      },
+    ];
   },
   output: "standalone",
 };

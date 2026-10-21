@@ -1,0 +1,6 @@
+# ads.txt file for https://digitalghuru.com
+# Digital Ghuru — Premier Digital Marketing Institute
+# Contact: contact@digitalghuru.com
+# Specification: IAB Tech Lab ads.txt standard v1.1
+# No third-party ad networks or resellers are authorized to sell inventory for this domain.
+placeholder.example.com, placeholder, DIRECT, f08c47fec0942fa0

@@ -18,6 +18,9 @@ export async function generateMetadata({
   return {
     title,
     description: `Read "${title}" and discover actionable digital marketing & AI strategies from Digital Ghuru mentors.`,
+    alternates: {
+      canonical: `https://digitalghuru.com/blog/${params.slug}`,
+    },
   };
 }
 

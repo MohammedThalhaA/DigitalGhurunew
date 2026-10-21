@@ -24,6 +24,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `Online ${baseTitle}`,
     description: `Enroll in Digital Ghuru's Online ${baseTitle}. Learn from anywhere with live interactive classes, real-world projects, and 100% placement support.`,
+    alternates: {
+      canonical: `https://digitalghuru.com/courses/${params.slug}/online`,
+    },
   };
 }
 
