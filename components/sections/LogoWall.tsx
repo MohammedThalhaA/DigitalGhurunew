@@ -126,15 +126,14 @@ export default function LogoWall({
                         </span>
                       </>
                     ) : logo.logoUrl ? (
-                      <div className="h-24 w-48 relative flex items-center justify-center shrink-0 px-4">
+                      <div className="h-20 w-44 flex items-center justify-center shrink-0 px-4">
                         <Image
                           src={logo.logoUrl}
                           alt={logo.name}
-                          fill
-                          sizes="200px"
+                          width={160}
+                          height={64}
                           loading="lazy"
-                          style={{ objectFit: "contain" }}
-                          className="object-contain scale-[1.25]"
+                          className="max-h-16 w-auto max-w-[150px] object-contain scale-[1.15]"
                         />
                       </div>
                     ) : null}

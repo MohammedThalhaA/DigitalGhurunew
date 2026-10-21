@@ -88,6 +88,24 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://digitalghuru.com",
     siteName: "Digital Ghuru",
+    title: "Digital Ghuru — Premier Digital Marketing Institute",
+    description:
+      "Digital Ghuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
+    images: [
+      {
+        url: "https://digitalghuru.com/images/Hero Image.webp",
+        width: 1200,
+        height: 1200,
+        alt: "Digital Ghuru - Premier Digital Marketing Institute",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Ghuru — Premier Digital Marketing Institute",
+    description:
+      "Digital Ghuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
+    images: ["https://digitalghuru.com/images/Hero Image.webp"],
   },
   verification: {
     google: [

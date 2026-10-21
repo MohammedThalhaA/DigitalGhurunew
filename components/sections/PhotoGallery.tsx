@@ -77,7 +77,7 @@ export default function PhotoGallery({
     <motion.button
       key={idx}
       onClick={() => setLightboxIndex(idx)}
-      className="group relative h-64 w-80 rounded-2xl overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 shrink-0 shadow-md"
+      className="group relative h-64 w-64 aspect-square rounded-2xl overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 shrink-0 shadow-md"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
@@ -85,7 +85,7 @@ export default function PhotoGallery({
         src={img.src}
         alt={img.alt}
         fill
-        sizes="320px"
+        sizes="256px"
         loading="lazy"
         style={{ objectFit: "cover" }}
         className="object-cover group-hover:scale-105 transition-transform duration-300"

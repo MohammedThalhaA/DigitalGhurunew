@@ -126,15 +126,15 @@ export default function HeroSection({
           >
             {imageUrl ? (
               <div 
-                style={{ minHeight: "450px", aspectRatio: "600 / 550" }}
-                className="rounded-3xl overflow-hidden shadow-2xl relative w-full h-[450px] lg:h-[550px]"
+                style={{ aspectRatio: "1 / 1" }}
+                className="rounded-3xl overflow-hidden shadow-2xl relative w-full max-w-[550px] aspect-square mx-auto"
               >
                 <Image
                   src={imageUrl}
                   alt="Hero"
                   fill
                   priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px"
                   style={{ objectFit: "cover" }}
                   className="object-cover object-center"
                 />
