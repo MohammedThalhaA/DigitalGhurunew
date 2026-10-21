@@ -104,7 +104,7 @@ export default function Footer() {
                 className="shrink-0"
               >
                 <Image
-                  src="/partners/jaighurudevalogo.png"
+                  src="/partners/jaighurudevalogo.webp"
                   alt="Jaighurudeva Educational Academy"
                   width={209}
                   height={200}

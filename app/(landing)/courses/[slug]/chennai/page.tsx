@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const staticCourse = courseMap[params.slug];
   const baseTitle = staticCourse ? staticCourse.title : "Digital Marketing Course";
   return {
-    title: `${baseTitle} in Chennai | Digital Ghuru`,
+    title: `${baseTitle} in Chennai`,
     description: `Join the best ${baseTitle} in Chennai at Digital Ghuru. Live practical training at our Anna Nagar & Korattur campuses with 100% placement support.`,
   };
 }

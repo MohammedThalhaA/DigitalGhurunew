@@ -27,43 +27,43 @@ import PhotoGallery from "@/components/sections/PhotoGallery";
 /* ─── Mock Data & Branding Configs ─── */
 
 const hiringPartners = [
-  { name: "NEWS GHURU", logoUrl: "/partners/NEWS GHURU LOGO PNG.png" },
-  { name: "PRS", logoUrl: "/partners/PRS LOGO.png" },
-  { name: "Blessence", logoUrl: "/partners/blessence.png" },
-  { name: "Brand 03", logoUrl: "/partners/brand03.png" },
-  { name: "Brand 1", logoUrl: "/partners/brand1.png" },
-  { name: "Dhara", logoUrl: "/partners/dhara.jpeg" },
-  { name: "Divine", logoUrl: "/partners/divine.jpeg" },
-  { name: "Joyson Trust", logoUrl: "/partners/joysontrust.png" },
-  { name: "MCars", logoUrl: "/partners/mcars.png" },
-  { name: "Meera Filngs", logoUrl: "/partners/meera filngs.png" },
-  { name: "Miniso", logoUrl: "/partners/miniso poster logo.png" },
-  { name: "Mithra", logoUrl: "/partners/mithra.jpeg" },
-  { name: "MK", logoUrl: "/partners/mk.png" },
-  { name: "New Brand 3", logoUrl: "/partners/newbrand3.png" },
-  { name: "Sai", logoUrl: "/partners/sai.jpeg" },
-  { name: "School", logoUrl: "/partners/school.png" },
-  { name: "Sissers", logoUrl: "/partners/sissers.png" },
-  { name: "Sivaji Sons", logoUrl: "/partners/sivajisons.png" },
-  { name: "UE Logo", logoUrl: "/partners/uelogo.png" },
-  { name: "VR Tech", logoUrl: "/partners/vrtech.png" },
+  { name: "NEWS GHURU", logoUrl: "/partners/NEWS GHURU LOGO PNG.webp" },
+  { name: "PRS", logoUrl: "/partners/PRS LOGO.webp" },
+  { name: "Blessence", logoUrl: "/partners/blessence.webp" },
+  { name: "Brand 03", logoUrl: "/partners/brand03.webp" },
+  { name: "Brand 1", logoUrl: "/partners/brand1.webp" },
+  { name: "Dhara", logoUrl: "/partners/dhara.webp" },
+  { name: "Divine", logoUrl: "/partners/divine.webp" },
+  { name: "Joyson Trust", logoUrl: "/partners/joysontrust.webp" },
+  { name: "MCars", logoUrl: "/partners/mcars.webp" },
+  { name: "Meera Filngs", logoUrl: "/partners/meera filngs.webp" },
+  { name: "Miniso", logoUrl: "/partners/miniso poster logo.webp" },
+  { name: "Mithra", logoUrl: "/partners/mithra.webp" },
+  { name: "MK", logoUrl: "/partners/mk.webp" },
+  { name: "New Brand 3", logoUrl: "/partners/newbrand3.webp" },
+  { name: "Sai", logoUrl: "/partners/sai.webp" },
+  { name: "School", logoUrl: "/partners/school.webp" },
+  { name: "Sissers", logoUrl: "/partners/sissers.webp" },
+  { name: "Sivaji Sons", logoUrl: "/partners/sivajisons.webp" },
+  { name: "UE Logo", logoUrl: "/partners/uelogo.webp" },
+  { name: "VR Tech", logoUrl: "/partners/vrtech.webp" },
 ];
 
 const galleryImages = [
-  { src: "/Gallery Images/IMG-20260831-WA0002.jpg", alt: "Digital Ghuru classroom lecture session" },
-  { src: "/Gallery Images/IMG-20260831-WA0003.jpg", alt: "Students learning search engine marketing strategy" },
-  { src: "/Gallery Images/IMG-20260831-WA0005.jpg", alt: "Interactive agency-style training session" },
-  { src: "/Gallery Images/IMG-20260831-WA0006.jpg", alt: "Practical digital campaign setup presentation" },
-  { src: "/Gallery Images/IMG-20260831-WA0007.jpg", alt: "Students pitching digital campaign performance" },
-  { src: "/Gallery Images/IMG-20260831-WA0008.jpg", alt: "Collaborative group discussion in progress" },
-  { src: "/Gallery Images/IMG-20260831-WA0009.jpg", alt: "Digital marketing workshop on live campaigns" },
-  { src: "/Gallery Images/IMG-20260831-WA0010.jpg", alt: "Creative brainstorm session for social media strategy" },
-  { src: "/Gallery Images/IMG-20260831-WA0011.jpg", alt: "Students working on search engine optimization tools" },
-  { src: "/Gallery Images/IMG-20260831-WA0014.jpg", alt: "Expert mentor explaining digital funnel logic" },
-  { src: "/Gallery Images/IMG-20260831-WA0015.jpg", alt: "Mentorship and career counseling discussion" },
-  { src: "/Gallery Images/IMG-20260831-WA0016.jpg", alt: "Interactive tech session on generative AI marketing" },
-  { src: "/Gallery Images/IMG-20260831-WA0017.jpg", alt: "Alumni sharing placement interview tips" },
-  { src: "/Gallery Images/IMG-20260831-WA0020.jpg", alt: "Mentorship guidance for digital campaign launch" },
+  { src: "/Gallery Images/IMG-20260831-WA0002.webp", alt: "Digital Ghuru classroom lecture session" },
+  { src: "/Gallery Images/IMG-20260831-WA0003.webp", alt: "Students learning search engine marketing strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0005.webp", alt: "Interactive agency-style training session" },
+  { src: "/Gallery Images/IMG-20260831-WA0006.webp", alt: "Practical digital campaign setup presentation" },
+  { src: "/Gallery Images/IMG-20260831-WA0007.webp", alt: "Students pitching digital campaign performance" },
+  { src: "/Gallery Images/IMG-20260831-WA0008.webp", alt: "Collaborative group discussion in progress" },
+  { src: "/Gallery Images/IMG-20260831-WA0009.webp", alt: "Digital marketing workshop on live campaigns" },
+  { src: "/Gallery Images/IMG-20260831-WA0010.webp", alt: "Creative brainstorm session for social media strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0011.webp", alt: "Students working on search engine optimization tools" },
+  { src: "/Gallery Images/IMG-20260831-WA0014.webp", alt: "Expert mentor explaining digital funnel logic" },
+  { src: "/Gallery Images/IMG-20260831-WA0015.webp", alt: "Mentorship and career counseling discussion" },
+  { src: "/Gallery Images/IMG-20260831-WA0016.webp", alt: "Interactive tech session on generative AI marketing" },
+  { src: "/Gallery Images/IMG-20260831-WA0017.webp", alt: "Alumni sharing placement interview tips" },
+  { src: "/Gallery Images/IMG-20260831-WA0020.webp", alt: "Mentorship guidance for digital campaign launch" },
 ];
 
 const initialCourses = [
@@ -113,25 +113,25 @@ const mentors = [
   {
     name: "Mr. Bala",
     role: "Digital Marketing Trainer",
-    photoUrl: "/resources/Bala Sir.jpeg",
+    photoUrl: "/resources/Bala Sir.webp",
     bio: "Specializes in search engine optimization and analytics. Brings over a decade of experience driving online growth for top-tier brands through data-driven campaigns.",
   },
   {
     name: "Mr. Prakash",
     role: "Digital Marketing Trainer",
-    photoUrl: "/resources/Prakash Sir.jpeg",
+    photoUrl: "/resources/Prakash Sir.webp",
     bio: "An expert in paid advertising and social media strategy. Passionate about teaching advanced scaling techniques and maximizing return on ad spend.",
   },
   {
     name: "Mr. Soorya",
     role: "Graphic Designer and Video Editing Trainer",
-    photoUrl: "/resources/Soorya Sir.jpeg",
+    photoUrl: "/resources/Soorya Sir.webp",
     bio: "A creative visionary skilled in visual storytelling. Equips students with the tools to craft compelling visual assets and engaging video content.",
   },
   {
     name: "Mr. Soundarajan",
     role: "Web Developer Trainer",
-    photoUrl: "/resources/Soundharajan Sir.jpeg",
+    photoUrl: "/resources/Soundharajan Sir.webp",
     bio: "A full-stack developer with extensive experience building robust web applications. Focuses on bridging the gap between technical execution and marketing goals.",
   },
 ];
@@ -212,8 +212,12 @@ export default function HomePage() {
       return;
     }
 
-    fetch("/api/courses")
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+    fetch("/api/courses", { signal: controller.signal })
       .then((res) => {
+        clearTimeout(timeoutId);
         if (!res.ok) throw new Error(`API returned ${res.status}`);
         return res.json();
       })
@@ -293,7 +297,7 @@ export default function HomePage() {
         title=""
         titleHighlight="AI Career Transformation Academy"
         description="Future-proof your career at India's premier AI-integrated digital marketing academy. Master advanced strategies, automate campaigns with AI tools, and train in a live agency-style environment designed to get you hired."
-        imageUrl="/images/Hero Image.jpeg"
+        imageUrl="/images/Hero Image.webp"
         primaryCta={{ label: "Explore Courses", href: "#course-grid" }}
         secondaryCta={{ label: "Book Free Demo", href: "#inquiry-form" }}
       />
@@ -449,7 +453,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden shadow-card border border-ink-100">
                 <Image
-                  src="/resources/Image 2.png"
+                  src="/resources/Image 2.webp"
                   alt="Success Story"
                   fill
                   style={{ objectFit: "cover" }}

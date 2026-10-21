@@ -115,7 +115,7 @@ export default async function CourseLearningPage({ params }: { params: { courseI
           course?.marketing_data?.thumbnail || 
           course?.imageUrl || 
           course?.image || 
-          "/uploads/courses/1789123324736-ai-powered-digital-marketing-banner.jpg.jpeg"
+          "/uploads/courses/1789123324736-ai-powered-digital-marketing-banner.jpg.webp"
         } 
       />
     </div>

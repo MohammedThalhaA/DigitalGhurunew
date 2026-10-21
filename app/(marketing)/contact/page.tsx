@@ -119,7 +119,7 @@ export default function ContactPage() {
         title="Get in Touch with"
         titleHighlight="Digital Ghuru"
         description="Whether you have questions about our curriculum, need career guidance, or want to explore corporate partnerships, our team is ready to help you take the next step."
-        imageUrl="/Gallery Images/IMG-20260831-WA0015.jpg"
+        imageUrl="/Gallery Images/IMG-20260831-WA0015.webp"
         primaryCta={{ label: "Send a Message", href: "#messaging-form" }}
       />
 

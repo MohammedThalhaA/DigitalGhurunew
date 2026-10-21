@@ -86,6 +86,7 @@ export default function PhotoGallery({
         alt={img.alt}
         fill
         sizes="320px"
+        loading="lazy"
         style={{ objectFit: "cover" }}
         className="object-cover group-hover:scale-105 transition-transform duration-300"
       />
@@ -121,6 +122,7 @@ export default function PhotoGallery({
                   alt={img.alt}
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  loading="lazy"
                   style={{ objectFit: "cover" }}
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />

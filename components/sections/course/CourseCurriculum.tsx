@@ -60,19 +60,6 @@ export default function CourseCurriculum({ course }: { course?: any }) {
         {/* Modules Accordion */}
         <div className="max-w-4xl mx-auto relative">
           
-          {/* Cutout Books Image */}
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="hidden lg:block absolute -left-20 lg:-left-32 -top-10 lg:-top-16 w-40 h-40 lg:w-56 lg:h-56 z-30 pointer-events-none"
-          >
-            <Image
-              src="/resources/curriculum-books.png"
-              alt="Curriculum Books"
-              fill
-              className="object-contain drop-shadow-xl pointer-events-auto"
-            />
-          </motion.div>
 
           <div className="bg-white rounded-3xl border border-ink-200 shadow-xl overflow-hidden relative z-20">
             <div className="p-6 md:p-8 border-b border-ink-100 bg-ink-50/50 flex items-center gap-4">

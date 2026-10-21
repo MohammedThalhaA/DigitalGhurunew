@@ -38,7 +38,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="p-6 border-b border-white/10 shrink-0">
           <Link href="/admin/dashboard" className="flex items-center gap-3 group hover:scale-[1.02] transition-transform">
             <Image 
-              src="/logo-for-logins.png" 
+              src="/logo-for-logins.webp" 
               alt="Digital Ghuru" 
               width={120} 
               height={120} 
@@ -47,7 +47,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             />
             <div className="relative w-36 h-10 -ml-10 overflow-hidden flex items-center justify-center pointer-events-none">
               <Image 
-                src="/resources/Admin Portal.png" 
+                src="/resources/Admin Portal.webp" 
                 alt="Admin Portal" 
                 fill
                 className="object-contain scale-[3] origin-center"

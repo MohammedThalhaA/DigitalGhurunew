@@ -92,7 +92,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${course.title} | Digital Ghuru`,
+    title: course.title,
     description: course.description || "Master digital marketing with Digital Ghuru's premium courses.",
     keywords: [
       course.title,
@@ -109,7 +109,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: (course as any).cardImage || "/images/Hero Image.jpeg",
+          url: (course as any).cardImage || "/images/Hero Image.webp",
           width: 1200,
           height: 630,
           alt: course.title,

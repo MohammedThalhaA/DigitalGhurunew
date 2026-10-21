@@ -106,8 +106,8 @@ export default function LogoWall({
               repeat: Infinity,
             }}
           >
-            {/* Duplicate array 6 times instead of 3 to ensure it heavily overflows large screens, and move by -50% (3 sets) */}
-            {[...logos, ...logos, ...logos, ...logos, ...logos, ...logos].map((logo, idx) => {
+            {/* Duplicate array 2 times for seamless -50% loop */}
+            {[...logos, ...logos].map((logo, idx) => {
               const svgLogo = getLogoSvg(logo.name);
 
               return (
@@ -132,6 +132,7 @@ export default function LogoWall({
                           alt={logo.name}
                           fill
                           sizes="200px"
+                          loading="lazy"
                           style={{ objectFit: "contain" }}
                           className="object-contain scale-[1.25]"
                         />

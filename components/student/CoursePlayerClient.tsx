@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function CoursePlayerClient({ 
   modules, 
   courseTitle = "Course Title", 
-  courseImage = "/images/Hero Image.jpeg",
+  courseImage = "/images/Hero Image.webp",
   courseId
 }: { 
   modules: any[], 

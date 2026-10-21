@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const staticCourse = courseMap[params.slug];
   const baseTitle = staticCourse ? staticCourse.title : "Digital Marketing Course";
   return {
-    title: `Online ${baseTitle} | Digital Ghuru`,
+    title: `Online ${baseTitle}`,
     description: `Enroll in Digital Ghuru's Online ${baseTitle}. Learn from anywhere with live interactive classes, real-world projects, and 100% placement support.`,
   };
 }

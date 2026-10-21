@@ -370,7 +370,6 @@ export default function Navbar() {
             alt="Digital Ghuru Logo"
             width={256}
             height={311}
-            priority
             className="h-16 w-auto object-contain"
           />
         </Link>

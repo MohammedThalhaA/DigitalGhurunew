@@ -94,20 +94,6 @@ export default function PlacementProcess() {
         </div>
 
         <div className="relative max-w-4xl mx-auto mt-20 lg:mt-32">
-          {/* Cutout Placement Image */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="hidden md:block absolute -left-12 lg:-left-24 bottom-0 w-64 h-80 lg:w-80 lg:h-96 z-30 pointer-events-none"
-          >
-            <Image
-              src="/resources/placement-success.png"
-              alt="Placement Success"
-              fill
-              className="object-contain object-bottom drop-shadow-2xl pointer-events-auto"
-            />
-          </motion.div>
 
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}

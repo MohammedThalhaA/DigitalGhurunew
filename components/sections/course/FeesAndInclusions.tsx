@@ -81,7 +81,6 @@ export default function FeesAndInclusions({ course }: { course?: any }) {
                 alt="Our Expert Mentors"
                 fill
                 className="object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                priority
               />
             </div>
             {/* Mobile Image */}

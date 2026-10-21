@@ -83,7 +83,7 @@ export default function LMSNavbar() {
           
           <Link href="/student/dashboard" className="flex items-center gap-3 group shrink-0 h-full py-2 ml-2 sm:ml-4 lg:ml-6">
               <Image 
-                src="/logo-for-logins.png" 
+                src="/logo-for-logins.webp" 
                 alt="Digital Ghuru" 
                 width={120} 
                 height={120} 
@@ -92,7 +92,7 @@ export default function LMSNavbar() {
               />
               <div className="relative w-28 sm:w-36 md:w-48 h-8 sm:h-10 md:h-12 -ml-8 sm:-ml-10 md:-ml-12 overflow-hidden flex items-center justify-center pointer-events-none">
                 <Image 
-                  src="/resources/student portal.png" 
+                  src="/resources/student portal.webp" 
                   alt="Student Portal" 
                   fill
                   className="object-contain scale-[2.5] sm:scale-[3] origin-center"

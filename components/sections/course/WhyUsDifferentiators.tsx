@@ -94,10 +94,11 @@ export default function WhyUsDifferentiators({ course }: { course?: any }) {
                   className="mt-8 relative w-full h-[350px] lg:h-[450px] flex items-end justify-center pointer-events-none z-10"
                 >
                   <Image 
-                    src="/resources/mentor-explaining.png"
-                    alt="Digital Ghuru Mentor"
+                    src="/resources/Bala Sir.webp"
+                    alt="Digital Ghuru Lead Mentor"
                     fill
-                    className="object-contain object-bottom drop-shadow-2xl hover:scale-[1.03] transition-transform duration-700 pointer-events-auto"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover rounded-2xl drop-shadow-2xl hover:scale-[1.03] transition-transform duration-700 pointer-events-auto"
                   />
                 </motion.div>
 

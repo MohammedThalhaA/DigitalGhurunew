@@ -88,19 +88,6 @@ export default function EnrollmentProcess() {
           </motion.div>
 
           <div className="text-center relative">
-            {/* Cutout CTA Image */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="hidden md:block absolute -right-4 lg:-right-16 bottom-0 w-48 h-48 lg:w-64 lg:h-64 z-30 pointer-events-none"
-            >
-              <Image
-                src="/resources/cta-action.png"
-                alt="Call to Action"
-                fill
-                className="object-contain object-bottom drop-shadow-2xl pointer-events-auto"
-              />
-            </motion.div>
 
             <p className="text-ink-600 font-medium text-lg mb-8 relative z-40">
               Ready to start? Call <a href="tel:+919513632705" className="text-brand-blue font-bold hover:underline">+91 95136 32705</a> or book your free counselling session.

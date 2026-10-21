@@ -108,7 +108,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
         title="Build the Future of"
         titleHighlight="Tech & Digital Skills"
         description="Join a cutting-edge institute that bridges the gap between education and industry. Whether you're an expert in digital marketing, full-stack development, or career counseling—scale your expertise alongside top industry leaders."
-        imageUrl="/images/careers_hero.jpg" 
+        imageUrl="/images/careers_hero.webp" 
         primaryCta={{ label: "Explore Open Openings", href: "#open-roles" }}
         secondaryCta={{ label: "Submit Application", href: "#speculative-form" }}
       />

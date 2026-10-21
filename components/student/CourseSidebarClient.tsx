@@ -6,7 +6,7 @@ import { PlayCircle, FileText, HelpCircle, ChevronDown, ChevronUp, CheckCircle2,
 export default function CourseSidebarClient({ 
   modules, 
   courseTitle = "Course Title", 
-  courseImage = "/images/Hero Image.jpeg" 
+  courseImage = "/images/Hero Image.webp" 
 }: { 
   modules: any[], 
   courseTitle?: string, 

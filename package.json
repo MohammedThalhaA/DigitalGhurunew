@@ -43,6 +43,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/uuid": "^10.0.0",
+    "critters": "^0.0.23",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "framer-motion": "^13.4.0",

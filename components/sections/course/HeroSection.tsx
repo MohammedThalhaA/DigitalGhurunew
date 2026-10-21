@@ -96,10 +96,11 @@ export default function HeroSection({ course }: { course?: any }) {
             {/* Main Cutout Image */}
             <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-end justify-center z-20">
                 <Image 
-                  src="/resources/hero-student.png" 
-                  alt="Digital Marketing Student"
+                  src="/images/Hero Image.webp" 
+                  alt="Digital Marketing Classroom & Students"
                   fill
-                  className="object-contain object-bottom drop-shadow-2xl hover:scale-[1.02] transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover rounded-3xl drop-shadow-2xl hover:scale-[1.02] transition-transform duration-700"
                   priority
                 />
             </div>

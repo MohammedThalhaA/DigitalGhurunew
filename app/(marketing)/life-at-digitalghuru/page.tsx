@@ -9,20 +9,20 @@ import { motion } from "framer-motion";
 
 /* PLACEHOLDER: Replace with real campus/life images */
 const galleryImages = [
-  { src: "/Gallery Images/IMG-20260831-WA0002.jpg", alt: "Digital Ghuru classroom lecture session" },
-  { src: "/Gallery Images/IMG-20260831-WA0003.jpg", alt: "Students learning search engine marketing strategy" },
-  { src: "/Gallery Images/IMG-20260831-WA0005.jpg", alt: "Interactive agency-style training session" },
-  { src: "/Gallery Images/IMG-20260831-WA0006.jpg", alt: "Practical digital campaign setup presentation" },
-  { src: "/Gallery Images/IMG-20260831-WA0007.jpg", alt: "Students pitching digital campaign performance" },
-  { src: "/Gallery Images/IMG-20260831-WA0008.jpg", alt: "Collaborative group discussion in progress" },
-  { src: "/Gallery Images/IMG-20260831-WA0009.jpg", alt: "Digital marketing workshop on live campaigns" },
-  { src: "/Gallery Images/IMG-20260831-WA0010.jpg", alt: "Creative brainstorm session for social media strategy" },
-  { src: "/Gallery Images/IMG-20260831-WA0011.jpg", alt: "Students working on search engine optimization tools" },
-  { src: "/Gallery Images/IMG-20260831-WA0014.jpg", alt: "Expert mentor explaining digital funnel logic" },
-  { src: "/Gallery Images/IMG-20260831-WA0015.jpg", alt: "Mentorship and career counseling discussion" },
-  { src: "/Gallery Images/IMG-20260831-WA0016.jpg", alt: "Interactive tech session on generative AI marketing" },
-  { src: "/Gallery Images/IMG-20260831-WA0017.jpg", alt: "Alumni sharing placement interview tips" },
-  { src: "/Gallery Images/IMG-20260831-WA0020.jpg", alt: "Mentorship guidance for digital campaign launch" },
+  { src: "/Gallery Images/IMG-20260831-WA0002.webp", alt: "Digital Ghuru classroom lecture session" },
+  { src: "/Gallery Images/IMG-20260831-WA0003.webp", alt: "Students learning search engine marketing strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0005.webp", alt: "Interactive agency-style training session" },
+  { src: "/Gallery Images/IMG-20260831-WA0006.webp", alt: "Practical digital campaign setup presentation" },
+  { src: "/Gallery Images/IMG-20260831-WA0007.webp", alt: "Students pitching digital campaign performance" },
+  { src: "/Gallery Images/IMG-20260831-WA0008.webp", alt: "Collaborative group discussion in progress" },
+  { src: "/Gallery Images/IMG-20260831-WA0009.webp", alt: "Digital marketing workshop on live campaigns" },
+  { src: "/Gallery Images/IMG-20260831-WA0010.webp", alt: "Creative brainstorm session for social media strategy" },
+  { src: "/Gallery Images/IMG-20260831-WA0011.webp", alt: "Students working on search engine optimization tools" },
+  { src: "/Gallery Images/IMG-20260831-WA0014.webp", alt: "Expert mentor explaining digital funnel logic" },
+  { src: "/Gallery Images/IMG-20260831-WA0015.webp", alt: "Mentorship and career counseling discussion" },
+  { src: "/Gallery Images/IMG-20260831-WA0016.webp", alt: "Interactive tech session on generative AI marketing" },
+  { src: "/Gallery Images/IMG-20260831-WA0017.webp", alt: "Alumni sharing placement interview tips" },
+  { src: "/Gallery Images/IMG-20260831-WA0020.webp", alt: "Mentorship guidance for digital campaign launch" },
 ];
 
 const cultureHighlights = [

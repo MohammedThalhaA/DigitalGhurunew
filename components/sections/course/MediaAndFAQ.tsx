@@ -68,11 +68,10 @@ export default function MediaAndFAQ({ course }: { course?: any }) {
             >
               <div className="relative w-72 h-32 md:w-80 md:h-36 group-hover:scale-105 transition-transform duration-300">
                 <Image 
-                  src="/images/news-ghuru-logo.jpg" 
+                  src="/images/news-ghuru-logo.webp" 
                   alt="News Ghuru" 
                   fill 
                   className="object-contain mix-blend-multiply" 
-                  priority
                 />
               </div>
             </motion.div>

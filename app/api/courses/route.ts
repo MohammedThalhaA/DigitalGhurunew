@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export async function GET() {
   try {
@@ -16,7 +16,7 @@ export async function GET() {
     );
     return NextResponse.json(res.rows, {
       headers: {
-        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
       },
     });
   } catch (error) {
