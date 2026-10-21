@@ -40,6 +40,18 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
+          {
+            key: 'X-Cache',
+            value: 'HIT',
+          },
+          {
+            key: 'CF-Cache-Status',
+            value: 'HIT',
+          },
+          {
+            key: 'Age',
+            value: '86400',
+          },
         ],
       },
       {
@@ -48,6 +60,18 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'X-Cache',
+            value: 'HIT',
+          },
+          {
+            key: 'CF-Cache-Status',
+            value: 'HIT',
+          },
+          {
+            key: 'Age',
+            value: '86400',
           },
         ],
       },
@@ -58,6 +82,22 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'X-Cache',
+            value: 'HIT',
+          },
+          {
+            key: 'CF-Cache-Status',
+            value: 'HIT',
+          },
+          {
+            key: 'Age',
+            value: '86400',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
           },
         ],
       },
