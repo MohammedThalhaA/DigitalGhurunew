@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { MapPin, Phone } from "lucide-react";
 
 interface LocationCardProps {
@@ -18,11 +19,13 @@ export default function LocationCard({
     <div className="bg-white rounded-2xl border border-ink-100 shadow-card overflow-hidden hover:shadow-card-hover transition-shadow duration-200">
       {/* Optional Campus Image */}
       {imageUrl && (
-        <div className="aspect-video overflow-hidden">
-          <img
+        <div className="relative aspect-video overflow-hidden">
+          <Image
             src={imageUrl}
             alt={name}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 384px"
+            className="object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
       )}

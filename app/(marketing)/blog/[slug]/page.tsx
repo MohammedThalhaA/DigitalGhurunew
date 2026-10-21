@@ -3,6 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, User, ArrowLeft, ArrowRight, PhoneCall, ChevronRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { motion } from "framer-motion";
@@ -134,7 +135,14 @@ export default function BlogPostPage() {
             className="aspect-[21/9] md:aspect-[2.5/1] rounded-[2rem] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-white relative group"
           >
             <div className="absolute inset-0 bg-ink-900/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
-            <img src={post.coverUrl} alt={post.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+            <Image
+              src={post.coverUrl}
+              alt={post.title}
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 1200px"
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
           </motion.div>
         </div>
 
@@ -152,9 +160,11 @@ export default function BlogPostPage() {
               >
                 {/* Pamphlet Image Header */}
                 <div className="h-56 w-full relative overflow-hidden">
-                  <img 
+                  <Image 
                     src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=400&fit=crop" 
                     alt="Graduates" 
+                    fill
+                    sizes="380px"
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/60 to-transparent" />
@@ -294,10 +304,12 @@ export default function BlogPostPage() {
                   href={`/blog/${key}`}
                   className="group block bg-white rounded-3xl border border-ink-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-400 overflow-hidden"
                 >
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img
+                  <div className="relative aspect-[16/9] overflow-hidden">
+                    <Image
                       src={related.coverUrl}
                       alt={related.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>

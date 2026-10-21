@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Eye,
@@ -465,7 +466,13 @@ export default function AboutUsPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10"
             >
-              <img src="/images/Hero Image.jpeg" alt="Digital Ghuru Ecosystem" className="w-full h-full object-cover" />
+              <Image
+                src="/images/Hero Image.jpeg"
+                alt="Digital Ghuru Ecosystem"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent" />
             </motion.div>
           </div>

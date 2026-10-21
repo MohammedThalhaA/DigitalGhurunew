@@ -127,7 +127,14 @@ export default function LogoWall({
                       </>
                     ) : logo.logoUrl ? (
                       <div className="h-24 w-48 relative flex items-center justify-center shrink-0 px-4">
-                        <Image src={logo.logoUrl} alt={logo.name} fill sizes="200px" className="object-contain scale-[1.25]" />
+                        <Image
+                          src={logo.logoUrl}
+                          alt={logo.name}
+                          fill
+                          sizes="200px"
+                          style={{ objectFit: "contain" }}
+                          className="object-contain scale-[1.25]"
+                        />
                       </div>
                     ) : null}
                   </div>

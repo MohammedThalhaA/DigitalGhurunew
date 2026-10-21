@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, ArrowRight } from "lucide-react";
 
 interface BlogCardProps {
@@ -26,11 +27,13 @@ export default function BlogCard({
     >
       {/* Cover Image */}
       {coverUrl && (
-        <div className="aspect-[16/9] overflow-hidden">
-          <img
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <Image
             src={coverUrl}
             alt={title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 384px"
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
       )}

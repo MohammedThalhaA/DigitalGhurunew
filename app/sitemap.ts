@@ -3,7 +3,7 @@ import pool from "@/lib/db";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use the production URL as base, fallback to localhost for dev
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://digitalghuru.in';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://digitalghuru.com';
 
   // 1. Fetch dynamic courses from the database
   let courseUrls: MetadataRoute.Sitemap = [];

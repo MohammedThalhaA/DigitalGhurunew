@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   MapPin,
   Phone,
@@ -87,9 +88,11 @@ export default function Footer() {
             {/* Logos: Digital Ghuru X Jaighurudeva */}
             <div className="flex items-center gap-4 mb-4">
               <Link href="/" className="shrink-0">
-                <img
+                <Image
                   src="/logo-final dG.webp"
                   alt="Digital Ghuru Logo"
+                  width={256}
+                  height={311}
                   className="h-14 w-auto object-contain"
                 />
               </Link>
@@ -100,9 +103,11 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="shrink-0"
               >
-                <img
+                <Image
                   src="/partners/jaighurudevalogo.png"
                   alt="Jaighurudeva Educational Academy"
+                  width={209}
+                  height={200}
                   className="h-14 w-auto object-contain scale-110"
                 />
               </a>

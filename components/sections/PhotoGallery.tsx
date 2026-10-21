@@ -86,6 +86,7 @@ export default function PhotoGallery({
         alt={img.alt}
         fill
         sizes="320px"
+        style={{ objectFit: "cover" }}
         className="object-cover group-hover:scale-105 transition-transform duration-300"
       />
     </motion.button>
@@ -120,6 +121,7 @@ export default function PhotoGallery({
                   alt={img.alt}
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  style={{ objectFit: "cover" }}
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-ink-900/0 group-hover:bg-ink-900/20 transition-colors duration-300" />
@@ -187,6 +189,7 @@ export default function PhotoGallery({
                     src={images[lightboxIndex].src}
                     alt={images[lightboxIndex].alt}
                     fill
+                    style={{ objectFit: "contain" }}
                     className="object-contain"
                     sizes="100vw"
                   />

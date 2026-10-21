@@ -3,6 +3,7 @@
 import React from "react";
 import { Star, Users, GraduationCap, Globe, Clock, ShieldCheck, ChevronRight, Image as ImageIcon, Sparkles } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface LinearHeroProps {
   title: string;
@@ -24,9 +25,12 @@ export default function LinearHero({
       {/* ─── 1. Background Banner Image or High-Tech Placeholder ─── */}
       {bannerImage ? (
         <div className="absolute inset-0 z-0 bg-surface-dark">
-          <img
+          <Image
             src={bannerImage}
             alt={title}
+            fill
+            priority
+            sizes="100vw"
             className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-surface-dark via-surface-dark/80 to-transparent" />

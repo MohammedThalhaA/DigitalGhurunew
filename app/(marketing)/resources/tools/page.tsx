@@ -8,10 +8,10 @@ import Link from "next/link";
 // ─── SVG LOGOS ───
 const Logos = {
   hostinger: () => (
-    <img src="https://cdn.simpleicons.org/hostinger/673DE6" alt="Hostinger Logo" className="w-10 h-10 object-contain drop-shadow-sm" />
+    <img src="https://cdn.simpleicons.org/hostinger/673DE6" alt="Hostinger Logo" width={40} height={40} loading="lazy" className="w-10 h-10 object-contain drop-shadow-sm" />
   ),
   semrush: () => (
-    <img src="https://cdn.simpleicons.org/semrush/FF642D" alt="Semrush Logo" className="w-10 h-10 object-contain drop-shadow-sm" />
+    <img src="https://cdn.simpleicons.org/semrush/FF642D" alt="Semrush Logo" width={40} height={40} loading="lazy" className="w-10 h-10 object-contain drop-shadow-sm" />
   ),
   canva: () => (
     <svg viewBox="0 0 512 512" className="w-10 h-10 drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,10 +32,10 @@ const Logos = {
     </svg>
   ),
   mailchimp: () => (
-    <img src="https://cdn.simpleicons.org/mailchimp/FFE01B" alt="Mailchimp Logo" className="w-10 h-10 object-contain drop-shadow-sm" />
+    <img src="https://cdn.simpleicons.org/mailchimp/FFE01B" alt="Mailchimp Logo" width={40} height={40} loading="lazy" className="w-10 h-10 object-contain drop-shadow-sm" />
   ),
   elementor: () => (
-    <img src="https://cdn.simpleicons.org/elementor/92003B" alt="Elementor Logo" className="w-10 h-10 object-contain drop-shadow-sm" />
+    <img src="https://cdn.simpleicons.org/elementor/92003B" alt="Elementor Logo" width={40} height={40} loading="lazy" className="w-10 h-10 object-contain drop-shadow-sm" />
   )
 };
 

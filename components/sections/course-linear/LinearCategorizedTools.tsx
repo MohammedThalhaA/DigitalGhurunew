@@ -80,6 +80,9 @@ export default function LinearCategorizedTools({ groups }: LinearCategorizedTool
                           <img
                             src={item.iconUrl}
                             alt={toolName}
+                            width={36}
+                            height={36}
+                            loading="lazy"
                             className="w-9 h-9 object-contain drop-shadow-2xs"
                           />
                         ) : item.iconSvg ? (

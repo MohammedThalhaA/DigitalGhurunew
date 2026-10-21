@@ -102,7 +102,7 @@ export default function AIToolsCurriculum() {
                 >
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${tool.bg}`}>
                     {tool.src ? (
-                      <img src={tool.src} alt={tool.name} className="w-6 h-6 object-contain" />
+                      <img src={tool.src} alt={tool.name} width={24} height={24} loading="lazy" className="w-6 h-6 object-contain" />
                     ) : (
                       Icon && <Icon className="w-6 h-6" style={{ color: tool.color }} />
                     )}
@@ -125,7 +125,7 @@ export default function AIToolsCurriculum() {
                   className="bg-white border border-ink-100 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-xl hover:border-ink-200 transition-all cursor-default w-[200px]"
                 >
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${tool.bg}`}>
-                    <img src={tool.src} alt={tool.name} className="w-6 h-6 object-contain" />
+                    <img src={tool.src} alt={tool.name} width={24} height={24} loading="lazy" className="w-6 h-6 object-contain" />
                   </div>
                   <span className="font-bold text-ink-900 text-sm">{tool.name}</span>
                 </motion.div>

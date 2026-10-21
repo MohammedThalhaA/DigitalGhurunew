@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -364,9 +365,12 @@ export default function Navbar() {
       <nav className="section-container flex items-center justify-between h-[88px]">
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center shrink-0">
-          <img
+          <Image
             src="/logo-final dG.webp"
             alt="Digital Ghuru Logo"
+            width={256}
+            height={311}
+            priority
             className="h-16 w-auto object-contain"
           />
         </Link>

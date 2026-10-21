@@ -133,7 +133,8 @@ export default function HeroSection({
                   alt="Hero"
                   fill
                   priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  style={{ objectFit: "cover" }}
                   className="object-cover object-center"
                 />
               </div>

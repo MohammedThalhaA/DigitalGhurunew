@@ -447,13 +447,14 @@ export default function HomePage() {
             </div>
 
             <div className="relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-card border border-ink-100">
+              <div className="relative aspect-square max-w-lg mx-auto rounded-3xl overflow-hidden shadow-card border border-ink-100">
                 <Image
                   src="/resources/Image 2.png"
                   alt="Success Story"
                   fill
+                  style={{ objectFit: "cover" }}
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                 />
               </div>
             </div>

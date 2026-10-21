@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { PhoneCall, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
 import HeroSection from "@/components/sections/HeroSection";
@@ -366,9 +367,11 @@ export default function ContactPage() {
         <div className="section-container max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="heading-lg text-ink-900 flex items-center justify-center gap-5">
-              <img
+              <Image
                 src="/logo-final dG.webp"
                 alt="Digital Ghuru Logo"
+                width={256}
+                height={311}
                 className="h-16 md:h-20 w-auto object-contain"
               />
               Digital Ghuru Address

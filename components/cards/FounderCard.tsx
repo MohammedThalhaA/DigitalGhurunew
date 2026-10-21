@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Users, Award, ExternalLink } from "lucide-react";
 
@@ -43,11 +44,14 @@ export default function FounderCard({
       <div className="relative -mt-20 mx-auto w-40 h-40 z-10 shrink-0">
         <div className="absolute inset-0 bg-brand-orange rounded-[2rem] rotate-6 group-hover:rotate-12 transition-transform duration-500 opacity-20" />
         <div className="relative w-full h-full rounded-[1.8rem] bg-white p-2 shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
-          <div className="w-full h-full rounded-[1.4rem] overflow-hidden bg-brand-blue/5 flex items-center justify-center">
+          <div className="w-full h-full rounded-[1.4rem] overflow-hidden bg-brand-blue/5 flex items-center justify-center relative">
             {photoUrl ? (
-              <img
+              <Image
                 src={photoUrl}
                 alt={name}
+                fill
+                sizes="160px"
+                style={{ objectFit: "cover" }}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
             ) : (

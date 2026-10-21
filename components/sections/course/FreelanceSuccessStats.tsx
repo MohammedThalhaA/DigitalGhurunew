@@ -36,7 +36,7 @@ export default function FreelanceSuccessStats() {
               <p className="text-orange-900 font-bold">Average career switcher salary: Rs 6-10 LPA</p>
             </motion.div>
             <motion.div whileHover={{ y: -5 }} className="bg-gradient-to-br from-orange-500 to-brand-orange rounded-3xl p-8 flex items-center justify-center text-center shadow-lg shadow-orange-900/20 lg:row-span-2 relative overflow-hidden group transition-transform">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center mix-blend-overlay group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 opacity-30 mix-blend-overlay group-hover:scale-110 transition-transform duration-700" />
               <p className="text-white font-black text-lg relative z-10 leading-tight">Highest verified placement package:<br/><span className="text-3xl text-yellow-300 mt-2 block drop-shadow-md">Rs 7.5 LPA</span></p>
             </motion.div>
             

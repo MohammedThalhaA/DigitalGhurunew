@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 import { 
   ArrowRight, ShieldCheck, BookOpen, Clock, MapPin, 
   Award, Loader2, CheckCircle2, ArrowLeft, CreditCard, 
@@ -210,9 +211,11 @@ export default function LinearSidebarCard({
       
       {/* Course Image */}
       <div className="relative w-full aspect-video bg-ink-900 overflow-hidden border-b border-ink-100">
-        <img 
+        <Image 
           src={previewImage || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800"} 
           alt="Course Preview"
+          fill
+          sizes="(max-width: 1024px) 100vw, 400px"
           className="w-full h-full object-cover opacity-90"
         />
       </div>

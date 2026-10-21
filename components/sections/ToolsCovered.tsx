@@ -158,7 +158,14 @@ export default function ToolsCovered() {
                 <div
                   className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0 bg-ink-50 p-2 overflow-hidden border border-ink-100"
                 >
-                  <img src={tool.iconUrl} alt={tool.name} className="w-full h-full object-contain" />
+                  <img
+                    src={tool.iconUrl}
+                    alt={tool.name}
+                    width={48}
+                    height={48}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
 
                 {/* Info */}
