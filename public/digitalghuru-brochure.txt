@@ -54,6 +54,6 @@ SALIENT PROGRAM PERKS
 CAMPUS CONTACT INFO:
 ------------------------------------------------------------------------
 Address: Chennai Main Campus, Tamil Nadu, India
-Website: http://localhost:3000
-Email: admissions@digitalghuru.com
+Website: https://digitalghuru.com
+Contact: https://digitalghuru.com/contact
 ========================================================================

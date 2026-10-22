@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Globe } from "lucide-react";
+import ObfuscatedEmail from "@/components/ui/ObfuscatedEmail";
 
 export default function ContactAndMap({ course }: { course?: any }) {
   const courseTitle = course?.title || "AI-Powered Digital Marketing Course";
@@ -58,7 +59,7 @@ export default function ContactAndMap({ course }: { course?: any }) {
                 </div>
                 <div className="flex-1">
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Email</p>
-                  <p className="text-lg font-bold text-blue-600">contact@digitalghuru.in</p>
+                  <ObfuscatedEmail className="text-lg font-bold text-blue-600 block hover:underline" />
                 </div>
               </div>
             </motion.div>

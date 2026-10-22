@@ -1,5 +1,6 @@
 import React from "react";
 import HeroSection from "@/components/sections/HeroSection";
+import ObfuscatedEmail from "@/components/ui/ObfuscatedEmail";
 
 export const metadata = {
   title: "Cancellation & Refund Policy",
@@ -45,7 +46,7 @@ export default function RefundPolicyPage() {
                 3. Batch Transfer Policy
               </h2>
               <p className="text-ink-600 leading-relaxed">
-                We understand that emergencies occur. Students may request a one-time batch transfer to a future cohort within 12 months. Batch transfer requests must be submitted in writing to contact@digitalghuru.in at least 3 days prior to class start.
+                We understand that emergencies occur. Students may request a one-time batch transfer to a future cohort within 12 months. Batch transfer requests must be submitted in writing to <ObfuscatedEmail className="font-semibold text-brand-blue hover:underline" /> at least 3 days prior to class start.
               </p>
             </div>
 

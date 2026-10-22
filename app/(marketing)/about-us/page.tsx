@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import ObfuscatedEmail from "@/components/ui/ObfuscatedEmail";
 import {
   Eye,
   Target,
@@ -42,7 +43,8 @@ const locations = [
     city: "Chennai",
     address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102.",
     phone: "+91 8825948859",
-    email: "contact@digitalghuru.in",
+    emailUser: "contact",
+    emailDomain: "digitalghuru.com",
     gradient: "from-brand-blue to-blue-600",
   },
   {
@@ -50,7 +52,8 @@ const locations = [
     city: "Hyderabad",
     address: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad - 500073.",
     phone: "+91 8825948859",
-    email: "contact@digitalghuru.in",
+    emailUser: "contact",
+    emailDomain: "digitalghuru.com",
     gradient: "from-brand-orange to-orange-600",
   },
   {
@@ -58,7 +61,8 @@ const locations = [
     city: "Chennai",
     address: '2nd Floor, No. 1A, "Gurudev Complex", S1, 57th St, Venkatraman Nagar, Korattur, Chennai, Tamil Nadu 600050',
     phone: "+91 8825948859",
-    email: "contact@digitalghuru.in",
+    emailUser: "contact",
+    emailDomain: "digitalghuru.com",
     gradient: "from-brand-gold to-yellow-500",
   },
 ];
@@ -690,13 +694,12 @@ export default function AboutUsPage() {
                           <Phone className="h-4 w-4" />
                           {loc.phone}
                         </a>
-                        <a
-                          href={`mailto:${loc.email}`}
+                        <ObfuscatedEmail
+                          user={loc.emailUser}
+                          domain={loc.emailDomain}
+                          icon={<Mail className="h-4 w-4" />}
                           className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-ink-900/[0.04] hover:bg-brand-blue/10 border border-transparent hover:border-brand-blue/20 text-sm font-medium text-ink-700 hover:text-brand-blue transition-all duration-300"
-                        >
-                          <Mail className="h-4 w-4" />
-                          {loc.email}
-                        </a>
+                        />
                       </div>
                     </div>
                   </div>

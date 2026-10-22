@@ -15,21 +15,24 @@ const offices = [
     title: "Anna Nagar Office",
     address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai - 600102.",
     phone: "+91 8825948859",
-    email: "contact@digitalghuru.com",
+    emailUser: "contact",
+    emailDomain: "digitalghuru.com",
     mapQuery: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai 600102",
   },
   {
     title: "Ameerpet Office",
     address: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad - 500073.",
     phone: "+91 8825948859",
-    email: "contact@digitalghuru.com",
+    emailUser: "contact",
+    emailDomain: "digitalghuru.com",
     mapQuery: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad 500073",
   },
   {
     title: "Korattur Office",
     address: '2nd Floor, No. 1A, "Gurudev Complex", S1, 57th St, Venkatraman Nagar, Korattur, Chennai, Tamil Nadu 600050',
     phone: "+91 8825948859",
-    email: "contact@digitalghuru.com",
+    emailUser: "contact",
+    emailDomain: "digitalghuru.com",
     mapQuery: "Gurudev Complex, S1, 57th St, Venkatraman Nagar, Korattur, Chennai 600050",
   },
 ];
@@ -155,9 +158,12 @@ export default function ContactPage() {
               </div>
               <h3 className="font-heading text-xl font-bold text-ink-900 mb-2 group-hover:text-brand-blue transition-colors duration-300">General Inquiries</h3>
               <p className="text-base text-ink-500 mb-6 flex-1">Drop us an email for partnerships, support, or detailed syllabus requests.</p>
-              <ObfuscatedEmail domain="digitalghuru.com" className="inline-flex items-center gap-1.5 text-brand-blue font-bold hover:text-brand-orange transition-colors">
-                contact@digitalghuru.com <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </ObfuscatedEmail>
+              <ObfuscatedEmail 
+                user="contact"
+                domain="digitalghuru.com" 
+                showArrow
+                className="inline-flex items-center gap-1.5 text-brand-blue font-bold hover:text-brand-orange transition-colors"
+              />
             </motion.div>
 
             {/* Visit Campus */}
@@ -402,7 +408,11 @@ export default function ContactPage() {
                       </div>
                       <div className="bg-white p-6 shadow-[0_4px_24px_rgb(0,0,0,0.04)] flex flex-col items-center justify-center text-center h-[180px]">
                         <h4 className="font-heading text-xl font-bold text-ink-900 mb-3">Email Us</h4>
-                        <ObfuscatedEmail domain={office.email.split('@')[1]} className="text-ink-700 font-medium">{office.email}</ObfuscatedEmail>
+                        <ObfuscatedEmail 
+                          user={office.emailUser} 
+                          domain={office.emailDomain} 
+                          className="text-ink-700 font-medium" 
+                        />
                       </div>
                     </div>
                   </div>
