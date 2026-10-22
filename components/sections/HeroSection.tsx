@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 
@@ -48,11 +47,7 @@ export default function HeroSection({
           className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-88px)] py-16 md:section-padding"
         >
           {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
+          <div className="space-y-0">
             {/* Trust Badges */}
             {trustBadges && trustBadges.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
@@ -115,15 +110,10 @@ export default function HeroSection({
                 </Button>
               )}
             </div>
-          </motion.div>
+          </div>
 
           {/* Image / Right Side Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="relative"
-          >
+          <div className="relative">
             {imageUrl ? (
               <div 
                 style={{ aspectRatio: "1 / 1" }}
@@ -135,6 +125,7 @@ export default function HeroSection({
                   width={550}
                   height={550}
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px"
                   className="w-full h-full object-cover object-center"
                 />
               </div>
@@ -152,7 +143,7 @@ export default function HeroSection({
                 </div>
               </div>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

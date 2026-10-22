@@ -370,11 +370,12 @@ export default function Navbar() {
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center shrink-0">
           <Image
-            src="/logo-final dG.webp"
+            src="/logo-navbar.webp"
             alt="Digital Ghuru Logo"
-            width={256}
-            height={311}
+            width={160}
+            height={194}
             priority
+            unoptimized
             className="h-16 w-auto object-contain"
             style={{ width: "auto" }}
           />
