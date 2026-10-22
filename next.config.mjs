@@ -104,7 +104,6 @@ const nextConfig = {
     ];
   },
   experimental: {
-    optimizeCss: true,
     serverComponentsExternalPackages: ['pg'],
   },
   webpack: (config, { isServer, dev }) => {

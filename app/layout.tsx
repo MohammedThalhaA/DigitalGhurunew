@@ -130,14 +130,19 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        {/* Critical CSS for layout stability and responsive design media queries */}
+        {/* Critical Above-The-Fold CSS for Instant First Contentful Paint */}
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+              *, *::before, *::after { box-sizing: border-box; }
+              body { margin: 0; padding: 0; font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #ffffff; color: #334155; -webkit-font-smoothing: antialiased; }
+              header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background-color: #ffffff; border-bottom: 1px solid #F1F5F9; }
               main { padding-top: 88px; }
               .fixed { position: fixed; }
               .pt-\\[88px\\] { padding-top: 88px; }
+              h1, h2, h3, h4 { font-family: var(--font-outfit), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; color: #0F172A; line-height: 1.2; }
+              a { color: inherit; text-decoration: none; }
+              img { max-width: 100%; height: auto; display: block; }
 
               /* Mobile-First Responsive Breakpoints */
               @media (max-width: 639px) {
