@@ -34,6 +34,7 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Institute", href: "/about-us" },
   { label: "Our Courses", href: "/courses/ai-powered-digital-marketing" },
+  { label: "Blog", href: "/blog" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];

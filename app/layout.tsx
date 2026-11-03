@@ -122,7 +122,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -166,7 +166,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${outfit.variable} font-body antialiased`}>
+      <body className={`${inter.variable} ${outfit.variable} font-body antialiased`} suppressHydrationWarning>
         {/* Google Analytics 4 (GA4) - Non-blocking async loading */}
         {(() => {
           const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-DGHRU20261";

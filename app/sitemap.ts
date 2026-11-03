@@ -19,10 +19,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
   } catch (error) {
-    console.error("Sitemap generation error:", error);
+    console.error("Sitemap course generation error:", error);
   }
 
-  // 2. Define static routes
+  // 2. Fetch dynamic blogs from the database
+  let blogUrls: MetadataRoute.Sitemap = [];
+  try {
+    const res = await pool.query(`SELECT slug, updated_at FROM blogs WHERE is_published = true`);
+    blogUrls = res.rows.map((blog: any) => ({
+      url: `${baseUrl}/blog/${blog.slug}`,
+      lastModified: blog.updated_at || new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error("Sitemap blog generation error:", error);
+  }
+
+  // 3. Define static routes
   const staticRoutes = [
     '',
     '/about-us',
@@ -45,5 +59,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1.0 : (route.startsWith('/tools') ? 0.9 : 0.8),
   }));
 
-  return [...staticRoutes, ...courseUrls];
+  return [...staticRoutes, ...courseUrls, ...blogUrls];
 }

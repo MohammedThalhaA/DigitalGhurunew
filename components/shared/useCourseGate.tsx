@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Phone, ClipboardList, X, CheckCircle2, FileText } from "lucide-react";
-import { submitLead } from "@/lib/actions/leads";
 import { useSession } from "next-auth/react";
 
 export function useCourseGate(courseTitle: string) {
@@ -63,19 +62,32 @@ export function useCourseGate(courseTitle: string) {
         return;
       }
 
-      setIsSubmitting(true);
+            setIsSubmitting(true);
 
-      const res = await submitLead({ name, email, phone, courseTitle });
-      
-      setIsSubmitting(false);
-      
-      if (res.success) {
+      let success = false;
+      try {
+        const res = await fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phone, courseTitle }),
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          success = true;
+        } else {
+          setErrorMsg(data.error || "Failed to submit details. Please try again.");
+        }
+      } catch (err: any) {
+        setErrorMsg(err.message || "Something went wrong.");
+      } finally {
+        setIsSubmitting(false);
+      }
+
+            if (success) {
         setSuccessScreen(true);
         setTimeout(() => {
           handleSuccess();
         }, 1200);
-      } else {
-        setErrorMsg(res.error || "Something went wrong.");
       }
     };
 

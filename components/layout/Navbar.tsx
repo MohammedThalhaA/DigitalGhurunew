@@ -47,6 +47,7 @@ const staticNavItems: NavItem[] = [
       { label: "Digital Marketing Tools & Deals", href: "/resources/tools" },
     ],
   },
+  { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
   { label: "Careers", href: "/careers" },
 ];

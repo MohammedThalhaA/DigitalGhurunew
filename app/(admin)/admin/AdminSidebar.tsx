@@ -13,7 +13,8 @@ import {
   Briefcase,
   FileText,
   PhoneCall,
-  CreditCard
+  CreditCard,
+  Newspaper
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -26,6 +27,7 @@ export default function AdminSidebar() {
     ]},
     { section: "Content Management", items: [
       { name: "Courses", href: "/admin/courses", icon: Book },
+      { name: "Blog Posts", href: "/admin/blogs", icon: Newspaper },
     ]},
     { section: "User Management", items: [
       { name: "Users", href: "/admin/users", icon: Users },
@@ -54,7 +56,10 @@ export default function AdminSidebar() {
               const Icon = item.icon;
               const isActive = pathname ? (pathname === item.href || pathname.startsWith(item.href + "/")) : false;
               // Special case to prevent /admin/courses from matching /admin/courses/new
-              const isStrictActive = isActive && !(item.href === "/admin/courses" && pathname?.startsWith("/admin/courses/new"));
+              const isStrictActive = isActive && !(
+                (item.href === "/admin/courses" && pathname?.startsWith("/admin/courses/new")) ||
+                (item.href === "/admin/blogs" && pathname?.startsWith("/admin/blogs/new"))
+              );
 
               return (
                 <Link 

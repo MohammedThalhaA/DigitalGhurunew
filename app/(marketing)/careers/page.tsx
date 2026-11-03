@@ -16,8 +16,13 @@ export const metadata: Metadata = {
 };
 
 export default async function CareersPage() {
-  const res = await pool.query(`SELECT * FROM careers WHERE "isActive" = true ORDER BY "createdAt" DESC`);
-  const jobs = res.rows;
+  let jobs: any[] = [];
+  try {
+    const res = await pool.query(`SELECT * FROM careers WHERE "isActive" = true ORDER BY "createdAt" DESC`);
+    jobs = res.rows;
+  } catch (e) {
+    console.error("CareersPage DB error:", e);
+  }
 
   return <CareersClient jobs={jobs} />;
 }

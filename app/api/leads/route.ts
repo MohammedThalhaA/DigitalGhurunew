@@ -13,15 +13,15 @@ export async function POST(req: Request) {
       );
     }
 
-    let courseTitle = 'AI-Powered Digital Marketing Course';
+    let courseTitle = body.courseTitle || 'AI-Powered Digital Marketing Course';
     if (course === 'react-js-full-stack-development') {
-        courseTitle = 'React JS Full Stack Development Course';
+      courseTitle = 'React JS Full Stack Development Course';
     }
 
     // Insert into course_leads table
     const res = await pool.query(
-      `INSERT INTO course_leads (name, email, phone, "courseTitle") 
-       VALUES ($1, $2, $3, $4) RETURNING *`,
+      `INSERT INTO course_leads (name, email, phone, "courseTitle", "createdAt") 
+       VALUES ($1, $2, $3, $4, NOW()) RETURNING *`,
       [name, email, phone, courseTitle]
     );
 
