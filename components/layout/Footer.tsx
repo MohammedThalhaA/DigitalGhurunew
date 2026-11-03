@@ -9,6 +9,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import { getPlatformSettings } from "@/lib/settings";
 
 /* ─── Footer Data (PLACEHOLDER: Replace with real Digital Ghuru data) ─── */
 const locations = [
@@ -42,15 +43,21 @@ const courseLinks = [
   { label: "React JS Full Stack Development", href: "/courses/react-js-full-stack-development" },
 ];
 
-/* PLACEHOLDER: Replace with real Digital Ghuru social media URLs */
-const socialLinks = [
-  { icon: Facebook, href: "https://www.facebook.com/share/1D1vTjqQWX/", label: "Facebook", hoverClass: "hover:bg-[#1877F2]" },
-  { icon: Instagram, href: "https://www.instagram.com/digitalghuru?igsi=MWlqanV6MnZ4cW1vYg==", label: "Instagram", hoverClass: "hover:bg-[#E4405F]" },
-  { icon: Linkedin, href: "https://linkedin.com/company/digitalghuru", label: "LinkedIn", hoverClass: "hover:bg-[#0A66C2]" },
-  { icon: Twitter, href: "https://x.com/digital_ghuru?s=20", label: "X", hoverClass: "hover:bg-[#000000]" },
-];
 
-export default function Footer() {
+export default async function Footer() {
+  const settings = await getPlatformSettings();
+
+  const facebookUrl = settings.facebook_url || "https://www.facebook.com/digitalghuru";
+  const instagramUrl = settings.instagram_url || "https://www.instagram.com/digitalghuru";
+  const linkedinUrl = settings.linkedin_url || "https://linkedin.com/company/digitalghuru";
+  const twitterUrl = settings.twitter_url || "https://x.com/digital_ghuru?s=20";
+
+  const socialLinks = [
+    { icon: Facebook, href: facebookUrl, label: "Facebook", hoverClass: "hover:bg-[#1877F2]" },
+    { icon: Instagram, href: instagramUrl, label: "Instagram", hoverClass: "hover:bg-[#E4405F]" },
+    { icon: Linkedin, href: linkedinUrl, label: "LinkedIn", hoverClass: "hover:bg-[#0A66C2]" },
+    { icon: Twitter, href: twitterUrl, label: "X", hoverClass: "hover:bg-[#000000]" },
+  ].filter((item) => Boolean(item.href && item.href.trim() !== ""));
   return (
     <footer className="bg-[#006FFF] text-white">
       <div className="section-container pt-10 pb-8 md:pt-12 md:pb-10">

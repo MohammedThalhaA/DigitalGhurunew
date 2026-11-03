@@ -32,13 +32,17 @@ async function main() {
       { key: "smtp_password", value: "" },
       { key: "razorpay_key_id", value: "" },
       { key: "razorpay_key_secret", value: "" },
+      { key: "facebook_url", value: "https://www.facebook.com/digitalghuru" },
+      { key: "instagram_url", value: "https://www.instagram.com/digitalghuru" },
+      { key: "linkedin_url", value: "https://linkedin.com/company/digitalghuru" },
+      { key: "twitter_url", value: "https://x.com/digital_ghuru?s=20" },
     ];
 
     for (const setting of defaultSettings) {
       await client.query(
         `INSERT INTO platform_settings (key, value) 
          VALUES ($1, $2) 
-         ON CONFLICT (key) DO NOTHING`,
+         ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value WHERE platform_settings.value IS NULL OR platform_settings.value = ''`,
         [setting.key, setting.value]
       );
     }

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Mail, Globe, CreditCard, Save, RefreshCw, User, Upload } from "lucide-react";
+import { Mail, Globe, CreditCard, Save, RefreshCw, User, Upload, Share2, Facebook, Instagram, Linkedin, Twitter, ExternalLink } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,6 +15,10 @@ interface SettingsData {
   smtp_password: string;
   razorpay_key_id: string;
   razorpay_key_secret: string;
+  facebook_url: string;
+  instagram_url: string;
+  linkedin_url: string;
+  twitter_url: string;
 }
 
 interface ProfileData {
@@ -53,6 +57,10 @@ export default function SettingsForm() {
           smtp_password: json.smtp_password || "",
           razorpay_key_id: json.razorpay_key_id || "",
           razorpay_key_secret: json.razorpay_key_secret || "",
+          facebook_url: json.facebook_url ?? "https://www.facebook.com/digitalghuru",
+          instagram_url: json.instagram_url ?? "https://www.instagram.com/digitalghuru",
+          linkedin_url: json.linkedin_url ?? "https://linkedin.com/company/digitalghuru",
+          twitter_url: json.twitter_url ?? "https://x.com/digital_ghuru?s=20",
         });
       }
 
@@ -326,6 +334,130 @@ export default function SettingsForm() {
                 onChange={handleChange}
                 className="w-full bg-white border border-ink-200 rounded-xl px-4 py-3 text-ink-900 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all"
                 placeholder="App password or standard password"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Social Media Profiles */}
+        <section className="xl:col-span-2">
+          <h2 className="flex items-center gap-2 font-display text-xl font-bold text-ink-900 mb-2 border-b border-ink-100 pb-3">
+            <Share2 className="h-5 w-5 text-brand-blue" />
+            Social Media Profiles
+          </h2>
+          <p className="text-sm text-ink-500 mb-6">
+            Configure official social media channels linked across the website (footer, schema metadata, and contact points).
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-semibold text-ink-700 flex items-center gap-2">
+                  <Facebook className="h-4 w-4 text-[#1877F2]" />
+                  Facebook Page URL
+                </label>
+                {data.facebook_url && (
+                  <a 
+                    href={data.facebook_url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1 text-xs text-brand-blue hover:underline font-medium"
+                  >
+                    <span>Visit</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+              <input 
+                type="text" 
+                name="facebook_url"
+                value={data.facebook_url}
+                onChange={handleChange}
+                className="w-full bg-white border border-ink-200 rounded-xl px-4 py-3 text-ink-900 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all"
+                placeholder="https://www.facebook.com/digitalghuru"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-semibold text-ink-700 flex items-center gap-2">
+                  <Instagram className="h-4 w-4 text-[#E4405F]" />
+                  Instagram Profile URL
+                </label>
+                {data.instagram_url && (
+                  <a 
+                    href={data.instagram_url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1 text-xs text-brand-blue hover:underline font-medium"
+                  >
+                    <span>Visit</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+              <input 
+                type="text" 
+                name="instagram_url"
+                value={data.instagram_url}
+                onChange={handleChange}
+                className="w-full bg-white border border-ink-200 rounded-xl px-4 py-3 text-ink-900 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all"
+                placeholder="https://www.instagram.com/digitalghuru"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-semibold text-ink-700 flex items-center gap-2">
+                  <Linkedin className="h-4 w-4 text-[#0A66C2]" />
+                  LinkedIn Page URL
+                </label>
+                {data.linkedin_url && (
+                  <a 
+                    href={data.linkedin_url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1 text-xs text-brand-blue hover:underline font-medium"
+                  >
+                    <span>Visit</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+              <input 
+                type="text" 
+                name="linkedin_url"
+                value={data.linkedin_url}
+                onChange={handleChange}
+                className="w-full bg-white border border-ink-200 rounded-xl px-4 py-3 text-ink-900 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all"
+                placeholder="https://linkedin.com/company/digitalghuru"
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-semibold text-ink-700 flex items-center gap-2">
+                  <Twitter className="h-4 w-4 text-ink-900" />
+                  X / Twitter Profile URL
+                </label>
+                {data.twitter_url && (
+                  <a 
+                    href={data.twitter_url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1 text-xs text-brand-blue hover:underline font-medium"
+                  >
+                    <span>Visit</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+              <input 
+                type="text" 
+                name="twitter_url"
+                value={data.twitter_url}
+                onChange={handleChange}
+                className="w-full bg-white border border-ink-200 rounded-xl px-4 py-3 text-ink-900 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all"
+                placeholder="https://x.com/digital_ghuru?s=20"
               />
             </div>
           </div>

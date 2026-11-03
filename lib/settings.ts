@@ -9,6 +9,10 @@ export interface PlatformSettings {
   smtp_password?: string;
   razorpay_key_id?: string;
   razorpay_key_secret?: string;
+  facebook_url?: string;
+  instagram_url?: string;
+  linkedin_url?: string;
+  twitter_url?: string;
 }
 
 /**

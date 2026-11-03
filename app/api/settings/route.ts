@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 export async function GET() {
   try {
@@ -49,6 +50,13 @@ export async function POST(req: Request) {
       }
 
       await client.query("COMMIT");
+
+      try {
+        revalidatePath("/", "layout");
+      } catch (revalidateErr) {
+        console.error("Revalidation error after settings update:", revalidateErr);
+      }
+
       return NextResponse.json({ success: true });
     } catch (error) {
       await client.query("ROLLBACK");
