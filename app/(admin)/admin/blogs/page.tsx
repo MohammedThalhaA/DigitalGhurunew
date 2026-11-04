@@ -8,9 +8,16 @@ import BlogActions from "./BlogActions";
 
 export const dynamic = "force-dynamic";
 
+export const revalidate = 0;
+
 export default async function AdminBlogsPage() {
-  const res = await pool.query(`SELECT * FROM blogs ORDER BY created_at DESC`);
-  const blogs = res.rows;
+  let blogs: any[] = [];
+  try {
+    const res = await pool.query(`SELECT * FROM blogs ORDER BY created_at DESC`);
+    blogs = res.rows || [];
+  } catch (err) {
+    console.error("Failed to query admin blogs:", err);
+  }
 
   const publishedCount = blogs.filter((b) => b.is_published).length;
   const draftCount = blogs.length - publishedCount;
@@ -108,7 +115,7 @@ export default async function AdminBlogsPage() {
               >
                 {/* Left Thumbnail + Info */}
                 <div className="flex items-start sm:items-center gap-4 flex-1 min-w-0">
-                  {blog.cover_image ? (
+                  {typeof blog.cover_image === "string" && blog.cover_image.trim().length > 0 && (blog.cover_image.startsWith("/") || blog.cover_image.startsWith("http")) ? (
                     <div className="relative h-16 w-24 sm:h-20 sm:w-32 rounded-xl overflow-hidden bg-ink-100 shrink-0 border border-ink-200">
                       <Image
                         src={blog.cover_image}

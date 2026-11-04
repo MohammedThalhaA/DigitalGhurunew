@@ -5,10 +5,13 @@ import Button from "@/components/ui/Button";
 import { Users, BookOpen, Video, Plus, IndianRupee, Calendar, Activity, Settings } from "lucide-react";
 import LogoutButton from "@/components/ui/LogoutButton";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AdminDashboard() {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user?.id) return null;
+  if (!session?.user) return null;
 
   // Fetch basic stats (mocked some for now as admin can see across the platform)
   const coursesRes = await pool.query(`SELECT COUNT(*) FROM courses`);

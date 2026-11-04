@@ -6,6 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import pool from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
@@ -19,17 +22,24 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   // Always fetch latest profile from DB for the admin layout
-  let adminName = session.user.name;
-  let adminImage = session.user.image || null;
+  let adminName = session.user.name || "Admin";
+  let adminImage: string | null = session.user.image || null;
   try {
     const res = await pool.query("SELECT name, image FROM users WHERE email = $1", [session.user.email]);
     if (res.rows.length > 0) {
-      adminName = res.rows[0].name || adminName;
-      adminImage = res.rows[0].image || adminImage;
+      if (res.rows[0].name) adminName = res.rows[0].name;
+      if (res.rows[0].image && typeof res.rows[0].image === "string" && res.rows[0].image.trim()) {
+        adminImage = res.rows[0].image.trim();
+      }
     }
   } catch (error) {
     console.error("Failed to fetch admin profile for layout:", error);
   }
+
+  const hasValidAdminImage =
+    typeof adminImage === "string" &&
+    adminImage.trim().length > 0 &&
+    (adminImage.startsWith("/") || adminImage.startsWith("http://") || adminImage.startsWith("https://"));
 
   return (
     <div className="flex h-screen bg-[#fafafa] selection:bg-brand-blue/20 font-sans overflow-hidden">
@@ -59,9 +69,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
           <div data-lenis-prevent="true" className="flex-1 overflow-y-auto p-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div className="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
-              {adminImage ? (
+              {hasValidAdminImage ? (
                 <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-white/20 shrink-0 relative">
-                  <Image src={adminImage} alt="Admin" fill className="object-cover" />
+                  <Image src={adminImage!} alt="Admin" fill className="object-cover" />
                 </div>
               ) : (
                 <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center text-white font-display font-bold text-xl shadow-sm shrink-0">

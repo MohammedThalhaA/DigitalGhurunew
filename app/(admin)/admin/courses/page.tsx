@@ -3,18 +3,25 @@ import { authOptions } from "@/lib/auth";
 import pool from "@/lib/db";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
-import { Plus, BookOpen, Edit, Settings } from "lucide-react";
+import { Plus, BookOpen, Edit } from "lucide-react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function AdminCoursesPage() {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user?.id) return null;
+  if (!session?.user) return null;
 
-  // Fetch all courses for admins
-  const res = await pool.query(
-    `SELECT * FROM courses ORDER BY "createdAt" DESC`
-  );
-  const courses = res.rows;
+  let courses: any[] = [];
+  try {
+    const res = await pool.query(
+      `SELECT * FROM courses ORDER BY "createdAt" DESC`
+    );
+    courses = res.rows || [];
+  } catch (err) {
+    console.error("Failed to fetch admin courses:", err);
+  }
 
   return (
     <div className="space-y-6">
@@ -48,39 +55,53 @@ export default async function AdminCoursesPage() {
           </div>
         ) : (
           <div className="divide-y divide-ink-100">
-            {courses.map((course) => (
-              <div key={course.id} className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-ink-50/50 transition-colors group">
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-brand-blue/10 to-purple-500/10 border border-brand-blue/20 flex items-center justify-center shrink-0 overflow-hidden">
-                    {course.marketing_data?.cardImage || course.marketing_data?.thumbnail ? (
-                      <img 
-                        src={course.marketing_data?.cardImage || course.marketing_data?.thumbnail} 
-                        alt={course.title} 
-                        className="h-full w-full object-cover" 
-                      />
-                    ) : (
-                      <BookOpen className="h-5 w-5 text-brand-blue" />
-                    )}
+            {courses.map((course) => {
+              const mData = typeof course.marketing_data === "object" && course.marketing_data !== null
+                ? course.marketing_data
+                : {};
+              const cardImg = (mData.cardImage && typeof mData.cardImage === "string" && mData.cardImage.trim()) ||
+                              (mData.thumbnail && typeof mData.thumbnail === "string" && mData.thumbnail.trim()) ||
+                              null;
+              const createdDate = course.createdAt
+                ? new Date(course.createdAt).toLocaleDateString()
+                : "Recently";
+
+              return (
+                <div key={course.id} className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-ink-50/50 transition-colors group">
+                  <div className="flex items-start gap-4">
+                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-brand-blue/10 to-purple-500/10 border border-brand-blue/20 flex items-center justify-center shrink-0 overflow-hidden">
+                      {cardImg ? (
+                        <img 
+                          src={cardImg} 
+                          alt={course.title || "Course"} 
+                          className="h-full w-full object-cover" 
+                        />
+                      ) : (
+                        <BookOpen className="h-5 w-5 text-brand-blue" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-display text-base font-bold text-ink-900 mb-1 group-hover:text-brand-blue transition-colors">
+                        {course.title}
+                      </h3>
+                      <p className="font-heading text-xs font-semibold text-ink-400 uppercase tracking-[0.15em]">
+                        Created {createdDate}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-display text-base font-bold text-ink-900 mb-1 group-hover:text-brand-blue transition-colors">{course.title}</h3>
-                    <p className="font-heading text-xs font-semibold text-ink-400 uppercase tracking-[0.15em]">
-                      Created {new Date(course.createdAt).toLocaleDateString()}
-                    </p>
+                  
+                  <div className="flex items-center gap-3">
+                    <Link 
+                      href={`/admin/courses/${course.id}`}
+                      className="flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-ink-50 border border-ink-200 text-ink-700 hover:text-brand-blue font-heading text-sm font-semibold rounded-lg transition-colors shadow-sm"
+                    >
+                      <Edit className="h-4 w-4" />
+                      Manage Content
+                    </Link>
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-3">
-                  <Link 
-                    href={`/admin/courses/${course.id}`}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-ink-50 border border-ink-200 text-ink-700 hover:text-brand-blue font-heading text-sm font-semibold rounded-lg transition-colors shadow-sm"
-                  >
-                    <Edit className="h-4 w-4" />
-                    Manage Content
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
