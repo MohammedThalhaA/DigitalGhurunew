@@ -10,7 +10,7 @@ interface BlogCourseSidebarProps {
 
 export default function BlogCourseSidebar({ course }: BlogCourseSidebarProps) {
   return (
-    <aside className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-28 order-2 lg:order-1 mt-8 lg:mt-0">
+    <aside className="w-full lg:w-[380px] shrink-0 lg:sticky lg:top-28 self-start z-30 order-2 lg:order-1 mt-8 lg:mt-0">
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-wider">

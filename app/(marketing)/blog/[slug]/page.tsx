@@ -91,7 +91,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   );
 
   return (
-    <div className="bg-ink-50 min-h-screen relative pb-28 overflow-hidden">
+    <div className="bg-ink-50 min-h-screen relative pb-28">
       {/* ── AMBIENT MESH BACKGROUND ── */}
       <div className="pointer-events-none absolute top-0 left-0 w-full h-[600px] overflow-hidden z-0">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[120px]" />
