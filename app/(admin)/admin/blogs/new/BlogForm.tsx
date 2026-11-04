@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { upsertBlog } from "@/lib/actions/blogs";
 import Button from "@/components/ui/Button";
+import RichTextEditor, { markdownToHtml } from "@/components/admin/RichTextEditor";
 import {
   Save,
   Upload,
@@ -15,15 +16,6 @@ import {
   Link as LinkIcon,
   HelpCircle,
   GraduationCap,
-  Heading2,
-  Heading3,
-  List,
-  ListOrdered,
-  Bold,
-  Quote,
-  Minus,
-  AlignLeft,
-  Info,
 } from "lucide-react";
 
 interface BlogFormProps {
@@ -165,150 +157,6 @@ export default function BlogForm({ initialData }: BlogFormProps) {
     }
   };
 
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const applyFormat = (
-    formatType:
-      | "h2"
-      | "h3"
-      | "bold"
-      | "bullet"
-      | "numbered"
-      | "quote"
-      | "divider"
-      | "paragraphs"
-  ) => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
-
-    const start = textarea.selectionStart ?? 0;
-    const end = textarea.selectionEnd ?? 0;
-    const current = formData.content;
-    const selectedText = current.substring(start, end);
-
-    let replacement = "";
-    let newCursorPos = start;
-
-    switch (formatType) {
-      case "h2": {
-        const text = (selectedText || "Section Heading Here")
-          .trim()
-          .replace(/^#+\s*/, "");
-        replacement = `\n\n## ${text}\n\n`;
-        newCursorPos = start + replacement.length;
-        break;
-      }
-      case "h3": {
-        const text = (selectedText || "Subheading Title Here")
-          .trim()
-          .replace(/^#+\s*/, "");
-        replacement = `\n\n### ${text}\n\n`;
-        newCursorPos = start + replacement.length;
-        break;
-      }
-      case "bold": {
-        const text = selectedText || "bold text";
-        replacement = `**${text}**`;
-        newCursorPos = start + replacement.length;
-        break;
-      }
-      case "quote": {
-        const text = (selectedText || "Add key takeaway or highlighted advice here.")
-          .trim()
-          .replace(/^>\s*/gm, "");
-        replacement = `\n\n> ${text}\n\n`;
-        newCursorPos = start + replacement.length;
-        break;
-      }
-      case "bullet": {
-        const text = (selectedText || "First key point\nSecond key point\nThird key point").trim();
-        let items: string[] = [];
-        if (text.includes("\n")) {
-          items = text.split(/\r?\n/).map((l: string) => l.trim()).filter(Boolean);
-        } else if (text.includes(". ")) {
-          items = text.split(/(?<=[.!?])\s+/).map((l: string) => l.trim()).filter(Boolean);
-        } else {
-          items = [text];
-        }
-        const bulleted = items
-          .map((item: string) => `- ${item.replace(/^[-*•\d.]+\s*/, "")}`)
-          .join("\n");
-        replacement = `\n\n${bulleted}\n\n`;
-        newCursorPos = start + replacement.length;
-        break;
-      }
-      case "numbered": {
-        const text = (selectedText || "First step\nSecond step\nThird step").trim();
-        let items: string[] = [];
-        if (text.includes("\n")) {
-          items = text.split(/\r?\n/).map((l: string) => l.trim()).filter(Boolean);
-        } else if (text.includes(". ")) {
-          items = text.split(/(?<=[.!?])\s+/).map((l: string) => l.trim()).filter(Boolean);
-        } else {
-          items = [text];
-        }
-        const numbered = items
-          .map((item: string, idx: number) => `${idx + 1}. ${item.replace(/^[-*•\d.]+\s*/, "")}`)
-          .join("\n");
-        replacement = `\n\n${numbered}\n\n`;
-        newCursorPos = start + replacement.length;
-        break;
-      }
-      case "divider": {
-        replacement = `\n\n---\n\n`;
-        newCursorPos = start + replacement.length;
-        break;
-      }
-      case "paragraphs": {
-        const target = (selectedText || current).trim();
-        if (!target) return;
-
-        // Split single large wall of text into spaced paragraphs (groups of 2-3 sentences)
-        const sentences = target.split(/(?<=[.!?])\s+/).filter(Boolean);
-        const chunks: string[] = [];
-        let currentChunk: string[] = [];
-
-        sentences.forEach((sentence: string, idx: number) => {
-          currentChunk.push(sentence);
-          if (currentChunk.length >= 2 || idx === sentences.length - 1) {
-            chunks.push(currentChunk.join(" "));
-            currentChunk = [];
-          }
-        });
-
-        const formatted = chunks.join("\n\n");
-
-        if (selectedText) {
-          replacement = `\n\n${formatted}\n\n`;
-          newCursorPos = start + replacement.length;
-        } else {
-          setFormData((prev) => ({ ...prev, content: formatted }));
-          setTimeout(() => {
-            textarea.focus();
-          }, 0);
-          return;
-        }
-        break;
-      }
-    }
-
-    const updated =
-      current.substring(0, start) + replacement + current.substring(end);
-    setFormData((prev) => ({ ...prev, content: updated }));
-
-    setTimeout(() => {
-      textarea.focus();
-      textarea.setSelectionRange(newCursorPos, newCursorPos);
-    }, 0);
-  };
-
-  const insertSnippet = (snippet: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      content: prev.content ? `${prev.content}\n\n${snippet}` : snippet,
-    }));
-  };
-
   const handleSave = async (forceStatus?: boolean) => {
     if (!formData.title.trim()) {
       setErrorMsg("Article title is required.");
@@ -445,10 +293,23 @@ export default function BlogForm({ initialData }: BlogFormProps) {
             </div>
           </div>
 
-          <div className="pt-6 border-t border-ink-200 prose prose-ink max-w-none">
-            <div className="whitespace-pre-line text-ink-700 leading-relaxed space-y-4">
-              {formData.content || "Write some content in the editor to see it here..."}
-            </div>
+          <div className="pt-6 border-t border-ink-200">
+            <div
+              className="prose prose-lg max-w-none text-ink-800
+                [&>h2]:font-heading [&>h2]:font-black [&>h2]:text-2xl [&>h2]:sm:text-3xl [&>h2]:text-ink-900 [&>h2]:mt-8 [&>h2]:mb-4 [&>h2]:pt-4 [&>h2]:border-t [&>h2]:border-ink-100
+                [&>h3]:font-heading [&>h3]:font-bold [&>h3]:text-xl [&>h3]:sm:text-2xl [&>h3]:text-ink-900 [&>h3]:mt-6 [&>h3]:mb-3
+                [&>p]:text-base [&>p]:sm:text-lg [&>p]:leading-relaxed [&>p]:text-ink-700 [&>p]:mb-5
+                [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:my-5 [&>ul]:text-ink-700 [&>ul]:text-base [&>ul]:sm:text-lg
+                [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:my-5 [&>ol]:text-ink-700 [&>ol]:text-base [&>ol]:sm:text-lg
+                [&>blockquote]:p-6 [&>blockquote]:rounded-2xl [&>blockquote]:bg-gradient-to-r [&>blockquote]:from-brand-blue/5 [&>blockquote]:to-transparent [&>blockquote]:border-l-4 [&>blockquote]:border-brand-blue [&>blockquote]:text-ink-800 [&>blockquote]:italic [&>blockquote]:text-base [&>blockquote]:sm:text-lg [&>blockquote]:my-6
+                [&>strong]:font-bold [&>strong]:text-ink-900
+                [&>b]:font-bold [&>b]:text-ink-900"
+              dangerouslySetInnerHTML={{
+                __html: markdownToHtml(
+                  formData.content || "Write some content in the editor to see it here..."
+                ),
+              }}
+            />
           </div>
         </div>
       ) : (
@@ -627,134 +488,25 @@ export default function BlogForm({ initialData }: BlogFormProps) {
             />
           </div>
 
-          {/* Row 5: Article Content with Visual Select & Format Toolbar */}
+          {/* Row 5: Article Body Content with Visual WYSIWYG Editor */}
           <div className="space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <label className="block text-sm font-semibold text-ink-700">
                 Article Body Content <span className="text-red-500">*</span>
               </label>
               <span className="text-xs text-ink-400">
-                Tip: Select any line or sentence below, then click a tool to format it.
+                Visual Editor — headings look big, bold looks bold, and bullet points show real dots
               </span>
             </div>
 
-            {/* Smart Formatting Toolbar Container */}
-            <div className="rounded-2xl border border-ink-200 overflow-hidden bg-white shadow-sm focus-within:ring-2 focus-within:ring-brand-blue/40 focus-within:border-brand-blue transition-all">
-              {/* Toolbar Action Buttons */}
-              <div className="bg-ink-50/80 border-b border-ink-200 p-2.5 flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-ink-400 mr-1 flex items-center gap-1">
-                    <Sparkles className="h-3 w-3 text-brand-blue" />
-                    Select & Format:
-                  </span>
-
-                  <button
-                    type="button"
-                    onClick={() => applyFormat("h2")}
-                    title="Highlight any text and click to make it a Main Section Heading"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200 text-ink-700 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
-                  >
-                    <Heading2 className="h-3.5 w-3.5 text-brand-blue" />
-                    <span>H2 Heading</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => applyFormat("h3")}
-                    title="Highlight any text and click to make it a Subheading"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200 text-ink-700 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
-                  >
-                    <Heading3 className="h-3.5 w-3.5 text-brand-blue" />
-                    <span>H3 Subheading</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => applyFormat("bold")}
-                    title="Make highlighted text bold"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200 text-ink-700 text-xs font-bold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
-                  >
-                    <Bold className="h-3.5 w-3.5" />
-                    <span>Bold</span>
-                  </button>
-
-                  <div className="h-5 w-px bg-ink-200 mx-1 hidden sm:block" />
-
-                  <button
-                    type="button"
-                    onClick={() => applyFormat("bullet")}
-                    title="Turn selected line(s) into Bullet Points"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200 text-ink-700 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
-                  >
-                    <List className="h-3.5 w-3.5 text-emerald-600" />
-                    <span>Bullet Points</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => applyFormat("numbered")}
-                    title="Turn selected line(s) into Numbered List"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200 text-ink-700 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
-                  >
-                    <ListOrdered className="h-3.5 w-3.5 text-indigo-600" />
-                    <span>Numbered List</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => applyFormat("quote")}
-                    title="Format selected text as a Standout Quote"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200 text-ink-700 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
-                  >
-                    <Quote className="h-3.5 w-3.5 text-amber-600" />
-                    <span>Callout Quote</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => applyFormat("divider")}
-                    title="Insert a horizontal line divider"
-                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200 text-ink-700 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
-                  >
-                    <Minus className="h-3.5 w-3.5" />
-                    <span>Divider</span>
-                  </button>
-                </div>
-
-                {/* Auto split big paragraphs */}
-                <button
-                  type="button"
-                  onClick={() => applyFormat("paragraphs")}
-                  title="If you pasted a single large wall of text, this splits it into readable spaced paragraphs"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border border-brand-blue/30 text-brand-blue text-xs font-bold hover:bg-brand-blue/10 transition-all shadow-xs shrink-0"
-                >
-                  <AlignLeft className="h-3.5 w-3.5 text-brand-blue" />
-                  <span>Auto-Split Paragraphs</span>
-                </button>
-              </div>
-
-              {/* Helpful Inline Banner */}
-              <div className="bg-blue-50/50 border-b border-blue-100/60 px-4 py-2 flex items-center justify-between text-xs text-ink-600">
-                <span className="flex items-center gap-2">
-                  <Info className="h-4 w-4 text-brand-blue shrink-0" />
-                  <span>
-                    <strong>How it works:</strong> Paste your big paragraph. Highlight any line with your mouse and click <strong>H2 Heading</strong> or <strong>Bullet Points</strong>. Or click <strong>Auto-Split Paragraphs</strong> to separate text automatically.
-                  </span>
-                </span>
-              </div>
-
-              {/* Textarea */}
-              <textarea
-                ref={textareaRef}
-                name="content"
-                required
-                rows={18}
-                value={formData.content}
-                onChange={handleInputChange}
-                placeholder="Paste your article here. Highlight any line or sentence and click any tool above to convert it into a heading, bullet points, or quote. You can also click the Live Preview tab at the top anytime!"
-                className="w-full bg-white p-4 text-ink-900 focus:outline-none font-body text-base leading-relaxed resize-y"
-              />
-            </div>
+            <RichTextEditor
+              value={formData.content}
+              onChange={(content) =>
+                setFormData((prev) => ({ ...prev, content }))
+              }
+              placeholder="Paste or write your article here. Bold text, bullet points, and headings will show up visually exactly as you paste them..."
+              minHeight="420px"
+            />
           </div>
         </div>
       )}
