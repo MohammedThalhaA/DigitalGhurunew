@@ -352,10 +352,6 @@ html.lenis, html.lenis body {
     top: 104px !important;
     align-self: flex-start !important;
     z-index: 30 !important;
-    max-height: calc(100vh - 120px) !important;
-    overflow-y: auto !important;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 111, 255, 0.2) transparent;
   }
 }
 
