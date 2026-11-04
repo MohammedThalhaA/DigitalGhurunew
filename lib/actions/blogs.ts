@@ -85,7 +85,47 @@ function generateSlug(title: string): string {
 /**
  * Fetch all published blogs for public pages.
  */
+let hasEnsuredTable = false;
+
+export async function ensureBlogsTable() {
+  if (hasEnsuredTable) return;
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS blogs (
+        id SERIAL PRIMARY KEY,
+        slug VARCHAR(255) UNIQUE NOT NULL,
+        title VARCHAR(500) NOT NULL,
+        excerpt TEXT NOT NULL,
+        content TEXT NOT NULL,
+        cover_image VARCHAR(1000),
+        category VARCHAR(100) DEFAULT 'General',
+        author_name VARCHAR(255) DEFAULT 'Digital Ghuru Mentors',
+        author_role VARCHAR(255) DEFAULT 'Senior Marketing Strategist',
+        author_image VARCHAR(1000) DEFAULT '/logo-final dG.webp',
+        read_time VARCHAR(50) DEFAULT '5 min read',
+        is_published BOOLEAN DEFAULT true,
+        views INTEGER DEFAULT 0,
+        related_course_slug VARCHAR(255) DEFAULT 'ai-powered-digital-marketing',
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_blogs_slug ON blogs(slug);
+      CREATE INDEX IF NOT EXISTS idx_blogs_is_published ON blogs(is_published);
+      CREATE INDEX IF NOT EXISTS idx_blogs_created_at ON blogs(created_at DESC);
+
+      ALTER TABLE blogs ADD COLUMN IF NOT EXISTS related_course_slug VARCHAR(255) DEFAULT 'ai-powered-digital-marketing';
+      ALTER TABLE blogs ADD COLUMN IF NOT EXISTS views INTEGER DEFAULT 0;
+      ALTER TABLE blogs ADD COLUMN IF NOT EXISTS read_time VARCHAR(50) DEFAULT '5 min read';
+    `);
+    hasEnsuredTable = true;
+  } catch (err) {
+    console.error("ensureBlogsTable error:", err);
+  }
+}
+
 export async function getPublishedBlogs(category?: string): Promise<Blog[]> {
+  await ensureBlogsTable();
   try {
     let query = `
       SELECT id, slug, title, excerpt, content, cover_image, category,
@@ -115,6 +155,7 @@ export async function getPublishedBlogs(category?: string): Promise<Blog[]> {
  * Fetch a single blog by its slug and increment views.
  */
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
+  await ensureBlogsTable();
   try {
     const res = await pool.query(
       `SELECT * FROM blogs WHERE slug = $1 LIMIT 1`,
@@ -139,7 +180,9 @@ export async function getBlogBySlug(slug: string): Promise<Blog | null> {
  * Fetch all blogs for the admin dashboard.
  */
 export async function getAllBlogsAdmin(): Promise<Blog[]> {
+  await ensureBlogsTable();
   try {
+    await ensureBlogsTable();
     const session = await getServerSession(authOptions);
     if (!session?.user || (session.user as any).role !== "ADMIN") {
       return [];
@@ -273,6 +316,7 @@ export async function getCourseForBlog(
  * Create or update a blog post.
  */
 export async function upsertBlog(data: {
+
   slug?: string;
   originalSlug?: string;
   title: string;

@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { writeFile } from "fs/promises";
+import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
@@ -28,9 +30,26 @@ export async function POST(req: Request) {
     
     // Save to public/uploads directory
     const uploadDir = path.join(process.cwd(), "public/uploads");
-    const filepath = path.join(uploadDir, filename);
-    
-    await writeFile(filepath, buffer);
+    await mkdir(uploadDir, { recursive: true });
+    await writeFile(path.join(uploadDir, filename), buffer);
+
+    // Also save to root uploads directory as fallback
+    try {
+      const rootUploadDir = path.join(process.cwd(), "uploads");
+      await mkdir(rootUploadDir, { recursive: true });
+      await writeFile(path.join(rootUploadDir, filename), buffer);
+    } catch {
+      // ignore fallback error
+    }
+
+    // Also save to standalone public/uploads if running standalone
+    try {
+      const standaloneUploadDir = path.join(process.cwd(), ".next/standalone/public/uploads");
+      await mkdir(standaloneUploadDir, { recursive: true });
+      await writeFile(path.join(standaloneUploadDir, filename), buffer);
+    } catch {
+      // ignore standalone error
+    }
     
     // Return the public URL
     const fileUrl = `/uploads/${filename}`;

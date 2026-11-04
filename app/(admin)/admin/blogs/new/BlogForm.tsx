@@ -452,15 +452,14 @@ export default function BlogForm({ initialData }: BlogFormProps) {
 
             {formData.cover_image && (
               <div className="mt-2 flex items-center gap-4">
-                <div className="relative h-20 w-36 rounded-xl overflow-hidden border border-ink-200">
-                  <Image
+                <div className="relative h-20 w-36 rounded-xl overflow-hidden border border-ink-200 bg-ink-50">
+                  <img
                     src={formData.cover_image}
                     alt="Cover preview"
-                    fill
-                    className="object-cover"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <span className="text-xs text-ink-400">Cover preview loaded</span>
+                <span className="text-xs text-ink-500 font-medium">Cover preview loaded</span>
               </div>
             )}
           </div>

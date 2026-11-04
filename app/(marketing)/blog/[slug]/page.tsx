@@ -138,6 +138,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 alt={blog.title}
                 fill
                 priority
+                unoptimized={blog.cover_image.startsWith("/uploads/")}
                 sizes="(max-width: 1024px) 100vw, 1200px"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
