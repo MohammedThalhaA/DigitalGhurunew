@@ -47,7 +47,7 @@ export default function HeroSection({
           className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-88px)] py-16 md:section-padding"
         >
           {/* Text Content */}
-          <div className="space-y-0">
+          <div className="flex flex-col items-start">
             {/* Trust Badges */}
             {trustBadges && trustBadges.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
@@ -88,7 +88,7 @@ export default function HeroSection({
             )}
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4 mt-2">
               {primaryCta && (
                 <Button
                   variant="primary"
