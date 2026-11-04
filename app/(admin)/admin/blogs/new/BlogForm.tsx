@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { upsertBlog } from "@/lib/actions/blogs";
 import Button from "@/components/ui/Button";
-import RichTextEditor, { markdownToHtml } from "@/components/admin/RichTextEditor";
+import RichTextEditor, { renderBlogContentHtml } from "@/components/admin/RichTextEditor";
 import {
   Save,
   Upload,
@@ -305,8 +305,8 @@ export default function BlogForm({ initialData }: BlogFormProps) {
                 [&>strong]:font-bold [&>strong]:text-ink-900
                 [&>b]:font-bold [&>b]:text-ink-900"
               dangerouslySetInnerHTML={{
-                __html: markdownToHtml(
-                  formData.content || "Write some content in the editor to see it here..."
+                __html: renderBlogContentHtml(
+                  formData.content || "<p>Write some content in the editor to see it here...</p>"
                 ),
               }}
             />
@@ -494,8 +494,8 @@ export default function BlogForm({ initialData }: BlogFormProps) {
               <label className="block text-sm font-semibold text-ink-700">
                 Article Body Content <span className="text-red-500">*</span>
               </label>
-              <span className="text-xs text-ink-400">
-                Visual Editor — headings look big, bold looks bold, and bullet points show real dots
+              <span className="text-xs text-ink-500 font-medium">
+                Blogger & Medium Style Editor — Compose & HTML views supported
               </span>
             </div>
 
