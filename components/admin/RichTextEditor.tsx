@@ -38,7 +38,6 @@ interface RichTextEditorProps {
 export function cleanMalformedHeadings(html: string): string {
   if (!html) return html;
   return html.replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (match, level, content) => {
-    // If heading has line breaks or multiple lines, split first line as heading and rest as paragraphs
     const parts = content
       .split(/<br\s*\/?>|\r?\n/)
       .map((s: string) => s.trim())
@@ -50,6 +49,23 @@ export function cleanMalformedHeadings(html: string): string {
     const paragraphs = parts.slice(1).map((p: string) => `<p>${p}</p>`).join("\n");
     return `${heading}\n${paragraphs}`;
   });
+}
+
+/**
+ * Finds the closest enclosing block-level element of a node inside the editor
+ */
+function getClosestBlock(node: Node, root: HTMLElement): HTMLElement {
+  let curr: Node | null = node;
+  while (curr && curr !== root) {
+    if (curr instanceof HTMLElement) {
+      const tag = curr.tagName.toUpperCase();
+      if (/^(P|H1|H2|H3|H4|H5|H6|BLOCKQUOTE|LI|DIV|SECTION|ARTICLE)$/.test(tag)) {
+        return curr;
+      }
+    }
+    curr = curr.parentNode;
+  }
+  return root;
 }
 
 /**
@@ -238,79 +254,112 @@ export default function RichTextEditor({
   };
 
   /**
-   * Format Block to Headings (h2, h3)
+   * Surgically converts the block containing the cursor/selection to a target tag (p, h2, h3).
+   * Operates strictly on the targeted block without modifying or resetting other blocks.
    */
-  const formatHeading = (level: "h2" | "h3") => {
+  const convertBlockTo = (targetTag: "p" | "h2" | "h3") => {
     if (!editorRef.current) return;
     editorRef.current.focus();
-    try {
-      document.execCommand("formatBlock", false, `<${level}>`);
-    } catch {
-      try {
-        document.execCommand("formatBlock", false, level);
-      } catch {}
-    }
-    triggerChange();
-  };
-
-  /**
-   * Robust Normal Text Converter:
-   * Guarantees the selected line or block becomes a regular, unbolded <p> paragraph
-   */
-  const formatNormal = () => {
-    if (!editorRef.current) return;
-    editorRef.current.focus();
-
-    // 1. If any heading in the editor has multiple lines, split it into heading + paragraphs
-    if (editorRef.current.innerHTML.includes("<h") && (editorRef.current.innerHTML.includes("<br") || editorRef.current.innerHTML.includes("\n"))) {
-      editorRef.current.innerHTML = cleanMalformedHeadings(editorRef.current.innerHTML);
-    }
 
     const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) {
+    if (!selection || selection.rangeCount === 0) return;
+
+    const range = selection.getRangeAt(0);
+    const targetBlock = getClosestBlock(range.startContainer, editorRef.current);
+
+    // Fallback if cursor is directly on editor root
+    if (targetBlock === editorRef.current) {
+      try {
+        document.execCommand("formatBlock", false, `<${targetTag}>`);
+      } catch {
+        try {
+          document.execCommand("formatBlock", false, targetTag);
+        } catch {}
+      }
       triggerChange();
       return;
     }
 
-    // 2. Try native formatBlock
-    try {
-      document.execCommand("formatBlock", false, "<p>");
-    } catch {
-      try {
-        document.execCommand("formatBlock", false, "p");
-      } catch {}
-    }
+    // Case A: The block contains an internal <br> (e.g. Heading<br>Paragraph in a single element)
+    const br = targetBlock.querySelector("br");
+    if (br) {
+      const nextNodes: Node[] = [];
+      let n = br.nextSibling;
+      while (n) {
+        const next = n.nextSibling;
+        nextNodes.push(n);
+        n = next;
+      }
+      br.remove();
 
-    // 3. Fallback: Find if current cursor/selection is inside an H1-H6 and convert it to <p>
-    let node: Node | null = selection.anchorNode;
-    while (node && node !== editorRef.current) {
-      if (node instanceof HTMLElement) {
-        if (/^H[1-6]$/i.test(node.tagName)) {
-          const p = document.createElement("p");
-          p.innerHTML = node.innerHTML;
-          node.parentNode?.replaceChild(p, node);
+      let cursorInSecond = false;
+      for (const node of nextNodes) {
+        if (node === range.startContainer || node.contains(range.startContainer)) {
+          cursorInSecond = true;
           break;
         }
-        if (node.tagName === "STRONG" || node.tagName === "B") {
-          const parent = node.parentNode;
+      }
+
+      const firstTag = cursorInSecond ? (targetBlock.tagName.toLowerCase() as any) : targetTag;
+      const secondTag = cursorInSecond ? targetTag : "p";
+
+      const firstEl = document.createElement(firstTag);
+      while (targetBlock.firstChild) {
+        firstEl.appendChild(targetBlock.firstChild);
+      }
+
+      const secondEl = document.createElement(secondTag);
+      for (const child of nextNodes) {
+        secondEl.appendChild(child);
+      }
+
+      const parent = targetBlock.parentNode;
+      if (parent) {
+        parent.insertBefore(firstEl, targetBlock);
+        parent.insertBefore(secondEl, targetBlock);
+        parent.removeChild(targetBlock);
+      }
+
+      const activeEl = cursorInSecond ? secondEl : firstEl;
+      const newRange = document.createRange();
+      newRange.selectNodeContents(activeEl);
+      newRange.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(newRange);
+
+      triggerChange();
+      return;
+    }
+
+    // Case B: Convert targetBlock directly to targetTag
+    const newEl = document.createElement(targetTag);
+    while (targetBlock.firstChild) {
+      newEl.appendChild(targetBlock.firstChild);
+    }
+
+    // If converting to normal paragraph, unwrap full bold if the entire text was bold
+    if (targetTag === "p") {
+      newEl.querySelectorAll("strong, b").forEach((b) => {
+        if (b.textContent === newEl.textContent) {
+          const parent = b.parentNode;
           if (parent) {
-            while (node.firstChild) {
-              parent.insertBefore(node.firstChild, node);
+            while (b.firstChild) {
+              parent.insertBefore(b.firstChild, b);
             }
-            parent.removeChild(node);
+            parent.removeChild(b);
           }
-          break;
         }
-      }
-      node = node.parentNode;
+      });
     }
 
-    // 4. Toggle bold off if active
-    try {
-      if (document.queryCommandState("bold")) {
-        document.execCommand("bold", false);
-      }
-    } catch {}
+    targetBlock.parentNode?.replaceChild(newEl, targetBlock);
+
+    // Place cursor cleanly inside the newly converted block
+    const newRange = document.createRange();
+    newRange.selectNodeContents(newEl);
+    newRange.collapse(false);
+    selection.removeAllRanges();
+    selection.addRange(newRange);
 
     triggerChange();
   };
@@ -324,7 +373,7 @@ export default function RichTextEditor({
     try {
       document.execCommand("removeFormat", false);
     } catch {}
-    formatNormal();
+    convertBlockTo("p");
   };
 
   /**
@@ -452,13 +501,13 @@ export default function RichTextEditor({
 
           <div className="h-4 w-px bg-ink-200 mx-1 hidden sm:block" />
 
-          {/* Block Formatting Selector */}
+          {/* Block Formatting Selector: Normal, Heading 1 (H2), Heading 2 (H3) */}
           <div className="flex items-center gap-1">
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={formatNormal}
-              title="Normal Body Text (Converts headings to normal text & removes bold)"
+              onClick={() => convertBlockTo("p")}
+              title="Normal Body Text (Converts current paragraph to regular unbolded text)"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-700 text-xs font-medium hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
             >
               <Type className="h-3.5 w-3.5 text-brand-blue" />
@@ -468,7 +517,7 @@ export default function RichTextEditor({
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => formatHeading("h2")}
+              onClick={() => convertBlockTo("h2")}
               title="Heading 1 (Main Section Title)"
               className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-800 text-xs font-bold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
             >
@@ -479,7 +528,7 @@ export default function RichTextEditor({
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => formatHeading("h3")}
+              onClick={() => convertBlockTo("h3")}
               title="Heading 2 (Subheading)"
               className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-800 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
             >
