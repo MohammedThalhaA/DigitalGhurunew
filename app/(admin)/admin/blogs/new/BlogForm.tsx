@@ -205,6 +205,7 @@ export default function BlogForm({ initialData }: BlogFormProps) {
 
   return (
     <form
+      noValidate
       onSubmit={(e) => {
         e.preventDefault();
         handleSave();
@@ -425,11 +426,11 @@ export default function BlogForm({ initialData }: BlogFormProps) {
             </label>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <input
-                type="url"
+                type="text"
                 name="cover_image"
                 value={formData.cover_image}
                 onChange={handleInputChange}
-                placeholder="Paste image URL (e.g. https://images.unsplash.com/...)"
+                placeholder="Upload image or paste URL (e.g. /uploads/... or https://...)"
                 className="flex-1 bg-white border border-ink-200 rounded-xl px-4 py-3 text-ink-900 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all text-sm"
               />
               <label className="cursor-pointer bg-gradient-to-r from-brand-blue to-blue-600 hover:brightness-110 text-white font-semibold px-4 py-3 rounded-xl shadow-sm transition-all flex items-center gap-2 shrink-0">
