@@ -33,74 +33,110 @@ interface RichTextEditorProps {
 }
 
 /**
- * Converts Markdown string into clean HTML for WYSIWYG display
+ * Splits malformed headings that contain <br> or multiple lines into separate <h2> and <p> tags
+ */
+export function cleanMalformedHeadings(html: string): string {
+  if (!html) return html;
+  return html.replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (match, level, content) => {
+    // If heading has line breaks or multiple lines, split first line as heading and rest as paragraphs
+    const parts = content
+      .split(/<br\s*\/?>|\r?\n/)
+      .map((s: string) => s.trim())
+      .filter(Boolean);
+
+    if (parts.length <= 1) return match;
+
+    const heading = `<h${level}>${parts[0]}</h${level}>`;
+    const paragraphs = parts.slice(1).map((p: string) => `<p>${p}</p>`).join("\n");
+    return `${heading}\n${paragraphs}`;
+  });
+}
+
+/**
+ * Converts Markdown string into clean HTML for WYSIWYG display.
+ * Accurately treats each line independently so paragraphs right below headings are never lumped into the heading.
  */
 export function markdownToHtml(md: string): string {
   if (!md) return "<p><br></p>";
 
-  // If already full HTML, return as-is
+  // If already full HTML, clean any malformed headings and return
   if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr)[\s>]/i.test(md.trim())) {
-    return md;
+    return cleanMalformedHeadings(md);
   }
 
-  const blocks = md.split(/\r?\n\s*\r?\n/).filter(Boolean);
-  if (blocks.length === 0) return "<p><br></p>";
+  const lines = md.split(/\r?\n/);
+  const blocks: string[] = [];
+  let currentParagraph: string[] = [];
+  let currentList: string[] = [];
+  let listType: "ul" | "ol" | null = null;
 
-  const htmlBlocks = blocks.map((block) => {
-    const trimmed = block.trim();
+  function flushParagraph() {
+    if (currentParagraph.length > 0) {
+      blocks.push(`<p>${formatInline(currentParagraph.join(" "))}</p>`);
+      currentParagraph = [];
+    }
+  }
 
-    // H1
+  function flushList() {
+    if (currentList.length > 0 && listType) {
+      blocks.push(
+        `<${listType}>${currentList.map((li) => `<li>${formatInline(li)}</li>`).join("")}</${listType}>`
+      );
+      currentList = [];
+      listType = null;
+    }
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const rawLine = lines[i];
+    const trimmed = rawLine.trim();
+
+    if (!trimmed) {
+      flushParagraph();
+      flushList();
+      continue;
+    }
+
     if (trimmed.startsWith("# ")) {
-      const text = trimmed.replace(/^#\s+/, "");
-      return `<h2>${formatInline(text)}</h2>`;
+      flushParagraph();
+      flushList();
+      blocks.push(`<h2>${formatInline(trimmed.slice(2).trim())}</h2>`);
+    } else if (trimmed.startsWith("## ")) {
+      flushParagraph();
+      flushList();
+      blocks.push(`<h2>${formatInline(trimmed.slice(3).trim())}</h2>`);
+    } else if (trimmed.startsWith("### ")) {
+      flushParagraph();
+      flushList();
+      blocks.push(`<h3>${formatInline(trimmed.slice(4).trim())}</h3>`);
+    } else if (trimmed === "---" || trimmed === "***") {
+      flushParagraph();
+      flushList();
+      blocks.push("<hr>");
+    } else if (trimmed.startsWith("> ")) {
+      flushParagraph();
+      flushList();
+      blocks.push(`<blockquote>${formatInline(trimmed.slice(2).trim())}</blockquote>`);
+    } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+      flushParagraph();
+      if (listType !== "ul") flushList();
+      listType = "ul";
+      currentList.push(trimmed.replace(/^[-*]\s+/, "").trim());
+    } else if (/^\d+\.\s/.test(trimmed)) {
+      flushParagraph();
+      if (listType !== "ol") flushList();
+      listType = "ol";
+      currentList.push(trimmed.replace(/^\d+\.\s+/, "").trim());
+    } else {
+      flushList();
+      currentParagraph.push(trimmed);
     }
+  }
 
-    // H2
-    if (trimmed.startsWith("## ")) {
-      const text = trimmed.replace(/^##\s+/, "");
-      return `<h2>${formatInline(text)}</h2>`;
-    }
+  flushParagraph();
+  flushList();
 
-    // H3
-    if (trimmed.startsWith("### ")) {
-      const text = trimmed.replace(/^###\s+/, "");
-      return `<h3>${formatInline(text)}</h3>`;
-    }
-
-    // Horizontal Rule
-    if (trimmed === "---" || trimmed === "***") {
-      return "<hr>";
-    }
-
-    // Blockquote
-    if (trimmed.startsWith("> ")) {
-      const text = trimmed.replace(/^>\s*/gm, "");
-      return `<blockquote>${formatInline(text)}</blockquote>`;
-    }
-
-    // Unordered List (- or *)
-    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-      const items = trimmed
-        .split(/\r?\n/)
-        .map((l) => l.replace(/^[-*]\s+/, "").trim())
-        .filter(Boolean);
-      return `<ul>${items.map((i) => `<li>${formatInline(i)}</li>`).join("")}</ul>`;
-    }
-
-    // Numbered List (1. 2.)
-    if (/^\d+\.\s/.test(trimmed)) {
-      const items = trimmed
-        .split(/\r?\n/)
-        .map((l) => l.replace(/^\d+\.\s+/, "").trim())
-        .filter(Boolean);
-      return `<ol>${items.map((i) => `<li>${formatInline(i)}</li>`).join("")}</ol>`;
-    }
-
-    // Regular Paragraph
-    return `<p>${formatInline(trimmed)}</p>`;
-  });
-
-  return htmlBlocks.join("\n");
+  return cleanMalformedHeadings(blocks.join("\n"));
 }
 
 function formatInline(text: string): string {
@@ -118,9 +154,9 @@ export function renderBlogContentHtml(content: string): string {
   if (!content) return "";
   const trimmed = content.trim();
 
-  // If content contains HTML tags, return cleaned HTML
+  // If content contains HTML tags, clean and return
   if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr|div)[\s>]/i.test(trimmed)) {
-    return trimmed;
+    return cleanMalformedHeadings(trimmed);
   }
 
   // Otherwise convert standard Markdown to HTML
@@ -160,7 +196,6 @@ export default function RichTextEditor({
 
   // Update statistics (word count, reading time)
   const updateStats = useCallback((htmlOrText: string) => {
-    // Strip HTML tags for stats
     const text = htmlOrText.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
     const words = text ? text.split(/\s+/).length : 0;
     const chars = text.length;
@@ -203,13 +238,93 @@ export default function RichTextEditor({
   };
 
   /**
-   * Format block command (Normal, H2, H3, Blockquote)
+   * Format Block to Headings (h2, h3)
    */
-  const formatBlock = (tag: string) => {
+  const formatHeading = (level: "h2" | "h3") => {
     if (!editorRef.current) return;
     editorRef.current.focus();
-    document.execCommand("formatBlock", false, tag);
+    try {
+      document.execCommand("formatBlock", false, `<${level}>`);
+    } catch {
+      try {
+        document.execCommand("formatBlock", false, level);
+      } catch {}
+    }
     triggerChange();
+  };
+
+  /**
+   * Robust Normal Text Converter:
+   * Guarantees the selected line or block becomes a regular, unbolded <p> paragraph
+   */
+  const formatNormal = () => {
+    if (!editorRef.current) return;
+    editorRef.current.focus();
+
+    // 1. If any heading in the editor has multiple lines, split it into heading + paragraphs
+    if (editorRef.current.innerHTML.includes("<h") && (editorRef.current.innerHTML.includes("<br") || editorRef.current.innerHTML.includes("\n"))) {
+      editorRef.current.innerHTML = cleanMalformedHeadings(editorRef.current.innerHTML);
+    }
+
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) {
+      triggerChange();
+      return;
+    }
+
+    // 2. Try native formatBlock
+    try {
+      document.execCommand("formatBlock", false, "<p>");
+    } catch {
+      try {
+        document.execCommand("formatBlock", false, "p");
+      } catch {}
+    }
+
+    // 3. Fallback: Find if current cursor/selection is inside an H1-H6 and convert it to <p>
+    let node: Node | null = selection.anchorNode;
+    while (node && node !== editorRef.current) {
+      if (node instanceof HTMLElement) {
+        if (/^H[1-6]$/i.test(node.tagName)) {
+          const p = document.createElement("p");
+          p.innerHTML = node.innerHTML;
+          node.parentNode?.replaceChild(p, node);
+          break;
+        }
+        if (node.tagName === "STRONG" || node.tagName === "B") {
+          const parent = node.parentNode;
+          if (parent) {
+            while (node.firstChild) {
+              parent.insertBefore(node.firstChild, node);
+            }
+            parent.removeChild(node);
+          }
+          break;
+        }
+      }
+      node = node.parentNode;
+    }
+
+    // 4. Toggle bold off if active
+    try {
+      if (document.queryCommandState("bold")) {
+        document.execCommand("bold", false);
+      }
+    } catch {}
+
+    triggerChange();
+  };
+
+  /**
+   * Clear Formatting
+   */
+  const clearFormatting = () => {
+    if (!editorRef.current) return;
+    editorRef.current.focus();
+    try {
+      document.execCommand("removeFormat", false);
+    } catch {}
+    formatNormal();
   };
 
   /**
@@ -257,9 +372,9 @@ export default function RichTextEditor({
     }
 
     // Case 2: Rich HTML pasted from Word, Google Docs, or Web
-    if (html && (html.includes("<h") || html.includes("<p") || html.includes("<ul") || html.includes("<b") || html.includes("<strong"))) {
+    if (html && (html.includes("<h") || html.includes("<p") || html.includes("<ul") || html.includes("<b") || html.includes("<strong") || html.includes("<div"))) {
       e.preventDefault();
-      const cleaned = sanitizePastedHtml(html);
+      const cleaned = cleanMalformedHeadings(sanitizePastedHtml(html));
       document.execCommand("insertHTML", false, cleaned);
       triggerChange();
       return;
@@ -268,11 +383,8 @@ export default function RichTextEditor({
     // Case 3: Regular text with multiple paragraphs
     if (text && text.includes("\n")) {
       e.preventDefault();
-      const paragraphs = text
-        .split(/\r?\n\s*\r?\n/)
-        .map((p) => p.trim())
-        .filter(Boolean);
-      const htmlToInsert = paragraphs.map((p) => `<p>${p}</p>`).join("");
+      const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+      const htmlToInsert = lines.map((l) => `<p>${l}</p>`).join("");
       document.execCommand("insertHTML", false, htmlToInsert || `<p>${text}</p>`);
       triggerChange();
     }
@@ -345,34 +457,34 @@ export default function RichTextEditor({
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => formatBlock("<p>")}
-              title="Paragraph / Normal Text"
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-700 text-xs font-medium hover:border-brand-blue hover:text-brand-blue transition-all"
+              onClick={formatNormal}
+              title="Normal Body Text (Converts headings to normal text & removes bold)"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-700 text-xs font-medium hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
             >
-              <Type className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Normal</span>
+              <Type className="h-3.5 w-3.5 text-brand-blue" />
+              <span>Normal</span>
             </button>
 
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => formatBlock("<h2>")}
+              onClick={() => formatHeading("h2")}
               title="Heading 1 (Main Section Title)"
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-800 text-xs font-bold hover:border-brand-blue hover:text-brand-blue transition-all"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-800 text-xs font-bold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
             >
               <Heading1 className="h-3.5 w-3.5 text-brand-blue" />
-              <span className="hidden sm:inline">Heading</span>
+              <span>Heading</span>
             </button>
 
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => formatBlock("<h3>")}
+              onClick={() => formatHeading("h3")}
               title="Heading 2 (Subheading)"
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-800 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue transition-all"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-ink-200/80 text-ink-800 text-xs font-semibold hover:border-brand-blue hover:text-brand-blue hover:bg-brand-blue/5 transition-all shadow-xs"
             >
               <Heading2 className="h-3.5 w-3.5 text-brand-blue" />
-              <span className="hidden sm:inline">Subhead</span>
+              <span>Subhead</span>
             </button>
           </div>
 
@@ -449,7 +561,7 @@ export default function RichTextEditor({
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => formatBlock("<blockquote>")}
+              onClick={() => exec("formatBlock", "<blockquote>")}
               title="Quote Callout"
               className="p-1.5 rounded-lg text-ink-800 hover:bg-ink-200 hover:text-amber-600 transition-colors"
             >
@@ -523,8 +635,8 @@ export default function RichTextEditor({
           <button
             type="button"
             onMouseDown={(e) => e.preventDefault()}
-            onClick={() => exec("removeFormat")}
-            title="Clear Formatting"
+            onClick={clearFormatting}
+            title="Clear Formatting (Resets to clean normal text)"
             className="p-1.5 rounded-lg text-ink-500 hover:bg-ink-200 hover:text-red-600 transition-colors"
           >
             <RemoveFormatting className="h-4 w-4" />
@@ -545,17 +657,17 @@ export default function RichTextEditor({
           data-placeholder={placeholder}
           style={{ minHeight }}
           className="w-full bg-white p-6 sm:p-10 text-ink-800 font-body text-base leading-relaxed focus:outline-none overflow-y-auto cursor-text
-            [&>h2]:font-heading [&>h2]:font-black [&>h2]:text-2xl [&>h2]:sm:text-3xl [&>h2]:text-ink-900 [&>h2]:mt-8 [&>h2]:mb-3 [&>h2]:pt-4 [&>h2]:border-t [&>h2]:border-ink-100 first:[&>h2]:border-t-0 first:[&>h2]:mt-0
-            [&>h3]:font-heading [&>h3]:font-bold [&>h3]:text-xl [&>h3]:sm:text-2xl [&>h3]:text-ink-900 [&>h3]:mt-6 [&>h3]:mb-2.5
-            [&>p]:text-base [&>p]:sm:text-lg [&>p]:leading-[1.8] [&>p]:text-ink-700 [&>p]:mb-5
-            [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2.5 [&>ul]:my-5 [&>ul]:text-ink-700 [&>ul]:text-base [&>ul]:sm:text-lg
-            [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2.5 [&>ol]:my-5 [&>ol]:text-ink-700 [&>ol]:text-base [&>ol]:sm:text-lg
-            [&>li]:leading-relaxed [&>li]:pl-1
-            [&>blockquote]:p-5 [&>blockquote]:rounded-2xl [&>blockquote]:bg-gradient-to-r [&>blockquote]:from-brand-blue/5 [&>blockquote]:to-transparent [&>blockquote]:border-l-4 [&>blockquote]:border-brand-blue [&>blockquote]:text-ink-800 [&>blockquote]:italic [&>blockquote]:text-base [&>blockquote]:sm:text-lg [&>blockquote]:my-6
-            [&>hr]:my-8 [&>hr]:border-ink-200
-            [&>strong]:font-bold [&>strong]:text-ink-900
-            [&>b]:font-bold [&>b]:text-ink-900
-            [&>a]:text-brand-blue [&>a]:underline [&>a]:font-semibold
+            [&_h2]:font-heading [&_h2]:font-black [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:text-ink-900 [&_h2]:mt-8 [&_h2]:mb-3.5 [&_h2]:pt-4 [&_h2]:border-t [&_h2]:border-ink-100 first:[&_h2]:border-t-0 first:[&_h2]:mt-0
+            [&_h3]:font-heading [&_h3]:font-bold [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:text-ink-900 [&_h3]:mt-6 [&_h3]:mb-3
+            [&_p]:font-body [&_p]:font-normal [&_p]:text-base [&_p]:leading-[1.8] [&_p]:text-ink-700 [&_p]:mb-5
+            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:my-5 [&_ul]:text-ink-700 [&_ul]:text-base
+            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:my-5 [&_ol]:text-ink-700 [&_ol]:text-base
+            [&_li]:leading-relaxed [&_li]:pl-1
+            [&_blockquote]:p-5 [&_blockquote]:rounded-2xl [&_blockquote]:bg-gradient-to-r [&_blockquote]:from-brand-blue/5 [&_blockquote]:to-transparent [&_blockquote]:border-l-4 [&_blockquote]:border-brand-blue [&_blockquote]:text-ink-800 [&_blockquote]:italic [&_blockquote]:text-base [&_blockquote]:my-6
+            [&_hr]:my-8 [&_hr]:border-ink-200
+            [&_strong]:font-bold [&_strong]:text-ink-900
+            [&_b]:font-bold [&_b]:text-ink-900
+            [&_a]:text-brand-blue [&_a]:underline [&_a]:font-semibold
             empty:before:content-[attr(data-placeholder)] empty:before:text-ink-300 empty:before:pointer-events-none"
         />
       ) : (
