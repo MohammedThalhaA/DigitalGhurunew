@@ -149,9 +149,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-10 xl:gap-14 items-start justify-between">
             {/* LEFT SIDEBAR: Related Course Enrollment Card */}
-            <Suspense fallback={<div className="w-full lg:w-[380px] shrink-0 h-96 bg-ink-100/60 rounded-2xl animate-pulse" />}>
-              <BlogCourseSidebar course={relatedCourse} />
-            </Suspense>
+            <BlogCourseSidebar course={relatedCourse} />
 
             {/* RIGHT CONTENT AREA: The Blog Article */}
             <article className="w-full flex-1 min-w-0 order-1 lg:order-2">

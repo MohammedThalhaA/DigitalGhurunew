@@ -15,8 +15,7 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -24,7 +23,7 @@
     color: #334155;
     background-color: #ffffff;
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   h1, h2, h3 {
@@ -323,4 +322,41 @@ html.lenis body {
 .article-content a:hover {
   color: #0052cc !important;
 }
+
+/* ─── Lenis Smooth Scroll Essential Rules ─── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ─── Floating Sticky Sidebar for Blog Detail ─── */
+@media (min-width: 1024px) {
+  .blog-sticky-sidebar {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 104px !important;
+    align-self: flex-start !important;
+    z-index: 30 !important;
+    max-height: calc(100vh - 120px) !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 111, 255, 0.2) transparent;
+  }
+}
+
 
