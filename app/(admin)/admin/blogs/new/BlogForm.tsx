@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { upsertBlog } from "@/lib/actions/blogs";
 import Button from "@/components/ui/Button";
-import RichTextEditor, { renderBlogContentHtml } from "@/components/admin/RichTextEditor";
+import RichTextEditor from "@/components/admin/RichTextEditor";
+import { renderBlogContentHtml } from "@/lib/blogUtils";
 import {
   Save,
   Upload,
@@ -295,15 +296,7 @@ export default function BlogForm({ initialData }: BlogFormProps) {
 
           <div className="pt-6 border-t border-ink-200">
             <div
-              className="prose prose-lg max-w-none text-ink-800
-                [&>h2]:font-heading [&>h2]:font-black [&>h2]:text-2xl [&>h2]:sm:text-3xl [&>h2]:text-ink-900 [&>h2]:mt-8 [&>h2]:mb-4 [&>h2]:pt-4 [&>h2]:border-t [&>h2]:border-ink-100
-                [&>h3]:font-heading [&>h3]:font-bold [&>h3]:text-xl [&>h3]:sm:text-2xl [&>h3]:text-ink-900 [&>h3]:mt-6 [&>h3]:mb-3
-                [&>p]:text-base [&>p]:sm:text-lg [&>p]:leading-relaxed [&>p]:text-ink-700 [&>p]:mb-5
-                [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:my-5 [&>ul]:text-ink-700 [&>ul]:text-base [&>ul]:sm:text-lg
-                [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:my-5 [&>ol]:text-ink-700 [&>ol]:text-base [&>ol]:sm:text-lg
-                [&>blockquote]:p-6 [&>blockquote]:rounded-2xl [&>blockquote]:bg-gradient-to-r [&>blockquote]:from-brand-blue/5 [&>blockquote]:to-transparent [&>blockquote]:border-l-4 [&>blockquote]:border-brand-blue [&>blockquote]:text-ink-800 [&>blockquote]:italic [&>blockquote]:text-base [&>blockquote]:sm:text-lg [&>blockquote]:my-6
-                [&>strong]:font-bold [&>strong]:text-ink-900
-                [&>b]:font-bold [&>b]:text-ink-900"
+              className="article-content max-w-none"
               dangerouslySetInnerHTML={{
                 __html: renderBlogContentHtml(
                   formData.content || "<p>Write some content in the editor to see it here...</p>"

@@ -16,6 +16,7 @@ import {
 import { getBlogBySlug, getPublishedBlogs, getCourseForBlog } from "@/lib/actions/blogs";
 import BlogShareBar from "@/components/blog/BlogShareBar";
 import BlogCourseSidebar from "@/components/blog/BlogCourseSidebar";
+import { renderBlogContentHtml } from "@/lib/blogUtils";
 
 export const revalidate = 60;
 
@@ -59,158 +60,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 /**
- * Format markdown or rich HTML into styled article blocks
+ * Format markdown or rich HTML into beautifully styled article blocks
  */
 function renderArticleContent(content: string) {
   if (!content) return null;
 
-  // If content contains rich HTML tags, render it with full typography styling
-  if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr|div)[\s>]/i.test(content)) {
-    return (
-      <div
-        className="space-y-4 text-ink-800 font-body text-base sm:text-lg leading-[1.8]
-          [&>h2]:font-heading [&>h2]:font-black [&>h2]:text-2xl [&>h2]:sm:text-3xl [&>h2]:text-ink-900 [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:pt-4 [&>h2]:border-t [&>h2]:border-ink-100 first:[&>h2]:border-t-0 first:[&>h2]:mt-0 [&>h2]:scroll-mt-32
-          [&>h3]:font-heading [&>h3]:font-bold [&>h3]:text-xl [&>h3]:sm:text-2xl [&>h3]:text-ink-900 [&>h3]:mt-8 [&>h3]:mb-3 [&>h3]:scroll-mt-32
-          [&>p]:font-body [&>p]:text-ink-700 [&>p]:text-base [&>p]:sm:text-lg [&>p]:leading-[1.8] [&>p]:mb-5
-          [&>ul]:my-5 [&>ul]:space-y-2.5 [&>ul]:pl-6 [&>ul]:list-disc [&>ul]:text-ink-700 [&>ul]:text-base [&>ul]:sm:text-lg
-          [&>ol]:my-5 [&>ol]:space-y-3 [&>ol]:pl-6 [&>ol]:list-decimal [&>ol]:text-ink-700 [&>ol]:text-base [&>ol]:sm:text-lg
-          [&>li]:leading-relaxed
-          [&>blockquote]:my-6 [&>blockquote]:p-6 [&>blockquote]:rounded-2xl [&>blockquote]:bg-gradient-to-r [&>blockquote]:from-brand-blue/5 [&>blockquote]:to-transparent [&>blockquote]:border-l-4 [&>blockquote]:border-brand-blue [&>blockquote]:text-ink-800 [&>blockquote]:italic [&>blockquote]:text-base [&>blockquote]:sm:text-lg [&>blockquote]:leading-relaxed [&>blockquote]:shadow-sm
-          [&>hr]:my-8 [&>hr]:border-ink-200/80
-          [&>strong]:font-bold [&>strong]:text-ink-900
-          [&>b]:font-bold [&>b]:text-ink-900
-          [&>a]:text-brand-blue [&>a]:underline [&>a]:font-semibold hover:[&>a]:text-blue-700"
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    );
-  }
-
-  const blocks = content.split(/\n\s*\n/).filter(Boolean);
-
-  return blocks.map((block, idx) => {
-    const trimmed = block.trim();
-
-    // H2 Heading (##)
-    if (trimmed.startsWith("## ")) {
-      const headingText = trimmed.replace(/^##\s+/, "");
-      const anchorId = `section-${idx}`;
-      return (
-        <h2
-          key={idx}
-          id={anchorId}
-          className="font-heading font-black text-2xl sm:text-3xl text-ink-900 mt-10 mb-4 pt-4 border-t border-ink-100 flex items-center gap-2.5 scroll-mt-32"
-        >
-          <span className="text-brand-blue text-xl">#</span>
-          <span>{headingText}</span>
-        </h2>
-      );
-    }
-
-    // H3 Heading (###)
-    if (trimmed.startsWith("### ")) {
-      const headingText = trimmed.replace(/^###\s+/, "");
-      const anchorId = `section-${idx}`;
-      return (
-        <h3
-          key={idx}
-          id={anchorId}
-          className="font-heading font-bold text-xl sm:text-2xl text-ink-900 mt-8 mb-3 flex items-center gap-2 scroll-mt-32"
-        >
-          <span className="h-2 w-2 rounded-full bg-brand-blue" />
-          <span>{headingText}</span>
-        </h3>
-      );
-    }
-
-    // Horizontal Rule (---)
-    if (trimmed === "---" || trimmed === "***") {
-      return <hr key={idx} className="my-8 border-ink-200/80" />;
-    }
-
-    // Blockquote (> )
-    if (trimmed.startsWith("> ")) {
-      const quoteText = trimmed.replace(/^>\s*/gm, "");
-      return (
-        <blockquote
-          key={idx}
-          className="my-6 p-6 rounded-2xl bg-gradient-to-r from-brand-blue/5 to-transparent border-l-4 border-brand-blue text-ink-800 italic font-body text-base sm:text-lg leading-relaxed shadow-sm"
-        >
-          {quoteText}
-        </blockquote>
-      );
-    }
-
-    // Unordered List (- or *)
-    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-      const items = trimmed
-        .split(/\n/)
-        .map((line) => line.replace(/^[-*]\s+/, "").trim())
-        .filter(Boolean);
-      return (
-        <ul key={idx} className="my-5 space-y-2.5 pl-2">
-          {items.map((item, itemIdx) => (
-            <li
-              key={itemIdx}
-              className="flex items-start gap-3 font-body text-ink-700 text-base sm:text-lg leading-relaxed"
-            >
-              <div className="h-2 w-2 rounded-full bg-brand-blue shrink-0 mt-2.5" />
-              <span>{renderInlineFormatting(item)}</span>
-            </li>
-          ))}
-        </ul>
-      );
-    }
-
-    // Numbered List (1. 2. 3.)
-    if (/^\d+\.\s/.test(trimmed)) {
-      const items = trimmed
-        .split(/\n/)
-        .map((line) => line.replace(/^\d+\.\s+/, "").trim())
-        .filter(Boolean);
-      return (
-        <ol key={idx} className="my-5 space-y-3 pl-2">
-          {items.map((item, itemIdx) => (
-            <li
-              key={itemIdx}
-              className="flex items-start gap-3 font-body text-ink-700 text-base sm:text-lg leading-relaxed"
-            >
-              <span className="h-6 w-6 rounded-full bg-brand-blue/10 text-brand-blue font-heading font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                {itemIdx + 1}
-              </span>
-              <span>{renderInlineFormatting(item)}</span>
-            </li>
-          ))}
-        </ol>
-      );
-    }
-
-    // Standard Paragraph
-    return (
-      <p
-        key={idx}
-        className="font-body text-ink-700 text-base sm:text-lg leading-[1.8] mb-5"
-      >
-        {renderInlineFormatting(trimmed)}
-      </p>
-    );
-  });
-}
-
-/**
- * Handle bold (**text**) formatting
- */
-function renderInlineFormatting(text: string) {
-  const parts = text.split(/(\*\*.*?\*\*)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return (
-        <strong key={i} className="font-bold text-ink-900">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-    return part;
-  });
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: renderBlogContentHtml(content) }}
+    />
+  );
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
@@ -341,7 +200,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               {/* Body Content */}
               <div className="bg-white rounded-3xl border border-ink-100 shadow-card p-6 sm:p-10 md:p-12">
-                <div className="prose prose-lg prose-ink max-w-none">
+                <div className="article-content max-w-none">
                   {renderArticleContent(blog.content)}
                 </div>
               </div>

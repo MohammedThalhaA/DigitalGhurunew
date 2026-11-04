@@ -2,6 +2,14 @@
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import {
+  cleanMalformedHeadings,
+  markdownToHtml,
+  renderBlogContentHtml,
+} from "@/lib/blogUtils";
+
+export { cleanMalformedHeadings, markdownToHtml, renderBlogContentHtml };
+
+import {
   Heading1,
   Heading2,
   Type,
@@ -33,25 +41,6 @@ interface RichTextEditorProps {
 }
 
 /**
- * Splits malformed headings that contain <br> or multiple lines into separate <h2> and <p> tags
- */
-export function cleanMalformedHeadings(html: string): string {
-  if (!html) return html;
-  return html.replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (match, level, content) => {
-    const parts = content
-      .split(/<br\s*\/?>|\r?\n/)
-      .map((s: string) => s.trim())
-      .filter(Boolean);
-
-    if (parts.length <= 1) return match;
-
-    const heading = `<h${level}>${parts[0]}</h${level}>`;
-    const paragraphs = parts.slice(1).map((p: string) => `<p>${p}</p>`).join("\n");
-    return `${heading}\n${paragraphs}`;
-  });
-}
-
-/**
  * Finds the closest enclosing block-level element of a node inside the editor
  */
 function getClosestBlock(node: Node, root: HTMLElement): HTMLElement {
@@ -66,117 +55,6 @@ function getClosestBlock(node: Node, root: HTMLElement): HTMLElement {
     curr = curr.parentNode;
   }
   return root;
-}
-
-/**
- * Converts Markdown string into clean HTML for WYSIWYG display.
- * Accurately treats each line independently so paragraphs right below headings are never lumped into the heading.
- */
-export function markdownToHtml(md: string): string {
-  if (!md) return "<p><br></p>";
-
-  // If already full HTML, clean any malformed headings and return
-  if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr)[\s>]/i.test(md.trim())) {
-    return cleanMalformedHeadings(md);
-  }
-
-  const lines = md.split(/\r?\n/);
-  const blocks: string[] = [];
-  let currentParagraph: string[] = [];
-  let currentList: string[] = [];
-  let listType: "ul" | "ol" | null = null;
-
-  function flushParagraph() {
-    if (currentParagraph.length > 0) {
-      blocks.push(`<p>${formatInline(currentParagraph.join(" "))}</p>`);
-      currentParagraph = [];
-    }
-  }
-
-  function flushList() {
-    if (currentList.length > 0 && listType) {
-      blocks.push(
-        `<${listType}>${currentList.map((li) => `<li>${formatInline(li)}</li>`).join("")}</${listType}>`
-      );
-      currentList = [];
-      listType = null;
-    }
-  }
-
-  for (let i = 0; i < lines.length; i++) {
-    const rawLine = lines[i];
-    const trimmed = rawLine.trim();
-
-    if (!trimmed) {
-      flushParagraph();
-      flushList();
-      continue;
-    }
-
-    if (trimmed.startsWith("# ")) {
-      flushParagraph();
-      flushList();
-      blocks.push(`<h2>${formatInline(trimmed.slice(2).trim())}</h2>`);
-    } else if (trimmed.startsWith("## ")) {
-      flushParagraph();
-      flushList();
-      blocks.push(`<h2>${formatInline(trimmed.slice(3).trim())}</h2>`);
-    } else if (trimmed.startsWith("### ")) {
-      flushParagraph();
-      flushList();
-      blocks.push(`<h3>${formatInline(trimmed.slice(4).trim())}</h3>`);
-    } else if (trimmed === "---" || trimmed === "***") {
-      flushParagraph();
-      flushList();
-      blocks.push("<hr>");
-    } else if (trimmed.startsWith("> ")) {
-      flushParagraph();
-      flushList();
-      blocks.push(`<blockquote>${formatInline(trimmed.slice(2).trim())}</blockquote>`);
-    } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-      flushParagraph();
-      if (listType !== "ul") flushList();
-      listType = "ul";
-      currentList.push(trimmed.replace(/^[-*]\s+/, "").trim());
-    } else if (/^\d+\.\s/.test(trimmed)) {
-      flushParagraph();
-      if (listType !== "ol") flushList();
-      listType = "ol";
-      currentList.push(trimmed.replace(/^\d+\.\s+/, "").trim());
-    } else {
-      flushList();
-      currentParagraph.push(trimmed);
-    }
-  }
-
-  flushParagraph();
-  flushList();
-
-  return cleanMalformedHeadings(blocks.join("\n"));
-}
-
-function formatInline(text: string): string {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.*?)\*/g, "<em>$1</em>")
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-}
-
-/**
- * Universal blog content renderer:
- * Ensures any stored blog content (whether Markdown or HTML) renders as clean, semantic HTML.
- */
-export function renderBlogContentHtml(content: string): string {
-  if (!content) return "";
-  const trimmed = content.trim();
-
-  // If content contains HTML tags, clean and return
-  if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr|div)[\s>]/i.test(trimmed)) {
-    return cleanMalformedHeadings(trimmed);
-  }
-
-  // Otherwise convert standard Markdown to HTML
-  return markdownToHtml(trimmed);
 }
 
 /**
@@ -254,10 +132,10 @@ export default function RichTextEditor({
   };
 
   /**
-   * Surgically converts the block containing the cursor/selection to a target tag (p, h2, h3).
+   * Surgically converts the block containing the cursor/selection to a target tag (p, h2, h3, blockquote).
    * Operates strictly on the targeted block without modifying or resetting other blocks.
    */
-  const convertBlockTo = (targetTag: "p" | "h2" | "h3") => {
+  const convertBlockTo = (targetTag: "p" | "h2" | "h3" | "blockquote") => {
     if (!editorRef.current) return;
     editorRef.current.focus();
 
@@ -610,7 +488,7 @@ export default function RichTextEditor({
             <button
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => exec("formatBlock", "<blockquote>")}
+              onClick={() => convertBlockTo("blockquote")}
               title="Quote Callout"
               className="p-1.5 rounded-lg text-ink-800 hover:bg-ink-200 hover:text-amber-600 transition-colors"
             >
@@ -705,19 +583,7 @@ export default function RichTextEditor({
           onPaste={handlePaste}
           data-placeholder={placeholder}
           style={{ minHeight }}
-          className="w-full bg-white p-6 sm:p-10 text-ink-800 font-body text-base leading-relaxed focus:outline-none overflow-y-auto cursor-text
-            [&_h2]:font-heading [&_h2]:font-black [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:text-ink-900 [&_h2]:mt-8 [&_h2]:mb-3.5 [&_h2]:pt-4 [&_h2]:border-t [&_h2]:border-ink-100 first:[&_h2]:border-t-0 first:[&_h2]:mt-0
-            [&_h3]:font-heading [&_h3]:font-bold [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:text-ink-900 [&_h3]:mt-6 [&_h3]:mb-3
-            [&_p]:font-body [&_p]:font-normal [&_p]:text-base [&_p]:leading-[1.8] [&_p]:text-ink-700 [&_p]:mb-5
-            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:my-5 [&_ul]:text-ink-700 [&_ul]:text-base
-            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:my-5 [&_ol]:text-ink-700 [&_ol]:text-base
-            [&_li]:leading-relaxed [&_li]:pl-1
-            [&_blockquote]:p-5 [&_blockquote]:rounded-2xl [&_blockquote]:bg-gradient-to-r [&_blockquote]:from-brand-blue/5 [&_blockquote]:to-transparent [&_blockquote]:border-l-4 [&_blockquote]:border-brand-blue [&_blockquote]:text-ink-800 [&_blockquote]:italic [&_blockquote]:text-base [&_blockquote]:my-6
-            [&_hr]:my-8 [&_hr]:border-ink-200
-            [&_strong]:font-bold [&_strong]:text-ink-900
-            [&_b]:font-bold [&_b]:text-ink-900
-            [&_a]:text-brand-blue [&_a]:underline [&_a]:font-semibold
-            empty:before:content-[attr(data-placeholder)] empty:before:text-ink-300 empty:before:pointer-events-none"
+          className="article-content w-full bg-white p-6 sm:p-10 text-ink-800 font-body text-base leading-relaxed focus:outline-none overflow-y-auto cursor-text empty:before:content-[attr(data-placeholder)] empty:before:text-ink-300 empty:before:pointer-events-none"
         />
       ) : (
         /* Raw HTML / Code View (Blogger style) */
