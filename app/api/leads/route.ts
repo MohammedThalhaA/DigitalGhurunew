@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
+import { sendLeadEmail } from '@/lib/email';
 
 export async function POST(req: Request) {
   try {
@@ -24,6 +25,20 @@ export async function POST(req: Request) {
        VALUES ($1, $2, $3, $4, NOW()) RETURNING *`,
       [name, email, phone, courseTitle]
     );
+
+    // Send email notification to admin using configured SMTP settings
+    try {
+      await sendLeadEmail({
+        name,
+        email,
+        phone,
+        courseTitle,
+        mode,
+      });
+    } catch (emailError) {
+      console.error('Failed to send lead notification email:', emailError);
+      // Non-blocking: lead recording succeeds even if SMTP experiences a temporary glitch
+    }
 
     return NextResponse.json({ success: true, lead: res.rows[0] });
   } catch (error) {
