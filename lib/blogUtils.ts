@@ -124,8 +124,17 @@ export function renderBlogContentHtml(content: string): string {
   if (!content) return "";
   let text = content.trim();
 
+  // Strip rogue document-level tags (<title>, <meta>, <head>, <html>, <body>) 
+  // that may be pasted into rich article content so they never leak into the page body.
+  text = text
+    .replace(/<!DOCTYPE[^>]*>/gi, "")
+    .replace(/<\/?(html|head|body)[^>]*>/gi, "")
+    .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, "")
+    .replace(/<meta\b[^>]*>/gi, "")
+    .replace(/<link\b[^>]*rel=["'](canonical|icon|stylesheet)["'][^>]*>/gi, "");
+
   // If content contains HTML tags:
-  if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr|div)[\s>]/i.test(text)) {
+  if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr|div|article)[\s>]/i.test(text)) {
     // Ensure any <h1> tags inside blog body become <h2> so the page title remains the sole <h1>
     text = text.replace(/<h1(\s[^>]*)?>([\s\S]*?)<\/h1>/gi, "<h2$1>$2</h2>");
     // 1. Convert spans with large heading styles into real <h2>
