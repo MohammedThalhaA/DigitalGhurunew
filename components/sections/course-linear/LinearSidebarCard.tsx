@@ -321,7 +321,7 @@ export default function LinearSidebarCard({
               >
                 <ArrowLeft className="h-4 w-4" /> Back
               </button>
-              <h3 className="font-heading text-sm font-bold text-ink-900 uppercase tracking-widest">Payment Method</h3>
+              <div className="font-heading text-sm font-bold text-ink-900 uppercase tracking-widest">Payment Method</div>
             </div>
 
             {submitted ? (
@@ -329,7 +329,7 @@ export default function LinearSidebarCard({
                 <div className="h-16 w-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="h-8 w-8 text-amber-500" />
                 </div>
-                <h4 className="font-display text-xl font-bold text-ink-900 mb-2">Under Review</h4>
+                <div className="font-display text-xl font-bold text-ink-900 mb-2">Under Review</div>
                 <p className="text-ink-500 text-sm mb-6 max-w-[250px]">
                   Your UTR has been submitted and is pending admin verification.
                 </p>

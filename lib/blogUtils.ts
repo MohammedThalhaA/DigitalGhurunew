@@ -120,7 +120,7 @@ export function markdownToHtml(md: string): string {
  * Universal blog content renderer:
  * Ensures any stored blog content (whether Markdown or HTML) renders as clean, semantic HTML.
  */
-export function renderBlogContentHtml(content: string): string {
+export function renderBlogContentHtml(content: string, blogTitle?: string): string {
   if (!content) return "";
   let text = content.trim();
 
@@ -132,6 +132,23 @@ export function renderBlogContentHtml(content: string): string {
     .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, "")
     .replace(/<meta\b[^>]*>/gi, "")
     .replace(/<link\b[^>]*rel=["'](canonical|icon|stylesheet)["'][^>]*>/gi, "");
+
+  // If blogTitle is provided, deduplicate any <h1> or <h2> that repeats the page's main title
+  if (blogTitle) {
+    const cleanMainTitle = blogTitle.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+    text = text.replace(/<h[12][^>]*>([\s\S]*?)<\/h[12]>/gi, (match, headingText) => {
+      const cleanH = headingText.replace(/<[^>]+>/g, "").replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+      if (cleanH === cleanMainTitle || (cleanH.length > 20 && (cleanMainTitle.includes(cleanH) || cleanH.includes(cleanMainTitle)))) {
+        return "";
+      }
+      return match;
+    });
+
+    // Deduplicate generic "Introduction" and "Conclusion" by making them unique to this article topic
+    const topic = blogTitle.split(/[:\-—?]/)[0].trim();
+    text = text.replace(/<h2([^>]*)>\s*(?:Introduction|Intro)\s*<\/h2>/gi, `<h2$1>Introduction: ${topic}</h2>`);
+    text = text.replace(/<h2([^>]*)>\s*(?:Conclusion|Summary)\s*<\/h2>/gi, `<h2$1>Key Takeaways: ${topic}</h2>`);
+  }
 
   // If content contains HTML tags:
   if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr|div|article)[\s>]/i.test(text)) {

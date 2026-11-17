@@ -106,12 +106,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 /**
  * Format markdown or rich HTML into beautifully styled article blocks
  */
-function renderArticleContent(content: string) {
+function renderArticleContent(content: string, blogTitle?: string) {
   if (!content) return null;
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: renderBlogContentHtml(content) }}
+      dangerouslySetInnerHTML={{ __html: renderBlogContentHtml(content, blogTitle) }}
     />
   );
 }
@@ -246,7 +246,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {/* Body Content */}
               <div className="bg-white rounded-3xl border border-ink-100 shadow-card p-6 sm:p-10 md:p-12">
                 <div className="article-content max-w-none">
-                  {renderArticleContent(blog.content)}
+                  {renderArticleContent(blog.content, blog.title)}
                 </div>
               </div>
 
@@ -259,9 +259,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <p className="text-xs font-bold uppercase tracking-wider text-brand-blue">
                     About The Author
                   </p>
-                  <h4 className="font-heading font-bold text-lg text-ink-900">
+                  <div className="font-heading font-bold text-lg text-ink-900">
                     {blog.author_name}
-                  </h4>
+                  </div>
                   <p className="text-sm font-medium text-ink-500">
                     {blog.author_role} at Digital Ghuru
                   </p>
@@ -283,7 +283,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   Keep Learning
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-heading font-black text-ink-900">
-                  Recommended Articles
+                  Recommended {blog.category ? `${blog.category} Guides` : "Digital Marketing Articles"}
                 </h2>
               </div>
               <Link
