@@ -98,7 +98,9 @@ export default function HeroSection({ course }: { course?: any }) {
                 <Image 
                   src="/images/Hero Image.webp" 
                   alt="Digital Marketing Classroom & Students"
-                  fill
+                  title="Digital Marketing Classroom & Students — Digital Ghuru"
+                  width={600}
+                  height={600}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover rounded-3xl drop-shadow-2xl hover:scale-[1.02] transition-transform duration-700"
                   priority

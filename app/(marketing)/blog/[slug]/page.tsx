@@ -144,7 +144,9 @@ export default async function BlogPostPage({ params }: PageProps) {
               <Image
                 src={blog.cover_image}
                 alt={blog.title}
-                fill
+                title={blog.title}
+                width={1200}
+                height={500}
                 priority
                 unoptimized={blog.cover_image.startsWith("/uploads/")}
                 sizes="(max-width: 1024px) 100vw, 1200px"
@@ -269,7 +271,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                       <Image
                         src={related.cover_image}
                         alt={related.title}
-                        fill
+                        title={related.title}
+                        width={384}
+                        height={216}
                         sizes="(max-width: 768px) 100vw, 500px"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />

@@ -101,8 +101,10 @@ export default function BentoHero({
               <div className="relative w-full aspect-video rounded-[2rem] overflow-hidden bg-ink-950 shadow-inner">
                 <Image 
                   src={imageUrl || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"} 
-                  alt="Course Preview" 
-                  fill 
+                  alt="Course Preview"
+                title="Course Preview"
+                width={800}
+                height={450} 
                   className="object-cover opacity-70 group-hover:scale-105 group-hover:opacity-50 transition-all duration-700 ease-out"
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-ink-900/60 via-transparent to-transparent">

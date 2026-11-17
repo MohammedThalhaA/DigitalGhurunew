@@ -148,6 +148,7 @@ export default function LogoWall({
                           <Image
                             src={logo.logoUrl}
                             alt={logo.name}
+                            title={logo.name}
                             width={logo.width || 200}
                             height={logo.height || 200}
                             loading="lazy"

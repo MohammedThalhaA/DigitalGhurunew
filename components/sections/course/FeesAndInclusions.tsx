@@ -79,8 +79,10 @@ export default function FeesAndInclusions({ course }: { course?: any }) {
               <Image 
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" 
                 alt="Our Expert Mentors"
-                fill
-                className="object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                title="Our Expert Mentors — Digital Ghuru"
+                width={450}
+                height={550}
+                className="object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] w-full h-full"
               />
             </div>
             {/* Mobile Image */}
@@ -88,8 +90,10 @@ export default function FeesAndInclusions({ course }: { course?: any }) {
               <Image 
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800"
                 alt="Our Expert Mentors"
-                fill
-                className="object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                title="Our Expert Mentors — Digital Ghuru"
+                width={300}
+                height={400}
+                className="object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] w-full h-full"
               />
             </div>
 

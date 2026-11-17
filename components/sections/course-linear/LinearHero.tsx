@@ -28,7 +28,9 @@ export default function LinearHero({
           <Image
             src={bannerImage}
             alt={title}
-            fill
+            title={title}
+            width={1920}
+            height={600}
             priority
             sizes="100vw"
             className="w-full h-full object-cover opacity-60"

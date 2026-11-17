@@ -193,7 +193,8 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
               >
                 <Image 
                   src="/logo-final dG.webp" 
-                  alt="Digital Ghuru" 
+                  alt="Digital Ghuru Logo"
+                  title="Digital Ghuru"
                   width={350} 
                   height={100} 
                   className="mb-10 object-contain h-28 w-auto"
@@ -220,7 +221,8 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
               >
                 <Image 
                   src="/logo-final dG.webp" 
-                  alt="Digital Ghuru" 
+                  alt="Digital Ghuru Logo"
+                  title="Digital Ghuru"
                   width={350} 
                   height={100} 
                   className="mb-10 object-contain h-28 w-auto"

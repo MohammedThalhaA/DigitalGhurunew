@@ -70,8 +70,10 @@ export default function PremiumOverview() {
               <Image 
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" 
                 alt="Dashboard Preview" 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                title="Dashboard Preview"
+                width={800} 
+                height={600} 
+                className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
               

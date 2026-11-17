@@ -23,6 +23,7 @@ export default function LocationCard({
           <Image
             src={imageUrl}
             alt={name}
+            title={name}
             width={384}
             height={216}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 384px"

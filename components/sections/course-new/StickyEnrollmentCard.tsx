@@ -32,8 +32,10 @@ export default function StickyEnrollmentCard({ originalPrice, discountedPrice, i
       <div className="relative w-full aspect-video bg-ink-950 cursor-pointer group rounded-t-3xl overflow-hidden border-b border-ink-100/50">
         <Image 
           src={imageUrl || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"} 
-          alt="Course Preview" 
-          fill 
+          alt="Course Preview"
+          title="Course Preview"
+          width={400}
+          height={225} 
           className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-60 transition-all duration-500"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-ink-900/60 to-transparent">

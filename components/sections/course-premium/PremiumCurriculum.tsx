@@ -169,8 +169,10 @@ export default function PremiumCurriculum({ curriculum }: PremiumCurriculumProps
                 <div className="relative mt-auto h-40 w-full rounded-xl overflow-hidden border border-white/20 shadow-inner z-10">
                    <Image 
                      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400" 
-                     alt="Course Preview Thumbnail" 
-                     fill 
+                     alt="Course Preview Thumbnail"
+                     title="Course Preview Thumbnail"
+                     width={400}
+                     height={160} 
                      className="object-cover opacity-60 mix-blend-overlay"
                    />
                 </div>

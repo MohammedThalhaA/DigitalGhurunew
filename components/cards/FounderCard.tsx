@@ -49,6 +49,7 @@ export default function FounderCard({
               <Image
                 src={photoUrl}
                 alt={name}
+                title={name}
                 width={160}
                 height={160}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

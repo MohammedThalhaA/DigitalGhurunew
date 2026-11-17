@@ -473,7 +473,9 @@ export default function AboutUsPage() {
               <Image
                 src="/images/Hero Image.webp"
                 alt="Digital Ghuru Ecosystem"
-                fill
+                title="Digital Ghuru Ecosystem"
+                width={600}
+                height={450}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="w-full h-full object-cover"
               />

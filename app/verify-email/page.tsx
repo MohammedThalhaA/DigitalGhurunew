@@ -62,7 +62,8 @@ export default async function VerifyEmailPage({
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-indigo-600/20 pointer-events-none" />
           <Image 
             src="/logo-final dG.webp" 
-            alt="Digital Ghuru" 
+            alt="Digital Ghuru Logo"
+            title="Digital Ghuru — Verify Email"
             width={200} 
             height={60} 
             className="object-contain h-14 w-auto relative z-10" 

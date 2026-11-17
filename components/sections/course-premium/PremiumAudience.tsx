@@ -70,7 +70,9 @@ export default function PremiumAudience() {
                     <Image 
                       src={aud.image}
                       alt={aud.title}
-                      fill
+                      title={aud.title}
+                      width={320}
+                      height={240}
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>

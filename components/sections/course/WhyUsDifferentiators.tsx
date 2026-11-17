@@ -96,7 +96,9 @@ export default function WhyUsDifferentiators({ course }: { course?: any }) {
                   <Image 
                     src="/resources/Bala Sir.webp"
                     alt="Digital Ghuru Lead Mentor"
-                    fill
+                    title="Digital Ghuru Lead Mentor — Bala Sir"
+                    width={450}
+                    height={450}
                     sizes="(max-width: 768px) 100vw, 40vw"
                     className="object-cover rounded-2xl drop-shadow-2xl hover:scale-[1.03] transition-transform duration-700 pointer-events-auto"
                   />

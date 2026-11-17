@@ -31,6 +31,7 @@ export default function BlogCard({
           <Image
             src={coverUrl}
             alt={title}
+            title={title}
             width={384}
             height={216}
             unoptimized={coverUrl.startsWith("/uploads/")}

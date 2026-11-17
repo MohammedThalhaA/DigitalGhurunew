@@ -105,6 +105,7 @@ export default function StudentReviewsGrid({ course }: { course?: any }) {
                 <Image 
                   src={review.avatar} 
                   alt={review.name}
+                  title={review.name}
                   width={48}
                   height={48}
                   className="rounded-full shadow-sm ring-2 ring-white"

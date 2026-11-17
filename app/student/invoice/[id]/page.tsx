@@ -73,7 +73,8 @@ export default async function InvoicePage({ params }: { params: { id: string } }
           <div>
             <Image 
               src="/logo-final dG.webp" 
-              alt="Digital Ghuru Logo" 
+              alt="Digital Ghuru Logo"
+              title="Digital Ghuru Logo" 
               width={220} 
               height={80} 
               className="h-20 w-auto object-contain mb-4"

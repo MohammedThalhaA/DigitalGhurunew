@@ -99,6 +99,7 @@ export default function CourseCard({
             <Image
               src={displayImage}
               alt={title}
+              title={title}
               width={400}
               height={225}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"

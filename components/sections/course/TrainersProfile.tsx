@@ -94,7 +94,9 @@ export default function TrainersProfile({ course }: { course?: any }) {
                     <Image 
                       src={trainer.image}
                       alt={trainer.name}
-                      fill
+                      title={trainer.name}
+                      width={144}
+                      height={144}
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                   </div>

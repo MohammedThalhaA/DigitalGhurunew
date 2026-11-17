@@ -37,8 +37,10 @@ export default function PremiumBottomCTA({ courseTitle }: PremiumBottomCTAProps)
             <Image 
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=200" 
               alt="Course Thumbnail"
-              fill
-              className="object-cover"
+              title="Course Thumbnail"
+              width={64}
+              height={48}
+              className="object-cover w-full h-full"
             />
           </div>
           <div>

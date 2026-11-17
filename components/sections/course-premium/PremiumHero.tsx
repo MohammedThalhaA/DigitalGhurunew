@@ -112,8 +112,10 @@ export default function PremiumHero({
             <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden border border-white/10 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)]">
               <Image 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200" 
-                alt="Students learning" 
-                fill 
+                alt="Students learning"
+                title="Students learning at Digital Ghuru"
+                width={1200}
+                height={900} 
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050A1A]/90 via-transparent to-transparent" />

@@ -84,6 +84,7 @@ export default function PhotoGallery({
       <Image
         src={img.src}
         alt={img.alt}
+        title={img.alt}
         width={320}
         height={320}
         loading="lazy"
@@ -119,6 +120,7 @@ export default function PhotoGallery({
                 <Image
                   src={img.src}
                   alt={img.alt}
+                  title={img.alt}
                   width={320}
                   height={320}
                   loading="lazy"
@@ -188,7 +190,9 @@ export default function PhotoGallery({
                   <Image
                     src={images[lightboxIndex].src}
                     alt={images[lightboxIndex].alt}
-                    fill
+                    title={images[lightboxIndex].alt || "Digital Ghuru Campus"}
+                    width={1200}
+                    height={800}
                     style={{ objectFit: "contain" }}
                     className="object-contain"
                     sizes="100vw"

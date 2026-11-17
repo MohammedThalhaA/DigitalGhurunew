@@ -40,9 +40,10 @@ export default function TestimonialCard({
               <Image
                 src={photoUrl}
                 alt={name}
-                fill
-                sizes="40px"
-                className="object-cover"
+                title={name}
+                width={40}
+                height={40}
+                className="object-cover w-full h-full"
               />
             </div>
           ) : (

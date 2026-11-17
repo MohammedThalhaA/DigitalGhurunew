@@ -63,6 +63,7 @@ export default function LinearTools({ tools }: LinearToolsProps) {
                 <img
                   src={tool.iconUrl}
                   alt={toolName}
+                  title={toolName}
                   width={48}
                   height={48}
                   loading="lazy"

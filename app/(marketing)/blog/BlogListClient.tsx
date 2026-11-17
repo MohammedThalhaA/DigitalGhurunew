@@ -183,7 +183,9 @@ export default function BlogListClient({ initialBlogs }: BlogListClientProps) {
                       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop"
                     }
                     alt={featuredBlog.title}
-                    fill
+                    title={featuredBlog.title}
+                    width={700}
+                    height={394}
                     priority
                     sizes="(max-width: 1024px) 100vw, 700px"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

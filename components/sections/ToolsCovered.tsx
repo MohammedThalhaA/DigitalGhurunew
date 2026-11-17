@@ -161,6 +161,7 @@ export default function ToolsCovered() {
                   <img
                     src={tool.iconUrl}
                     alt={tool.name}
+                    title={tool.name}
                     width={48}
                     height={48}
                     loading="lazy"

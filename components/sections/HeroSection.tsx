@@ -122,6 +122,7 @@ export default function HeroSection({
                 <Image
                   src={imageUrl}
                   alt="Digital Ghuru — AI-Integrated Digital Marketing Institute"
+                  title="Digital Ghuru — AI-Integrated Digital Marketing Institute"
                   width={550}
                   height={550}
                   priority

@@ -214,7 +214,9 @@ export default function LinearSidebarCard({
         <Image 
           src={previewImage || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800"} 
           alt="Course Preview"
-          fill
+          title="Course Preview"
+          width={400}
+          height={225}
           sizes="(max-width: 1024px) 100vw, 400px"
           className="w-full h-full object-cover opacity-90"
         />

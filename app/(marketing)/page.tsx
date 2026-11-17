@@ -455,6 +455,7 @@ export default function HomePage() {
                 <Image
                   src="/resources/Image 2.webp"
                   alt="Digital Ghuru Alumni Success Story"
+                  title="Digital Ghuru Alumni Success Story"
                   width={512}
                   height={512}
                   className="w-full h-full object-cover"

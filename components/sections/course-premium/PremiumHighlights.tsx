@@ -35,8 +35,10 @@ export default function PremiumHighlights() {
               <div className="w-full aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg border border-white">
                 <Image 
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" 
-                  alt="Personal Mentorship" 
-                  fill 
+                  alt="Personal Mentorship"
+                  title="Personal Mentorship"
+                  width={800}
+                  height={600} 
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-md">

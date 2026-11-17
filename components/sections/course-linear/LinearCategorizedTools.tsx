@@ -80,6 +80,7 @@ export default function LinearCategorizedTools({ groups }: LinearCategorizedTool
                           <img
                             src={item.iconUrl}
                             alt={toolName}
+                            title={toolName}
                             width={36}
                             height={36}
                             loading="lazy"

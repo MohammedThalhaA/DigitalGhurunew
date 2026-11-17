@@ -373,6 +373,7 @@ export default function Navbar() {
           <Image
             src="/logo-navbar.webp"
             alt="Digital Ghuru Logo"
+            title="Digital Ghuru — Premier AI Digital Marketing Institute"
             width={160}
             height={194}
             priority

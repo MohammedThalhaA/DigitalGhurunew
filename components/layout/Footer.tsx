@@ -95,6 +95,7 @@ export default async function Footer() {
                 <Image
                   src="/logo-final dG.webp"
                   alt="Digital Ghuru Logo"
+                  title="Digital Ghuru — Premier AI Digital Marketing Institute"
                   width={256}
                   height={311}
                   className="h-14 w-auto object-contain"
@@ -111,6 +112,7 @@ export default async function Footer() {
                 <Image
                   src="/partners/jaighurudevalogo.webp"
                   alt="Jaighurudeva Educational Academy"
+                  title="Jaighurudeva Educational Academy — Academic Partner"
                   width={209}
                   height={200}
                   className="h-14 w-auto object-contain scale-110"

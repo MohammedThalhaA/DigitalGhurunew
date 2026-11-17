@@ -377,6 +377,7 @@ export default function ContactPage() {
               <Image
                 src="/logo-final dG.webp"
                 alt="Digital Ghuru Logo"
+                title="Digital Ghuru Logo"
                 width={132}
                 height={160}
                 className="h-16 md:h-20 w-auto object-contain"
