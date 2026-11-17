@@ -13,11 +13,34 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const staticCourse = courseMap[params.slug];
   const baseTitle = staticCourse ? staticCourse.title : "Digital Marketing Course";
   const shortTitle = baseTitle.replace("AI-Powered ", "AI ");
+  const pageUrl = `https://digitalghuru.com/courses/${params.slug}/hyderabad`;
+  const desc = `Join ${shortTitle} in Hyderabad at Digital Ghuru. Live practical training at Ameerpet with 100% placement assistance.`;
   return {
     title: `${shortTitle} in Hyderabad`,
-    description: `Join ${shortTitle} in Hyderabad at Digital Ghuru. Live practical training at Ameerpet with 100% placement assistance.`,
+    description: desc,
     alternates: {
-      canonical: `https://digitalghuru.com/courses/${params.slug}/hyderabad`,
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title: `${shortTitle} in Hyderabad | Digital Ghuru`,
+      description: desc,
+      url: pageUrl,
+      siteName: "Digital Ghuru",
+      type: "website",
+      images: [
+        {
+          url: "https://digitalghuru.com/images/Hero Image.webp",
+          width: 1200,
+          height: 630,
+          alt: `${shortTitle} in Hyderabad`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${shortTitle} in Hyderabad | Digital Ghuru`,
+      description: desc,
+      images: ["https://digitalghuru.com/images/Hero Image.webp"],
     },
   };
 }

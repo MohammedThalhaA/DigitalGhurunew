@@ -8,10 +8,30 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Careers & Open Positions",
-  description:
-    "Explore career opportunities, digital marketing trainer roles, and staff positions at Digital Ghuru institute and agency.",
+  description: "Explore career opportunities, digital marketing trainer roles, and staff positions at Digital Ghuru institute and agency.",
   alternates: {
     canonical: "https://digitalghuru.com/careers",
+  },
+  openGraph: {
+    title: "Careers & Open Positions | Digital Ghuru",
+    description: "Explore career opportunities, digital marketing trainer roles, and staff positions at Digital Ghuru institute and agency.",
+    url: "https://digitalghuru.com/careers",
+    siteName: "Digital Ghuru",
+    type: "website",
+    images: [
+      {
+        url: "https://digitalghuru.com/images/Hero Image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Careers & Open Positions - Digital Ghuru",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Careers & Open Positions | Digital Ghuru",
+    description: "Explore career opportunities, digital marketing trainer roles, and staff positions at Digital Ghuru institute and agency.",
+    images: ["https://digitalghuru.com/images/Hero Image.webp"],
   },
 };
 

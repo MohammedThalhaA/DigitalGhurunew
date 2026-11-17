@@ -82,11 +82,15 @@ export async function generateMetadata({
     };
   }
 
+  const pageUrl = `https://digitalghuru.com/courses/${params.slug}`;
+  const desc = (course as any).metaDescription || "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.";
+  const imgUrl = (course as any).cardImage || "https://digitalghuru.com/images/Hero Image.webp";
+
   return {
     title: course.title,
-    description: (course as any).metaDescription || "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.",
+    description: desc,
     alternates: {
-      canonical: `https://digitalghuru.com/courses/${params.slug}`,
+      canonical: pageUrl,
     },
     keywords: [
       course.title,
@@ -99,16 +103,24 @@ export async function generateMetadata({
     ],
     openGraph: {
       title: `${course.title} | Digital Ghuru`,
-      description: (course as any).metaDescription || "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.",
+      description: desc,
+      url: pageUrl,
+      siteName: "Digital Ghuru",
       type: "website",
       images: [
         {
-          url: (course as any).cardImage || "/images/Hero Image.webp",
+          url: imgUrl,
           width: 1200,
           height: 630,
           alt: course.title,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${course.title} | Digital Ghuru`,
+      description: desc,
+      images: [imgUrl],
     },
   };
 }

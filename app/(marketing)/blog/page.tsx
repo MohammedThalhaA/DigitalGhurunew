@@ -7,18 +7,30 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog & Digital Marketing Guides",
-  description:
-    "Explore actionable digital marketing playbooks, SEO strategies, generative AI tutorials, and career roadmaps from industry mentors at Digital Ghuru.",
+  description: "Explore actionable digital marketing playbooks, SEO strategies, generative AI tutorials, and career roadmaps from industry mentors at Digital Ghuru.",
   alternates: {
     canonical: "https://digitalghuru.com/blog",
   },
   openGraph: {
     title: "Blog & Digital Marketing Guides | Digital Ghuru",
-    description:
-      "Explore actionable digital marketing playbooks, SEO strategies, generative AI tutorials, and career roadmaps from industry mentors at Digital Ghuru.",
+    description: "Explore actionable digital marketing playbooks, SEO strategies, generative AI tutorials, and career roadmaps from industry mentors at Digital Ghuru.",
     url: "https://digitalghuru.com/blog",
     siteName: "Digital Ghuru",
     type: "website",
+    images: [
+      {
+        url: "https://digitalghuru.com/images/Hero Image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Blog & Digital Marketing Guides - Digital Ghuru",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog & Digital Marketing Guides | Digital Ghuru",
+    description: "Explore actionable digital marketing playbooks, SEO strategies, generative AI tutorials, and career roadmaps from industry mentors at Digital Ghuru.",
+    images: ["https://digitalghuru.com/images/Hero Image.webp"],
   },
 };
 

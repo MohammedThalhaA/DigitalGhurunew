@@ -1,12 +1,34 @@
+import type { Metadata } from "next";
 import React from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import ObfuscatedEmail from "@/components/ui/ObfuscatedEmail";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Cancellation & Refund Policy",
-  description: "Learn about the cancellation and refund policy for Digital Ghuru courses and workshops.",
+  description: "Learn about the cancellation, batch transfer, and refund policy for Digital Ghuru courses and training programs.",
   alternates: {
     canonical: "https://digitalghuru.com/refund-policy",
+  },
+  openGraph: {
+    title: "Cancellation & Refund Policy | Digital Ghuru",
+    description: "Learn about the cancellation, batch transfer, and refund policy for Digital Ghuru courses and training programs.",
+    url: "https://digitalghuru.com/refund-policy",
+    siteName: "Digital Ghuru",
+    type: "website",
+    images: [
+      {
+        url: "https://digitalghuru.com/images/Hero Image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Cancellation & Refund Policy - Digital Ghuru",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cancellation & Refund Policy | Digital Ghuru",
+    description: "Learn about the cancellation, batch transfer, and refund policy for Digital Ghuru courses and training programs.",
+    images: ["https://digitalghuru.com/images/Hero Image.webp"],
   },
 };
 
