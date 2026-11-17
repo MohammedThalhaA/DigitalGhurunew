@@ -5,6 +5,7 @@ const cspHeader = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe
 
 export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
+  const pathname = request.nextUrl.pathname;
 
   // 1. Enforce canonical apex domain: redirect www.digitalghuru.com to https://digitalghuru.com
   // 2. Redirect legacy .in domains to canonical https://digitalghuru.com
@@ -18,6 +19,17 @@ export function middleware(request: NextRequest) {
     url.protocol = 'https:';
     url.port = '';
     return NextResponse.redirect(url, 301);
+  }
+
+  // 3. 301 Permanent Redirects for URLs over 115 characters to short clean addresses
+  if (pathname === '/blog/top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career') {
+    return NextResponse.redirect(new URL('/blog/digital-marketing-skills-anna-nagar', request.url), 301);
+  }
+  if (pathname === '/blog/instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers') {
+    return NextResponse.redirect(new URL('/blog/instagram-reels-strategy-tamil-nadu', request.url), 301);
+  }
+  if (pathname === '/blog/digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career') {
+    return NextResponse.redirect(new URL('/blog/digital-marketing-course-in-chennai', request.url), 301);
   }
 
   const response = NextResponse.next();
@@ -34,11 +46,8 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except:
-     * - _next/static (static chunks)
-     * - _next/image (image optimization files)
-     * - favicon.ico, site.webmanifest, manifest.json, robots.txt, sitemap.xml
+     * Match all request paths except internal next static chunks & image optimization
      */
-    '/((?!_next/static|_next/image|favicon.ico|site.webmanifest|manifest.json|robots.txt|sitemap.xml).*)',
+    '/((?!_next/static|_next/image).*)',
   ],
 };

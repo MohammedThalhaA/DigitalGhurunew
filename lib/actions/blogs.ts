@@ -4,6 +4,7 @@ import pool from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { BLOG_SLUG_SHORTCUTS, REVERSE_BLOG_SLUG_SHORTCUTS } from "@/lib/blogUtils";
 
 export interface Blog {
   id: string;
@@ -124,6 +125,8 @@ export async function ensureBlogsTable() {
   }
 }
 
+
+
 export async function getPublishedBlogs(category?: string): Promise<Blog[]> {
   await ensureBlogsTable();
   try {
@@ -144,7 +147,10 @@ export async function getPublishedBlogs(category?: string): Promise<Blog[]> {
     query += ` ORDER BY created_at DESC`;
 
     const res = await pool.query(query, params);
-    return res.rows;
+    return res.rows.map((row) => ({
+      ...row,
+      slug: REVERSE_BLOG_SLUG_SHORTCUTS[row.slug] || row.slug,
+    }));
   } catch (error) {
     console.error("Error fetching published blogs:", error);
     return [];
@@ -156,20 +162,27 @@ export async function getPublishedBlogs(category?: string): Promise<Blog[]> {
  */
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
   await ensureBlogsTable();
+  const dbSlug = BLOG_SLUG_SHORTCUTS[slug] || slug;
   try {
     const res = await pool.query(
-      `SELECT * FROM blogs WHERE slug = $1 LIMIT 1`,
-      [slug]
+      `SELECT * FROM blogs WHERE slug = $1 OR slug = $2 LIMIT 1`,
+      [slug, dbSlug]
     );
 
     if (res.rows.length === 0) return null;
 
+    const row = res.rows[0];
+    const canonicalSlug = REVERSE_BLOG_SLUG_SHORTCUTS[row.slug] || row.slug;
+
     // Increment views asynchronously in the background
-    pool.query(`UPDATE blogs SET views = views + 1 WHERE slug = $1`, [slug]).catch((err) =>
+    pool.query(`UPDATE blogs SET views = views + 1 WHERE id = $1`, [row.id]).catch((err) =>
       console.error("Failed to increment views:", err)
     );
 
-    return res.rows[0];
+    return {
+      ...row,
+      slug: canonicalSlug,
+    };
   } catch (error) {
     console.error("Error fetching blog by slug:", error);
     return null;

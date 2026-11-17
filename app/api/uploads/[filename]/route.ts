@@ -55,7 +55,11 @@ export async function GET(req: NextRequest, { params }: { params: { filename: st
     return new NextResponse(returnBuffer, {
       headers: {
         "Content-Type": contentType,
-        "Cache-Control": "public, max-age=31536000, immutable", // Cache heavily for performance
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+        "X-Frame-Options": "SAMEORIGIN",
       },
     });
   } catch (error) {

@@ -372,3 +372,22 @@ export function renderBlogContentHtml(content: string, blogTitle?: string): stri
   return enhanceHtmlReadability(processedHtml);
 }
 
+export const BLOG_SLUG_SHORTCUTS: Record<string, string> = {
+  "digital-marketing-skills-anna-nagar":
+    "top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career",
+  "instagram-reels-strategy-tamil-nadu":
+    "instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers",
+  "digital-marketing-course-in-chennai":
+    "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career",
+};
+
+export const REVERSE_BLOG_SLUG_SHORTCUTS: Record<string, string> = {
+  "top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career":
+    "digital-marketing-skills-anna-nagar",
+  "instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers":
+    "instagram-reels-strategy-tamil-nadu",
+  "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career":
+    "digital-marketing-course-in-chennai",
+};
+
+

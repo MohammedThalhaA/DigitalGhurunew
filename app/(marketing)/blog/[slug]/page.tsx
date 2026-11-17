@@ -9,11 +9,15 @@ function formatMetaDescription(desc: string, maxLen = 145): string {
 const BLOG_SEO_TITLES: Record<string, string> = {
   "top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career":
     "Digital Marketing Skills Anna Nagar | Digital Ghuru",
+  "digital-marketing-skills-anna-nagar":
+    "Digital Marketing Skills Anna Nagar | Digital Ghuru",
   "15-free-ai-tools-every-digital-marketer-should-know-in-2026":
     "15 Free AI Tools for Marketers in 2026 | Digital Ghuru",
   "how-to-build-a-digital-marketing-portfolio-with-no-experience-a-beginners-guide":
     "Build a Digital Marketing Portfolio | Digital Ghuru",
   "instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers":
+    "Instagram Reels Strategy in Tamil Nadu | Digital Ghuru",
+  "instagram-reels-strategy-tamil-nadu":
     "Instagram Reels Strategy in Tamil Nadu | Digital Ghuru",
   "digital-marketing-jobs-for-freshers-top-roles-skills-and-salary-in-2026":
     "Digital Marketing Jobs for Freshers 2026 | Digital Ghuru",
@@ -24,6 +28,8 @@ const BLOG_SEO_TITLES: Record<string, string> = {
   "digital-marketing-salary-in-india-for-freshers-how-much-can-you-earn-in-2026":
     "Digital Marketing Salary in India 2026 | Digital Ghuru",
   "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career":
+    "Digital Marketing Course in Chennai | Digital Ghuru",
+  "digital-marketing-course-in-chennai":
     "Digital Marketing Course in Chennai | Digital Ghuru",
   "ai-course-for-11th-12th-students-in-chennai-what-parents-should-know":
     "AI Course for 11th & 12th Students | Digital Ghuru",
@@ -42,9 +48,13 @@ function getBlogSeoTitle(slug: string, rawTitle: string): string {
 const BLOG_H1_TITLES: Record<string, string> = {
   "top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career":
     "Top Digital Marketing Skills in Anna Nagar for a Job-Ready Career",
+  "digital-marketing-skills-anna-nagar":
+    "Top Digital Marketing Skills in Anna Nagar for a Job-Ready Career",
   "how-to-build-a-digital-marketing-portfolio-with-no-experience-a-beginners-guide":
     "How to Build a Digital Marketing Portfolio with No Experience",
   "instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers":
+    "Instagram Reels Strategy for Small Businesses in Tamil Nadu",
+  "instagram-reels-strategy-tamil-nadu":
     "Instagram Reels Strategy for Small Businesses in Tamil Nadu",
   "digital-marketing-jobs-for-freshers-top-roles-skills-and-salary-in-2026":
     "Digital Marketing Jobs for Freshers: Top Roles and Salary (2026)",
@@ -53,6 +63,8 @@ const BLOG_H1_TITLES: Record<string, string> = {
   "digital-marketing-salary-in-india-for-freshers-how-much-can-you-earn-in-2026":
     "Digital Marketing Salary in India for Freshers in 2026",
   "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career":
+    "Digital Marketing Course in Chennai: In-Demand Career Skills",
+  "digital-marketing-course-in-chennai":
     "Digital Marketing Course in Chennai: In-Demand Career Skills",
   "ai-course-for-11th-12th-students-in-chennai-what-parents-should-know":
     "AI Course for 11th & 12th Students in Chennai: Parent Guide",

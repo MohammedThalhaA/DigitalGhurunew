@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import pool from "@/lib/db";
+import { REVERSE_BLOG_SLUG_SHORTCUTS } from "@/lib/blogUtils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use the canonical production URL as base
@@ -26,12 +27,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogUrls: MetadataRoute.Sitemap = [];
   try {
     const res = await pool.query(`SELECT slug, updated_at FROM blogs WHERE is_published = true`);
-    blogUrls = res.rows.map((blog: any) => ({
-      url: `${baseUrl}/blog/${blog.slug}`,
-      lastModified: blog.updated_at || new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    }));
+    blogUrls = res.rows.map((blog: any) => {
+      const cleanSlug = REVERSE_BLOG_SLUG_SHORTCUTS[blog.slug] || blog.slug;
+      return {
+        url: `${baseUrl}/blog/${cleanSlug}`,
+        lastModified: blog.updated_at || new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      };
+    });
   } catch (error) {
     console.error("Sitemap blog generation error:", error);
   }

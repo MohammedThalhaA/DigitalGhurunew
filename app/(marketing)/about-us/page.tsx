@@ -187,20 +187,17 @@ function SectionHeader({
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="text-center max-w-4xl mx-auto mb-20"
     >
-      <span className={`inline-block text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-6 ${
-        light ? "bg-white/10 text-white/80" : "bg-brand-blue/8 text-brand-blue"
-      }`}>
+      <span className={`inline-block text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-6 ${light ? "bg-white/10 text-white/80" : "bg-brand-blue/8 text-brand-blue"
+        }`}>
         {eyebrow}
       </span>
-      <h2 className={`text-3xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight leading-[1.1] mb-6 ${
-        light ? "text-white" : "text-ink-900"
-      }`}>
+      <h2 className={`text-3xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight leading-[1.1] mb-6 ${light ? "text-white" : "text-ink-900"
+        }`}>
         {title}
       </h2>
       {description && (
-        <p className={`text-lg md:text-xl leading-relaxed max-w-2xl mx-auto ${
-          light ? "text-white/70" : "text-ink-500"
-        }`}>
+        <p className={`text-lg md:text-xl leading-relaxed max-w-2xl mx-auto ${light ? "text-white/70" : "text-ink-500"
+          }`}>
           {description}
         </p>
       )}
@@ -374,7 +371,7 @@ export default function AboutUsPage() {
                   className="group relative bg-white rounded-[2rem] p-8 border border-ink-100 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-400 overflow-hidden"
                 >
                   <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${ac.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full`} />
-                  
+
                   <div className="relative z-10">
                     <div className={`h-14 w-14 rounded-2xl ${ac.bg} ${ac.border} border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className={`h-6 w-6 ${ac.text}`} />
@@ -412,7 +409,7 @@ export default function AboutUsPage() {
                 {idx !== methodologies.length - 1 && (
                   <div className="hidden lg:block absolute top-12 left-[60%] w-full h-[2px] bg-gradient-to-r from-brand-orange/30 to-transparent z-0" />
                 )}
-                
+
                 <div className="relative z-10 flex flex-col items-start">
                   <div className="h-24 w-24 rounded-[2rem] bg-gradient-to-br from-brand-orange to-orange-600 flex items-center justify-center text-white font-heading text-3xl font-black mb-6 shadow-xl shadow-brand-orange/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                     {method.step}
@@ -446,7 +443,7 @@ export default function AboutUsPage() {
               <p className="text-lg text-white/70 leading-relaxed mb-8">
                 Our campuses give you the tools, peer network, and expert guidance you need to grow fast.
               </p>
-              
+
               <ul className="space-y-6">
                 {[
                   { icon: Laptop, text: "Access to Premium Tools & Software (Semrush, Midjourney, etc.)" },
@@ -462,7 +459,7 @@ export default function AboutUsPage() {
                 ))}
               </ul>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -507,9 +504,8 @@ export default function AboutUsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className={`group relative rounded-3xl p-8 bg-white border border-ink-100/80 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-400 overflow-hidden ${
-                    idx === 0 ? "md:col-span-2 lg:col-span-2 md:flex md:items-start md:gap-8" : ""
-                  }`}
+                  className={`group relative rounded-3xl p-8 bg-white border border-ink-100/80 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-400 overflow-hidden ${idx === 0 ? "md:col-span-2 lg:col-span-2 md:flex md:items-start md:gap-8" : ""
+                    }`}
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${ac.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400`} />
 
