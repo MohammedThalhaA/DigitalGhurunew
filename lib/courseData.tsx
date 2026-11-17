@@ -45,6 +45,7 @@ import { CloudCog, Database } from "lucide-react";
 export interface CourseData {
   title: string;
   subtitle: string;
+  metaDescription?: string;
   tagline?: string;
   description: string;
   format: string;
@@ -83,6 +84,7 @@ export const courseMap: Record<string, CourseData> = {
   "ai-powered-digital-marketing": {
     title: "AI-Powered Digital Marketing Course",
     subtitle: "The New Digital Marketing + AI Course",
+    metaDescription: "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.",
     tagline: "The New Digital Marketing + AI Course",
     description: "Digital marketing combined with AI is rapidly transforming how businesses grow and compete. Learn to build strong marketing foundations, leverage AI for faster execution, and create high-performing campaigns.",
     format: "Classroom + Online",

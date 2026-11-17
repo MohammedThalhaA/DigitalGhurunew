@@ -16,7 +16,7 @@ import {
 export const metadata: Metadata = {
   title: "404 - Page Not Found",
   description:
-    "Sorry, the page you requested cannot be found. Browse Digital Ghuru's AI-powered digital marketing courses, free calculators, and student resources.",
+    "Page not found. Explore Digital Ghuru's AI digital marketing courses, free calculators, and career resources to find what you need.",
   robots: {
     index: false,
     follow: true,

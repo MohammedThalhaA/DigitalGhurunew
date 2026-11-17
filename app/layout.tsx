@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     template: "%s | Digital Ghuru",
   },
   description:
-    "Digital Ghuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
+    "Premier AI digital marketing institute offering agency-style training, live client campaigns, expert mentors, and 100% placement assistance.",
   keywords: [
     "AI-Powered digital marketing course",
     "digital marketing institute",
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     siteName: "Digital Ghuru",
     title: "Digital Ghuru — Premier Digital Marketing Institute",
     description:
-      "Digital Ghuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
+      "Premier AI digital marketing institute offering agency-style training, live client campaigns, expert mentors, and 100% placement assistance.",
     images: [
       {
         url: "https://digitalghuru.com/images/Hero Image.webp",
@@ -105,7 +105,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Digital Ghuru — Premier Digital Marketing Institute",
     description:
-      "Digital Ghuru is a premier digital marketing institute offering industry-leading courses with hands-on training, expert mentors, and 100% placement support.",
+      "Premier AI digital marketing institute offering agency-style training, live client campaigns, expert mentors, and 100% placement assistance.",
     images: ["https://digitalghuru.com/images/Hero Image.webp"],
   },
   verification: {

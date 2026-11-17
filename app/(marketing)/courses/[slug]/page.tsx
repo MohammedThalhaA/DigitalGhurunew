@@ -84,7 +84,7 @@ export async function generateMetadata({
 
   return {
     title: course.title,
-    description: course.description || "Master digital marketing with Digital Ghuru's premium courses.",
+    description: (course as any).metaDescription || "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.",
     alternates: {
       canonical: `https://digitalghuru.com/courses/${params.slug}`,
     },
@@ -99,7 +99,7 @@ export async function generateMetadata({
     ],
     openGraph: {
       title: `${course.title} | Digital Ghuru`,
-      description: course.description || "Master digital marketing with Digital Ghuru's premium courses.",
+      description: (course as any).metaDescription || "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.",
       type: "website",
       images: [
         {

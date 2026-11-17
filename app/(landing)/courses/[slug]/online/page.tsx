@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const shortTitle = baseTitle.replace("AI-Powered ", "AI ");
   return {
     title: `Online ${shortTitle}`,
-    description: `Enroll in Digital Ghuru's Online ${baseTitle}. Learn from anywhere with live interactive classes, real-world projects, and 100% placement support.`,
+    description: `Enroll in Online ${shortTitle} at Digital Ghuru. Learn with live classes, real agency projects, and 100% placement assistance.`,
     alternates: {
       canonical: `https://digitalghuru.com/courses/${params.slug}/online`,
     },

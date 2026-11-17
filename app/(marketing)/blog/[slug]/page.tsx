@@ -1,3 +1,11 @@
+function formatMetaDescription(desc: string, maxLen = 145): string {
+  const text = (desc || "").trim();
+  if (!text || text.length <= maxLen) return text;
+  const truncated = text.slice(0, maxLen);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > 80 ? truncated.slice(0, lastSpace) : truncated).trim() + "...";
+}
+
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -37,13 +45,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: blog.title,
-    description: blog.excerpt,
+    description: formatMetaDescription(blog.excerpt),
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
       title: `${blog.title} | Digital Ghuru`,
-      description: blog.excerpt,
+      description: formatMetaDescription(blog.excerpt),
       url: canonicalUrl,
       type: "article",
       publishedTime: blog.created_at,
@@ -53,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: "summary_large_image",
       title: blog.title,
-      description: blog.excerpt,
+      description: formatMetaDescription(blog.excerpt),
       images: blog.cover_image ? [blog.cover_image] : undefined,
     },
   };

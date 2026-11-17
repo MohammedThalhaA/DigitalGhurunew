@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const shortTitle = baseTitle.replace("AI-Powered ", "AI ");
   return {
     title: `${shortTitle} in Chennai`,
-    description: `Join the best ${baseTitle} in Chennai at Digital Ghuru. Live practical training at our Anna Nagar & Korattur campuses with 100% placement support.`,
+    description: `Join ${shortTitle} in Chennai at Digital Ghuru. Practical training at Anna Nagar & Korattur with 100% placement assistance.`,
     alternates: {
       canonical: `https://digitalghuru.com/courses/${params.slug}/chennai`,
     },
