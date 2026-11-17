@@ -46,6 +46,8 @@ export interface CourseData {
   title: string;
   subtitle: string;
   metaDescription?: string;
+  ogDescription?: string;
+  twitterDescription?: string;
   tagline?: string;
   description: string;
   format: string;
@@ -85,6 +87,8 @@ export const courseMap: Record<string, CourseData> = {
     title: "AI-Powered Digital Marketing Course",
     subtitle: "The New Digital Marketing + AI Course",
     metaDescription: "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.",
+    ogDescription: "Explore our AI digital marketing course with live campaigns, modern AI tools, and placement support at Digital Ghuru.",
+    twitterDescription: "Learn AI digital marketing with live ad campaigns, SEO, automations, and placement support at Digital Ghuru.",
     tagline: "The New Digital Marketing + AI Course",
     description: "Learn modern marketing with AI tools. Build core skills. Create live ad campaigns. Grow your career with hands-on practice.",
     format: "Classroom + Online",
@@ -189,6 +193,9 @@ export const courseMap: Record<string, CourseData> = {
   "react-js-full-stack-development": {
     title: "React JS Full Stack Development Course",
     subtitle: "Master Frontend, Backend & Full Stack Web Development",
+    metaDescription: "Master React JS full stack development with Node.js, Express, MongoDB, live capstone projects, and placement support at Digital Ghuru.",
+    ogDescription: "Build production-ready web apps with React JS, Node.js, Express, and MongoDB with 1-on-1 mentorship at Digital Ghuru.",
+    twitterDescription: "Learn React JS full stack development with live projects, modern web frameworks, and career placement help at Digital Ghuru.",
     tagline: "Master Frontend, Backend & Full Stack Web Development",
     description: "Learn full stack web development with React and Node.js. Build fast web apps. Work on live projects. Get 100% placement support to start your tech career.",
     format: "Online & Offline Campuses",

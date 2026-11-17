@@ -83,27 +83,49 @@ export async function generateMetadata({
   }
 
   const pageUrl = `https://digitalghuru.com/courses/${params.slug}`;
-  const desc = (course as any).metaDescription || "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.";
+  const isReact = params.slug.includes("react");
+
+  const metaDesc = (course as any).metaDescription || (isReact
+    ? "Master React JS full stack development with Node.js, Express, MongoDB, live capstone projects, and placement support at Digital Ghuru."
+    : "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.");
+
+  const ogDesc = (course as any).ogDescription || (isReact
+    ? "Build production-ready web apps with React JS, Node.js, Express, and MongoDB with 1-on-1 mentorship at Digital Ghuru."
+    : "Explore our AI digital marketing course with live campaigns, modern AI tools, and placement support at Digital Ghuru.");
+
+  const twitterDesc = (course as any).twitterDescription || (isReact
+    ? "Learn React JS full stack development with live projects, modern web frameworks, and career placement help at Digital Ghuru."
+    : "Learn AI digital marketing with live ad campaigns, SEO, automations, and placement support at Digital Ghuru.");
+
   const imgUrl = (course as any).cardImage || "https://digitalghuru.com/images/Hero Image.webp";
 
   return {
     title: course.title,
-    description: desc,
+    description: metaDesc,
     alternates: {
       canonical: pageUrl,
     },
-    keywords: [
-      course.title,
-      "AI powered digital marketing in chennai",
-      "AI powered digital marketing in hyderabad",
-      "AI digital marketing institute in chennai",
-      "AI digital marketing training in hyderabad",
-      "best AI digital marketing course",
-      "learn AI marketing online"
-    ],
+    keywords: isReact
+      ? [
+          course.title,
+          "React JS full stack development in chennai",
+          "React JS developer course",
+          "full stack web development institute in chennai",
+          "MERN stack training",
+          "Node JS Express MongoDB course",
+        ]
+      : [
+          course.title,
+          "AI powered digital marketing in chennai",
+          "AI powered digital marketing in hyderabad",
+          "AI digital marketing institute in chennai",
+          "AI digital marketing training in hyderabad",
+          "best AI digital marketing course",
+          "learn AI marketing online",
+        ],
     openGraph: {
       title: `${course.title} | Digital Ghuru`,
-      description: desc,
+      description: ogDesc,
       url: pageUrl,
       siteName: "Digital Ghuru",
       type: "website",
@@ -119,7 +141,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: `${course.title} | Digital Ghuru`,
-      description: desc,
+      description: twitterDesc,
       images: [imgUrl],
     },
   };
