@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Marketing ROI & ROAS Calculator - Free Campaign Profit Estimator",
+  title: "Free ROI & ROAS Calculator - Ad Profit",
   description:
     "Measure and forecast your return on ad spend (ROAS) and marketing investment return (ROI) with Digital Ghuru's free online calculator.",
   alternates: {

@@ -21,8 +21,9 @@ export const revalidate = 60;
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const staticCourse = courseMap[params.slug];
   const baseTitle = staticCourse ? staticCourse.title : "Digital Marketing Course";
+  const shortTitle = baseTitle.replace("AI-Powered ", "AI ");
   return {
-    title: `${baseTitle} in Chennai`,
+    title: `${shortTitle} in Chennai`,
     description: `Join the best ${baseTitle} in Chennai at Digital Ghuru. Live practical training at our Anna Nagar & Korattur campuses with 100% placement support.`,
     alternates: {
       canonical: `https://digitalghuru.com/courses/${params.slug}/chennai`,

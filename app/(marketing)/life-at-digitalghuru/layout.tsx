@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Life at Digital Ghuru - Culture & Campus Experience",
+  title: "Campus Life, Culture & Student Experience",
   description:
     "Take a look inside the Digital Ghuru classroom experience, live agency workshops, masterclasses, and student community events.",
   alternates: {
