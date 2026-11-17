@@ -135,7 +135,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
               email={signInEmail} setEmail={setSignInEmail}
               password={signInPassword} setPassword={setSignInPassword}
               onSubmit={handleSignIn} error={error} loading={loading}
-              isCurrent={true}
+              headingTag="div"
             />
           ) : (
             <SignUpForm
@@ -143,7 +143,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
               email={signUpEmail} setEmail={setSignUpEmail}
               password={signUpPassword} setPassword={setSignUpPassword}
               onSubmit={handleSignUp} error={error} loading={loading}
-              isCurrent={true}
+              headingTag="div"
             />
           )}
         </div>
@@ -267,8 +267,7 @@ function SocialButtons() {
   );
 }
 
-function SignInForm({ email, setEmail, password, setPassword, onSubmit, error, loading, isCurrent = true }: any) {
-  const HeadingTag = isCurrent ? "h1" : "h2";
+function SignInForm({ email, setEmail, password, setPassword, onSubmit, error, loading, headingTag: Heading = "h2" }: any) {
   return (
     <div className="w-full max-w-xs mx-auto animate-fade-in flex flex-col relative h-full">
       <div className="mb-4">
@@ -276,7 +275,7 @@ function SignInForm({ email, setEmail, password, setPassword, onSubmit, error, l
           <ArrowLeft className="w-4 h-4" /> Back to Site
         </Link>
       </div>
-      <HeadingTag className="heading-md text-ink-900 mb-6 font-bold text-center">Sign in to Digital Ghuru</HeadingTag>
+      <Heading className="heading-md text-ink-900 mb-6 font-bold text-center">Sign in to Your Account</Heading>
       <SocialButtons />
       <p className="text-xs text-ink-400 font-body mb-6 text-center">or use your account</p>
 
@@ -329,8 +328,7 @@ function SignInForm({ email, setEmail, password, setPassword, onSubmit, error, l
   );
 }
 
-function SignUpForm({ name, setName, email, setEmail, password, setPassword, onSubmit, error, loading, isCurrent = true }: any) {
-  const HeadingTag = isCurrent ? "h1" : "h2";
+function SignUpForm({ name, setName, email, setEmail, password, setPassword, onSubmit, error, loading, headingTag: Heading = "h2" }: any) {
   return (
     <div className="w-full max-w-xs mx-auto animate-fade-in flex flex-col relative h-full">
       <div className="mb-4">
@@ -338,7 +336,7 @@ function SignUpForm({ name, setName, email, setEmail, password, setPassword, onS
           <ArrowLeft className="w-4 h-4" /> Back to Site
         </Link>
       </div>
-      <HeadingTag className="heading-md text-ink-900 mb-6 font-bold text-center">Create Your Account</HeadingTag>
+      <Heading className="heading-md text-ink-900 mb-6 font-bold text-center">Register New Student Account</Heading>
       <SocialButtons />
       <p className="text-xs text-ink-400 font-body mb-6 text-center">or use your email for registration</p>
 

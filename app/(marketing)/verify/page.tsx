@@ -92,22 +92,50 @@ function VerifyEmailContent() {
 
 export default function VerifyEmailPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
-      <h1 className="font-display text-2xl md:text-3xl font-bold text-ink-900 mb-6 text-center">Verify Email Address</h1>
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 py-12">
+      <div className="max-w-2xl w-full text-center mb-8">
+        <h1 className="font-display text-2xl md:text-3xl font-bold text-ink-900 mb-3 text-center">
+          Verify Email Address & Credentials
+        </h1>
+        <p className="text-sm text-ink-600 max-w-lg mx-auto">
+          Confirm your registered email to activate your student learning account and access course portals.
+        </p>
+      </div>
+
       <Suspense fallback={
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-card max-w-md w-full text-center flex flex-col items-center justify-center space-y-4">
           <Loader2 className="h-16 w-16 text-brand-blue animate-spin" />
-          <h2 className="heading-sm text-ink-900">Loading...</h2>
+          <h2 className="heading-sm text-ink-900">Loading verification details...</h2>
         </div>
       }>
         <VerifyEmailContent />
       </Suspense>
 
-      <div className="mt-8 max-w-md w-full bg-white p-6 rounded-2xl border border-slate-200 text-center">
-        <h2 className="font-display text-base font-bold text-ink-900 mb-2">Need Help Verifying?</h2>
-        <p className="text-xs text-ink-600 leading-relaxed">
-          Check your spam folder if you cannot find our link. Verification links expire after 24 hours. Contact our support team if you need a new link.
-        </p>
+      {/* Helpful Student Onboarding and Support Information */}
+      <div className="mt-8 max-w-2xl w-full grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h2 className="font-display text-base font-bold text-ink-900 mb-2">
+            Why Email Verification Matters
+          </h2>
+          <p className="text-xs text-ink-600 leading-relaxed mb-3">
+            Verifying your email confirms your identity, secures your student portal, and activates your access to live classes, curriculum modules, and verified course certificates.
+          </p>
+          <p className="text-xs text-ink-600 leading-relaxed">
+            It also ensures you receive timely assignment reviews, job alerts, and campus announcements without interruption.
+          </p>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h2 className="font-display text-base font-bold text-ink-900 mb-2">
+            Need Help with Verification?
+          </h2>
+          <p className="text-xs text-ink-600 leading-relaxed mb-3">
+            If your verification link has expired or you cannot find our message, please check your spam or promotions folder. Verification links remain active for 24 hours after registration.
+          </p>
+          <p className="text-xs text-ink-600 leading-relaxed">
+            Reach out to our support desk anytime at <span className="font-semibold text-brand-blue">support@digitalghuru.com</span> or contact your designated course coordinator.
+          </p>
+        </div>
       </div>
     </div>
   );

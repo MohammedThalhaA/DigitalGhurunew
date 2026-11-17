@@ -34,6 +34,15 @@ export const metadata: Metadata = {
 export default function SignInPage() {
   return (
     <div className="w-full max-w-5xl mx-auto py-8 px-4 sm:px-6">
+      <div className="text-center mb-8">
+        <h1 className="text-2xl sm:text-3xl font-heading font-black text-ink-900 tracking-tight">
+          Sign In to Student Learning Portal
+        </h1>
+        <p className="text-sm text-ink-500 mt-2 max-w-lg mx-auto">
+          Access your courses, dashboard, live campaigns, and mentor support.
+        </p>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left column: Sign In Form */}
         <div className="lg:col-span-6 w-full flex justify-center">
