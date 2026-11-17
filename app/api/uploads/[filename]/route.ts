@@ -31,7 +31,28 @@ export async function GET(req: NextRequest, { params }: { params: { filename: st
     else if (ext === ".webp") contentType = "image/webp";
     else if (ext === ".svg") contentType = "image/svg+xml";
 
-    return new NextResponse(fileBuffer, {
+    let returnBuffer = fileBuffer;
+    if (fileBuffer.length > 95 * 1024 && [".png", ".jpg", ".jpeg", ".webp"].includes(ext)) {
+      try {
+        const sharp = (await import("sharp")).default;
+        let pipeline = sharp(fileBuffer);
+        const meta = await pipeline.metadata();
+        if (meta.width && meta.width > 1200) {
+          pipeline = pipeline.resize({ width: 1200, withoutEnlargement: true });
+        }
+        if (ext === ".webp") {
+          returnBuffer = await pipeline.webp({ quality: 75 }).toBuffer();
+        } else if (ext === ".jpg" || ext === ".jpeg") {
+          returnBuffer = await pipeline.jpeg({ quality: 75, mozjpeg: true }).toBuffer();
+        } else if (ext === ".png") {
+          returnBuffer = await pipeline.png({ quality: 75 }).toBuffer();
+        }
+      } catch (sharpErr) {
+        console.error("Dynamic image compression error:", sharpErr);
+      }
+    }
+
+    return new NextResponse(returnBuffer, {
       headers: {
         "Content-Type": contentType,
         "Cache-Control": "public, max-age=31536000, immutable", // Cache heavily for performance

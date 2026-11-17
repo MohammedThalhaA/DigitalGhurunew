@@ -54,7 +54,28 @@ export async function GET(
     else if (ext === ".gif") contentType = "image/gif";
     else if (ext === ".pdf") contentType = "application/pdf";
 
-    return new NextResponse(fileBuffer, {
+    let returnBuffer = fileBuffer;
+    if (fileBuffer.length > 95 * 1024 && [".png", ".jpg", ".jpeg", ".webp"].includes(ext)) {
+      try {
+        const sharp = (await import("sharp")).default;
+        let pipeline = sharp(fileBuffer);
+        const meta = await pipeline.metadata();
+        if (meta.width && meta.width > 1200) {
+          pipeline = pipeline.resize({ width: 1200, withoutEnlargement: true });
+        }
+        if (ext === ".webp") {
+          returnBuffer = await pipeline.webp({ quality: 75 }).toBuffer();
+        } else if (ext === ".jpg" || ext === ".jpeg") {
+          returnBuffer = await pipeline.jpeg({ quality: 75, mozjpeg: true }).toBuffer();
+        } else if (ext === ".png") {
+          returnBuffer = await pipeline.png({ quality: 75 }).toBuffer();
+        }
+      } catch (sharpErr) {
+        console.error("Dynamic image compression error:", sharpErr);
+      }
+    }
+
+    return new NextResponse(returnBuffer, {
       headers: {
         "Content-Type": contentType,
         "Cache-Control": "public, max-age=31536000, immutable",
