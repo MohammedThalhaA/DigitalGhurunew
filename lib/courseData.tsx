@@ -86,7 +86,7 @@ export const courseMap: Record<string, CourseData> = {
     subtitle: "The New Digital Marketing + AI Course",
     metaDescription: "Master AI digital marketing with live campaigns, SEO, ads, automation, and 100% placement support at Digital Ghuru.",
     tagline: "The New Digital Marketing + AI Course",
-    description: "Digital marketing combined with AI is rapidly transforming how businesses grow and compete. Learn to build strong marketing foundations, leverage AI for faster execution, and create high-performing campaigns.",
+    description: "Learn modern marketing with AI tools. Build core skills. Create live ad campaigns. Grow your career with hands-on practice.",
     format: "Classroom + Online",
     duration: "3 to 6 Months",
     batchInfo: "New Batches Starting Soon | 12 Modules",
@@ -102,67 +102,67 @@ export const courseMap: Record<string, CourseData> = {
       "Freelancing & Earning Support"
     ],
     overviewLearnings: [
-      "Understand the digital ecosystem and customer journey",
-      "Learn prompt engineering and AI content creation using ChatGPT & Midjourney",
-      "Plan and create engaging social media strategies across platforms",
-      "Master Instagram algorithm, reels, and influencer marketing",
-      "Build a strong personal brand on LinkedIn and generate B2B leads",
-      "Create high-converting landing pages and sales funnels",
-      "Automate email, WhatsApp marketing, and CRM workflows",
-      "Run profitable Facebook, Instagram, and Google Ads campaigns",
-      "Build websites using WordPress and optimize for SEO",
-      "Design professional creatives using Canva and AI design tools"
+      "Learn the digital ecosystem and buyer journey.",
+      "Create AI text, images, and videos with ChatGPT and Midjourney.",
+      "Plan high-growth social media campaigns across top platforms.",
+      "Master the Instagram algorithm, trending reels, and influencer ads.",
+      "Build a strong personal brand on LinkedIn to get B2B leads.",
+      "Design fast landing pages and high-converting sales funnels.",
+      "Automate email and WhatsApp workflows using smart CRM tools.",
+      "Run profitable Meta and Google ad campaigns with real ROI.",
+      "Build websites in WordPress and rank them with SEO.",
+      "Design clean graphics and ads using Canva and AI tools."
     ],
     overviewDescription: [
-      "Digital marketing combined with AI is rapidly transforming how businesses grow and compete. This course gives you a complete roadmap to build strong marketing foundations, leverage AI for faster execution, and create high-performing campaigns.",
-      <span key="1">At Digital Ghuru, we believe that the future belongs to those who can create, communicate, and convert effectively in the digital world. With the rise of AI tools like <strong className="text-ink-800">ChatGPT and Midjourney</strong>, marketing is no longer just about creativity — it's about speed, automation, and smart decision-making.</span>,
-      "We ensure our students don't just learn — they practice, implement, and achieve real results. By the end of this program, you will have hands-on project experience, a professional portfolio, and the confidence to pursue a career as a Digital Marketing Executive, SEO Specialist, Social Media Manager, Content Strategist, Performance Marketer, or Freelancer."
+      "Digital marketing and AI are changing how brands grow. This course gives you a clear roadmap. Build strong marketing basics. Use AI tools to work faster. Launch high-performing campaigns that bring real sales.",
+      <span key="1">At Digital Ghuru, we focus on real skills. You will learn how to create content, reach buyers, and convert sales. AI tools like <strong className="text-ink-800">ChatGPT and Midjourney</strong> help you work with speed and confidence.</span>,
+      "Our students learn by doing. You will work on live client projects. You will build a verified portfolio. Land in-demand roles as an SEO specialist, ad manager, content creator, or freelancer."
     ],
     designedToHelp: {
       title: "This course is designed to help you",
-      description: "At Digital Ghuru, we combine Digital Marketing + Artificial Intelligence, creating a powerful learning experience designed for real-world success.",
+      description: "At Digital Ghuru, we combine digital marketing with artificial intelligence. This gives you practical skills for real career growth.",
       benefits: [
-        { iconName: "Blocks", title: "Build strong marketing foundations", description: "Master the fundamentals of digital marketing and understand the customer journey.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
-        { iconName: "Sparkles", title: "Leverage AI for faster execution", description: "Use advanced AI tools to automate your workflows and create content at scale.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
-        { iconName: "Rocket", title: "Create high-performing campaigns", description: "Design, execute, and optimize live campaigns that drive real business results.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
-        { iconName: "Globe2", title: "Stay ahead in the digital ecosystem", description: "Future-proof your career by staying updated with the latest AI advancements.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
+        { iconName: "Blocks", title: "Build strong marketing foundations", description: "Master marketing fundamentals. Understand the customer journey.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
+        { iconName: "Sparkles", title: "Leverage AI for faster execution", description: "Use modern AI tools to automate work and create content fast.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
+        { iconName: "Rocket", title: "Create high-performing campaigns", description: "Design and launch live campaigns that bring real business sales.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
+        { iconName: "Globe2", title: "Stay ahead in the digital ecosystem", description: "Future-proof your career. Stay updated with the latest AI tools.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
       ]
     },
     numberedFeatures: {
       title: "Rise of AI in Marketing",
-      description: "AI is transforming how businesses operate and market their products. Tools like ChatGPT, Canva, and Google Analytics are revolutionizing the industry.",
+      description: "AI helps brands work faster and smarter. Tools like ChatGPT, Canva, and Google Ads help you create campaigns with speed.",
       features: [
-        { num: "01", iconName: "BrainCircuit", title: "Automation to Intelligence", description: "AI now goes beyond automation to strategic decision-making.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
-        { num: "02", iconName: "FileImage", title: "Content Creation at Scale", description: "Generate text, images, and videos instantly.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
-        { num: "03", iconName: "BarChart3", title: "Data-Driven Marketing", description: "Analyze customer behavior with precision.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
-        { num: "04", iconName: "UserCog", title: "Personalization", description: "Deliver customized experiences to every user.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
+        { num: "01", iconName: "BrainCircuit", title: "Automation to Intelligence", description: "AI helps you make smart decisions with data.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
+        { num: "02", iconName: "FileImage", title: "Content Creation at Scale", description: "Generate text, images, and video ads in seconds.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
+        { num: "03", iconName: "BarChart3", title: "Data-Driven Marketing", description: "Track buyer habits with pinpoint accuracy.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
+        { num: "04", iconName: "UserCog", title: "Personalization", description: "Deliver custom offers to each buyer.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
       ]
     },
     whyDigitalGhuru: {
       title: "Why Digital Ghuru",
       reasons: [
-        { num: "01", iconName: "Search", title: "AI Integration", description: "Dedicated modules on using AI tools for content creation, automation, and campaign optimization", color: "border-brand-blue bg-blue-50 text-brand-blue", numBg: "bg-surface-dark text-white", dotColor: "bg-brand-blue" },
-        { num: "02", iconName: "PenTool", title: "Practical Learning Approach", description: "Learn by working on real-time projects and campaigns", color: "border-orange-300 bg-orange-50 text-brand-orange", numBg: "bg-brand-orange text-white", dotColor: "bg-brand-orange" },
-        { num: "03", iconName: "RefreshCcw", title: "Updated Curriculum", description: "Aligned with current industry trends and AI advancements", color: "border-emerald-300 bg-emerald-50 text-emerald-600", numBg: "bg-emerald-500 text-white", dotColor: "bg-emerald-500" },
-        { num: "04", iconName: "Laptop2", title: "Hands-On Experience", description: "Execute campaigns, build funnels, and manage live projects", color: "border-red-300 bg-red-50 text-red-600", numBg: "bg-red-500 text-white", dotColor: "bg-red-500" },
-        { num: "05", iconName: "Users", title: "Personal Mentorship", description: "Guidance from experienced digital marketers", color: "border-purple-300 bg-purple-50 text-purple-600", numBg: "bg-purple-500 text-white", dotColor: "bg-purple-500" },
-        { num: "06", iconName: "DollarSign", title: "Freelancing & Earning Support", description: "Learn how to earn through digital skills", color: "border-amber-300 bg-amber-50 text-amber-600", numBg: "bg-amber-500 text-white", dotColor: "bg-amber-500" },
-        { num: "07", iconName: "FolderOpen", title: "Portfolio Building", description: "Create proof of work to showcase your expertise", color: "border-cyan-300 bg-cyan-50 text-cyan-600", numBg: "bg-cyan-500 text-white", dotColor: "bg-cyan-500" },
+        { num: "01", iconName: "Search", title: "AI Integration", description: "Hands-on training with top AI tools for content and ads.", color: "border-brand-blue bg-blue-50 text-brand-blue", numBg: "bg-surface-dark text-white", dotColor: "bg-brand-blue" },
+        { num: "02", iconName: "PenTool", title: "Practical Learning Approach", description: "Learn by running real-time projects and live ads.", color: "border-orange-300 bg-orange-50 text-brand-orange", numBg: "bg-brand-orange text-white", dotColor: "bg-brand-orange" },
+        { num: "03", iconName: "RefreshCcw", title: "Updated Curriculum", description: "Aligned with current hiring needs and AI trends.", color: "border-emerald-300 bg-emerald-50 text-emerald-600", numBg: "bg-emerald-500 text-white", dotColor: "bg-emerald-500" },
+        { num: "04", iconName: "Laptop2", title: "Hands-On Experience", description: "Launch real campaigns and build sales funnels.", color: "border-red-300 bg-red-50 text-red-600", numBg: "bg-red-500 text-white", dotColor: "bg-red-500" },
+        { num: "05", iconName: "Users", title: "Personal Mentorship", description: "Get 1-on-1 guidance from senior marketing mentors.", color: "border-purple-300 bg-purple-50 text-purple-600", numBg: "bg-purple-500 text-white", dotColor: "bg-purple-500" },
+        { num: "06", iconName: "DollarSign", title: "Freelancing & Earning Support", description: "Learn how to win global clients and earn from skills.", color: "border-amber-300 bg-amber-50 text-amber-600", numBg: "bg-amber-500 text-white", dotColor: "bg-amber-500" },
+        { num: "07", iconName: "FolderOpen", title: "Portfolio Building", description: "Build verified proof of work to impress hiring teams.", color: "border-cyan-300 bg-cyan-50 text-cyan-600", numBg: "bg-cyan-500 text-white", dotColor: "bg-cyan-500" },
       ]
     },
     whoIsThisForData: [
-      { role: "Entrepreneurs", iconName: "TrendingUp", desc: "An all-inclusive program designed to empower your entrepreneurial journey in the digital world.", points: ["Build a strong online presence for your business", "Generate quality leads and increase sales", "Stay ahead using AI-powered marketing strategies"], gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600", dotColor: "bg-blue-500" },
-      { role: "Professionals", iconName: "Briefcase", desc: "A career-focused program to help you upgrade your skills and grow in the digital space.", points: ["Learn in-demand digital marketing & AI skills", "Transition into high-growth digital roles", "Enhance your career opportunities and salary potential"], gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600", dotColor: "bg-emerald-500" },
-      { role: "Students", iconName: "GraduationCap", desc: "A complete beginner-friendly program to kickstart your digital marketing career.", points: ["Gain practical, job-ready skills", "Work on real-time projects and build your portfolio", "Prepare for interviews and career opportunities"], gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600", dotColor: "bg-amber-500" },
-      { role: "Freelancers", iconName: "Laptop", desc: "A growth-oriented program to help you scale your freelancing career.", points: ["Expand your service offerings with digital marketing", "Attract high-paying clients globally", "Build a consistent and scalable income stream"], gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600", dotColor: "bg-rose-500" }
+      { role: "Entrepreneurs", iconName: "TrendingUp", desc: "Grow your business online. Generate quality leads and scale sales with AI marketing tools.", points: ["Build a strong online presence for your business.", "Generate quality leads and increase sales.", "Stay ahead using AI-powered marketing strategies."], gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600", dotColor: "bg-blue-500" },
+      { role: "Professionals", iconName: "Briefcase", desc: "Upgrade your skills. Transition into high-growth digital roles with higher pay.", points: ["Learn in-demand digital marketing & AI skills.", "Transition into high-growth digital roles.", "Enhance your career opportunities and salary potential."], gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600", dotColor: "bg-emerald-500" },
+      { role: "Students", iconName: "GraduationCap", desc: "Kickstart your career. Work on live projects, build a portfolio, and clear job interviews.", points: ["Gain practical, job-ready skills.", "Work on real-time projects and build your portfolio.", "Prepare for interviews and career opportunities."], gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600", dotColor: "bg-amber-500" },
+      { role: "Freelancers", iconName: "Laptop", desc: "Scale your freelance income. Offer in-demand marketing services to global clients.", points: ["Expand your service offerings with digital marketing.", "Attract high-paying clients globally.", "Build a consistent and scalable income stream."], gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600", dotColor: "bg-rose-500" }
     ],
     highlightsData: [
-      { iconName: "Users", title: "Personal Mentorship", description: "Get 1-on-1 guidance from industry experts with personalized feedback on your campaigns.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
-      { iconName: "Lightbulb", title: "Practical Learning Approach", description: "Hands-on experience with real-time projects, live campaigns, and case studies.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
-      { iconName: "Bot", title: "Updated Curriculum with AI", description: "Learn AI-based content automation, chatbot marketing, ad optimization, and more.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
-      { iconName: "FolderKanban", title: "Portfolio Building", description: "Build a strong portfolio showcasing projects, creativity, and measurable results.", gradient: "from-purple-500/10 to-fuchsia-500/10", border: "group-hover:border-purple-500/30", iconColor: "text-purple-600" },
-      { iconName: "BriefcaseBusiness", title: "Freelancing & Earning Support", description: "Learn freelance client acquisition, pricing strategies, and how to build consistent income.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
-      { iconName: "Award", title: "Industry Certifications", description: "Earn Digital Ghuru certification plus industry-recognized certifications from Google and Meta.", gradient: "from-cyan-500/10 to-blue-500/10", border: "group-hover:border-cyan-500/30", iconColor: "text-cyan-600" }
+      { iconName: "Users", title: "Personal Mentorship", description: "Get 1-on-1 guidance and campaign reviews from mentors.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
+      { iconName: "Lightbulb", title: "Practical Learning Approach", description: "Hands-on practice with real client projects and live case studies.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
+      { iconName: "Bot", title: "Updated Curriculum with AI", description: "Learn AI prompt engineering, chatbot funnels, and ad tuning.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
+      { iconName: "FolderKanban", title: "Portfolio Building", description: "Build a job-ready portfolio that showcases real campaign results.", gradient: "from-purple-500/10 to-fuchsia-500/10", border: "group-hover:border-purple-500/30", iconColor: "text-purple-600" },
+      { iconName: "BriefcaseBusiness", title: "Freelancing & Earning Support", description: "Learn how to find high-paying clients and set your pricing.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
+      { iconName: "Award", title: "Industry Certifications", description: "Earn course certificates plus official Google and Meta credentials.", gradient: "from-cyan-500/10 to-blue-500/10", border: "group-hover:border-cyan-500/30", iconColor: "text-cyan-600" }
     ],
     curriculum: [
       { module: "Module 1: Audience Research", topics: ["Understand the digital ecosystem and customer journey.", "Learn core marketing concepts and strategies.", "Identify target audience and business goals.", "Build a strong foundation in digital marketing."] },
@@ -190,7 +190,7 @@ export const courseMap: Record<string, CourseData> = {
     title: "React JS Full Stack Development Course",
     subtitle: "Master Frontend, Backend & Full Stack Web Development",
     tagline: "Master Frontend, Backend & Full Stack Web Development",
-    description: "In today's digital-first world, businesses demand fast, scalable, and highly interactive web applications. The React JS Full Stack Developer Program at Digital Ghuru is designed to transform beginners into industry-ready developers by combining frontend excellence with powerful backend development.",
+    description: "Learn full stack web development with React and Node.js. Build fast web apps. Work on live projects. Get 100% placement support to start your tech career.",
     format: "Online & Offline Campuses",
     duration: "4 to 6 Months",
     batchInfo: "New Batches Starting Soon | 7 Modules",
@@ -199,59 +199,60 @@ export const courseMap: Record<string, CourseData> = {
     discountedPrice: "Contact Us",
     usps: [],
     overviewLearnings: [
-      "Master modern frontend development with React JS",
-      "Build highly scalable backends with Node.js and Express",
-      "Design and manage NoSQL databases with MongoDB",
-      "Create full-stack applications with user authentication",
-      "Understand industry standard workflows using Git & GitHub",
-      "Gain exposure to agile development practices and real client requirements"
+      "Build modern user interfaces with React and Tailwind CSS.",
+      "Develop scalable backends using Node.js and Express.",
+      "Design and manage databases using MongoDB.",
+      "Create full-stack web applications with secure user login.",
+      "Master team workflows using Git and GitHub.",
+      "Solve real business problems using modern agile practices."
     ],
     overviewDescription: [
-      "This program is not just about learning coding — it's about building real-world products, solving business problems, and becoming job-ready with confidence.",
-      "Unlike traditional courses, this program emphasizes hands-on implementation over theory, real-time project experience, industry tools and workflows, and a problem-solving approach. This program is designed to simulate real IT company workflows."
+      "Modern tech firms need fast, scalable web apps. This course helps you become a job-ready full stack developer. Learn both frontend and backend coding with hands-on practice.",
+      "You will build real-world software, not just follow theory. Write clean code with Node.js and MongoDB. Create dynamic web apps with React.",
+      "Work on live team projects with code reviews from senior developers. Graduate with a strong GitHub portfolio that helps you stand out in tech interviews."
     ],
     designedToHelp: {
       title: "What Makes This Program Unique?",
-      description: "We focus on building strong technical foundations while offering practical exposure to actual industry requirements.",
+      description: "We focus on strong technical skills with hands-on exposure to real industry workflows.",
       benefits: [
-        { iconName: "Code2", title: "Learn by building real applications", description: "Skip the theory and start coding from day one. Build interactive web applications.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
-        { iconName: "BriefcaseBusiness", title: "Work on industry-based assignments", description: "Solve real business problems using modern MERN stack technologies.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
-        { iconName: "Users", title: "Practice coding with mentorship guidance", description: "Get code reviews and personalized feedback from industry professionals.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
-        { iconName: "TerminalSquare", title: "Get exposure to agile practices", description: "Understand real client requirements and collaborate efficiently.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
+        { iconName: "Code2", title: "Learn by building real applications", description: "Code from day one. Build interactive web applications.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
+        { iconName: "BriefcaseBusiness", title: "Work on industry-based assignments", description: "Solve real business problems using modern MERN stack tools.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
+        { iconName: "Users", title: "Practice coding with mentorship guidance", description: "Get direct code reviews and feedback from senior engineers.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
+        { iconName: "TerminalSquare", title: "Get exposure to agile practices", description: "Learn agile team workflows and ship production-ready code.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
       ]
     },
     numberedFeatures: {
       title: "Why React Full Stack?",
-      description: "React has become the backbone of modern frontend development, used by top companies to build high-performance user interfaces. When combined with backend technologies like Node.js, it forms a powerful full stack ecosystem.",
+      description: "React is the top frontend tool in modern web development. Paired with Node.js, it lets you build full web apps with speed.",
       features: [
-        { num: "01", iconName: "Globe2", title: "High Demand", description: "High demand in global and Indian IT job market.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
-        { num: "02", iconName: "Blocks", title: "Independent Building", description: "Ability to build complete applications independently.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
-        { num: "03", iconName: "Rocket", title: "Faster Development", description: "Faster development with reusable components.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
-        { num: "04", iconName: "LayoutTemplate", title: "Strong Ecosystem", description: "Continuous growth and immense community support.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
+        { num: "01", iconName: "Globe2", title: "High Demand", description: "High hiring demand in global and Indian tech firms.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
+        { num: "02", iconName: "Blocks", title: "Independent Building", description: "Build complete web applications from start to finish.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
+        { num: "03", iconName: "Rocket", title: "Faster Development", description: "Build reusable components for quick development.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
+        { num: "04", iconName: "LayoutTemplate", title: "Strong Ecosystem", description: "Benefit from massive community support and modern libraries.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
       ]
     },
     whyDigitalGhuru: {
       title: "AI-Powered Development",
       reasons: [
-        { num: "01", iconName: "Cpu", title: "Code Writing", description: "Writing code using AI assistance for faster development", color: "border-brand-blue bg-blue-50 text-brand-blue", numBg: "bg-surface-dark text-white", dotColor: "bg-brand-blue" },
-        { num: "02", iconName: "Search", title: "Debugging", description: "Efficiently finding and fixing bugs using AI tools", color: "border-orange-300 bg-orange-50 text-brand-orange", numBg: "bg-brand-orange text-white", dotColor: "bg-brand-orange" },
-        { num: "03", iconName: "RefreshCcw", title: "Automation", description: "Automating repetitive tasks to focus on logic", color: "border-emerald-300 bg-emerald-50 text-emerald-600", numBg: "bg-emerald-500 text-white", dotColor: "bg-emerald-500" },
-        { num: "04", iconName: "TrendingUp", title: "Productivity", description: "Improving overall developer productivity using AI", color: "border-red-300 bg-red-50 text-red-600", numBg: "bg-red-500 text-white", dotColor: "bg-red-500" },
+        { num: "01", iconName: "Cpu", title: "Code Writing", description: "Write clean code faster using modern AI developer tools.", color: "border-brand-blue bg-blue-50 text-brand-blue", numBg: "bg-surface-dark text-white", dotColor: "bg-brand-blue" },
+        { num: "02", iconName: "Search", title: "Debugging", description: "Find and fix bugs quickly using AI testing tools.", color: "border-orange-300 bg-orange-50 text-brand-orange", numBg: "bg-brand-orange text-white", dotColor: "bg-brand-orange" },
+        { num: "03", iconName: "RefreshCcw", title: "Automation", description: "Automate routine coding tasks to focus on app logic.", color: "border-emerald-300 bg-emerald-50 text-emerald-600", numBg: "bg-emerald-500 text-white", dotColor: "bg-emerald-500" },
+        { num: "04", iconName: "TrendingUp", title: "Productivity", description: "Boost your day-to-day coding speed and output.", color: "border-red-300 bg-red-50 text-red-600", numBg: "bg-red-500 text-white", dotColor: "bg-red-500" },
       ]
     },
     whoIsThisForData: [
-      { role: "Entrepreneurs", iconName: "TrendingUp", desc: "An all-inclusive program designed to empower your entrepreneurial journey in the digital world.", points: ["Build a strong online presence for your business", "Generate quality leads and increase sales", "Stay ahead using AI-powered marketing strategies"], gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600", dotColor: "bg-blue-500" },
-      { role: "Professionals", iconName: "Briefcase", desc: "A career-focused program to help you upgrade your skills and grow in the digital space.", points: ["Learn in-demand digital marketing & AI skills", "Transition into high-growth digital roles", "Enhance your career opportunities and salary potential"], gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600", dotColor: "bg-emerald-500" },
-      { role: "Students", iconName: "GraduationCap", desc: "A complete beginner-friendly program to kickstart your digital marketing career.", points: ["Gain practical, job-ready skills", "Work on real-time projects and build your portfolio", "Prepare for interviews and career opportunities"], gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600", dotColor: "bg-amber-500" },
-      { role: "Freelancers", iconName: "Laptop", desc: "A growth-oriented program to help you scale your freelancing career.", points: ["Expand your service offerings with digital marketing", "Attract high-paying clients globally", "Build a consistent and scalable income stream"], gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600", dotColor: "bg-rose-500" }
+      { role: "Entrepreneurs", iconName: "TrendingUp", desc: "Build your own web platforms and MVPs without hiring outside agencies.", points: ["Build custom web platforms and tools.", "Save costs with in-house product development.", "Iterate quickly on your business ideas."], gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600", dotColor: "bg-blue-500" },
+      { role: "Professionals", iconName: "Briefcase", desc: "Switch into software engineering with in-demand full-stack skills.", points: ["Master frontend and backend web frameworks.", "Transition into high-paying software roles.", "Boost your career growth in tech."], gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600", dotColor: "bg-emerald-500" },
+      { role: "Students", iconName: "GraduationCap", desc: "Start your coding career. Build real web apps and land your first developer job.", points: ["Learn coding from the ground up.", "Build a GitHub portfolio with live projects.", "Ace technical rounds and coding tests."], gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600", dotColor: "bg-amber-500" },
+      { role: "Freelancers", iconName: "Laptop", desc: "Build custom web applications for international freelance clients.", points: ["Deliver full-stack web apps end-to-end.", "Win global projects on freelance platforms.", "Earn higher hourly rates with tech skills."], gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600", dotColor: "bg-rose-500" }
     ],
     highlightsData: [
-      { iconName: "Code2", title: "End-to-End Training", description: "Full Stack Development Training from UI design to scalable backend architecture.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
-      { iconName: "Laptop2", title: "80% Practical Learning", description: "Project-based learning with a focus on real-time assignments and projects.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
-      { iconName: "Bot", title: "AI-Powered Workflow", description: "Learn how AI tools are integrated into modern development workflows.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
-      { iconName: "BriefcaseBusiness", title: "Placement Assistance", description: "Get internship and placement support after successful program completion.", gradient: "from-purple-500/10 to-fuchsia-500/10", border: "group-hover:border-purple-500/30", iconColor: "text-purple-600" },
-      { iconName: "Users", title: "Expert Designed", description: "Industry-Oriented Curriculum Designed by Experts who work in top tech companies.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
-      { iconName: "Workflow", title: "Lifetime Support", description: "Lifetime Learning & Support Access to keep up with new technology changes.", gradient: "from-cyan-500/10 to-blue-500/10", border: "group-hover:border-cyan-500/30", iconColor: "text-cyan-600" }
+      { iconName: "Code2", title: "End-to-End Training", description: "Complete full stack training from frontend UI to backend databases.", gradient: "from-blue-500/10 to-indigo-500/10", border: "group-hover:border-blue-500/30", iconColor: "text-blue-600" },
+      { iconName: "Laptop2", title: "80% Practical Learning", description: "Project-based training focused on real code and assignments.", gradient: "from-amber-500/10 to-orange-500/10", border: "group-hover:border-amber-500/30", iconColor: "text-amber-600" },
+      { iconName: "Bot", title: "AI-Powered Workflow", description: "Learn how modern developers use AI tools to code faster.", gradient: "from-emerald-500/10 to-teal-500/10", border: "group-hover:border-emerald-500/30", iconColor: "text-emerald-600" },
+      { iconName: "BriefcaseBusiness", title: "Placement Assistance", description: "Get internship referrals and dedicated interview preparation.", gradient: "from-purple-500/10 to-fuchsia-500/10", border: "group-hover:border-purple-500/30", iconColor: "text-purple-600" },
+      { iconName: "Users", title: "Expert Designed", description: "Curriculum built by engineers working in top tech companies.", gradient: "from-rose-500/10 to-pink-500/10", border: "group-hover:border-rose-500/30", iconColor: "text-rose-600" },
+      { iconName: "Workflow", title: "Lifetime Support", description: "Get ongoing community support and access to updated resources.", gradient: "from-cyan-500/10 to-blue-500/10", border: "group-hover:border-cyan-500/30", iconColor: "text-cyan-600" }
     ],
     curriculum: [
       { module: "Module 1: Web Development Fundamentals", topics: ["Structuring content using semantic HTML", "Styling modern layouts using CSS (Flexbox & Grid)", "Creating responsive designs for mobile & desktop", "Introduction to JavaScript for interactivity"] },

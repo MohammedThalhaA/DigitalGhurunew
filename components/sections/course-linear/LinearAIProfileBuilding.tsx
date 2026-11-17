@@ -29,12 +29,12 @@ const COLOR_PALETTES = [
 ];
 
 const defaultItems: AIProfileItem[] = [
-  { icon: BrainCircuit, title: "AI-Powered Resume Optimization", description: "Use AI tools to craft professional resumes tailored to specific job descriptions and industries." },
-  { icon: FileText, title: "Portfolio Building with AI", description: "Generate and refine portfolio content using AI to showcase your skills and projects effectively." },
-  { icon: UserCheck, title: "LinkedIn Profile Optimization", description: "Leverage AI to optimize your LinkedIn profile for better visibility and professional networking." },
-  { icon: Sparkles, title: "Personalized Career Branding", description: "Build a unique personal brand using AI-driven insights to stand out in the job market." },
-  { icon: Target, title: "Job Matching & Targeting", description: "AI analyzes your skills and suggests the best-fit job opportunities and career paths." },
-  { icon: RefreshCcw, title: "Continuous Profile Refinement", description: "AI continuously updates and refines your profiles based on changing goals and market demands." },
+  { icon: BrainCircuit, title: "AI Resume Building", description: "Build a sharp resume with AI. Match real job posts and impress top employers." },
+  { icon: FileText, title: "Portfolio Building with AI", description: "Showcase your best projects with AI. Create a clean portfolio that wins interviews." },
+  { icon: UserCheck, title: "LinkedIn Profile Tuning", description: "Optimize your LinkedIn with AI tools. Get noticed by tech recruiters and leaders." },
+  { icon: Sparkles, title: "Personal Career Branding", description: "Stand out in the job market. Shape your unique personal brand with smart AI prompts." },
+  { icon: Target, title: "Job Matching & Targeting", description: "Find the best job matches fast. AI scans your skills and highlights top roles for you." },
+  { icon: RefreshCcw, title: "Ongoing Profile Updates", description: "Keep your profile fresh. Update your skills as new market trends emerge." },
 ];
 
 export default function LinearAIProfileBuilding({ title, description, items }: LinearAIProfileBuildingProps) {
@@ -47,7 +47,7 @@ export default function LinearAIProfileBuilding({ title, description, items }: L
           {title || "AI Enhanced Profile Building"}
         </h2>
         <p className="body-lg max-w-2xl mx-auto text-ink-500">
-          {description || "Leverage artificial intelligence tools to create, optimize, and personalize your professional profile for maximum career impact."}
+          {description || "Use smart AI tools to build your resume, portfolio, and LinkedIn profile to land top jobs faster."}
         </p>
       </div>
 

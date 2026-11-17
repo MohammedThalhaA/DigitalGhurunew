@@ -40,23 +40,23 @@ const offices = [
 const contactFaqs = [
   {
     question: "How do I book a free demo class?",
-    answer: "You can book a free demo class by filling out the form on this page, calling us directly, or visiting our campus. We offer both online and offline demo sessions.",
+    answer: "Fill out the form on this page to book a demo. You can also call us or visit our campus. We host both online and in-person demo classes.",
   },
   {
     question: "What are your office hours?",
-    answer: "Our campuses are open Monday through Saturday, from 9:00 AM to 7:00 PM IST. You can also reach our support team via email or WhatsApp outside of these hours.",
+    answer: "Our campuses are open Monday through Saturday, from 9:00 AM to 7:00 PM. You can also message our team by email or WhatsApp anytime.",
   },
   {
     question: "Can I visit the campus before enrolling?",
-    answer: "Absolutely! We strongly encourage prospective students to visit our campus, meet the mentors, and experience our agency-style learning environment firsthand.",
+    answer: "Yes! We invite all students to visit our campus. Meet our mentors and see our agency-style classrooms in person.",
   },
   {
     question: "How quickly will I hear back after submitting an inquiry?",
-    answer: "Our admissions and support teams typically respond within 2-4 hours during business hours. For immediate assistance, please call us directly.",
+    answer: "Our team responds within 2 to 4 hours on working days. For fast help, please call us directly.",
   },
   {
     question: "Do you offer corporate training or agency partnerships?",
-    answer: "Yes, we collaborate with leading agencies and brands for corporate training and hiring partnerships. Please select 'Partnerships' in the form subject to connect with our B2B team.",
+    answer: "Yes, we train corporate teams and partner with top agencies. Select 'Partnerships' in the form to reach our business team.",
   },
 ];
 

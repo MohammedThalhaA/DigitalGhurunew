@@ -43,18 +43,18 @@ const COLOR_PALETTES = [
 ];
 
 const defaultInternshipItems: InternshipItem[] = [
-  { icon: Briefcase, title: "Work on Live Industry Projects", description: "Get hands-on experience by working on real client projects and industry challenges." },
-  { icon: Code2, title: "Solve Real Business Problems", description: "Apply your skills to solve actual business challenges and build practical solutions." },
-  { icon: FolderOpen, title: "Build a Strong Portfolio", description: "Create a professional portfolio showcasing your projects and measurable results." },
-  { icon: GraduationCap, title: "Gain Internship Experience", description: "Earn real-world internship experience that makes your resume stand out to employers." },
+  { icon: Briefcase, title: "Live Industry Projects", description: "Work on live client tasks. Solve real industry challenges with hands-on practice." },
+  { icon: Code2, title: "Real Business Problems", description: "Solve real business problems. Build practical software and marketing solutions." },
+  { icon: FolderOpen, title: "Strong Portfolio Building", description: "Create a clean portfolio. Showcase your best work and measurable outcomes." },
+  { icon: GraduationCap, title: "Internship Experience", description: "Gain real internship experience. Make your resume stand out to hiring managers." },
 ];
 
 const defaultPlacementItems: PlacementItem[] = [
-  { icon: FileText, title: "Resume & Portfolio Building", description: "Professional resume crafting and portfolio development with expert guidance." },
-  { icon: Users, title: "Mock Technical Interviews", description: "Practice with realistic technical interview simulations and get actionable feedback." },
-  { icon: MessageSquare, title: "HR Interview Training", description: "Master behavioral questions, salary negotiation, and professional communication." },
-  { icon: Award, title: "Communication Skill Development", description: "Build confidence in presentations, team collaboration, and workplace readiness." },
-  { icon: Handshake, title: "Job Referrals & Hiring Support", description: "Get connected to hiring partners with dedicated job referral and placement support." },
+  { icon: FileText, title: "Resume & Portfolio", description: "Build your resume and portfolio with 1-on-1 mentor guidance." },
+  { icon: Users, title: "Mock Technical Rounds", description: "Practice mock technical rounds. Get clear tips to improve your answers." },
+  { icon: MessageSquare, title: "HR Interview Prep", description: "Practice HR questions. Learn how to negotiate salary with confidence." },
+  { icon: Award, title: "Presentation Practice", description: "Build presentation confidence. Learn teamwork and workplace readiness." },
+  { icon: Handshake, title: "Job Referrals & Hiring", description: "Connect with top hiring partners. Get direct job referrals and placement help." },
 ];
 
 export default function LinearInternshipProjects({

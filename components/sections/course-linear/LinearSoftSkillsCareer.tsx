@@ -43,17 +43,17 @@ const COLOR_PALETTES = [
 ];
 
 const defaultSoftSkills: SoftSkillItem[] = [
-  { icon: Presentation, title: "Communication & Presentation Skills", description: "Master professional communication, public speaking, and impactful presentations." },
-  { icon: Shield, title: "Interview Confidence Building", description: "Build the confidence to ace technical and HR interviews with structured practice." },
-  { icon: Linkedin, title: "LinkedIn Profile Optimization", description: "Create a compelling LinkedIn presence that attracts recruiters and opportunities." },
-  { icon: Monitor, title: "Workplace Readiness Training", description: "Prepare for the professional environment with team collaboration and workplace etiquette." },
+  { icon: Presentation, title: "Communication Skills", description: "Learn clear speaking and presentation skills. Share ideas with ease." },
+  { icon: Shield, title: "Interview Practice", description: "Ace mock interviews with structured practice. Speak with real confidence." },
+  { icon: Linkedin, title: "LinkedIn Profile Growth", description: "Create a standout profile. Attract top recruiters and great job offers." },
+  { icon: Monitor, title: "Workplace Readiness", description: "Learn team etiquette and real office workflows. Get job-ready." },
 ];
 
 const defaultCareerItems: CareerItem[] = [
-  { icon: Building2, title: "IT & Software Companies", description: "Join leading IT firms as a skilled professional ready for enterprise environments." },
-  { icon: Rocket, title: "Startups & Product-Based Companies", description: "Build innovative products at fast-growing startups that value modern domain expertise." },
-  { icon: Globe, title: "Digital Agencies & Consultancies", description: "Work with creative agencies building impactful campaigns and solutions for clients worldwide." },
-  { icon: Laptop, title: "Freelancing & Remote Global Jobs", description: "Build a thriving independent client base or land high-paying remote international roles." },
+  { icon: Building2, title: "IT & Software Companies", description: "Join top IT firms. Work on enterprise teams as a skilled developer." },
+  { icon: Rocket, title: "Startups & Tech Firms", description: "Build new products at fast startups that value modern tech skills." },
+  { icon: Globe, title: "Digital Agencies", description: "Work at creative agencies. Run winning campaigns for global clients." },
+  { icon: Laptop, title: "Freelancing & Remote Jobs", description: "Earn as an independent freelancer. Land high-paying remote global roles." },
 ];
 
 export default function LinearSoftSkillsCareer({

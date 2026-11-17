@@ -98,7 +98,7 @@ export default function BlogListClient({ initialBlogs }: BlogListClientProps) {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-body text-base sm:text-lg md:text-xl text-ink-600 leading-relaxed max-w-2xl mx-auto"
           >
-            Learn actionable performance marketing, AI-driven workflows, SEO frameworks, and career roadmaps straight from our agency practitioners.
+            Explore actionable marketing guides and AI workflows. Learn from experienced mentors and build your career skills.
           </motion.p>
 
           {/* Search Box */}

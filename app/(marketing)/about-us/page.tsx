@@ -71,7 +71,7 @@ const founders = [
   {
     name: "John Doe",
     role: "Founder & Chief Mentor",
-    bio: "A digital marketing pioneer, educator, and entrepreneur with over 15 years of hands-on experience shaping the digital landscape. Founded Digital Ghuru to bridge the gap between education and execution by simulating a real agency environment inside the classroom.",
+    bio: "A digital marketing educator and founder with over 15 years of hands-on practice. He founded Digital Ghuru to bridge the gap between classroom theory and real agency work.",
     credentials: [
       "Top Social Media Professional in India",
       "Trained 100,000+ professionals",
@@ -86,7 +86,7 @@ const founders = [
   {
     name: "Jane Smith",
     role: "Co-Founder",
-    bio: "A dynamic educator and AI evangelist recognized as one of India's best AI corporate trainers. Leads curriculum innovation and tech integration at Digital Ghuru to ensure programs reflect future-ready skills.",
+    bio: "An educator recognized among India's top AI corporate trainers. She leads tech training and course updates at Digital Ghuru to teach practical, future-ready skills.",
     credentials: [
       "India's Best AI Corporate Trainer",
       "TEDx Speaker",
@@ -101,11 +101,11 @@ const founders = [
 ];
 
 const milestones = [
-  { year: "2018", milestone: "Digital Ghuru started with a vision to revolutionize digital marketing education with the first batch of 50 students." },
-  { year: "2019", milestone: "Launched our first-ever online batch, seeing exponential growth in digital marketing enthusiasts across India." },
-  { year: "2021", milestone: "Got affiliated with top universities and launched advanced certificate courses. Crossed the 100,000 students mark." },
-  { year: "2023", milestone: "Hosted national and international events, expanding our team and launching specialized AI integration courses." },
-  { year: "2025", milestone: "Launched India's first-ever 1-Year MBA in Digital Marketing, offering a globally accredited and focused AI-powered curriculum." },
+  { year: "2018", milestone: "Digital Ghuru launched with 50 students to bring agency-style marketing training to India." },
+  { year: "2019", milestone: "Launched our first online batch with eager students joining from across India." },
+  { year: "2021", milestone: "Partnered with top academic bodies and introduced advanced certificate courses." },
+  { year: "2023", milestone: "Hosted regional workshops and launched specialized AI marketing modules." },
+  { year: "2025", milestone: "Launched a comprehensive 1-Year master program focused on AI-powered digital marketing." },
 ];
 
 const coreValues = [
