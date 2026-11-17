@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Create Student Account",
   description:
     "Register for a Digital Ghuru student account to enroll in premier digital marketing and AI training programs.",
+  alternates: {
+    canonical: "https://digitalghuru.com/signup",
+  },
 };
 
 export default function SignUpPage() {
