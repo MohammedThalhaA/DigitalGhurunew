@@ -87,7 +87,7 @@ export async function generateMetadata({
 
   if (!course) {
     return {
-      title: "Course Not Found | Digital Ghuru",
+      title: "Course Not Found",
     };
   }
 

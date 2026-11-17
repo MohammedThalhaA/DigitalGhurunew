@@ -6,7 +6,7 @@ import BlogListClient from "./BlogListClient";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Blog & Digital Marketing Guides | Digital Ghuru",
+  title: "Blog & Digital Marketing Guides",
   description:
     "Explore actionable digital marketing playbooks, SEO strategies, generative AI tutorials, and career roadmaps from industry mentors at Digital Ghuru.",
   alternates: {

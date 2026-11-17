@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const blog = await getBlogBySlug(params.slug);
   if (!blog) {
     return {
-      title: "Article Not Found | Digital Ghuru",
+      title: "Article Not Found",
       description: "The requested article does not exist.",
     };
   }
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = `https://digitalghuru.com/blog/${blog.slug}`;
 
   return {
-    title: `${blog.title} | Digital Ghuru`,
+    title: blog.title,
     description: blog.excerpt,
     alternates: {
       canonical: canonicalUrl,

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { 
@@ -11,6 +12,16 @@ import {
   Compass,
   AlertCircle
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "404 - Page Not Found",
+  description:
+    "Sorry, the page you requested cannot be found. Browse Digital Ghuru's AI-powered digital marketing courses, free calculators, and student resources.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function NotFound() {
   const helpfulLinks = [
@@ -46,13 +57,6 @@ export default function NotFound() {
 
   return (
     <>
-      <title>404 - Page Not Found | Digital Ghuru</title>
-      <meta 
-        name="description" 
-        content="Sorry, the page you requested cannot be found. Browse Digital Ghuru's AI-powered digital marketing courses, free calculators, and student resources." 
-      />
-      <meta name="robots" content="noindex, follow" />
-
       <Navbar />
 
       <main 
