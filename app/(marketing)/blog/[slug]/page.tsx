@@ -6,6 +6,39 @@ function formatMetaDescription(desc: string, maxLen = 145): string {
   return (lastSpace > 80 ? truncated.slice(0, lastSpace) : truncated).trim() + "...";
 }
 
+const BLOG_SEO_TITLES: Record<string, string> = {
+  "top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career":
+    "Digital Marketing Skills Anna Nagar | Digital Ghuru",
+  "15-free-ai-tools-every-digital-marketer-should-know-in-2026":
+    "15 Free AI Tools for Marketers in 2026 | Digital Ghuru",
+  "how-to-build-a-digital-marketing-portfolio-with-no-experience-a-beginners-guide":
+    "Build a Digital Marketing Portfolio | Digital Ghuru",
+  "instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers":
+    "Instagram Reels Strategy in Tamil Nadu | Digital Ghuru",
+  "digital-marketing-jobs-for-freshers-top-roles-skills-and-salary-in-2026":
+    "Digital Marketing Jobs for Freshers 2026 | Digital Ghuru",
+  "is-digital-marketing-a-good-career-in-2026-explore-salary-skills-and-opportunities":
+    "Digital Marketing Career Guide 2026 | Digital Ghuru",
+  "how-to-become-a-digital-marketer-7-steps-to-start-your-career":
+    "How to Become a Digital Marketer | Digital Ghuru",
+  "digital-marketing-salary-in-india-for-freshers-how-much-can-you-earn-in-2026":
+    "Digital Marketing Salary in India 2026 | Digital Ghuru",
+  "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career":
+    "Digital Marketing Course in Chennai | Digital Ghuru",
+  "ai-course-for-11th-12th-students-in-chennai-what-parents-should-know":
+    "AI Course for 11th & 12th Students | Digital Ghuru",
+};
+
+function getBlogSeoTitle(slug: string, rawTitle: string): string {
+  if (BLOG_SEO_TITLES[slug]) return BLOG_SEO_TITLES[slug];
+  const cleaned = (rawTitle || "").split(/[:\-—|]/)[0].trim();
+  if (cleaned.length <= 40) return `${cleaned} | Digital Ghuru`;
+  const truncated = cleaned.slice(0, 40);
+  const lastSpace = truncated.lastIndexOf(" ");
+  const shortText = (lastSpace > 20 ? truncated.slice(0, lastSpace) : truncated).trim();
+  return `${shortText} | Digital Ghuru`;
+}
+
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -42,15 +75,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const canonicalUrl = `https://digitalghuru.com/blog/${blog.slug}`;
+  const seoTitle = getBlogSeoTitle(params.slug, blog.title);
 
   return {
-    title: blog.title,
+    title: {
+      absolute: seoTitle,
+    },
     description: formatMetaDescription(blog.excerpt),
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${blog.title} | Digital Ghuru`,
+      title: seoTitle,
       description: formatMetaDescription(blog.excerpt),
       url: canonicalUrl,
       type: "article",
@@ -60,7 +96,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: blog.title,
+      title: seoTitle,
       description: formatMetaDescription(blog.excerpt),
       images: blog.cover_image ? [blog.cover_image] : undefined,
     },
