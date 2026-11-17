@@ -23,7 +23,7 @@ export default function NewsletterPage() {
         eyebrow="NEWSLETTER"
         title="Weekly Marketing"
         titleHighlight="Insights"
-        description="Join over 10,000+ marketers, business owners, and students who receive our curated weekly newsletter with the latest trends, frameworks, and tools."
+        description="Get smart marketing tips every week. Join over 10,000 readers learning AI tools, growth hacks, and career skills."
       />
 
       <section className="section-padding bg-white">
@@ -37,7 +37,7 @@ export default function NewsletterPage() {
                 </h2>
               </div>
               <p className="text-base text-ink-600 mb-6 leading-relaxed">
-                No spam, ever. Only actionable digital marketing strategies, AI tools recommendations, case studies, and career guidance written by our chief mentors.
+                We never send spam. Each week you get fresh ad tips, free AI prompts, and real marketing case studies.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -67,10 +67,36 @@ export default function NewsletterPage() {
                 You&apos;re Subscribed!
               </h3>
               <p className="text-sm text-green-600 leading-relaxed max-w-md mx-auto">
-                Thank you for joining. Please check your inbox for our welcome email and your free digital marketing checklist.
+                Thank you for joining. Check your inbox for our welcome email and free marketing checklist.
               </p>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="section-padding bg-slate-50 border-t border-slate-100">
+        <div className="section-container max-w-4xl">
+          <h2 className="heading-md text-ink-900 mb-6 text-center font-display">What You Get Every Thursday</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">AI Marketing Prompts</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Copy our tested ChatGPT prompts to write ads, emails, and social posts fast.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Real Case Studies</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                See exact campaign results from Indian brands. Learn what works and what fails.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Career Tips</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Get interview tips, salary trends, and fresh marketing job openings every week.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </>

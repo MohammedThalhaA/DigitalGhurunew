@@ -61,7 +61,7 @@ export default function BlogShareBar({ title, slug }: BlogShareBarProps) {
       <a
         href={`https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         aria-label="Share on WhatsApp"
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] text-xs font-semibold transition-colors"
       >
@@ -73,7 +73,7 @@ export default function BlogShareBar({ title, slug }: BlogShareBarProps) {
       <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         aria-label="Share on LinkedIn"
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0A66C2]/10 hover:bg-[#0A66C2]/20 text-[#0A66C2] text-xs font-semibold transition-colors"
       >
@@ -85,7 +85,7 @@ export default function BlogShareBar({ title, slug }: BlogShareBarProps) {
       <a
         href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         aria-label="Share on X"
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-ink-900/5 hover:bg-ink-900/15 text-ink-900 text-xs font-semibold transition-colors"
       >
@@ -97,7 +97,7 @@ export default function BlogShareBar({ title, slug }: BlogShareBarProps) {
       <a
         href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         aria-label="Share on Facebook"
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] text-xs font-semibold transition-colors"
       >

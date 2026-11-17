@@ -9,32 +9,32 @@ import Button from "@/components/ui/Button";
 /* PLACEHOLDER: Replace with real student success stories */
 const successStories = [
   {
-    quote: "Digital Ghuru completely transformed my career. The hands-on training and placement support helped me land my dream job at a leading agency within weeks of completing the course.",
+    quote: "Digital Ghuru transformed my career path. The hands-on training gave me real confidence. I got hired at a top agency within weeks of finishing.",
     name: "Student Name",
     role: "Digital Marketing Executive — Agency",
   },
   {
-    quote: "The curriculum was exactly what the industry needs. I went from knowing nothing about digital marketing to managing campaigns for major brands.",
+    quote: "The lessons match what employers look for. I went from zero marketing knowledge to managing big ad budgets.",
     name: "Student Name",
     role: "Performance Marketing Manager — Startup",
   },
   {
-    quote: "Best decision I ever made. The mentors didn't just teach — they genuinely cared about each student's progress and career goals.",
+    quote: "Joining Digital Ghuru was the best career move I made. The mentors care about every student. They guide you every step of the way.",
     name: "Student Name",
     role: "SEO Lead — E-commerce Company",
   },
   {
-    quote: "After years in a traditional marketing role, Digital Ghuru helped me make the switch to digital. The AI modules were especially valuable.",
+    quote: "I worked in traditional sales for years. Digital Ghuru helped me shift to digital fast. The AI modules gave me a big edge.",
     name: "Student Name",
     role: "Digital Marketing Manager — MNC",
   },
   {
-    quote: "I started freelancing while still in the course. The practical projects gave me a portfolio that impressed clients immediately.",
+    quote: "I got my first paid client while taking the course. The live projects gave me a portfolio that clients loved.",
     name: "Student Name",
     role: "Freelance Digital Marketer",
   },
   {
-    quote: "The placement cell worked tirelessly to match me with the right opportunity. Within 2 weeks of completing the course, I had 3 job offers.",
+    quote: "The placement team helped me prepare for interviews. Within two weeks of finishing, I had three solid job offers.",
     name: "Student Name",
     role: "Social Media Strategist — Brand Agency",
   },
@@ -57,7 +57,7 @@ export default function SuccessStoriesPage() {
         eyebrow="SUCCESS STORIES"
         title="Real Students, Real"
         titleHighlight="Transformations"
-        description="Hear from our alumni who turned their passion for digital marketing into thriving careers."
+        description="Read inspiring stories from our students. See how they built rewarding marketing careers from scratch."
         primaryCta={{ label: "Start Your Story", href: "/contact" }}
       />
 
@@ -87,7 +87,7 @@ export default function SuccessStoriesPage() {
             Your Success Story Starts Here
           </h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-            Join the ranks of our successful alumni. Enroll in our next batch today.
+            Join hundreds of thriving graduates. Take the first step toward your new career today.
           </p>
           <Button variant="accent" size="lg" href="/contact">
             Enroll Now

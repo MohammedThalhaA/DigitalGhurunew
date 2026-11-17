@@ -50,7 +50,7 @@ export default function RoiCalculatorPage() {
         eyebrow="ROI CALCULATOR"
         title="Calculate Campaign ROI"
         titleHighlight="Instantly"
-        description="Calculate your Return on Investment (ROI) by comparing total investment with total revenue generated."
+        description="See your return on investment in seconds. Compare your sales with your marketing spend."
       />
 
       <section className="section-padding bg-white">
@@ -133,6 +133,31 @@ export default function RoiCalculatorPage() {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-slate-50 border-t border-slate-100">
+        <div className="section-container max-w-3xl">
+          <h2 className="font-display text-2xl font-bold text-ink-900 mb-4">
+            How Campaign ROI Works
+          </h2>
+          <p className="text-ink-700 leading-relaxed mb-4">
+            ROI measures how much profit your marketing makes. It compares your sales with your ad spend.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 mt-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Simple Formula</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Subtract your spend from your revenue. Then divide that number by your spend. Multiply by 100 to get a clear percentage.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Why It Matters</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                A high ROI means your ads make money. It helps you scale profitable campaigns and cut wasted spend.
+              </p>
+            </div>
           </div>
         </div>
       </section>

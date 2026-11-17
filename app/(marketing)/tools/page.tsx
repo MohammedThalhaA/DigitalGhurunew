@@ -10,14 +10,14 @@ const tools = [
   {
     icon: Calculator,
     title: "CPC Calculator",
-    description: "Calculate your Cost Per Click (CPC) quickly. Analyze campaign efficiency and optimize advertising budgets.",
+    description: "Calculate your cost per click in seconds. See how well your ads perform and keep budgets on track.",
     href: "/tools/cpc-calculator",
     color: "blue",
   },
   {
     icon: Percent,
     title: "ROI Calculator",
-    description: "Find out your Return on Investment (ROI) from digital campaigns. Input spend and revenue to see profitability.",
+    description: "Check your return on investment fast. Enter your ad spend and revenue to see your net profit.",
     href: "/tools/roi-calculator",
     color: "orange",
   },
@@ -40,7 +40,7 @@ export default function ToolsHubPage() {
         eyebrow="FREE MARKETING TOOLS"
         title="Boost Your Marketing"
         titleHighlight="Productivity"
-        description="Explore our suite of free, interactive marketing tools and calculators designed to help you analyze, optimize, and report on campaigns."
+        description="Use our free marketing calculators to plan ad budgets, track costs, and measure profit easily."
       />
 
       {/* Grid of Tools */}
@@ -85,6 +85,32 @@ export default function ToolsHubPage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-slate-50 border-t border-slate-100">
+        <div className="section-container max-w-4xl">
+          <h2 className="heading-md text-ink-900 mb-6 text-center font-display">Why Use Our Free Marketing Tools?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Fast Answers</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Get accurate numbers right away. No sign-up or download needed.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Better Budgets</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Know where your money goes. Plan your ad spend with confidence.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">100% Free</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Use all tools without limits. Built for students, freelancers, and agency teams.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </>

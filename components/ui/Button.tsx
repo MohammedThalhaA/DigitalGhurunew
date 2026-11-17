@@ -63,12 +63,14 @@ export default function Button({
     
     if (isExternal) {
       const isAnchor = href.startsWith("#");
+      const isHttp = href.startsWith("http");
       
       return (
         <a 
           href={href} 
           className={combinedStyles} 
           target={target} 
+          rel={isHttp ? "noopener noreferrer nofollow" : undefined}
           download={download}
           onClick={(e) => {
             if (isAnchor && typeof window !== "undefined" && (window as any).lenis) {

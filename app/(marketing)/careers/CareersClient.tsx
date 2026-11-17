@@ -21,7 +21,7 @@ const benefits = [
   {
     icon: Bot,
     title: "AI-First Workflows",
-    description: "We are an AI-integrated workplace. Master cutting-edge LLMs, prompting frameworks, and automated integrations in your daily tasks.",
+    description: "Work with the latest AI tools every day. Use ChatGPT, Midjourney, and smart automations to speed up your work.",
     gradient: "from-blue-500/10 to-indigo-500/10",
     border: "group-hover:border-blue-500/30",
     iconColor: "text-blue-600"
@@ -29,7 +29,7 @@ const benefits = [
   {
     icon: Users,
     title: "Agency Environment",
-    description: "Work alongside our active digital agency vertical. Gain access to real-time client accounts, live spends, and campaign briefs.",
+    description: "Work directly with our digital agency team. Get hands-on experience with live client accounts and real ad budgets.",
     gradient: "from-emerald-500/10 to-teal-500/10",
     border: "group-hover:border-emerald-500/30",
     iconColor: "text-emerald-600"
@@ -37,7 +37,7 @@ const benefits = [
   {
     icon: TrendingUp,
     title: "Accelerated Growth",
-    description: "Double your skillset inside a year. We support you to lead premium courses, publish case studies, and present at industry meetups.",
+    description: "Grow your marketing skills rapidly. Lead student workshops, publish case studies, and speak at top industry events.",
     gradient: "from-amber-500/10 to-orange-500/10",
     border: "group-hover:border-amber-500/30",
     iconColor: "text-amber-600"
@@ -45,7 +45,7 @@ const benefits = [
   {
     icon: Heart,
     title: "Employee Well-being",
-    description: "Enjoy flexible hybrid setups, monthly performance bonuses, medical insurance benefits, and regular team bonding dinners.",
+    description: "Enjoy flexible work hours, monthly bonuses, health cover, and regular team celebrations.",
     gradient: "from-rose-500/10 to-pink-500/10",
     border: "group-hover:border-rose-500/30",
     iconColor: "text-rose-600"
@@ -107,7 +107,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
         eyebrow="JOIN THE TEAM"
         title="Build the Future of"
         titleHighlight="Tech & Digital Skills"
-        description="Join a cutting-edge institute that bridges the gap between education and industry. Whether you're an expert in digital marketing, full-stack development, or career counseling—scale your expertise alongside top industry leaders."
+        description="Join an innovative marketing academy. Grow your career alongside industry leaders in marketing, web development, and student counseling."
         imageUrl="/images/careers_hero.webp" 
         primaryCta={{ label: "Explore Open Openings", href: "#open-roles" }}
         secondaryCta={{ label: "Submit Application", href: "#speculative-form" }}
@@ -121,7 +121,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
               Why You&apos;ll Love Working Here
             </h2>
             <p className="body-lg max-w-2xl mx-auto text-ink-500">
-              We value execution, quick adaptation, and collaborative mentorship. Here are the core benefits of becoming a member of the Digital Ghuru crew:
+              We value teamwork, fast learning, and mentorship. Here is what you can look forward to at Digital Ghuru:
             </p>
           </div>
 

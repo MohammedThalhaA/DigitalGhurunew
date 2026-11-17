@@ -17,7 +17,7 @@ const offices = [
     phone: "+91 8825948859",
     emailUser: "contact",
     emailDomain: "digitalghuru.com",
-    mapQuery: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East, Chennai 600102",
+    mapQuery: "13.0868,80.2101",
   },
   {
     title: "Ameerpet Office",
@@ -25,7 +25,7 @@ const offices = [
     phone: "+91 8825948859",
     emailUser: "contact",
     emailDomain: "digitalghuru.com",
-    mapQuery: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad 500073",
+    mapQuery: "17.4375,78.4482",
   },
   {
     title: "Korattur Office",
@@ -33,7 +33,7 @@ const offices = [
     phone: "+91 8825948859",
     emailUser: "contact",
     emailDomain: "digitalghuru.com",
-    mapQuery: "Gurudev Complex, S1, 57th St, Venkatraman Nagar, Korattur, Chennai 600050",
+    mapQuery: "13.1067,80.1848",
   },
 ];
 
@@ -422,7 +422,7 @@ export default function ContactPage() {
                   {/* Right Column: Map */}
                   <div className="h-full min-h-[400px] shadow-[0_4px_24px_rgb(0,0,0,0.04)] bg-white overflow-hidden p-2">
                     <iframe
-                      src={`https://maps.google.com/maps?q=${encodeURIComponent(office.mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(office.mapQuery)}&z=15&output=embed`}
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}

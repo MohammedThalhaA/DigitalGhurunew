@@ -116,40 +116,40 @@ const coreValues = [
 ];
 
 const methodologies = [
-  { step: "01", title: "Foundation & Strategy", desc: "Master the fundamentals of digital marketing strategy, consumer psychology, and market research before touching any tools." },
-  { step: "02", title: "Live Agency Projects", desc: "Work on real client briefs with actual budgets. Experience the pressure and thrill of a true agency environment." },
-  { step: "03", title: "AI Tool Integration", desc: "Learn to scale your output using advanced AI tools like ChatGPT, Midjourney, and automated workflow builders." },
-  { step: "04", title: "Placement & Portfolio", desc: "Build a robust portfolio of live campaigns and prepare for interviews with our dedicated placement cell." },
+  { step: "01", title: "Foundation & Strategy", desc: "Learn core marketing strategy and consumer behavior. Build a solid base before using complex tools." },
+  { step: "02", title: "Live Agency Projects", desc: "Run live campaigns with real budgets. Solve client challenges just like an agency team." },
+  { step: "03", title: "AI Tool Integration", desc: "Create copy and graphics fast with AI tools like ChatGPT and Midjourney." },
+  { step: "04", title: "Placement & Portfolio", desc: "Build a verified campaign portfolio. Practice mock interviews with our placement coaches." },
 ];
 
 const programs = [
   {
     title: "1-Year MBA in Digital Marketing with AI",
-    desc: "Combines branding, automation, and strategy with cutting-edge AI tools. Learn to run real campaigns and lead marketing in the AI era.",
+    desc: "Learn brand strategy, paid ads, and AI automation. Run live campaigns and lead modern marketing teams.",
     icon: Rocket,
     accent: "blue",
   },
   {
     title: "Best AI-Powered Digital Marketing Course",
-    desc: "Agency-style learning, placement support, and real brand campaigns, transforming you into an AI-powered marketer.",
+    desc: "Get hands-on training, personal mentors, and placement help. Graduate ready for top agency roles.",
     icon: Building2,
     accent: "orange",
   },
   {
     title: "Best AI-Powered Digital Marketing Course",
-    desc: "State-of-the-art Main Campus, ideal for career switchers looking to build a freelancing portfolio with AI-first skills.",
+    desc: "Study at our modern campuses. Build a standout freelance portfolio with AI marketing skills.",
     icon: Laptop,
     accent: "gold",
   },
   {
     title: "Best Online MBA in Digital Marketing",
-    desc: "Full access to expert mentorship, global curriculum, and placement support. Learn strategy, content, and analytics remotely.",
+    desc: "Join live online classes from home. Get expert feedback, global study materials, and interview prep.",
     icon: Globe2,
     accent: "blue",
   },
   {
     title: "Post Graduate Program in Digital Marketing",
-    desc: "50+ tools, weekly evaluations, live internships, and mentorship from top trainers. AI-driven PG program for future-ready marketers.",
+    desc: "Master 50+ marketing tools with weekly reviews and live internships. Train for high-growth corporate roles.",
     icon: GraduationCap,
     accent: "orange",
   },
@@ -226,7 +226,7 @@ export default function AboutUsPage() {
         eyebrow="ABOUT DIGITAL GHURU"
         title="India's Premier"
         titleHighlight="AI Digital Marketing Academy"
-        description="With over 500+ students trained, Digital Ghuru is an award-winning AI-powered digital marketing institute shaping the future of marketing talent across India."
+        description="With over 500+ students trained, Digital Ghuru is a top AI-powered marketing institute in India. We help learners launch successful digital careers."
         primaryCta={{ label: "View Our Courses", href: "/#course-grid" }}
         imageUrl="/images/about-hero.webp"
       />
@@ -273,7 +273,7 @@ export default function AboutUsPage() {
                     To become the world&apos;s most advanced digital marketing institute, empowering learners globally to lead in the AI-powered marketing era.
                   </p>
                   <p className="text-lg text-ink-500 leading-[1.8]">
-                    We aim to be the benchmark for the best AI-Powered digital marketing course, delivering transformational education through real-world, agency-style learning and future-ready AI integration.
+                    We teach practical skills through agency-style projects. Our students master real-world AI tools from day one.
                   </p>
                 </div>
               </motion.div>
@@ -313,15 +313,15 @@ export default function AboutUsPage() {
               >
                 <div className="lg:max-w-2xl">
                   <p className="text-xl md:text-2xl text-ink-700 leading-[1.7] font-medium mb-10">
-                    To transform the future of marketing education through innovation, AI, and execution.
+                    We help students build thriving marketing careers with practical AI training and 1-on-1 mentorship.
                   </p>
 
                   {/* Mission pillars */}
                   <div className="space-y-6">
                     {[
-                      { icon: Sparkles, title: "AI-First Education", text: "Delivering the best MBA in digital marketing with AI integration." },
-                      { icon: Zap, title: "Future-Proof Careers", text: "Offering the best AI courses in digital marketing to future-proof careers." },
-                      { icon: Rocket, title: "Agency-Style Training", text: "Fostering a high-performance culture through agency-style training, live projects, and mentorship." },
+                      { icon: Sparkles, title: "AI-First Education", text: "Learn modern marketing strategy and master leading AI tools." },
+                      { icon: Zap, title: "Future-Proof Careers", text: "Stay ahead with search marketing, paid ads, and automation skills." },
+                      { icon: Rocket, title: "Agency-Style Training", text: "Work on real brand campaigns with guidance from senior mentors." },
                     ].map((item, idx) => {
                       const Icon = item.icon;
                       return (
@@ -444,7 +444,7 @@ export default function AboutUsPage() {
                 The Digital Ghuru Ecosystem
               </h2>
               <p className="text-lg text-white/70 leading-relaxed mb-8">
-                More than just classrooms, we provide a holistic environment designed for accelerated growth, networking, and continuous learning.
+                Our campuses give you the tools, peer network, and expert guidance you need to grow fast.
               </p>
               
               <ul className="space-y-6">
@@ -733,7 +733,7 @@ export default function AboutUsPage() {
               Pioneering AI-Powered<br />Marketing Education
             </h2>
             <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto mb-10">
-              Digital Ghuru stands at the forefront of digital marketing education in India. We are transforming careers through our innovative agency-style training, live client projects, and a cutting-edge AI-integrated curriculum.
+              Digital Ghuru is a top AI digital marketing institute in India. We help you build a thriving career with hands-on training, live client work, and personal mentorship.
             </p>
             <Button href="/careers" variant="primary" size="lg">
               <span className="flex items-center gap-2">

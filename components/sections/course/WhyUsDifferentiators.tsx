@@ -8,27 +8,27 @@ import { ChevronRight } from "lucide-react";
 const differentiators = [
   {
     title: "Agency Access",
-    desc: "This is the only AI-Powered digital marketing course where you train inside a working agency, not a classroom built to look like one. Digital Ghuru Agency manages ₹1+ crore in ad spend across 15+ active local and national clients. You learn from live dashboards with real campaign data, not slides or theory."
+    desc: "Train inside an active marketing agency. Digital Ghuru Agency manages ₹1+ crore in ad spend for 15+ clients. You learn from live client dashboards and real campaign data, not boring slides."
   },
   {
     title: "AI-first curriculum",
-    desc: "3 levels of AI mastery. Prompt Engineering, GenAI Tools (14+ tools), and AI Agents. Our students build AI systems that create 60+ ad creatives in under 1 minute. Very few institutes cover AI agents or workflow automation at this depth."
+    desc: "Master 3 levels of AI skills: prompt design, generative AI tools, and autonomous AI agents. Build smart systems that create 60+ ad creatives in under 1 minute. Learn practical workflow automations that save hours."
   },
   {
     title: "Practitioner Trainers",
-    desc: "Our Expert Mentors are not academics. They are active industry practitioners managing live campaigns daily for emerging e-commerce brands, real estate startups, and B2B businesses. You learn from the people doing the work, not reading about it."
+    desc: "Learn directly from agency practitioners, not textbook lecturers. Our mentors run live campaigns daily for e-commerce, real estate, and B2B brands. Gain insights from experts who do the work every single day."
   },
   {
     title: "Proven Expertise",
-    desc: "Our trainers bring years of hands-on experience driving real ROI. They work directly with Meta and Google ads interfaces daily, keeping you ahead of the algorithm changes."
+    desc: "Our mentors have years of experience driving real sales for clients. They work inside Meta and Google ad managers daily so you stay ahead of algorithm updates."
   },
   {
     title: "Digital Ghuru Agency",
-    desc: "Rs 1+ crore in ad spend managed across 15+ clients including growing local businesses and ambitious startups. 5+ Crore impressions delivered."
+    desc: "We manage over ₹1 crore in ad budgets across 15+ clients. Our campaigns have delivered over 5 crore live impressions."
   },
   {
     title: "Verified Google Reviews",
-    desc: "150++ reviews at 4.7 stars (as of July 2026) on Google Business Profile. Our track record is public and proven."
+    desc: "Over 150 student reviews with a 4.7-star rating on Google. Our reputation is honest, public, and proven."
   }
 ];
 
@@ -41,19 +41,19 @@ export default function WhyUsDifferentiators({ course }: { course?: any }) {
   const displayDifferentiators = isDM ? differentiators : [
     {
       title: "Agency Access",
-      desc: "This is the only course where you train inside a working agency, not a classroom built to look like one. Digital Ghuru Agency manages ₹1+ crore in ad spend across 15+ active local and national clients."
+      desc: "Train inside an active agency. Digital Ghuru Agency manages ₹1+ crore in ad spend for 15+ clients. Learn from live dashboards and real data."
     },
     {
       title: "Practitioner Trainers",
-      desc: "Our Expert Mentors are not academics. They are active industry practitioners managing live campaigns daily for emerging e-commerce brands, real estate startups, and B2B businesses. You learn from the people doing the work, not reading about it."
+      desc: "Learn directly from agency practitioners, not textbook lecturers. Our mentors run live campaigns daily for e-commerce, real estate, and B2B brands. Gain insights from experts who do the work every single day."
     },
     {
       title: "Proven Expertise",
-      desc: "Our trainers bring years of hands-on experience driving real ROI. They work directly with the latest tools and interfaces daily, keeping you ahead of the algorithm changes."
+      desc: "Our mentors have years of experience driving real sales for clients. They work inside modern tool interfaces daily so you stay ahead of updates."
     },
     {
       title: "Verified Google Reviews",
-      desc: "150++ reviews at 4.7 stars (as of July 2026) on Google Business Profile. Our track record is public and proven."
+      desc: "Over 150 student reviews with a 4.7-star rating on Google. Our reputation is honest, public, and proven."
     }
   ];
 

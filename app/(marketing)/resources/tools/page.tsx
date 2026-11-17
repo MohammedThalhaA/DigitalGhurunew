@@ -58,8 +58,8 @@ const TOOLS: Tool[] = [
     id: "hostinger",
     name: "Hostinger",
     category: "Hosting & CMS",
-    tagline: "High-performance web hosting",
-    description: "The foundation of our web development curriculum. We teach students how to deploy, manage, and optimize lightning-fast websites.",
+    tagline: "High-speed web hosting",
+    description: "Learn to host and manage fast websites. Practice real-world domain setup and server management.",
     howWeUseIt: ["Domain Setup & SSL", "CPanel Management", "WordPress Deployment", "Performance Optimization"],
     icon: Logos.hostinger,
     brandColor: "#673DE6",
@@ -69,7 +69,7 @@ const TOOLS: Tool[] = [
     name: "Semrush",
     category: "SEO",
     tagline: "All-in-one SEO suite",
-    description: "The industry standard for search engine optimization. Students learn how to dominate search rankings using real-world data and insights.",
+    description: "Master keyword research and competitor tracking. Find ranking opportunities with live search data.",
     howWeUseIt: ["Keyword Research", "Competitor Analysis", "Technical SEO Audits", "Backlink Strategy"],
     icon: Logos.semrush,
     brandColor: "#FF642D",
@@ -79,7 +79,7 @@ const TOOLS: Tool[] = [
     name: "Canva Pro",
     category: "Design",
     tagline: "Collaborative design platform",
-    description: "Our go-to tool for teaching visual communication. Students master creating engaging social media graphics, presentations, and ad creatives.",
+    description: "Design eye-catching social posts, ads, and brand kits. Create professional visuals without design experience.",
     howWeUseIt: ["Social Media Creatives", "Brand Identity Kits", "Video Ad Production", "Marketing Presentations"],
     icon: Logos.canva,
     brandColor: "#00C4CC",
@@ -88,8 +88,8 @@ const TOOLS: Tool[] = [
     id: "chatgpt",
     name: "ChatGPT Plus",
     category: "AI",
-    tagline: "Advanced AI language model",
-    description: "The core of our AI-powered curriculum. We train marketers to use AI for strategy, copywriting, and data analysis to 10x their productivity.",
+    tagline: "Smart AI marketing assistant",
+    description: "Use AI to write persuasive copy and plan campaigns. Automate daily marketing tasks to save hours every week.",
     howWeUseIt: ["Copywriting & Ideation", "Data Analysis", "Prompt Engineering", "Marketing Automation"],
     icon: Logos.chatgpt,
     brandColor: "#10A37F",
@@ -98,8 +98,8 @@ const TOOLS: Tool[] = [
     id: "mailchimp",
     name: "Mailchimp",
     category: "Email",
-    tagline: "Marketing automation platform",
-    description: "We use Mailchimp to teach the fundamentals of lead nurturing, audience segmentation, and automated email marketing workflows.",
+    tagline: "Email marketing automation",
+    description: "Build automated email flows that convert readers into buyers. Learn list building and campaign testing.",
     howWeUseIt: ["Automated Customer Journeys", "A/B Testing Campaigns", "Audience Segmentation", "Performance Analytics"],
     icon: Logos.mailchimp,
     brandColor: "#FFE01B",
@@ -108,8 +108,8 @@ const TOOLS: Tool[] = [
     id: "elementor",
     name: "Elementor Pro",
     category: "Hosting & CMS",
-    tagline: "Visual WordPress Website Builder",
-    description: "Students learn to build pixel-perfect, conversion-optimized landing pages and full websites without writing a single line of code.",
+    tagline: "Visual WordPress website builder",
+    description: "Build high-converting landing pages visually. Create clean responsive websites without writing code.",
     howWeUseIt: ["Landing Page Design", "Conversion Optimization", "Mobile Responsiveness", "Theme Building"],
     icon: Logos.elementor,
     brandColor: "#92003B",
@@ -136,7 +136,7 @@ export default function DigitalMarketingToolsPage() {
               Our Digital Marketing Tech Stack
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed">
-              We believe in hands-on, agency-style learning. Explore the industry-standard software and tools you will master during your time at Digital Ghuru.
+              Learn by doing with real marketing tools. Master the software top agencies use every day.
             </p>
           </div>
         </div>

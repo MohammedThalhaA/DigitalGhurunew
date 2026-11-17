@@ -97,7 +97,7 @@ export default function ContactAndMap({ course }: { course?: any }) {
           >
             <div className="p-2 h-full">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.1953282216515!2d80.25203307584102!3d13.086815312344717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265e31535492d%3A0xc3af72eb0f878f14!2sDigital%20Ghuru%20%7C%20AI%20Digital%20Marketing%20Course%20in%20Our Campus!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                src="https://maps.google.com/maps?q=13.0868,80.2520&z=15&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0, borderRadius: '1.5rem' }} 

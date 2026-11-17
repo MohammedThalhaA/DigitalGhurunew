@@ -39,7 +39,7 @@ export default function RefundPolicyPage() {
         eyebrow="POLICIES"
         title="Cancellation & Refund"
         titleHighlight="Policy"
-        description="Please review our policy regarding course cancellations, batch transfers, and registration refunds."
+        description="Read our clear policy on cancellations, batch transfers, and course refunds."
       />
 
       <section className="section-padding bg-white">
@@ -50,7 +50,7 @@ export default function RefundPolicyPage() {
                 1. Enrollment Cancellation
               </h2>
               <p className="text-ink-600 leading-relaxed">
-                Students can request cancellation of their enrollment in any classroom or online course up to 7 days before the batch start date. A processing fee of ₹1,000 will be deducted from the initial deposit, and the remaining amount will be refunded.
+                You can cancel your course enrollment up to 7 days before classes start. We deduct a ₹1,000 processing fee. We then refund the rest to your original payment method.
               </p>
             </div>
 
@@ -59,7 +59,7 @@ export default function RefundPolicyPage() {
                 2. Refund Eligibility
               </h2>
               <p className="text-ink-600 leading-relaxed">
-                Once a batch has started, fees paid are non-refundable. For students who choose our installment plans, all pending installments must be paid according to the signed schedule. We do not issue partial refunds for students who choose to leave the program midway.
+                Fees cannot be refunded once a batch begins. If you pay in installments, you must complete your planned schedule. We do not offer partial refunds if you leave early.
               </p>
             </div>
 
@@ -68,7 +68,7 @@ export default function RefundPolicyPage() {
                 3. Batch Transfer Policy
               </h2>
               <p className="text-ink-600 leading-relaxed">
-                We understand that emergencies occur. Students may request a one-time batch transfer to a future cohort within 12 months. Batch transfer requests must be submitted in writing to <ObfuscatedEmail className="font-semibold text-brand-blue hover:underline" /> at least 3 days prior to class start.
+                Life can be unpredictable. You can move your seat to a future batch within 12 months for free. Please email your request to <ObfuscatedEmail className="font-semibold text-brand-blue hover:underline" /> at least 3 days before classes start.
               </p>
             </div>
 
@@ -77,7 +77,7 @@ export default function RefundPolicyPage() {
                 4. Course Cancellation by Digital Ghuru
               </h2>
               <p className="text-ink-600 leading-relaxed">
-                In the rare event that Digital Ghuru cancels a course or batch due to unforeseen circumstances, a 100% refund of the fee paid will be issued to the original payment method within 7-10 business days.
+                If Digital Ghuru ever cancels a batch, you receive a full 100% refund. We return your money within 7 to 10 business days.
               </p>
             </div>
           </div>

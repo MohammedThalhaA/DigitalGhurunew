@@ -267,7 +267,7 @@ export default function RichTextEditor({
 
     editorRef.current.focus();
     if (!selectedText) {
-      document.execCommand("insertHTML", false, `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+      document.execCommand("insertHTML", false, `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow">${url}</a>`);
     } else {
       document.execCommand("createLink", false, url);
     }

@@ -102,6 +102,13 @@ export default function VerifyEmailPage() {
       }>
         <VerifyEmailContent />
       </Suspense>
+
+      <div className="mt-8 max-w-md w-full bg-white p-6 rounded-2xl border border-slate-200 text-center">
+        <h2 className="font-display text-base font-bold text-ink-900 mb-2">Need Help Verifying?</h2>
+        <p className="text-xs text-ink-600 leading-relaxed">
+          Check your spam folder if you cannot find our link. Verification links expire after 24 hours. Contact our support team if you need a new link.
+        </p>
+      </div>
     </div>
   );
 }

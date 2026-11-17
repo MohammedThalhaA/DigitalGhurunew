@@ -15,17 +15,17 @@ import { getPlatformSettings } from "@/lib/settings";
 const locations = [
   {
     name: "Anna Nagar Office",
-    address: "45, A Block, 3rd Avenue, Kumaran Nagar, Anna Nagar East - 600102",
+    address: "45, A Block, 3rd Avenue. Kumaran Nagar, Anna Nagar East, Chennai - 600102.",
     phone: "+91 8825948859",
   },
   {
     name: "Ameerpet Office",
-    address: "F8, First Floor, Kallu Compound Rd, Pratap Nagar, Nagarjuna Nagar colony, Yella Reddy Guda, Ameerpet, Hyderabad - 500073",
+    address: "F8, First Floor, Kallu Compound Rd. Pratap Nagar, Ameerpet, Hyderabad - 500073.",
     phone: "+91 8825948859",
   },
   {
     name: "Korattur Office",
-    address: '2nd Floor, No. 1A, "Gurudev Complex", S1, 57th St, Venkatraman Nagar, Korattur, Chennai 600050',
+    address: '2nd Floor, Gurudev Complex. 57th St, Korattur, Chennai - 600050.',
     phone: "+91 8825948859",
   }
 ];
@@ -106,7 +106,7 @@ export default async function Footer() {
               <a
                 href="https://jaighurudeva.in/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="shrink-0"
               >
                 <Image
@@ -122,17 +122,16 @@ export default async function Footer() {
             </div>
 
             <p className="font-body text-sm md:text-base text-white/90 leading-relaxed mb-5 max-w-lg">
-              In proud collaboration with{" "}
+              We partner with{" "}
               <a
                 href="https://jaighurudeva.in/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="text-white font-semibold hover:text-brand-gold transition-colors"
               >
                 Jaighurudeva Educational Academy
               </a>
-              , combining our digital expertise with their legacy of academic
-              excellence and personalized mentorship.
+              {" "}to bring you expert digital training and hands-on career mentorship.
             </p>
 
             {/* Social Icons */}
@@ -142,7 +141,7 @@ export default async function Footer() {
                   key={social.label}
                   href={social.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   aria-label={social.label}
                   className={`h-9 w-9 rounded-lg bg-white/10 flex items-center justify-center text-white/90 hover:text-white transition-all duration-200 ${social.hoverClass}`}
                 >

@@ -29,22 +29,22 @@ const cultureHighlights = [
   {
     icon: Heart,
     title: "Supportive Community",
-    description: "A welcoming environment where every student feels at home and supported in their learning journey.",
+    description: "We welcome every learner with open arms. You get constant support from mentors and peers.",
   },
   {
     icon: Coffee,
     title: "Engaging Sessions",
-    description: "Interactive classes that feel more like collaborative workshops than traditional lectures.",
+    description: "Our classes feel like interactive workshops. You brainstorm, build, and run real campaigns.",
   },
   {
     icon: Lightbulb,
     title: "Innovation First",
-    description: "We encourage creative thinking and experimenting with the latest tools and techniques.",
+    description: "Try new ideas without fear. We test the latest marketing tools and AI models together.",
   },
   {
     icon: Users,
     title: "Lifelong Network",
-    description: "Join a thriving alumni community that continues to support and inspire long after graduation.",
+    description: "Connect with our active alumni network. Find job leads, clients, and career advice anytime.",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function LifeAtPage() {
         eyebrow="LIFE AT DIGITALGHURU"
         title="Experience the Digital Ghuru"
         titleHighlight="Difference"
-        description="More than a classroom — a vibrant community of learners, creators, and future industry leaders."
+        description="More than a classroom. Join an active community of learners, creators, and future marketing leaders."
         primaryCta={{ label: "Join Our Community", href: "/contact" }}
       />
 
@@ -119,7 +119,7 @@ export default function LifeAtPage() {
             Come Experience It Yourself
           </h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-            Visit our campus, attend a free demo class, and see what life at Digital Ghuru is really like.
+            Visit our campus or join a free demo class. See how our agency-style classes work firsthand.
           </p>
           <Button variant="accent" size="lg" href="/contact">
             Book a Campus Visit

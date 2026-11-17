@@ -45,7 +45,7 @@ export default function CpcCalculatorPage() {
         eyebrow="CPC CALCULATOR"
         title="Calculate Cost Per Click"
         titleHighlight="Instantly"
-        description="Input your campaign budget and total clicks generated to determine your average Cost Per Click (CPC)."
+        description="Find your average cost per click fast. Enter your ad spend and total clicks below."
       />
 
       <section className="section-padding bg-white">
@@ -116,6 +116,31 @@ export default function CpcCalculatorPage() {
                 </p>
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-slate-50 border-t border-slate-100">
+        <div className="section-container max-w-3xl">
+          <h2 className="font-display text-2xl font-bold text-ink-900 mb-4">
+            How Cost Per Click Works
+          </h2>
+          <p className="text-ink-700 leading-relaxed mb-4">
+            CPC tells you what you pay each time a user clicks your ad. It shows how efficiently your budget works.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 mt-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">The Formula</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Divide your total ad cost by the total number of clicks. This gives your average cost for each click.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200">
+              <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Lower Your CPC</h3>
+              <p className="text-sm text-ink-600 leading-relaxed">
+                Write catchy ad copy. Target relevant keywords. Improve your landing page quality score to lower your costs.
+              </p>
+            </div>
           </div>
         </div>
       </section>
