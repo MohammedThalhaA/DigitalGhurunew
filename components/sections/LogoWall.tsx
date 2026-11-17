@@ -103,7 +103,7 @@ export default function LogoWall({
         {(eyebrow || title) && (
           <div className="section-container text-center mb-12">
             {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-            {title && <h3 className="heading-lg">{title}</h3>}
+            {title && <h2 className="heading-lg">{title}</h2>}
           </div>
         )}
 

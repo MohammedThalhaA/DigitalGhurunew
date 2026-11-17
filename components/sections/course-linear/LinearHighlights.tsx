@@ -31,7 +31,7 @@ export default function LinearHighlights({ highlights }: LinearHighlightsProps) 
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="mb-10">
-        <h2 className="heading-md text-ink-900 mb-2">Program Highlights</h2>
+        <h2 className="heading-md text-ink-900 mb-2">Key Program Highlights</h2>
         <p className="body-lg text-ink-500">
           Everything you need to succeed in the digital ecosystem.
         </p>

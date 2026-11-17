@@ -157,6 +157,7 @@ export default function BlogListClient({ initialBlogs }: BlogListClientProps) {
       {/* ── Articles List Section ── */}
       <section className="section-padding bg-white min-h-[600px]">
         <div className="section-container space-y-12">
+          <h2 className="sr-only">Latest Marketing Articles & Guides</h2>
           {/* Featured Hero Article */}
           {featuredBlog && (
             <motion.div

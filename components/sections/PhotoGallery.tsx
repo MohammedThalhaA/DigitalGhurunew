@@ -99,7 +99,7 @@ export default function PhotoGallery({
         {(eyebrow || title) && (
           <div className="text-center mb-12 section-container">
             {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-            {title && <h3 className="heading-lg font-bold text-ink-900">{title}</h3>}
+            {title && <h2 className="heading-lg font-bold text-ink-900">{title}</h2>}
           </div>
         )}
 

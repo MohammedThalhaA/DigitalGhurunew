@@ -10,7 +10,7 @@ export default function LinearOverview({ learnings, description }: LinearOvervie
   return (
     <div id="overview" className="py-10 border-b border-ink-200">
       
-      <h2 className="heading-md text-ink-900 mb-6">What you&apos;ll learn</h2>
+      <h2 className="heading-md text-ink-900 mb-6">Course Learning Objectives</h2>
       
       {learnings && learnings.length > 0 && (
         <div className="bg-ink-50 border border-ink-200 rounded-lg p-6 md:p-8 mb-10">

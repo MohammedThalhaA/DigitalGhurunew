@@ -114,7 +114,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
       <div className="md:hidden flex flex-col h-full">
         <div className="p-8 bg-[#006FFF] text-white text-center">
           <h2 className="font-display text-3xl font-bold mb-2">
-            {isSignIn ? "Hello, Friend!" : "Welcome Back!"}
+            {isSignIn ? "New Learner?" : "Registered Student?"}
           </h2>
           <p className="font-body text-sm text-white/90 mb-6">
             {isSignIn 
@@ -135,7 +135,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
               email={signInEmail} setEmail={setSignInEmail}
               password={signInPassword} setPassword={setSignInPassword}
               onSubmit={handleSignIn} error={error} loading={loading}
-              isCurrent={true}
+              isCurrent={false}
             />
           ) : (
             <SignUpForm
@@ -143,7 +143,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
               email={signUpEmail} setEmail={setSignUpEmail}
               password={signUpPassword} setPassword={setSignUpPassword}
               onSubmit={handleSignUp} error={error} loading={loading}
-              isCurrent={true}
+              isCurrent={false}
             />
           )}
         </div>
@@ -198,7 +198,7 @@ export default function AuthCard({ initialMode }: AuthCardProps) {
                   height={100} 
                   className="mb-10 object-contain h-28 w-auto"
                 />
-                <h2 className="font-display text-4xl font-bold text-white mb-6">New Here?</h2>
+                <h2 className="font-display text-4xl font-bold text-white mb-6">New to Digital Ghuru?</h2>
                 <p className="font-body text-base text-white/90 mb-10 max-w-[280px] leading-relaxed">
                   Sign up and unlock access to our premium digital marketing courses, tools, and resources.
                 </p>
@@ -276,7 +276,7 @@ function SignInForm({ email, setEmail, password, setPassword, onSubmit, error, l
           <ArrowLeft className="w-4 h-4" /> Back to Site
         </Link>
       </div>
-      <HeadingTag className="heading-md text-ink-900 mb-6 font-bold text-center">Sign in</HeadingTag>
+      <HeadingTag className="heading-md text-ink-900 mb-6 font-bold text-center">Sign in to Digital Ghuru</HeadingTag>
       <SocialButtons />
       <p className="text-xs text-ink-400 font-body mb-6 text-center">or use your account</p>
 
@@ -338,7 +338,7 @@ function SignUpForm({ name, setName, email, setEmail, password, setPassword, onS
           <ArrowLeft className="w-4 h-4" /> Back to Site
         </Link>
       </div>
-      <HeadingTag className="heading-md text-ink-900 mb-6 font-bold text-center">Create Account</HeadingTag>
+      <HeadingTag className="heading-md text-ink-900 mb-6 font-bold text-center">Create Your Account</HeadingTag>
       <SocialButtons />
       <p className="text-xs text-ink-400 font-body mb-6 text-center">or use your email for registration</p>
 

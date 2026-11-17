@@ -46,6 +46,7 @@ export default function ToolsHubPage() {
       {/* Grid of Tools */}
       <section className="section-padding bg-white">
         <div className="section-container">
+          <h2 className="heading-lg text-ink-900 mb-8 text-center font-display">Interactive Marketing Calculators & Estimators</h2>
           <motion.div
             variants={staggerContainer}
             initial="hidden"

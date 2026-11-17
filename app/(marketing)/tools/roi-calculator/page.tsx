@@ -59,7 +59,7 @@ export default function RoiCalculatorPage() {
             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-ink-200">
               <Calculator className="h-6 w-6 text-brand-orange" />
               <h2 className="font-display text-xl font-bold text-ink-900">
-                Calculator Inputs
+                ROI Revenue Inputs
               </h2>
             </div>
 

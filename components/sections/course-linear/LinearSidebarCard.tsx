@@ -230,7 +230,7 @@ export default function LinearSidebarCard({
           {/* SLIDE 1: Course Info */}
           <div className="w-full shrink-0 p-6 md:p-8">
             <div className="flex flex-col mb-6">
-              <h2 className="font-display text-4xl font-bold text-ink-900 leading-none">{formatPrice(discountedPrice)}</h2>
+              <div className="font-display text-4xl font-bold text-ink-900 leading-none">{formatPrice(discountedPrice)}</div>
               {originalPrice !== "—" && (
                 <span className="font-body text-lg text-ink-400 font-semibold line-through mt-2">{formatPrice(originalPrice)}</span>
               )}

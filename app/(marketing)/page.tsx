@@ -469,7 +469,7 @@ export default function HomePage() {
       <LeadCaptureForm />
 
       {/* ─── 15. FAQ ─── */}
-      <FAQAccordion items={faqs} />
+      <FAQAccordion title="Digital Marketing & Career FAQs" items={faqs} />
       <GateModalComponent />
     </>
   );

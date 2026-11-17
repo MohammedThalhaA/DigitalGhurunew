@@ -129,6 +129,7 @@ export default function ContactPage() {
       {/* 2. Quick Contact Cards Grid */}
       <section className="section-padding bg-ink-50 border-y border-ink-100">
         <div className="section-container">
+          <h2 className="heading-lg text-ink-900 mb-8 text-center font-display">Ways to Reach Our Team</h2>
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             
             {/* Admissions */}

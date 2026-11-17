@@ -23,7 +23,7 @@ export default function LinearCurriculum({ curriculum }: LinearCurriculumProps) 
   return (
     <div id="curriculum" className="py-10 border-b border-ink-200">
       
-      <h2 className="heading-md text-ink-900 mb-2">Course Curriculum</h2>
+      <h2 className="heading-md text-ink-900 mb-2">Comprehensive Course Curriculum</h2>
       
       <div className="flex items-center justify-between mb-6 font-body text-sm font-medium text-ink-500">
         <span>{curriculum.length} sections • {totalLessons} lectures • 20h 30m total length</span>

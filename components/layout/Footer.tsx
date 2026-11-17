@@ -64,15 +64,11 @@ export default async function Footer() {
       <div className="section-container pt-10 pb-8 md:pt-12 md:pb-10">
         {/* ── Top Section: Our Campuses (Horizontal) ── */}
         <div className="pb-8 border-b border-white/15">
-          <h4 className="font-display text-xl font-bold text-white mb-5">
-            Our Campuses
-          </h4>
+          <p className="font-display text-xl font-bold text-white mb-5">Our Campuses</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {locations.map((loc) => (
               <div key={loc.name} className="space-y-2">
-                <h5 className="font-heading font-semibold text-white text-base">
-                  {loc.name}
-                </h5>
+                <p className="font-heading font-semibold text-white text-base">{loc.name}</p>
                 <div className="flex items-start gap-2 text-white/90 text-sm leading-relaxed">
                   <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
                   <span>{loc.address}</span>
@@ -156,9 +152,7 @@ export default async function Footer() {
 
           {/* ── Quick Links ── */}
           <div className="md:col-span-3 lg:col-span-3">
-            <h4 className="font-display text-lg font-bold text-white mb-4">
-              Quick Links
-            </h4>
+            <p className="font-display text-lg font-bold text-white mb-4">Quick Links</p>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -175,9 +169,7 @@ export default async function Footer() {
 
           {/* ── Course Links ── */}
           <div className="md:col-span-3 lg:col-span-3">
-            <h4 className="font-display text-lg font-bold text-white mb-4">
-              Our Courses
-            </h4>
+            <p className="font-display text-lg font-bold text-white mb-4">Our Courses</p>
             <ul className="space-y-2.5">
               {courseLinks.map((link) => (
                 <li key={link.href}>

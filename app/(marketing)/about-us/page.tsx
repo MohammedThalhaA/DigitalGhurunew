@@ -224,8 +224,8 @@ export default function AboutUsPage() {
       {/* ─── Hero Section ─── */}
       <HeroSection
         eyebrow="ABOUT DIGITAL GHURU"
-        title="India's Leading Agency-Style"
-        titleHighlight="AI-Powered Digital Marketing Institute"
+        title="India's Premier"
+        titleHighlight="AI Digital Marketing Academy"
         description="With over 500+ students trained, Digital Ghuru is an award-winning AI-powered digital marketing institute shaping the future of marketing talent across India."
         primaryCta={{ label: "View Our Courses", href: "/#course-grid" }}
         imageUrl="/images/about-hero.webp"
@@ -337,7 +337,7 @@ export default function AboutUsPage() {
                             <Icon className="h-5 w-5 text-brand-orange" />
                           </div>
                           <div>
-                            <h4 className="font-heading font-bold text-ink-900 mb-1">{item.title}</h4>
+                            <h3 className="font-heading font-bold text-ink-900 mb-1">{item.title}</h3>
                             <p className="text-ink-500 leading-relaxed">{item.text}</p>
                           </div>
                         </motion.div>

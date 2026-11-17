@@ -92,7 +92,8 @@ function VerifyEmailContent() {
 
 export default function VerifyEmailPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+      <h1 className="font-display text-2xl md:text-3xl font-bold text-ink-900 mb-6 text-center">Verify Email Address</h1>
       <Suspense fallback={
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-card max-w-md w-full text-center flex flex-col items-center justify-center space-y-4">
           <Loader2 className="h-16 w-16 text-brand-blue animate-spin" />

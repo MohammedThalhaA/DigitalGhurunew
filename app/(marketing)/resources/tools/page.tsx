@@ -147,9 +147,9 @@ export default function DigitalMarketingToolsPage() {
         {/* ─── SIDEBAR FILTER ─── */}
         <aside className="w-full lg:w-64 shrink-0">
           <div className="sticky top-24">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
               Categories
-            </h3>
+            </p>
             <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 scrollbar-hide">
               {CATEGORIES.map((category) => (
                 <button
