@@ -39,6 +39,35 @@ function getBlogSeoTitle(slug: string, rawTitle: string): string {
   return `${shortText} | Digital Ghuru`;
 }
 
+const BLOG_H1_TITLES: Record<string, string> = {
+  "top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career":
+    "Top Digital Marketing Skills in Anna Nagar for a Job-Ready Career",
+  "how-to-build-a-digital-marketing-portfolio-with-no-experience-a-beginners-guide":
+    "How to Build a Digital Marketing Portfolio with No Experience",
+  "instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers":
+    "Instagram Reels Strategy for Small Businesses in Tamil Nadu",
+  "digital-marketing-jobs-for-freshers-top-roles-skills-and-salary-in-2026":
+    "Digital Marketing Jobs for Freshers: Top Roles and Salary (2026)",
+  "is-digital-marketing-a-good-career-in-2026-explore-salary-skills-and-opportunities":
+    "Is Digital Marketing a Good Career in 2026? Salary and Scope",
+  "digital-marketing-salary-in-india-for-freshers-how-much-can-you-earn-in-2026":
+    "Digital Marketing Salary in India for Freshers in 2026",
+  "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career":
+    "Digital Marketing Course in Chennai: In-Demand Career Skills",
+  "ai-course-for-11th-12th-students-in-chennai-what-parents-should-know":
+    "AI Course for 11th & 12th Students in Chennai: Parent Guide",
+};
+
+function getBlogH1Title(slug: string, rawTitle: string): string {
+  if (BLOG_H1_TITLES[slug]) return BLOG_H1_TITLES[slug];
+  if (!rawTitle || rawTitle.length <= 68) return rawTitle;
+  const parts = rawTitle.split(/[:\-—]/);
+  if (parts[0].trim().length <= 68 && parts[0].trim().length >= 25) return parts[0].trim();
+  const truncated = rawTitle.slice(0, 68);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > 40 ? truncated.slice(0, lastSpace) : truncated).trim();
+}
+
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -168,7 +197,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-ink-900 tracking-tight leading-[1.15]">
-              {blog.title}
+              {getBlogH1Title(params.slug, blog.title)}
             </h1>
           </div>
         </div>

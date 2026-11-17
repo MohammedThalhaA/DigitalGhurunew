@@ -159,7 +159,18 @@ export function renderBlogContentHtml(content: string, blogTitle?: string): stri
     // 2. Strip browser metadata attributes like data-path-to-node
     text = text.replace(/\sdata-[a-z0-9-]+="[^"]*"/gi, "");
     // 3. Clean malformed headings
-    return cleanMalformedHeadings(text);
+    text = cleanMalformedHeadings(text);
+
+    // 4. Shorten any H2 sub-headings over 68 characters so all sections are concise
+    return text.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (match, attrs, headingContent) => {
+      const plain = headingContent.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+      if (plain.length <= 68) return match;
+      const parts = plain.split(/[:\-—]/);
+      const shortened = (parts[0].trim().length <= 68 && parts[0].trim().length >= 25)
+        ? parts[0].trim()
+        : plain.slice(0, 65).trim() + "...";
+      return `<h2${attrs}>${shortened}</h2>`;
+    });
   }
 
   // Otherwise convert standard Markdown to HTML

@@ -215,9 +215,9 @@ export default function BlogListClient({ initialBlogs }: BlogListClientProps) {
                     </span>
                   </div>
 
-                  <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200 line-clamp-3">
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-ink-900 group-hover:text-brand-blue transition-colors duration-200 line-clamp-3">
                     {featuredBlog.title}
-                  </h2>
+                  </h3>
 
                   <p className="font-body text-ink-600 text-sm sm:text-base leading-relaxed line-clamp-4">
                     {featuredBlog.excerpt}
