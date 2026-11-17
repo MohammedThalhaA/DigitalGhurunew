@@ -5,15 +5,6 @@ import { Metadata } from "next";
 import pool from "@/lib/db";
 import { courseMap, CourseData } from "@/lib/courseData";
 
-import UdemyStyleHero from "@/components/sections/course-new/UdemyStyleHero";
-import StickyEnrollmentCard from "@/components/sections/course-new/StickyEnrollmentCard";
-import CourseOverview from "@/components/sections/course-new/CourseOverview";
-import ProgramHighlights from "@/components/sections/course-new/ProgramHighlights";
-import WhoShouldJoin from "@/components/sections/course-new/WhoShouldJoin";
-import CourseModules from "@/components/sections/course-new/CourseModules";
-import ToolsMastered from "@/components/sections/course-new/ToolsMastered";
-import CourseFAQs from "@/components/sections/course-new/CourseFAQs";
-
 import ModernLinearCourseLayout from "@/components/sections/course-linear/ModernLinearCourseLayout";
 
 export const revalidate = 60;
@@ -58,7 +49,7 @@ export default async function OnlineCoursePage({
   if (!dbCourse && !staticCourse) {
     return (
       <div className="section-container section-padding text-center">
-        <h1 className="heading-lg mb-4 text-[var(--tw-colors-ink-900)]">Course Not Found</h1>
+        <h2 className="heading-lg mb-4 text-[var(--tw-colors-ink-900)]">Course Not Found</h2>
         <p className="body-lg mb-8 text-ink-500">
           The course you're looking for doesn't exist or has been moved.
         </p>

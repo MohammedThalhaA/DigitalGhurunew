@@ -126,6 +126,8 @@ export function renderBlogContentHtml(content: string): string {
 
   // If content contains HTML tags:
   if (/<(p|h1|h2|h3|h4|ul|ol|blockquote|hr|div)[\s>]/i.test(text)) {
+    // Ensure any <h1> tags inside blog body become <h2> so the page title remains the sole <h1>
+    text = text.replace(/<h1(\s[^>]*)?>([\s\S]*?)<\/h1>/gi, "<h2$1>$2</h2>");
     // 1. Convert spans with large heading styles into real <h2>
     text = text.replace(/<div>\s*<span[^>]*font-size:\s*1\.875rem[^>]*>([\s\S]*?)<\/span>\s*<\/div>/gi, "<h2>$1</h2>");
     // 2. Strip browser metadata attributes like data-path-to-node
