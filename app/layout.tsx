@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://digitalghuru.com",
   },
+  referrer: "strict-origin-when-cross-origin",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
