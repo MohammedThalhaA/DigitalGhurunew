@@ -243,6 +243,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/top-10-skills-you-can-learn-at-digital-marketing-classes-in-chennai-build-a-successful-career',
+        destination: '/blog/digital-marketing-skills-chennai',
+        permanent: true,
+      },
+      {
+        source: '/blog/digital-marketing-course-in-chennai-with-placement-build-job-ready-skills-and-get-hired',
+        destination: '/blog/digital-marketing-chennai-placement',
+        permanent: true,
+      },
+      {
         source: '/blog/instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers',
         destination: '/blog/instagram-reels-strategy-tamil-nadu',
         permanent: true,

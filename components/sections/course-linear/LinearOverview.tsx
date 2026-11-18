@@ -4,13 +4,16 @@ import { Check } from "lucide-react";
 interface LinearOverviewProps {
   learnings: string[];
   description: React.ReactNode[];
+  courseTitle?: string;
 }
 
-export default function LinearOverview({ learnings, description }: LinearOverviewProps) {
+export default function LinearOverview({ learnings, description, courseTitle }: LinearOverviewProps) {
   return (
     <div id="overview" className="py-10 border-b border-ink-200">
       
-      <h2 className="heading-md text-ink-900 mb-6">Course Learning Objectives</h2>
+      <h2 className="heading-md text-ink-900 mb-6">
+        {courseTitle ? `${courseTitle} Objectives` : "Course Learning Objectives"}
+      </h2>
       
       {learnings && learnings.length > 0 && (
         <div className="bg-ink-50 border border-ink-200 rounded-lg p-6 md:p-8 mb-10">

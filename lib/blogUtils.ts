@@ -379,6 +379,10 @@ export const BLOG_SLUG_SHORTCUTS: Record<string, string> = {
     "instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers",
   "digital-marketing-course-in-chennai":
     "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career",
+  "digital-marketing-skills-chennai":
+    "top-10-skills-you-can-learn-at-digital-marketing-classes-in-chennai-build-a-successful-career",
+  "digital-marketing-chennai-placement":
+    "digital-marketing-course-in-chennai-with-placement-build-job-ready-skills-and-get-hired",
 };
 
 export const REVERSE_BLOG_SLUG_SHORTCUTS: Record<string, string> = {
@@ -388,6 +392,10 @@ export const REVERSE_BLOG_SLUG_SHORTCUTS: Record<string, string> = {
     "instagram-reels-strategy-tamil-nadu",
   "digital-marketing-course-in-chennai-learn-in-demand-skills-and-build-a-successful-career":
     "digital-marketing-course-in-chennai",
+  "top-10-skills-you-can-learn-at-digital-marketing-classes-in-chennai-build-a-successful-career":
+    "digital-marketing-skills-chennai",
+  "digital-marketing-course-in-chennai-with-placement-build-job-ready-skills-and-get-hired":
+    "digital-marketing-chennai-placement",
 };
 
 

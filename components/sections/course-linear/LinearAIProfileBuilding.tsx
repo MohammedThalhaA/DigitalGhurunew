@@ -17,6 +17,7 @@ interface LinearAIProfileBuildingProps {
   title?: string;
   description?: string;
   items?: AIProfileItem[];
+  courseTitle?: string;
 }
 
 const COLOR_PALETTES = [
@@ -37,14 +38,14 @@ const defaultItems: AIProfileItem[] = [
   { icon: RefreshCcw, title: "Ongoing Profile Updates", description: "Keep your profile fresh. Update your skills as new market trends emerge." },
 ];
 
-export default function LinearAIProfileBuilding({ title, description, items }: LinearAIProfileBuildingProps) {
+export default function LinearAIProfileBuilding({ title, description, items, courseTitle }: LinearAIProfileBuildingProps) {
   const profileItems = items && items.length > 0 ? items : defaultItems;
 
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="text-center mb-12">
         <h2 className="heading-lg text-ink-900 mb-4">
-          {title || "AI Enhanced Profile Building"}
+          {title || (courseTitle ? `AI Profile Building for ${courseTitle}` : "AI Enhanced Profile Building")}
         </h2>
         <p className="body-lg max-w-2xl mx-auto text-ink-500">
           {description || "Use smart AI tools to build your resume, portfolio, and LinkedIn profile to land top jobs faster."}

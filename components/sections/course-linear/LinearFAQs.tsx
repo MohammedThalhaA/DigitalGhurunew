@@ -9,9 +9,10 @@ interface LinearFAQsProps {
     question: string;
     answer: string;
   }[];
+  courseTitle?: string;
 }
 
-export default function LinearFAQs({ faqs }: LinearFAQsProps) {
+export default function LinearFAQs({ faqs, courseTitle }: LinearFAQsProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   if (!faqs || faqs.length === 0) return null;
@@ -19,7 +20,9 @@ export default function LinearFAQs({ faqs }: LinearFAQsProps) {
   return (
     <div id="faq" className="py-10">
       
-      <h2 className="heading-md text-ink-900 mb-6">Course Enrollment & Training FAQs</h2>
+      <h2 className="heading-md text-ink-900 mb-6">
+        {courseTitle ? `${courseTitle} FAQs` : "Course Enrollment & Training FAQs"}
+      </h2>
       
       <div className="border border-ink-200 rounded-lg bg-white overflow-hidden">
         {faqs.map((faq, idx) => {

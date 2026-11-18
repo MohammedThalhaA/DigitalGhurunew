@@ -14,6 +14,7 @@ export interface HighlightItem {
 
 interface LinearHighlightsProps {
   highlights: HighlightItem[];
+  courseTitle?: string;
 }
 
 const COLOR_PALETTES = [
@@ -25,13 +26,15 @@ const COLOR_PALETTES = [
   { gradient: "from-cyan-500/10 to-blue-500/10", border: "group-hover:border-cyan-500/30", iconColor: "text-cyan-600", iconBg: "bg-cyan-50/60" }
 ];
 
-export default function LinearHighlights({ highlights }: LinearHighlightsProps) {
+export default function LinearHighlights({ highlights, courseTitle }: LinearHighlightsProps) {
   if (!highlights || highlights.length === 0) return null;
 
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="mb-10">
-        <h2 className="heading-md text-ink-900 mb-2">Key Program Highlights</h2>
+        <h2 className="heading-md text-ink-900 mb-2">
+          {courseTitle ? `${courseTitle} Highlights` : "Key Program Highlights"}
+        </h2>
         <p className="body-lg text-ink-500">
           Everything you need to succeed in the digital ecosystem.
         </p>

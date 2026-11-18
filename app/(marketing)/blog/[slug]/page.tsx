@@ -31,6 +31,14 @@ const BLOG_SEO_TITLES: Record<string, string> = {
     "Digital Marketing Course in Chennai | Digital Ghuru",
   "digital-marketing-course-in-chennai":
     "Digital Marketing Course in Chennai | Digital Ghuru",
+  "top-10-skills-you-can-learn-at-digital-marketing-classes-in-chennai-build-a-successful-career":
+    "Digital Marketing Skills Chennai | Digital Ghuru",
+  "digital-marketing-skills-chennai":
+    "Digital Marketing Skills Chennai | Digital Ghuru",
+  "digital-marketing-course-in-chennai-with-placement-build-job-ready-skills-and-get-hired":
+    "Digital Marketing with Placement Chennai | Digital Ghuru",
+  "digital-marketing-chennai-placement":
+    "Digital Marketing with Placement Chennai | Digital Ghuru",
   "ai-course-for-11th-12th-students-in-chennai-what-parents-should-know":
     "AI Course for 11th & 12th Students | Digital Ghuru",
 };
@@ -66,6 +74,14 @@ const BLOG_H1_TITLES: Record<string, string> = {
     "Digital Marketing Course in Chennai: In-Demand Career Skills",
   "digital-marketing-course-in-chennai":
     "Digital Marketing Course in Chennai: In-Demand Career Skills",
+  "top-10-skills-you-can-learn-at-digital-marketing-classes-in-chennai-build-a-successful-career":
+    "Top Digital Marketing Skills You Can Learn in Chennai",
+  "digital-marketing-skills-chennai":
+    "Top Digital Marketing Skills You Can Learn in Chennai",
+  "digital-marketing-course-in-chennai-with-placement-build-job-ready-skills-and-get-hired":
+    "Digital Marketing Course in Chennai with Placement Support",
+  "digital-marketing-chennai-placement":
+    "Digital Marketing Course in Chennai with Placement Support",
   "ai-course-for-11th-12th-students-in-chennai-what-parents-should-know":
     "AI Course for 11th & 12th Students in Chennai: Parent Guide",
 };
@@ -324,7 +340,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   Keep Learning
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-heading font-black text-ink-900">
-                  Recommended {blog.category ? `${blog.category} Guides` : "Digital Marketing Articles"}
+                  Articles Related to {blog.title.split(/[:\-—]/)[0].trim().slice(0, 32)}
                 </h2>
               </div>
               <Link

@@ -25,6 +25,12 @@ export function middleware(request: NextRequest) {
   if (pathname === '/blog/top-skills-you-can-learn-at-digital-marketing-classes-in-anna-nagar-build-a-job-ready-career') {
     return NextResponse.redirect(new URL('/blog/digital-marketing-skills-anna-nagar', request.url), 301);
   }
+  if (pathname === '/blog/top-10-skills-you-can-learn-at-digital-marketing-classes-in-chennai-build-a-successful-career') {
+    return NextResponse.redirect(new URL('/blog/digital-marketing-skills-chennai', request.url), 301);
+  }
+  if (pathname === '/blog/digital-marketing-course-in-chennai-with-placement-build-job-ready-skills-and-get-hired') {
+    return NextResponse.redirect(new URL('/blog/digital-marketing-chennai-placement', request.url), 301);
+  }
   if (pathname === '/blog/instagram-reels-strategy-for-small-businesses-in-tamil-nadu-7-ways-to-get-more-customers') {
     return NextResponse.redirect(new URL('/blog/instagram-reels-strategy-tamil-nadu', request.url), 301);
   }

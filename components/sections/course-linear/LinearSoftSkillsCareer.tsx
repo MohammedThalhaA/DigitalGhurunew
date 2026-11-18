@@ -31,6 +31,7 @@ interface LinearSoftSkillsCareerProps {
   careerTitle?: string;
   careerDesc?: string;
   careerItems?: CareerItem[];
+  courseTitle?: string;
 }
 
 const COLOR_PALETTES = [
@@ -63,6 +64,7 @@ export default function LinearSoftSkillsCareer({
   careerTitle,
   careerDesc,
   careerItems,
+  courseTitle,
 }: LinearSoftSkillsCareerProps) {
   const skills = softSkillItems && softSkillItems.length > 0 ? softSkillItems : defaultSoftSkills;
   const careers = careerItems && careerItems.length > 0 ? careerItems : defaultCareerItems;
@@ -73,7 +75,7 @@ export default function LinearSoftSkillsCareer({
       <div className="mb-16">
         <div className="text-center mb-12">
           <h2 className="heading-lg text-ink-900 mb-4">
-            {softSkillsTitle || "Soft Skills & Career Training"}
+            {softSkillsTitle || (courseTitle ? `Soft Skills for ${courseTitle}` : "Soft Skills & Career Training")}
           </h2>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {softSkillsDesc || "Technical skills alone are not enough. We train you to communicate clearly, interview with confidence, and succeed professionally."}
@@ -126,7 +128,7 @@ export default function LinearSoftSkillsCareer({
       <div>
         <div className="text-center mb-12">
           <h2 className="heading-lg text-ink-900 mb-4">
-            {careerTitle || "Career Opportunities"}
+            {careerTitle || (courseTitle ? `${courseTitle} Career Paths` : "Career Opportunities")}
           </h2>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {careerDesc || "The demand for certified, practical professionals is rapidly growing across industries worldwide."}

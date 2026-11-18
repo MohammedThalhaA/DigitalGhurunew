@@ -16,6 +16,7 @@ export interface AudienceItem {
 
 interface LinearWhoIsThisForProps {
   audiences: AudienceItem[];
+  courseTitle?: string;
 }
 
 const COLOR_PALETTES = [
@@ -27,18 +28,18 @@ const COLOR_PALETTES = [
   { gradient: "from-cyan-500/10 to-blue-500/10", border: "group-hover:border-cyan-500/30", iconColor: "text-cyan-600", dotColor: "bg-cyan-500", iconBg: "bg-cyan-50/60" }
 ];
 
-export default function LinearWhoIsThisFor({ audiences }: LinearWhoIsThisForProps) {
+export default function LinearWhoIsThisFor({ audiences, courseTitle }: LinearWhoIsThisForProps) {
   if (!audiences || audiences.length === 0) return null;
 
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="text-center mb-12">
-        <h2 className="heading-md text-ink-900 mb-2 uppercase tracking-wide text-sm font-bold text-brand-blue">
-          WHO IS THIS PROGRAM FOR?
+        <span className="inline-block mb-2 uppercase tracking-wide text-sm font-bold text-brand-blue">
+          Target Audience
+        </span>
+        <h2 className="heading-lg text-ink-900 max-w-2xl mx-auto">
+          {courseTitle ? `Who Should Take ${courseTitle}?` : "Tailored For Diverse Career Paths"}
         </h2>
-        <p className="heading-lg text-ink-900 max-w-2xl mx-auto">
-          Tailored For Diverse Career Paths
-        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

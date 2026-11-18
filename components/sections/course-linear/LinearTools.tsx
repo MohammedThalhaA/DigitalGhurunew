@@ -2,6 +2,7 @@ import React from "react";
 
 interface LinearToolsProps {
   tools: string[];
+  courseTitle?: string;
 }
 
 // Map tool names to the SVG files used in the homepage ToolsCovered section
@@ -41,12 +42,14 @@ const fallbackTool = {
   description: "Learn to use this essential tool to enhance your digital marketing workflow.",
 };
 
-export default function LinearTools({ tools }: LinearToolsProps) {
+export default function LinearTools({ tools, courseTitle }: LinearToolsProps) {
   const toolList = tools && tools.length > 0 ? tools : ["ChatGPT", "Midjourney", "Canva", "WordPress", "Google Ads", "Meta Ads", "Zapier"];
 
   return (
     <div className="py-10 border-b border-ink-200">
-      <h2 className="heading-md text-ink-900 mb-6">Tools & Technologies You Will Master</h2>
+      <h2 className="heading-md text-ink-900 mb-6">
+        {courseTitle ? `Tools Mastered in ${courseTitle}` : "Tools & Technologies You Will Master"}
+      </h2>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {toolList.map((toolName, idx) => {

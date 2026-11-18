@@ -31,6 +31,7 @@ interface LinearInternshipProjectsProps {
   placementTitle?: string;
   placementDesc?: string;
   placementItems?: PlacementItem[];
+  courseTitle?: string;
 }
 
 const COLOR_PALETTES = [
@@ -64,6 +65,7 @@ export default function LinearInternshipProjects({
   placementTitle,
   placementDesc,
   placementItems,
+  courseTitle,
 }: LinearInternshipProjectsProps) {
   const internships = internshipItems && internshipItems.length > 0 ? internshipItems : defaultInternshipItems;
   const placements = placementItems && placementItems.length > 0 ? placementItems : defaultPlacementItems;
@@ -74,7 +76,7 @@ export default function LinearInternshipProjects({
       <div className="mb-16">
         <div className="text-center mb-12">
           <h2 className="heading-lg text-ink-900 mb-4">
-            {internshipTitle || "Internship & Real-Time Projects"}
+            {internshipTitle || (courseTitle ? `Internship & Projects in ${courseTitle}` : "Internship & Real-Time Projects")}
           </h2>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {internshipDesc || "Practical exposure is key to becoming job-ready. Gain hands-on experience with real industry projects."}
@@ -127,7 +129,7 @@ export default function LinearInternshipProjects({
       <div>
         <div className="text-center mb-12">
           <h2 className="heading-lg text-ink-900 mb-4">
-            {placementTitle || "Placement Support System"}
+            {placementTitle || (courseTitle ? `${courseTitle} Placement Support` : "Placement Support System")}
           </h2>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {placementDesc || "We don't just train — we prepare you for your career with comprehensive placement support."}

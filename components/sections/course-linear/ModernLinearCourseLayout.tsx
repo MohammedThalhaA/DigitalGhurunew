@@ -21,6 +21,8 @@ interface ModernLinearCourseLayoutProps {
 }
 
 export default function ModernLinearCourseLayout({ course, hideBreadcrumbs = false }: ModernLinearCourseLayoutProps) {
+  const courseShortTitle = course.shortTitle || (course.title ? course.title.replace(/ Course$/i, "").replace(/ Program$/i, "").trim() : "Course");
+
   return (
     <div className="bg-white text-ink-900">
       {/* 1. Full Width Hero */}
@@ -41,6 +43,7 @@ export default function ModernLinearCourseLayout({ course, hideBreadcrumbs = fal
             <LinearOverview 
               learnings={course.overviewLearnings} 
               description={course.overviewDescription} 
+              courseTitle={courseShortTitle}
             />
           </div>
 
@@ -79,35 +82,37 @@ export default function ModernLinearCourseLayout({ course, hideBreadcrumbs = fal
           title={course.whyDigitalGhuru?.title} 
           reasons={course.whyDigitalGhuru?.reasons} 
         />
-        <LinearWhoIsThisFor audiences={course.whoIsThisForData} />
-        <LinearHighlights highlights={course.highlightsData} />
+        <LinearWhoIsThisFor audiences={course.whoIsThisForData} courseTitle={courseShortTitle} />
+        <LinearHighlights highlights={course.highlightsData} courseTitle={courseShortTitle} />
 
         {/* Technologies You Will Master - BEFORE Curriculum */}
         {course.categorizedToolsData ? (
-          <LinearCategorizedTools groups={course.categorizedToolsData} />
+          <LinearCategorizedTools groups={course.categorizedToolsData} courseTitle={courseShortTitle} />
         ) : (
-          <LinearTools tools={course.tools} />
+          <LinearTools tools={course.tools} courseTitle={courseShortTitle} />
         )}
 
         {/* Curriculum / Modules */}
-        <LinearCurriculum curriculum={course.curriculum || []} />
+        <LinearCurriculum curriculum={course.curriculum || []} courseTitle={courseShortTitle} />
 
         {/* 5 Core Common Sections across all courses */}
         {course.showCareerFeatures !== false && (
           <>
             <LinearAIProfileBuilding 
               description={course.aiProfileBuildingDesc} 
+              courseTitle={courseShortTitle}
             />
 
-            <LinearInternshipProjects />
+            <LinearInternshipProjects courseTitle={courseShortTitle} />
 
             <LinearSoftSkillsCareer 
               careerDesc={course.title ? `The demand for skilled ${course.title} professionals is rapidly growing across industries.` : undefined}
+              courseTitle={courseShortTitle}
             />
           </>
         )}
 
-        <LinearFAQs faqs={course.faqs} />
+        <LinearFAQs faqs={course.faqs} courseTitle={courseShortTitle} />
       </div>
     </div>
   );

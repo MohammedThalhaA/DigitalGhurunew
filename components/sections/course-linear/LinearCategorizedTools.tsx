@@ -19,21 +19,22 @@ export interface CategorizedToolGroup {
 
 interface LinearCategorizedToolsProps {
   groups: CategorizedToolGroup[];
+  courseTitle?: string;
 }
 
-export default function LinearCategorizedTools({ groups }: LinearCategorizedToolsProps) {
+export default function LinearCategorizedTools({ groups, courseTitle }: LinearCategorizedToolsProps) {
   if (!groups || groups.length === 0) return null;
 
   return (
     <div className="py-14 border-b border-ink-200 space-y-10">
       {/* Section Header */}
       <div className="text-center mb-10">
-        <h2 className="heading-md text-ink-900 mb-2 uppercase tracking-wide text-sm font-bold text-brand-blue">
+        <span className="inline-block mb-2 uppercase tracking-wide text-sm font-bold text-brand-blue">
           Technologies You Will Master
+        </span>
+        <h2 className="heading-lg text-ink-900 max-w-2xl mx-auto">
+          {courseTitle ? `Tools & Platforms in ${courseTitle}` : "Tools & Platforms Taught in This Course"}
         </h2>
-        <p className="heading-lg text-ink-900 max-w-2xl mx-auto">
-          Tools & Platforms Taught in This Course
-        </p>
         <p className="body-lg text-ink-500 max-w-3xl mx-auto mt-2 text-sm sm:text-base">
           Gain hands-on proficiency with industry-leading software, automated workflows, and AI platforms.
         </p>

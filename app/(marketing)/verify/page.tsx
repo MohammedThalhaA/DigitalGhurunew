@@ -115,25 +115,25 @@ export default function VerifyEmailPage() {
       <div className="mt-8 max-w-2xl w-full grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <h2 className="font-display text-base font-bold text-ink-900 mb-2">
-            Why Email Verification Matters
+            Why Verify Your Email?
           </h2>
           <p className="text-xs text-ink-600 leading-relaxed mb-3">
-            Verifying your email confirms your identity, secures your student portal, and activates your access to live classes, curriculum modules, and verified course certificates.
+            Confirming your email keeps your account safe. It lets you log in to your student dashboard right away.
           </p>
           <p className="text-xs text-ink-600 leading-relaxed">
-            It also ensures you receive timely assignment reviews, job alerts, and campus announcements without interruption.
+            You will also get your class links, mentor notes, and course completion cards on time.
           </p>
         </div>
 
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <h2 className="font-display text-base font-bold text-ink-900 mb-2">
-            Need Help with Verification?
+            Need Help with Setup?
           </h2>
           <p className="text-xs text-ink-600 leading-relaxed mb-3">
-            If your verification link has expired or you cannot find our message, please check your spam or promotions folder. Verification links remain active for 24 hours after registration.
+            If your link has expired, you can request a new one. Be sure to check your spam or promo tabs if you do not see our note.
           </p>
           <p className="text-xs text-ink-600 leading-relaxed">
-            Reach out to our support desk anytime at <span className="font-semibold text-brand-blue">support@digitalghuru.com</span> or contact your designated course coordinator.
+            You can write to our help team at <span className="font-semibold text-brand-blue">support@digitalghuru.com</span>. We are here to help you get started.
           </p>
         </div>
       </div>
