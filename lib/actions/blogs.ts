@@ -91,6 +91,12 @@ let hasEnsuredTable = false;
 export async function ensureBlogsTable() {
   if (hasEnsuredTable) return;
   try {
+    const check = await pool.query(`SELECT 1 FROM information_schema.tables WHERE table_name = 'blogs' LIMIT 1`);
+    if (check.rows.length > 0) {
+      hasEnsuredTable = true;
+      return;
+    }
+
     await pool.query(`
       CREATE TABLE IF NOT EXISTS blogs (
         id SERIAL PRIMARY KEY,
