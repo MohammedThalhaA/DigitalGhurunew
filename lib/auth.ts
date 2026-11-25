@@ -12,7 +12,7 @@ declare module "next-auth" {
     role: string;
   }
 }
-import PostgresAdapter from "@auth/pg-adapter";
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import pool from "@/lib/db";
@@ -22,9 +22,10 @@ import type { Adapter } from "next-auth/adapters";
 export const authOptions: NextAuthOptions = {
   adapter: {
     async createUser(user: any) {
+      const cleanEmail = user.email ? user.email.toLowerCase().trim() : user.email;
       const { rows } = await pool.query(
         'INSERT INTO users (name, email, "emailVerified", image, role) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-        [user.name, user.email, user.emailVerified, user.image, 'STUDENT']
+        [user.name || "Student", cleanEmail, user.emailVerified || new Date(), user.image, 'STUDENT']
       );
       return { ...rows[0], id: rows[0].id.toString() };
     },
@@ -34,7 +35,8 @@ export const authOptions: NextAuthOptions = {
       return { ...rows[0], id: rows[0].id.toString() };
     },
     async getUserByEmail(email: string) {
-      const { rows } = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+      if (!email) return null;
+      const { rows } = await pool.query('SELECT * FROM users WHERE LOWER(email) = LOWER($1)', [email.trim()]);
       if (!rows[0]) return null;
       return { ...rows[0], id: rows[0].id.toString() };
     },
@@ -51,9 +53,17 @@ export const authOptions: NextAuthOptions = {
       await pool.query(
         `INSERT INTO accounts (
           "userId", type, provider, "providerAccountId", access_token, token_type, id_token, refresh_token, scope, expires_at, session_state
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+        ON CONFLICT (provider, "providerAccountId") DO UPDATE SET
+          access_token = EXCLUDED.access_token,
+          token_type = EXCLUDED.token_type,
+          id_token = EXCLUDED.id_token,
+          refresh_token = COALESCE(EXCLUDED.refresh_token, accounts.refresh_token),
+          scope = EXCLUDED.scope,
+          expires_at = EXCLUDED.expires_at,
+          session_state = EXCLUDED.session_state`,
         [
-          account.userId,
+          Number(account.userId),
           account.type,
           account.provider,
           account.providerAccountId,
@@ -69,15 +79,18 @@ export const authOptions: NextAuthOptions = {
       return account;
     },
     async updateUser(user: any) {
-      // Build dynamic SET clause for updating user
       const updates = [];
       const values = [];
       let i = 1;
       for (const [key, value] of Object.entries(user)) {
-        if (key === 'id') continue; // Don't update ID
+        if (key === 'id') continue;
         updates.push(`"${key}" = $${i}`);
         values.push(value);
         i++;
+      }
+      if (updates.length === 0) {
+        const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [user.id]);
+        return rows[0] ? { ...rows[0], id: rows[0].id.toString() } : null;
       }
       values.push(user.id);
       const { rows } = await pool.query(
@@ -93,6 +106,13 @@ export const authOptions: NextAuthOptions = {
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         allowDangerousEmailAccountLinking: true,
+        authorization: {
+          params: {
+            prompt: "select_account",
+            access_type: "offline",
+            response_type: "code",
+          },
+        },
       })
     ] : []),
     CredentialsProvider({
@@ -107,7 +127,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         try {
-          const res = await pool.query("SELECT * FROM users WHERE email = $1", [credentials.email]);
+          const res = await pool.query("SELECT * FROM users WHERE LOWER(email) = LOWER($1)", [credentials.email.trim()]);
           const user = res.rows[0];
 
           if (!user || !user.password) {
@@ -141,42 +161,46 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
+  useSecureCookies: process.env.NODE_ENV === "production" || process.env.NEXTAUTH_URL?.startsWith("https://"),
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.role = (user as any).role;
+        token.role = (user as any).role || "STUDENT";
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         (session.user as any).id = token.id;
-        (session.user as any).role = token.role;
+        (session.user as any).role = token.role || "STUDENT";
       }
       return session;
     },
     async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      const canonicalBase = (baseUrl || "https://digitalghuru.com").replace(/^http:\/\/(www\.)?digitalghuru\.com/, "https://digitalghuru.com");
+      if (url.startsWith("/")) return `${canonicalBase}${url}`;
       try {
         const parsed = new URL(url);
         if (
-          parsed.hostname.endsWith("digitalghuru.in") ||
           parsed.hostname.endsWith("digitalghuru.com") ||
+          parsed.hostname.endsWith("digitalghuru.in") ||
           parsed.hostname === "localhost"
         ) {
           return url;
         }
       } catch {
-        // Fallback to baseUrl
+        // Fallback to canonicalBase
       }
-      return baseUrl;
+      return canonicalBase;
     }
   },
   pages: {
     signIn: "/signin",
+    error: "/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
