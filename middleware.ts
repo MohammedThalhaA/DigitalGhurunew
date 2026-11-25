@@ -7,15 +7,19 @@ export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
 
-  // 1. Enforce canonical apex domain: redirect www.digitalghuru.com to https://digitalghuru.com
-  // 2. Redirect legacy .in domains to canonical https://digitalghuru.com
-  if (
-    host.startsWith('www.digitalghuru.com') ||
-    host.includes('digitalghuru.in') ||
-    host.startsWith('www.')
-  ) {
+  // Enforce apex domain for each respective TLD:
+  // www.digitalghuru.com -> digitalghuru.com
+  // www.digitalghuru.in -> digitalghuru.in
+  if (host.startsWith('www.digitalghuru.com')) {
     const url = request.nextUrl.clone();
     url.host = 'digitalghuru.com';
+    url.protocol = 'https:';
+    url.port = '';
+    return NextResponse.redirect(url, 301);
+  }
+  if (host.startsWith('www.digitalghuru.in')) {
+    const url = request.nextUrl.clone();
+    url.host = 'digitalghuru.in';
     url.protocol = 'https:';
     url.port = '';
     return NextResponse.redirect(url, 301);

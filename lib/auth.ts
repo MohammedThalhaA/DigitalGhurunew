@@ -225,8 +225,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async redirect({ url, baseUrl }) {
-      const canonicalBase = (baseUrl || "https://digitalghuru.com").replace(/^http:\/\/(www\.)?digitalghuru\.com/, "https://digitalghuru.com");
-      if (url.startsWith("/")) return `${canonicalBase}${url}`;
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
       try {
         const parsed = new URL(url);
         if (
@@ -237,9 +236,9 @@ export const authOptions: NextAuthOptions = {
           return url;
         }
       } catch {
-        // Fallback to canonicalBase
+        // Fallback to baseUrl
       }
-      return canonicalBase;
+      return baseUrl;
     }
   },
   pages: {
