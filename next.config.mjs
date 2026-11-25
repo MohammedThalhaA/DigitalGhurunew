@@ -200,6 +200,10 @@ const nextConfig = {
     serverComponentsExternalPackages: ['pg'],
   },
   webpack: (config, { isServer, dev }) => {
+    if (dev) {
+      // Use in-memory webpack cache in dev to prevent PackFileCacheStrategy ENOENT/chunk loss on Windows/OneDrive
+      config.cache = { type: 'memory' };
+    }
     if (!isServer && !dev) {
       config.optimization = config.optimization || {};
       config.optimization.splitChunks = {
