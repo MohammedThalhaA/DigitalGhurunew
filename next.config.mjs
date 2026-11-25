@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['gsap', '@studio-freight/lenis'],
   compress: true,
   images: {
     formats: ['image/avif', 'image/webp'],

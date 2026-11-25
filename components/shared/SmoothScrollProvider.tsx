@@ -1,41 +1,69 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScrollProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<any>(null);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
+    let isMounted = true;
+    let cleanup: (() => void) | undefined;
+
+    Promise.all([
+      import("@studio-freight/lenis"),
+      import("gsap"),
+      import("gsap/ScrollTrigger"),
+    ]).then(([lenisMod, gsapMod, scrollTriggerMod]) => {
+      if (!isMounted) return;
+
+      const Lenis = lenisMod.default;
+      const gsap = gsapMod.gsap || gsapMod.default;
+      const ScrollTrigger = scrollTriggerMod.ScrollTrigger;
+
+      if (gsap && ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+      }
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      lenisRef.current = lenis;
+      (window as any).lenis = lenis;
+
+      if (ScrollTrigger) {
+        lenis.on("scroll", ScrollTrigger.update);
+      }
+
+      const rafCallback = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+
+      if (gsap) {
+        gsap.ticker.add(rafCallback);
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      cleanup = () => {
+        lenis.destroy();
+        if (gsap) gsap.ticker.remove(rafCallback);
+        if (ScrollTrigger) {
+          ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
+        }
+      };
+    }).catch((err) => {
+      console.warn("Smooth scroll initialization skipped:", err);
     });
-
-    lenisRef.current = lenis;
-    (window as any).lenis = lenis;
-
-    // Sync Lenis scroll position to GSAP ScrollTrigger
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      isMounted = false;
+      cleanup?.();
     };
   }, []);
 

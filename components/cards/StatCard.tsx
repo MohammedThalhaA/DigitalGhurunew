@@ -1,10 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface StatCardProps {
   value: number;
@@ -34,26 +30,48 @@ export default function StatCard({
   useEffect(() => {
     if (!cardRef.current || hasAnimated.current) return;
 
-    const trigger = ScrollTrigger.create({
-      trigger: cardRef.current,
-      start: "top 85%",
-      once: true,
-      onEnter: () => {
-        hasAnimated.current = true;
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: value,
-          duration: 2,
-          ease: "power2.out",
-          onUpdate: () => {
-            setDisplayValue(Math.round(obj.val));
+    let triggerInstance: any = null;
+    let isMounted = true;
+
+    Promise.all([
+      import("gsap"),
+      import("gsap/ScrollTrigger"),
+    ]).then(([gsapMod, scrollTriggerMod]) => {
+      if (!isMounted || !cardRef.current) return;
+
+      const gsap = gsapMod.gsap || gsapMod.default;
+      const ScrollTrigger = scrollTriggerMod.ScrollTrigger;
+
+      if (gsap && ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        triggerInstance = ScrollTrigger.create({
+          trigger: cardRef.current,
+          start: "top 85%",
+          once: true,
+          onEnter: () => {
+            hasAnimated.current = true;
+            const obj = { val: 0 };
+            gsap.to(obj, {
+              val: value,
+              duration: 2,
+              ease: "power2.out",
+              onUpdate: () => {
+                if (isMounted) setDisplayValue(Math.round(obj.val));
+              },
+            });
           },
         });
-      },
+      } else {
+        setDisplayValue(value);
+      }
+    }).catch(() => {
+      if (isMounted) setDisplayValue(value);
     });
 
     return () => {
-      trigger.kill();
+      isMounted = false;
+      if (triggerInstance) triggerInstance.kill();
     };
   }, [value]);
 
