@@ -281,18 +281,7 @@ const nextConfig = {
             value: 'www.digitalghuru.in',
           },
         ],
-        destination: 'https://digitalghuru.com/:path*',
-        permanent: true,
-      },
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'digitalghuru.in',
-          },
-        ],
-        destination: 'https://digitalghuru.com/:path*',
+        destination: 'https://digitalghuru.in/:path*',
         permanent: true,
       },
     ];
