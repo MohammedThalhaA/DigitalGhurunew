@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { signIn, signOut, getSession } from "next-auth/react";
+import { signIn, signOut, getSession, useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/Button";
 import { Mail, Lock, User, ArrowLeft, Loader2 } from "lucide-react";
@@ -16,10 +16,23 @@ interface AuthCardProps {
 function AuthCardInner({ initialMode }: AuthCardProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
   const [isSignIn, setIsSignIn] = useState(initialMode === "signin");
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Auto-redirect if already logged in (7-day persistent session)
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      const role = (session.user as any).role;
+      if (role === "ADMIN") {
+        router.replace("/admin/dashboard");
+      } else {
+        router.replace("/student/dashboard");
+      }
+    }
+  }, [status, session, router]);
 
   // Check for NextAuth error queries (e.g., from Google OAuth redirection)
   useEffect(() => {

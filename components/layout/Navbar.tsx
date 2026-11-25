@@ -409,22 +409,45 @@ export default function Navbar() {
 
         {/* ── Desktop CTA ── */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link
-            href="/signin"
-            className="text-base font-heading font-semibold text-white/90 hover:text-white transition-colors"
-          >
-            Log In
-          </Link>
-          <Button variant="primary" size="md" href="/signup">
-            Sign Up
-          </Button>
+          {session?.user ? (
+            <Button
+              variant="primary"
+              size="md"
+              href={(session.user as any).role === "ADMIN" ? "/admin/dashboard" : "/student/dashboard"}
+              className="shadow-md"
+            >
+              {(session.user as any).role === "ADMIN" ? "Admin Portal" : "Student Dashboard"}
+            </Button>
+          ) : (
+            <>
+              <Link
+                href="/signin"
+                className="text-base font-heading font-semibold text-white/90 hover:text-white transition-colors"
+              >
+                Log In
+              </Link>
+              <Button variant="primary" size="md" href="/signup">
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
 
         {/* ── Mobile: CTA + Hamburger ── */}
         <div className="flex items-center gap-3 lg:hidden">
-          <Button variant="primary" size="sm" href="/signin">
-            Log In
-          </Button>
+          {session?.user ? (
+            <Button
+              variant="primary"
+              size="sm"
+              href={(session.user as any).role === "ADMIN" ? "/admin/dashboard" : "/student/dashboard"}
+            >
+              Dashboard
+            </Button>
+          ) : (
+            <Button variant="primary" size="sm" href="/signin">
+              Log In
+            </Button>
+          )}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 text-white hover:text-brand-gold transition-colors"
@@ -460,22 +483,35 @@ export default function Navbar() {
               
               {/* Mobile Auth Links */}
               <div className="border-t border-ink-100 mt-2 p-6 flex flex-col gap-3">
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  href="/signin"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Log In
-                </Button>
-                <Button
-                  variant="primary"
-                  className="w-full"
-                  href="/signup"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Sign Up
-                </Button>
+                {session?.user ? (
+                  <Button
+                    variant="primary"
+                    className="w-full"
+                    href={(session.user as any).role === "ADMIN" ? "/admin/dashboard" : "/student/dashboard"}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {(session.user as any).role === "ADMIN" ? "Admin Portal" : "Student Dashboard"}
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      href="/signin"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Log In
+                    </Button>
+                    <Button
+                      variant="primary"
+                      className="w-full"
+                      href="/signup"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Sign Up
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

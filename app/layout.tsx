@@ -4,6 +4,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
 import { Providers } from "@/components/shared/Providers";
+import GoogleOneTap from "@/components/auth/GoogleOneTap";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -201,6 +202,7 @@ export default function RootLayout({
           `}
         </Script>
         <Providers>
+          <GoogleOneTap />
           <SmoothScrollProvider>
             {children}
             <script

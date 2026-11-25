@@ -175,11 +175,99 @@ export const authOptions: NextAuthOptions = {
           throw new Error(error.message || "Invalid credentials or Database Unreachable");
         }
       }
-    })
+    }),
+    CredentialsProvider({
+      id: "google-one-tap",
+      name: "Google One Tap",
+      credentials: {
+        credential: { label: "Credential", type: "text" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.credential) {
+          throw new Error("No credential provided");
+        }
+
+        try {
+          const res = await fetch(
+            `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credentials.credential)}`
+          );
+          if (!res.ok) {
+            throw new Error("Google ID token verification failed");
+          }
+          const payload = await res.json();
+          const validClientIds = [
+            process.env.GOOGLE_CLIENT_ID,
+            process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+            "520891313576-k0o8k52lliongf8efq6ba30554g1reif.apps.googleusercontent.com",
+          ].filter(Boolean);
+
+          if (!validClientIds.includes(payload.aud)) {
+            console.error("One Tap token audience mismatch:", payload.aud, "not in", validClientIds);
+            throw new Error("Invalid token audience");
+          }
+
+          const cleanEmail = (payload.email || "").toLowerCase().trim();
+          if (!cleanEmail) {
+            throw new Error("No email in Google ID token");
+          }
+
+          if (cleanEmail === ADMIN_EMAIL) {
+            throw new Error("Admin accounts must sign in using email and password.");
+          }
+
+          const userRes = await pool.query("SELECT * FROM users WHERE LOWER(email) = LOWER($1)", [cleanEmail]);
+          let user = userRes.rows[0];
+
+          if (user) {
+            if (user.role === "ADMIN") {
+              throw new Error("Admin accounts must sign in using email and password.");
+            }
+            if (user.isBlocked) {
+              throw new Error("Your account has been blocked. Please contact support.");
+            }
+            await pool.query(
+              'UPDATE users SET last_login = NOW(), image = COALESCE(image, $1) WHERE id = $2',
+              [payload.picture || null, user.id]
+            );
+          } else {
+            const createRes = await pool.query(
+              'INSERT INTO users (name, email, "emailVerified", image, role, last_login) VALUES ($1, $2, NOW(), $3, $4, NOW()) RETURNING *',
+              [payload.name || "Student", cleanEmail, payload.picture || null, 'STUDENT']
+            );
+            user = createRes.rows[0];
+          }
+
+          // Link in accounts table if not already linked
+          try {
+            await pool.query(
+              `INSERT INTO accounts ("userId", type, provider, "providerAccountId", id_token)
+               VALUES ($1, 'oauth', 'google', $2, $3)
+               ON CONFLICT (provider, "providerAccountId") DO UPDATE SET
+                 id_token = EXCLUDED.id_token`,
+              [user.id, payload.sub, credentials.credential]
+            );
+          } catch (accErr) {
+            console.warn("Account link notice (non-fatal):", accErr);
+          }
+
+          return {
+            id: user.id.toString(),
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            role: user.role || 'STUDENT',
+          };
+        } catch (err: any) {
+          console.error("Google One Tap authorization error:", err);
+          throw new Error(err.message || "Failed to authenticate with Google One Tap");
+        }
+      },
+    }),
   ],
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 7 * 24 * 60 * 60, // 7 days logged-in persistent session
+    updateAge: 24 * 60 * 60, // Refresh session age every 24 hours
   },
   useSecureCookies: process.env.NODE_ENV === "production" || process.env.NEXTAUTH_URL?.startsWith("https://"),
   callbacks: {
