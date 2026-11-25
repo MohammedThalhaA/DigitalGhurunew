@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, ChevronDown, Zap, Search, Menu, X, Home, BookOpen, Users, Trophy, LifeBuoy } from "lucide-react";
+import { Bell, ChevronDown, Zap, Search, Menu, X, Home, BookOpen, Users, Newspaper, Trophy, LifeBuoy } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
@@ -12,6 +12,7 @@ const navLinks = [
   { name: "Dashboard", href: "/student/dashboard", icon: Home, shortName: "Home" },
   { name: "My Courses", href: "/student/courses", icon: BookOpen, shortName: "Courses" },
   { name: "Community", href: "/student/community", icon: Users, shortName: "Social" },
+  { name: "Blog", href: "/student/blog", icon: Newspaper, shortName: "Blog" },
   { name: "Leaderboard", href: "/student/leaderboard", icon: Trophy, shortName: "Ranks" },
   { name: "Support", href: "/student/support", icon: LifeBuoy, shortName: "Help" },
 ];
@@ -103,14 +104,14 @@ export default function LMSNavbar() {
         </div>
 
         {/* Center: Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center space-x-2">
+        <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || pathname?.startsWith(link.href + '/');
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`px-5 py-2.5 text-[15px] font-heading font-semibold rounded-full transition-all duration-300 relative group ${
+                className={`px-3.5 xl:px-5 py-2.5 text-[15px] font-heading font-semibold rounded-full transition-all duration-300 relative group ${
                   isActive 
                     ? "text-brand-gold" 
                     : "text-white/80 hover:text-white"
@@ -288,7 +289,7 @@ export default function LMSNavbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`flex flex-col items-center justify-center w-[20%] h-full gap-1 transition-all duration-300 ${isActive ? 'text-[#FF5C00] -translate-y-1' : 'text-gray-400 hover:text-gray-600'}`}
+              className={`flex flex-col items-center justify-center flex-1 h-full gap-1 transition-all duration-300 ${isActive ? 'text-[#FF5C00] -translate-y-1' : 'text-gray-400 hover:text-gray-600'}`}
             >
               <div className={`relative p-1.5 rounded-full transition-colors ${isActive ? 'bg-gradient-to-r from-[#FFB800] to-[#FF5C00] shadow-md shadow-orange-500/30' : ''}`}>
                  <Icon className={`h-5 w-5 ${isActive ? 'text-white' : ''}`} />
