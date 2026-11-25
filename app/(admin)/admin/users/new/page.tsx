@@ -45,7 +45,7 @@ export default function CreateUserPage() {
             <UserPlus className="h-6 w-6 text-brand-blue" />
             Create New User
           </h1>
-          <p className="font-body text-ink-500 mt-1">Manually add a student or admin to the platform.</p>
+          <p className="font-body text-ink-500 mt-1">Manually add a student to the platform.</p>
         </div>
 
         <div className="p-8">
@@ -100,19 +100,7 @@ export default function CreateUserPage() {
               <p className="text-sm text-ink-400">The user can change this later in their profile settings.</p>
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="role" className="block text-sm font-bold text-ink-900">
-                User Role
-              </label>
-              <select
-                id="role"
-                name="role"
-                className="w-full px-4 py-3 rounded-xl border border-ink-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all bg-white"
-              >
-                <option value="STUDENT">Student</option>
-                <option value="ADMIN">Admin</option>
-              </select>
-            </div>
+            <input type="hidden" name="role" value="STUDENT" />
 
             <div className="pt-6 border-t border-ink-100 flex items-center justify-end gap-4">
               <Link

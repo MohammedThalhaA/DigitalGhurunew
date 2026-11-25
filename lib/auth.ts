@@ -19,10 +19,15 @@ import pool from "@/lib/db";
 import bcrypt from "bcryptjs";
 import type { Adapter } from "next-auth/adapters";
 
+const ADMIN_EMAIL = "contact@digitalghuru.in";
+
 export const authOptions: NextAuthOptions = {
   adapter: {
     async createUser(user: any) {
       const cleanEmail = user.email ? user.email.toLowerCase().trim() : user.email;
+      if (cleanEmail === ADMIN_EMAIL) {
+        throw new Error("Admin account cannot be created via OAuth.");
+      }
       const { rows } = await pool.query(
         'INSERT INTO users (name, email, "emailVerified", image, role) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [user.name || "Student", cleanEmail, user.emailVerified || new Date(), user.image, 'STUDENT']
@@ -47,9 +52,17 @@ export const authOptions: NextAuthOptions = {
         [provider, providerAccountId]
       );
       if (!rows[0]) return null;
+      if (rows[0].role === "ADMIN" || rows[0].email?.toLowerCase().trim() === ADMIN_EMAIL) {
+        return null;
+      }
       return { ...rows[0], id: rows[0].id.toString() };
     },
     async linkAccount(account: any) {
+      const userCheck = await pool.query('SELECT role, email FROM users WHERE id = $1', [Number(account.userId)]);
+      const targetUser = userCheck.rows[0];
+      if (targetUser && (targetUser.role === "ADMIN" || targetUser.email?.toLowerCase().trim() === ADMIN_EMAIL)) {
+        throw new Error("Admin accounts cannot be linked to OAuth providers.");
+      }
       await pool.query(
         `INSERT INTO accounts (
           "userId", type, provider, "providerAccountId", access_token, token_type, id_token, refresh_token, scope, expires_at, session_state
@@ -134,6 +147,10 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Invalid credentials");
           }
 
+          if (user.role === "ADMIN" && user.email?.toLowerCase().trim() !== ADMIN_EMAIL) {
+            throw new Error("Invalid credentials");
+          }
+
           if (user.isBlocked) {
             throw new Error("Your account has been blocked. Please contact support.");
           }
@@ -166,17 +183,44 @@ export const authOptions: NextAuthOptions = {
   },
   useSecureCookies: process.env.NODE_ENV === "production" || process.env.NEXTAUTH_URL?.startsWith("https://"),
   callbacks: {
+    async signIn({ user, account, profile }) {
+      const emailToCheck = ((profile as any)?.email || user?.email || "").toLowerCase().trim();
+      if (account?.provider !== "credentials") {
+        // Admin portal login is strictly email & password only (contact@digitalghuru.in)
+        if (emailToCheck === ADMIN_EMAIL || (user as any)?.role === "ADMIN") {
+          return "/signin?error=AdminOAuthDisabled";
+        }
+        if (emailToCheck) {
+          const { rows } = await pool.query(
+            'SELECT role, "isBlocked" FROM users WHERE LOWER(email) = LOWER($1)',
+            [emailToCheck]
+          );
+          if (rows[0]?.role === "ADMIN") {
+            return "/signin?error=AdminOAuthDisabled";
+          }
+          if (rows[0]?.isBlocked) {
+            return "/signin?error=AccountBlocked";
+          }
+        }
+      }
+      if ((user as any)?.isBlocked) {
+        return "/signin?error=AccountBlocked";
+      }
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.role = (user as any).role || "STUDENT";
+        const userEmail = (user.email || token.email || "").toString().toLowerCase().trim();
+        token.role = (user as any).role === "ADMIN" && userEmail === ADMIN_EMAIL ? "ADMIN" : "STUDENT";
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         (session.user as any).id = token.id;
-        (session.user as any).role = token.role || "STUDENT";
+        const sessionEmail = (session.user.email || "").toLowerCase().trim();
+        (session.user as any).role = token.role === "ADMIN" && sessionEmail === ADMIN_EMAIL ? "ADMIN" : "STUDENT";
       }
       return session;
     },

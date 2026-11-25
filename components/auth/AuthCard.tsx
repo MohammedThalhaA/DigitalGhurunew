@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { signIn, getSession } from "next-auth/react";
+import { signIn, signOut, getSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/Button";
 import { Mail, Lock, User, ArrowLeft, Loader2 } from "lucide-react";
@@ -27,6 +27,10 @@ function AuthCardInner({ initialMode }: AuthCardProps) {
     if (errorParam) {
       if (errorParam === "OAuthAccountNotLinked") {
         setError("This email is already registered with a password. Please sign in with your email and password.");
+      } else if (errorParam === "AdminOAuthDisabled") {
+        setError("Admin accounts must sign in using your email and password.");
+      } else if (errorParam === "AccountBlocked") {
+        setError("Your account has been blocked. Please contact support.");
       } else if (errorParam === "OAuthCallback" || errorParam === "OAuthSignin") {
         setError("Google Sign-In could not be completed. Please try again.");
       } else if (errorParam === "AccessDenied") {
@@ -57,6 +61,11 @@ function AuthCardInner({ initialMode }: AuthCardProps) {
     try {
       setGoogleLoading(true);
       setError("");
+      // Clear any active session (e.g. Admin cookie) so OAuth creates/logs into the chosen Google account cleanly
+      const existingSession = await getSession();
+      if (existingSession) {
+        await signOut({ redirect: false });
+      }
       await signIn("google", { callbackUrl: "/student/dashboard" });
     } catch (err: any) {
       setError(err?.message || "Failed to connect with Google. Please try again.");
