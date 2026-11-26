@@ -169,6 +169,35 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${outfit.variable} font-body antialiased`} suppressHydrationWarning>
+        {/* Google Tag Manager (GTM) */}
+        {(() => {
+          const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-MD9RTNHL";
+          return (
+            <>
+              <Script
+                id="google-tag-manager"
+                strategy="afterInteractive"
+                src={`https://www.googletagmanager.com/gtm.js?id=${gtmId}`}
+              />
+              <Script id="gtm-datalayer" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                `}
+              </Script>
+              <noscript>
+                <iframe
+                  src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+                  height="0"
+                  width="0"
+                  style={{ display: "none", visibility: "hidden" }}
+                />
+              </noscript>
+            </>
+          );
+        })()}
         {/* Google Analytics 4 (GA4) - Non-blocking async loading */}
         {(() => {
           const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-DGHRU20261";
