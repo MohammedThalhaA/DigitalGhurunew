@@ -314,6 +314,12 @@ export default function Navbar() {
   );
   const pathname = usePathname();
 
+  const homeUrl = session?.user
+    ? (session.user as any).role === "ADMIN"
+      ? "/admin/dashboard"
+      : "/student/dashboard"
+    : "/";
+
   // Fetch courses and build dynamic nav (cached in memory)
   useEffect(() => {
     if (cachedNavCourses) return;
@@ -369,7 +375,7 @@ export default function Navbar() {
         className="section-container flex items-center justify-between h-[88px]"
       >
         {/* ── Logo ── */}
-        <Link href="/" className="flex items-center shrink-0">
+        <Link href={homeUrl} className="flex items-center shrink-0">
           <Image
             src="/logo-navbar.webp"
             alt="Digital Ghuru Logo"
@@ -391,15 +397,15 @@ export default function Navbar() {
             ) : (
               <Link
                 key={item.label}
-                href={item.href || "/"}
+                href={item.href === "/" ? homeUrl : (item.href || "/")}
                 className={`px-3 py-2 text-base font-heading font-semibold transition-colors duration-200 ${
-                  pathname === item.href
+                  pathname === (item.href === "/" ? homeUrl : item.href)
                     ? "text-brand-gold"
                     : "text-white/90 hover:text-white"
                 }`}
               >
                 {item.label}
-                {pathname === item.href && (
+                {pathname === (item.href === "/" ? homeUrl : item.href) && (
                   <span className="block h-0.5 mt-0.5 bg-brand-gold rounded-full" />
                 )}
               </Link>

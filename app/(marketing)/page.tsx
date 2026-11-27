@@ -13,6 +13,7 @@ import TestimonialCarousel from "@/components/sections/TestimonialCarousel";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 import Button from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useCourseGate } from "@/components/shared/useCourseGate";
 
 // Newly integrated sections
@@ -202,6 +203,20 @@ let cachedHomePageCourses: typeof initialCourses | null = null;
 
 export default function HomePage() {
   const router = useRouter();
+  const { data: session, status } = useSession();
+
+  // If already registered / logged in, immediately redirect to dashboard
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      const role = (session.user as any).role;
+      if (role === "ADMIN") {
+        router.replace("/admin/dashboard");
+      } else {
+        router.replace("/student/dashboard");
+      }
+    }
+  }, [status, session, router]);
+
   const { triggerAction, GateModalComponent } = useCourseGate("Digital Ghuru Courses");
   const [courseList, setCourseList] = useState<typeof initialCourses>(() => cachedHomePageCourses || initialCourses);
   const [coursesLoading, setCoursesLoading] = useState(() => !cachedHomePageCourses);

@@ -1,11 +1,32 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 
 const cspHeader = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://apis.google.com https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms https://checkout.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; frame-src 'self' https://accounts.google.com https://www.google.com https://maps.google.com https://checkout.razorpay.com https://api.razorpay.com https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com; connect-src 'self' https: wss:; media-src 'self' https: data: blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://accounts.google.com https://checkout.razorpay.com https://api.razorpay.com; frame-ancestors 'self';";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
+
+  // Direct already registered / logged-in users straight to their dashboard when visiting the website root or auth pages
+  if (pathname === '/' || pathname === '/signin' || pathname === '/signup') {
+    try {
+      const isSecure = Boolean(request.cookies.get('__Secure-next-auth.session-token'));
+      const token = await getToken({
+        req: request,
+        secret: process.env.NEXTAUTH_SECRET,
+        secureCookie: isSecure,
+      });
+
+      if (token) {
+        const dashboardUrl =
+          token.role === 'ADMIN' ? '/admin/dashboard' : '/student/dashboard';
+        return NextResponse.redirect(new URL(dashboardUrl, request.url));
+      }
+    } catch (err) {
+      console.error('Middleware session check error:', err);
+    }
+  }
 
   // Enforce apex domain for each respective TLD:
   // www.digitalghuru.com -> digitalghuru.com

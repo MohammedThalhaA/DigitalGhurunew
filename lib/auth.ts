@@ -269,6 +269,22 @@ export const authOptions: NextAuthOptions = {
     maxAge: 7 * 24 * 60 * 60, // 7 days logged-in persistent session
     updateAge: 24 * 60 * 60, // Refresh session age every 24 hours
   },
+  cookies: {
+    sessionToken: {
+      name:
+        process.env.NODE_ENV === "production" || process.env.NEXTAUTH_URL?.startsWith("https://")
+          ? "__Secure-next-auth.session-token"
+          : "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure:
+          process.env.NODE_ENV === "production" || process.env.NEXTAUTH_URL?.startsWith("https://"),
+        maxAge: 7 * 24 * 60 * 60, // 7 days in seconds
+      },
+    },
+  },
   useSecureCookies: process.env.NODE_ENV === "production" || process.env.NEXTAUTH_URL?.startsWith("https://"),
   callbacks: {
     async signIn({ user, account, profile }) {
