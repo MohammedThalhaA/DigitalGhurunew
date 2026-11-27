@@ -70,7 +70,7 @@ export default function FAQAccordion({
         {/* Header */}
         <div className="text-center mb-12">
           <p className="eyebrow mb-3">{eyebrow}</p>
-          <h2 className="heading-lg">{title}</h2>
+          <h3 className="heading-lg">{title}</h3>
         </div>
 
         {/* Accordion */}

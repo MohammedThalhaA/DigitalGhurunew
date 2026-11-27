@@ -37,9 +37,9 @@ export default function LinearWhoIsThisFor({ audiences, courseTitle }: LinearWho
         <span className="inline-block mb-2 uppercase tracking-wide text-sm font-bold text-brand-blue">
           Target Audience
         </span>
-        <h2 className="heading-lg text-ink-900 max-w-2xl mx-auto">
+        <h3 className="heading-lg text-ink-900 max-w-2xl mx-auto">
           {courseTitle ? `Who Should Take ${courseTitle}?` : "Tailored For Diverse Career Paths"}
-        </h2>
+        </h3>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

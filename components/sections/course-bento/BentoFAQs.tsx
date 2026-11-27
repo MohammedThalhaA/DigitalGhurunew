@@ -20,12 +20,12 @@ export default function BentoFAQs({ faqs }: BentoFAQsProps) {
       <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-ink-100/50 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.04)] relative overflow-hidden">
         
         <div className="relative z-10">
-          <h2 className="text-3xl font-black text-ink-900 mb-8 flex items-center gap-3">
+          <h3 className="text-3xl font-black text-ink-900 mb-8 flex items-center gap-3">
             <div className="p-3 bg-purple-100/50 rounded-2xl">
               <HelpCircle className="h-6 w-6 text-purple-600" />
             </div>
             Frequently Asked Questions
-          </h2>
+          </h3>
           
           <div className="grid grid-cols-1 gap-4">
             {faqs.map((faq, idx) => {

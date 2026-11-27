@@ -44,9 +44,9 @@ export default function LinearAIProfileBuilding({ title, description, items, cou
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="text-center mb-12">
-        <h2 className="heading-lg text-ink-900 mb-4">
+        <h3 className="heading-lg text-ink-900 mb-4">
           {title || (courseTitle ? `AI Profile Building for ${courseTitle}` : "AI Enhanced Profile Building")}
-        </h2>
+        </h3>
         <p className="body-lg max-w-2xl mx-auto text-ink-500">
           {description || "Use smart AI tools to build your resume, portfolio, and LinkedIn profile to land top jobs faster."}
         </p>

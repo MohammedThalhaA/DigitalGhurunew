@@ -51,7 +51,7 @@ export default function TestimonialCarousel({
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="eyebrow mb-3">{eyebrow}</p>
-            <h2 className="heading-lg">{title}</h2>
+            <h3 className="heading-lg">{title}</h3>
           </div>
 
           {/* Navigation Arrows */}

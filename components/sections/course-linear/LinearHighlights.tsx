@@ -32,9 +32,9 @@ export default function LinearHighlights({ highlights, courseTitle }: LinearHigh
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="mb-10">
-        <h2 className="heading-md text-ink-900 mb-2">
+        <h3 className="heading-md text-ink-900 mb-2">
           {courseTitle ? `${courseTitle} Highlights` : "Key Program Highlights"}
-        </h2>
+        </h3>
         <p className="body-lg text-ink-500">
           Everything you need to succeed in the digital ecosystem.
         </p>

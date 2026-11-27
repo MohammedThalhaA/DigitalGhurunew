@@ -316,9 +316,9 @@ export default function BlogListClient({ initialBlogs }: BlogListClientProps) {
                 Hands-On Agency Training
               </span>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
+              <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
                 Want to Master These Skills With Live Campaigns?
-              </h2>
+              </h3>
 
               <p className="font-body text-base sm:text-lg text-white/90 leading-relaxed">
                 Join our certified AI-Powered Digital Marketing program. Work on real ₹300 Cr+ client budgets, gain live portfolio proof, and get 100% placement support.

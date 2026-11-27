@@ -70,9 +70,9 @@ export default function DesignedFor() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="eyebrow mb-3">WHO IS THIS PROGRAM FOR?</p>
-          <h2 className="heading-lg mb-4 text-ink-900">
+          <h3 className="heading-lg mb-4 text-ink-900">
             Tailored For Growth & Diverse Career Paths
-          </h2>
+          </h3>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             Whether you are starting from scratch or looking to multiply your current business revenue, Digital Ghuru adapts to your goals.
           </p>

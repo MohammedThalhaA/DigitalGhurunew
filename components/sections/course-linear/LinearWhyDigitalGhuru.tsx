@@ -45,7 +45,7 @@ export default function LinearWhyDigitalGhuru({ title, reasons }: LinearWhyDigit
 
   return (
     <div className="py-14 border-b border-ink-200">
-      <h2 className="heading-md text-ink-900 text-center mb-12">{title}</h2>
+      <h3 className="heading-md text-ink-900 text-center mb-12">{title}</h3>
 
       {/* Desktop Tree Layout */}
       <div className="hidden md:block relative">

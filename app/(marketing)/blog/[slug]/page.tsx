@@ -241,7 +241,6 @@ export default async function BlogPostPage({ params }: PageProps) {
                 width={1200}
                 height={500}
                 priority
-                unoptimized={blog.cover_image.startsWith("/uploads/")}
                 sizes="(max-width: 1024px) 100vw, 1200px"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -339,9 +338,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
                   Keep Learning
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-heading font-black text-ink-900">
+                <h3 className="text-2xl sm:text-3xl font-heading font-black text-ink-900">
                   Articles Related to {blog.title.split(/[:\-—]/)[0].trim().slice(0, 32)}
-                </h2>
+                </h3>
               </div>
               <Link
                 href="/blog"

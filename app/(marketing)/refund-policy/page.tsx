@@ -55,27 +55,27 @@ export default function RefundPolicyPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl font-bold text-ink-900 mb-4">
+              <h3 className="font-display text-2xl font-bold text-ink-900 mb-4">
                 2. Refund Eligibility
-              </h2>
+              </h3>
               <p className="text-ink-600 leading-relaxed">
                 Fees cannot be refunded once a batch begins. If you pay in installments, you must complete your planned schedule. We do not offer partial refunds if you leave early.
               </p>
             </div>
 
             <div>
-              <h2 className="font-display text-2xl font-bold text-ink-900 mb-4">
+              <h3 className="font-display text-2xl font-bold text-ink-900 mb-4">
                 3. Batch Transfer Policy
-              </h2>
+              </h3>
               <p className="text-ink-600 leading-relaxed">
                 Life can be unpredictable. You can move your seat to a future batch within 12 months for free. Please email your request to <ObfuscatedEmail className="font-semibold text-brand-blue hover:underline" /> at least 3 days before classes start.
               </p>
             </div>
 
             <div>
-              <h2 className="font-display text-2xl font-bold text-ink-900 mb-4">
+              <h3 className="font-display text-2xl font-bold text-ink-900 mb-4">
                 4. Course Cancellation by Digital Ghuru
-              </h2>
+              </h3>
               <p className="text-ink-600 leading-relaxed">
                 If Digital Ghuru ever cancels a batch, you receive a full 100% refund. We return your money within 7 to 10 business days.
               </p>

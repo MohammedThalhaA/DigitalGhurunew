@@ -61,7 +61,7 @@ export default function SupportPage() {
 
         {/* Right Side: Contact Methods */}
         <div className="space-y-6">
-          <h2 className="font-display text-lg font-bold text-ink-900 tracking-tight">Still need help?</h2>
+          <h3 className="font-display text-lg font-bold text-ink-900 tracking-tight">Still need help?</h3>
           
           <div className="bg-white rounded-2xl border border-ink-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 flex flex-col items-center text-center">
             <div className="h-16 w-16 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center mb-4">

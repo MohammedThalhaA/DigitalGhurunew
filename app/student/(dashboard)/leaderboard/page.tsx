@@ -157,7 +157,7 @@ export default async function LeaderboardPage() {
                <Trophy className="h-5 w-5 text-amber-500" />
             </div>
             <div>
-              <h2 className="font-display text-base font-bold text-ink-900">Leaderboard</h2>
+              <h3 className="font-display text-base font-bold text-ink-900">Leaderboard</h3>
               <p className="font-heading text-xs font-semibold text-ink-400 uppercase tracking-[0.15em]">Top performers based on their progress.</p>
             </div>
           </div>

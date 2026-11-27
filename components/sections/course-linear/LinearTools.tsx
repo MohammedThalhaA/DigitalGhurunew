@@ -47,9 +47,9 @@ export default function LinearTools({ tools, courseTitle }: LinearToolsProps) {
 
   return (
     <div className="py-10 border-b border-ink-200">
-      <h2 className="heading-md text-ink-900 mb-6">
+      <h3 className="heading-md text-ink-900 mb-6">
         {courseTitle ? `Tools Mastered in ${courseTitle}` : "Tools & Technologies You Will Master"}
-      </h2>
+      </h3>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {toolList.map((toolName, idx) => {

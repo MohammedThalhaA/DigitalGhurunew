@@ -216,7 +216,7 @@ export default async function StudentDashboardPage() {
       {recommendedCourses.length > 0 && (
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display text-lg font-bold text-ink-900">Recommended Courses</h2>
+            <h3 className="font-display text-lg font-bold text-ink-900">Recommended Courses</h3>
             <Link href="/student/browse" className="font-heading text-xs font-semibold uppercase tracking-[0.15em] text-brand-blue hover:text-blue-700 transition-colors">
               Browse All
             </Link>

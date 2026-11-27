@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Sign In to Student Portal",
   description: "Sign in to your Digital Ghuru student account to access course modules, live campaigns, assignments, and placement resources.",
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   alternates: {

@@ -90,7 +90,7 @@ export default function ToolsHubPage() {
 
       <section className="section-padding bg-slate-50 border-t border-slate-100">
         <div className="section-container max-w-4xl">
-          <h2 className="heading-md text-ink-900 mb-6 text-center font-display">Why Use Our Free Marketing Tools?</h2>
+          <h3 className="heading-md text-ink-900 mb-6 text-center font-display">Why Use Our Free Marketing Tools?</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200">
               <h3 className="font-display text-lg font-bold text-ink-900 mb-2">Fast Answers</h3>

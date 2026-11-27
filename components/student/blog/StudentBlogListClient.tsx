@@ -124,7 +124,6 @@ export default function StudentBlogListClient({ initialBlogs }: StudentBlogListC
                 title={featuredBlog.title}
                 width={700}
                 height={394}
-                unoptimized={featuredBlog.cover_image?.startsWith("/uploads/")}
                 sizes="(max-width: 1024px) 100vw, 600px"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />

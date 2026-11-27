@@ -30,9 +30,9 @@ export default function CertificateSection() {
             className="lg:col-span-5 space-y-6"
           >
             <p className="eyebrow">CREDENTIALS</p>
-            <h2 className="heading-lg text-ink-900">
+            <h3 className="heading-lg text-ink-900">
               Get Certified, Get Recruited
-            </h2>
+            </h3>
             <p className="body-lg text-ink-500">
               Your Digital Ghuru certificate is more than just paper—it is verified proof of your ability to manage live campaigns, budget scales, and AI-driven growth.
             </p>

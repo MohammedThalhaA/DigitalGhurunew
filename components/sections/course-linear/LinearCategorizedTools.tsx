@@ -32,9 +32,9 @@ export default function LinearCategorizedTools({ groups, courseTitle }: LinearCa
         <span className="inline-block mb-2 uppercase tracking-wide text-sm font-bold text-brand-blue">
           Technologies You Will Master
         </span>
-        <h2 className="heading-lg text-ink-900 max-w-2xl mx-auto">
+        <h3 className="heading-lg text-ink-900 max-w-2xl mx-auto">
           {courseTitle ? `Tools & Platforms in ${courseTitle}` : "Tools & Platforms Taught in This Course"}
-        </h2>
+        </h3>
         <p className="body-lg text-ink-500 max-w-3xl mx-auto mt-2 text-sm sm:text-base">
           Gain hands-on proficiency with industry-leading software, automated workflows, and AI platforms.
         </p>

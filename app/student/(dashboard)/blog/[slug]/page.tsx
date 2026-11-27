@@ -17,7 +17,7 @@ interface PageProps {
 
 export default async function StudentBlogDetailPage({ params }: PageProps) {
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
+  if (!session?.user) {
     return null;
   }
 
@@ -72,7 +72,6 @@ export default async function StudentBlogDetailPage({ params }: PageProps) {
             width={1200}
             height={514}
             priority
-            unoptimized={blog.cover_image.startsWith("/uploads/")}
             sizes="(max-width: 1024px) 100vw, 1024px"
             className="w-full h-full object-cover"
           />
@@ -138,7 +137,7 @@ export default async function StudentBlogDetailPage({ params }: PageProps) {
               <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
                 Keep Reading
               </span>
-              <h2 className="text-2xl font-display font-bold text-ink-900">More from the Blog</h2>
+              <h3 className="text-2xl font-display font-bold text-ink-900">More from the Blog</h3>
             </div>
             <Link
               href="/student/blog"
@@ -164,7 +163,6 @@ export default async function StudentBlogDetailPage({ params }: PageProps) {
                       title={related.title}
                       width={384}
                       height={216}
-                      unoptimized={related.cover_image.startsWith("/uploads/")}
                       sizes="(max-width: 768px) 100vw, 500px"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

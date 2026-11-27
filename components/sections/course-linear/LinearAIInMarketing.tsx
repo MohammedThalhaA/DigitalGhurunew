@@ -32,7 +32,7 @@ export default function LinearAIInMarketing({ title, description, features }: Li
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="mb-10 text-center">
-        <h2 className="heading-md text-ink-900 mb-4">{title}</h2>
+        <h3 className="heading-md text-ink-900 mb-4">{title}</h3>
         <p className="body-lg text-ink-500 max-w-2xl mx-auto">
           {description}
         </p>

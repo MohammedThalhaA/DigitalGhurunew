@@ -108,9 +108,9 @@ export default function ToolsCovered() {
         {/* Header */}
         <div className="text-center mb-12">
           <p className="eyebrow mb-3">TOOLS MASTERY</p>
-          <h2 className="heading-lg mb-4 text-ink-900">
+          <h3 className="heading-lg mb-4 text-ink-900">
             Master 15+ Industry-Leading Tools
-          </h2>
+          </h3>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             We don&apos;t just teach theoretical concepts. You will gain hands-on proficiency in the actual tools used by top global agencies.
           </p>

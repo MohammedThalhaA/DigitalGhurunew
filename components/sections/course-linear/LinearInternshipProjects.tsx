@@ -75,9 +75,9 @@ export default function LinearInternshipProjects({
       {/* Internship Section */}
       <div className="mb-16">
         <div className="text-center mb-12">
-          <h2 className="heading-lg text-ink-900 mb-4">
+          <h3 className="heading-lg text-ink-900 mb-4">
             {internshipTitle || (courseTitle ? `Internship & Projects in ${courseTitle}` : "Internship & Real-Time Projects")}
-          </h2>
+          </h3>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {internshipDesc || "Practical exposure is key to becoming job-ready. Gain hands-on experience with real industry projects."}
           </p>
@@ -128,9 +128,9 @@ export default function LinearInternshipProjects({
       {/* Placement Support Section */}
       <div>
         <div className="text-center mb-12">
-          <h2 className="heading-lg text-ink-900 mb-4">
+          <h3 className="heading-lg text-ink-900 mb-4">
             {placementTitle || (courseTitle ? `${courseTitle} Placement Support` : "Placement Support System")}
-          </h2>
+          </h3>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {placementDesc || "We don't just train — we prepare you for your career with comprehensive placement support."}
           </p>

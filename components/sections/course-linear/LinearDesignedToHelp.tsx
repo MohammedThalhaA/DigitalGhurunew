@@ -31,9 +31,9 @@ export default function LinearDesignedToHelp({ title, description, benefits }: L
   return (
     <div className="py-14 border-b border-ink-200">
       <div className="text-center mb-12">
-        <h2 className="heading-lg text-ink-900 mb-4">
+        <h3 className="heading-lg text-ink-900 mb-4">
           {title}
-        </h2>
+        </h3>
         <p className="body-lg max-w-2xl mx-auto text-ink-500">
           {description}
         </p>

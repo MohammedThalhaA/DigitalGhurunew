@@ -50,7 +50,7 @@ function VerifyEmailContent() {
       {status === "loading" && (
         <div className="flex flex-col items-center justify-center space-y-4">
           <Loader2 className="h-16 w-16 text-brand-blue animate-spin" />
-          <h2 className="heading-sm text-ink-900">Verifying...</h2>
+          <h3 className="heading-sm text-ink-900">Verifying...</h3>
           <p className="text-ink-500">{message}</p>
         </div>
       )}
@@ -60,7 +60,7 @@ function VerifyEmailContent() {
           <div className="h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center mb-2">
             <CheckCircle className="h-8 w-8 text-emerald-600" />
           </div>
-          <h2 className="heading-sm text-ink-900">Account Verified!</h2>
+          <h3 className="heading-sm text-ink-900">Account Verified!</h3>
           <p className="text-ink-500 mb-6">{message}</p>
           <Link 
             href="/signin"
@@ -76,7 +76,7 @@ function VerifyEmailContent() {
           <div className="h-16 w-16 rounded-full bg-red-100 flex items-center justify-center mb-2">
             <XCircle className="h-8 w-8 text-red-600" />
           </div>
-          <h2 className="heading-sm text-ink-900">Verification Failed</h2>
+          <h3 className="heading-sm text-ink-900">Verification Failed</h3>
           <p className="text-ink-500 mb-6">{message}</p>
           <Link 
             href="/signin"
@@ -105,7 +105,7 @@ export default function VerifyEmailPage() {
       <Suspense fallback={
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-card max-w-md w-full text-center flex flex-col items-center justify-center space-y-4">
           <Loader2 className="h-16 w-16 text-brand-blue animate-spin" />
-          <h2 className="heading-sm text-ink-900">Loading verification details...</h2>
+          <h3 className="heading-sm text-ink-900">Loading verification details...</h3>
         </div>
       }>
         <VerifyEmailContent />
@@ -126,9 +126,9 @@ export default function VerifyEmailPage() {
         </div>
 
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-          <h2 className="font-display text-base font-bold text-ink-900 mb-2">
+          <h3 className="font-display text-base font-bold text-ink-900 mb-2">
             Need Help with Setup?
-          </h2>
+          </h3>
           <p className="text-xs text-ink-600 leading-relaxed mb-3">
             If your link has expired, you can request a new one. Be sure to check your spam or promo tabs if you do not see our note.
           </p>

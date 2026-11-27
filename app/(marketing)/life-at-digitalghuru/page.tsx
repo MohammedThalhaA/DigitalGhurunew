@@ -115,9 +115,9 @@ export default function LifeAtPage() {
       {/* CTA */}
       <section className="relative overflow-hidden bg-gradient-to-r from-brand-blue to-brand-blue/90 section-padding">
         <div className="section-container relative z-10 text-center">
-          <h2 className="heading-lg text-white mb-4">
+          <h3 className="heading-lg text-white mb-4">
             Come Experience It Yourself
-          </h2>
+          </h3>
           <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
             Visit our campus or join a free demo class. See how our agency-style classes work firsthand.
           </p>

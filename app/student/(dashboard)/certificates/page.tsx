@@ -93,10 +93,10 @@ export default async function CertificatesPage() {
         {/* Locked Certificates Section */}
         {lockedCerts.length > 0 && (
           <div>
-            <h2 className="font-display text-base font-bold text-ink-900 mb-6 flex items-center gap-2">
+            <h3 className="font-display text-base font-bold text-ink-900 mb-6 flex items-center gap-2">
               <Lock className="h-6 w-6 text-ink-400" />
               In Progress ({lockedCerts.length})
-            </h2>
+            </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {lockedCerts.map((cert) => (

@@ -32,9 +32,9 @@ export default function NewsletterPage() {
             <div className="bg-ink-50 rounded-3xl border border-ink-100 p-8 shadow-card text-left">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-ink-200">
                 <Mail className="h-6 w-6 text-brand-blue" />
-                <h2 className="font-display text-xl font-bold text-ink-900">
+                <h3 className="font-display text-xl font-bold text-ink-900">
                   Subscribe to Digital Ghuru Insider
-                </h2>
+                </h3>
               </div>
               <p className="text-base text-ink-600 mb-6 leading-relaxed">
                 We never send spam. Each week you get fresh ad tips, free AI prompts, and real marketing case studies.

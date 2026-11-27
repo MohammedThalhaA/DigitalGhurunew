@@ -191,10 +191,10 @@ function SectionHeader({
         }`}>
         {eyebrow}
       </span>
-      <h2 className={`text-3xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight leading-[1.1] mb-6 ${light ? "text-white" : "text-ink-900"
+      <h3 className={`text-3xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight leading-[1.1] mb-6 ${light ? "text-white" : "text-ink-900"
         }`}>
         {title}
-      </h2>
+      </h3>
       {description && (
         <p className={`text-lg md:text-xl leading-relaxed max-w-2xl mx-auto ${light ? "text-white/70" : "text-ink-500"
           }`}>
@@ -295,9 +295,9 @@ export default function AboutUsPage() {
                   <div className="h-1 w-12 rounded-full bg-gradient-to-r from-brand-orange to-orange-400" />
                   <span className="text-xs font-bold tracking-[0.2em] uppercase text-brand-orange">Mission</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl font-heading font-black text-ink-900 tracking-tight leading-[1.05]">
+                <h3 className="text-4xl sm:text-5xl font-heading font-black text-ink-900 tracking-tight leading-[1.05]">
                   Our Mission
-                </h2>
+                </h3>
               </motion.div>
 
               {/* Right — Content */}
@@ -437,9 +437,9 @@ export default function AboutUsPage() {
               <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full bg-white/10 text-white/80 mb-6">
                 The Environment
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight leading-[1.1] mb-6">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight leading-[1.1] mb-6">
                 The Digital Ghuru Ecosystem
-              </h2>
+              </h3>
               <p className="text-lg text-white/70 leading-relaxed mb-8">
                 Our campuses give you the tools, peer network, and expert guidance you need to grow fast.
               </p>
@@ -587,9 +587,9 @@ export default function AboutUsPage() {
               className="lg:col-span-5"
             >
               <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full bg-white/10 text-white/90 mb-6">Impact</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight leading-[1.1]">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight leading-[1.1]">
                 Already Transforming Careers
-              </h2>
+              </h3>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -725,9 +725,9 @@ export default function AboutUsPage() {
             <div className="h-20 w-20 mx-auto mb-8 rounded-3xl bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center">
               <Award className="h-10 w-10 text-brand-gold" />
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight mb-6 leading-tight">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight mb-6 leading-tight">
               Pioneering AI-Powered<br />Marketing Education
-            </h2>
+            </h3>
             <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto mb-10">
               Digital Ghuru is a top AI digital marketing institute in India. We help you build a thriving career with hands-on training, live client work, and personal mentorship.
             </p>

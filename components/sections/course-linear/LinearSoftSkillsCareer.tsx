@@ -74,9 +74,9 @@ export default function LinearSoftSkillsCareer({
       {/* Soft Skills Section */}
       <div className="mb-16">
         <div className="text-center mb-12">
-          <h2 className="heading-lg text-ink-900 mb-4">
+          <h3 className="heading-lg text-ink-900 mb-4">
             {softSkillsTitle || (courseTitle ? `Soft Skills for ${courseTitle}` : "Soft Skills & Career Training")}
-          </h2>
+          </h3>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {softSkillsDesc || "Technical skills alone are not enough. We train you to communicate clearly, interview with confidence, and succeed professionally."}
           </p>
@@ -127,9 +127,9 @@ export default function LinearSoftSkillsCareer({
       {/* Career Opportunities Section */}
       <div>
         <div className="text-center mb-12">
-          <h2 className="heading-lg text-ink-900 mb-4">
+          <h3 className="heading-lg text-ink-900 mb-4">
             {careerTitle || (courseTitle ? `${courseTitle} Career Paths` : "Career Opportunities")}
-          </h2>
+          </h3>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             {careerDesc || "The demand for certified, practical professionals is rapidly growing across industries worldwide."}
           </p>

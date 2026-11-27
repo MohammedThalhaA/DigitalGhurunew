@@ -57,9 +57,9 @@ export default function AgencyModel() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="eyebrow mb-3">LEARNING BY DOING</p>
-          <h2 className="heading-lg mb-4 text-ink-900">
+          <h3 className="heading-lg mb-4 text-ink-900">
             Our Agency-Style Training Model
-          </h2>
+          </h3>
           <p className="body-lg max-w-2xl mx-auto text-ink-500">
             Ditch the boring lectures. We prepare you to step directly into agencies by simulating a high-octane agency environment from day one.
           </p>

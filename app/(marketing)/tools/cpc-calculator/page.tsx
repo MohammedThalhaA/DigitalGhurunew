@@ -53,9 +53,9 @@ export default function CpcCalculatorPage() {
           <div className="bg-ink-50 rounded-3xl border border-ink-100 p-8 shadow-card">
             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-ink-200">
               <Calculator className="h-6 w-6 text-brand-blue" />
-              <h2 className="font-display text-xl font-bold text-ink-900">
+              <h3 className="font-display text-xl font-bold text-ink-900">
                 CPC Campaign Inputs
-              </h2>
+              </h3>
             </div>
 
             <form onSubmit={calculate} className="space-y-6">

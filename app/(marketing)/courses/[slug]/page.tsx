@@ -158,7 +158,7 @@ export default async function CoursePage({
   if (!finalCourse) {
     return (
       <div className="section-container section-padding text-center">
-        <h2 className="heading-lg mb-4 text-[var(--tw-colors-ink-900)]">Course Not Found</h2>
+        <h3 className="heading-lg mb-4 text-[var(--tw-colors-ink-900)]">Course Not Found</h3>
         <p className="body-lg mb-8 text-ink-500">
           The course you're looking for doesn't exist or has been moved.
         </p>

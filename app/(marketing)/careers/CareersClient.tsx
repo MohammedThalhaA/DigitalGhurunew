@@ -160,9 +160,9 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
       <section className="section-padding bg-ink-50 border-b border-ink-200" id="open-roles">
         <div className="section-container">
           <div className="text-center mb-16">
-            <h2 className="heading-lg mb-4 text-ink-900">
+            <h3 className="heading-lg mb-4 text-ink-900">
               Active Career Opportunities
-            </h2>
+            </h3>
             <p className="body-lg max-w-2xl mx-auto text-ink-500">
               Find a role that matches your skills. Click on any opening to view details, responsibilities, and requirements.
             </p>
@@ -297,7 +297,7 @@ export default function CareersClient({ jobs }: { jobs: any[] }) {
       <section className="section-padding bg-white border-b border-ink-200">
         <div className="section-container">
           <div className="text-center mb-16">
-            <h2 className="heading-lg mb-4 text-ink-900">Our Recruitment Funnel</h2>
+            <h3 className="heading-lg mb-4 text-ink-900">Our Recruitment Funnel</h3>
             <p className="body-lg max-w-2xl mx-auto text-ink-500">
               We respect your time. Our simplified recruitment process focuses on practical talent evaluations and fast communication.
             </p>

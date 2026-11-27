@@ -20,9 +20,9 @@ export default function LinearFAQs({ faqs, courseTitle }: LinearFAQsProps) {
   return (
     <div id="faq" className="py-10">
       
-      <h2 className="heading-md text-ink-900 mb-6">
+      <h3 className="heading-md text-ink-900 mb-6">
         {courseTitle ? `${courseTitle} FAQs` : "Course Enrollment & Training FAQs"}
-      </h2>
+      </h3>
       
       <div className="border border-ink-200 rounded-lg bg-white overflow-hidden">
         {faqs.map((faq, idx) => {

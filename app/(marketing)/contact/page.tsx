@@ -204,9 +204,9 @@ export default function ContactPage() {
               className="lg:col-span-5 space-y-6"
             >
               <p className="eyebrow">MESSAGE US</p>
-              <h2 className="heading-lg text-ink-900">
+              <h3 className="heading-lg text-ink-900">
                 How Can We Help You Succeed?
-              </h2>
+              </h3>
               <p className="body-lg text-ink-500">
                 Fill out the form with your inquiry, and our specialized team will get back to you within 24 hours. For faster resolution, please select the most relevant subject.
               </p>
@@ -373,7 +373,7 @@ export default function ContactPage() {
       <section className="section-padding bg-ink-50/50" id="locations">
         <div className="section-container max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="heading-lg text-ink-900 flex items-center justify-center gap-5">
+            <h3 className="heading-lg text-ink-900 flex items-center justify-center gap-5">
               <Image
                 src="/logo-final dG.webp"
                 alt="Digital Ghuru Logo"
@@ -383,7 +383,7 @@ export default function ContactPage() {
                 className="h-16 md:h-20 w-auto object-contain"
               />
               Digital Ghuru Address
-            </h2>
+            </h3>
           </div>
           
           <div className="space-y-24">
